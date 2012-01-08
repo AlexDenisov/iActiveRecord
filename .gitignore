@@ -1,0 +1,7 @@
+*.d
+tags
+a.out
+*.sqlite
+main.m
+User.*
+Group.*
