@@ -3,10 +3,10 @@
 
 @interface ActiveRecord : NSObject
 {
-  NSNumber *recordId;
+  NSNumber *id;
 }
 
-@property (nonatomic, retain) NSNumber *recordId;
+@property (nonatomic, retain) NSNumber *id;
 
 + (id)newRecord;
 + (NSArray *)allRecords;

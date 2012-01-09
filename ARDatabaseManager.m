@@ -56,6 +56,7 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest{
+  NSLog(@"Start request: %@", aSqlRequest);
   NSMutableArray *resultArray = nil;
   NSString *aKey;
   NSString *aValue;
@@ -71,9 +72,8 @@ static ARDatabaseManager *instance = nil;
                                     &nColumns,
                                     NULL))
   {
-    resultArray = [NSMutableArray arrayWithCapacity:nRows];
+    resultArray = [NSMutableArray arrayWithCapacity:nRows++];
     Record = NSClassFromString(aName);
-    int size = nRows*nColumns;
     for(int i=0;i<nRows-1;i++){
       id record = [Record newRecord];
       for(int j=0;j<nColumns;j++){
@@ -98,7 +98,7 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSArray *)allRecordsWithName:(NSString *)aName {
-  NSString *sql = [NSString stringWithFormat:@"select * from %@", [self modelName:aName]];
+  NSString *sql = [NSString stringWithFormat:@"select * from %@", [self tableName:aName]];
   return [self allRecordsWithName:aName withSql:sql];
 }
 
@@ -106,9 +106,18 @@ static ARDatabaseManager *instance = nil;
   if(nil == anId){
     return nil;
   }
-  NSString *sql = [NSString stringWithFormat:@"select * from %@ where recordId = %d", [self modelName:aName], [anId integerValue]];
+  NSString *sql = [NSString stringWithFormat:@"select * from %@ where id = %d limit 1", [self tableName:aName], [anId integerValue]];
   NSArray *records = [self allRecordsWithName:aName withSql:sql];
   return [records count] ? [records objectAtIndex:0] : nil;
+}
+
+- (NSArray *)findRecords:(NSString *)aName byId:(NSNumber *)anId {
+  if(nil == anId){
+    return nil;
+  }
+  NSString *sql = [NSString stringWithFormat:@"select * from %@ where id = %d", [self tableName:aName], [anId integerValue]];
+  NSArray *records = [self allRecordsWithName:aName withSql:sql];
+  return records;
 }
 
 @end
