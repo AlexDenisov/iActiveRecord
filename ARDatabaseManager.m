@@ -120,4 +120,10 @@ static ARDatabaseManager *instance = nil;
   return records;
 }
 
+- (NSArray *)allRecordsWithName:(NSString *)aName whereKey:(NSString *)aKey hasValue:(id)aValue{
+  NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = %@", [self tableName:aName], aKey, aValue];
+  NSArray *records = [self allRecordsWithName:aName withSql:sql];
+  return records;
+}
+
 @end

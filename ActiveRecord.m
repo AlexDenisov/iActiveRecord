@@ -1,8 +1,15 @@
 #import "ActiveRecord.h"
 #import "ARDatabaseManager.h"
+#import "NSString+lowercaseFirst.h"
 
-void dynamicallyFind(id self, SEL _cmd){
-  NSLog(@"dynamicallyFind resolving");
+NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
+  NSLog(@"dynamicallyFind resolving %@", arg);
+  NSString *selector = NSStringFromSelector(_cmd);
+  NSString *searchKey = [selector substringFromIndex:6];
+  searchKey = [searchKey stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]];
+  searchKey = [searchKey lowercaseFirst];
+  NSArray *records = [[ARDatabaseManager sharedInstance] allRecordsWithName:[[self class] description] whereKey:searchKey hasValue:arg];
+  return records;
 }
 
 @implementation ActiveRecord
@@ -19,7 +26,7 @@ void dynamicallyFind(id self, SEL _cmd){
   if([selectorName hasPrefix:@"findBy"]){
     NSLog(@"try to resolve %@", [self class]);
     Class selfMetaClass = objc_getMetaClass([[[self class] description]  UTF8String]);
-    BOOL result = class_addMethod(selfMetaClass, aSel, (IMP)dynamicallyFind, "v@:");
+    BOOL result = class_addMethod(selfMetaClass, aSel, (IMP)dynamicallyFind, "[]@:@");
     NSLog(@"result %d", result);
     return YES;
   }
