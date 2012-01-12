@@ -3,11 +3,14 @@
 
 @interface ActiveRecord : NSObject
 {
-  NSNumber *id;
+    NSNumber *id;
 }
 
 @property (nonatomic, retain) NSNumber *id;
 
++ (const char *)sqlOnCreate;
+
++ (NSString *)tableName;
 + (id)newRecord;
 + (NSArray *)allRecords;
 + (id)findById:(NSNumber *)anId;

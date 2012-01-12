@@ -1,0 +1,368 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2598293F14BD740100207D16 /* ARObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598293E14BD740100207D16 /* ARObjectProperty.m */; };
+		25998EC214BC199C00CA2490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
+		25998EC414BC199C00CA2490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC314BC199C00CA2490 /* Foundation.framework */; };
+		25998EC614BC199C00CA2490 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC514BC199C00CA2490 /* CoreGraphics.framework */; };
+		25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25998ECA14BC199C00CA2490 /* InfoPlist.strings */; };
+		25998ECE14BC199C00CA2490 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998ECD14BC199C00CA2490 /* main.m */; };
+		25998ED214BC199C00CA2490 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998ED114BC199C00CA2490 /* AppDelegate.m */; };
+		25998EE714BC1A1D00CA2490 /* ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE114BC1A1D00CA2490 /* ActiveRecord.m */; };
+		25998EE814BC1A1D00CA2490 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
+		25998EE914BC1A1D00CA2490 /* NSString+lowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */; };
+		25998EEC14BC1A8300CA2490 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EEB14BC1A8300CA2490 /* User.m */; };
+		25998EFA14BC1DD400CA2490 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */; };
+		25998EFD14BC27FD00CA2490 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EFC14BC27FD00CA2490 /* Group.m */; };
+		25998F0314BC2D8500CA2490 /* NSObject+properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998F0214BC2D8500CA2490 /* NSObject+properties.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2598293D14BD740100207D16 /* ARObjectProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARObjectProperty.h; sourceTree = "<group>"; };
+		2598293E14BD740100207D16 /* ARObjectProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARObjectProperty.m; sourceTree = "<group>"; };
+		2598294114BDDB4200207D16 /* class_getSubclasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = class_getSubclasses.h; sourceTree = "<group>"; };
+		25998EBD14BC199C00CA2490 /* iActiveRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iActiveRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		25998EC114BC199C00CA2490 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		25998EC314BC199C00CA2490 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		25998EC514BC199C00CA2490 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		25998EC914BC199C00CA2490 /* iActiveRecord-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iActiveRecord-Info.plist"; sourceTree = "<group>"; };
+		25998ECB14BC199C00CA2490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		25998ECD14BC199C00CA2490 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		25998ECF14BC199C00CA2490 /* iActiveRecord-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iActiveRecord-Prefix.pch"; sourceTree = "<group>"; };
+		25998ED014BC199C00CA2490 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		25998ED114BC199C00CA2490 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		25998EE014BC1A1D00CA2490 /* ActiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveRecord.h; sourceTree = "<group>"; };
+		25998EE114BC1A1D00CA2490 /* ActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveRecord.m; sourceTree = "<group>"; };
+		25998EE214BC1A1D00CA2490 /* ARDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDatabaseManager.h; sourceTree = "<group>"; };
+		25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDatabaseManager.m; sourceTree = "<group>"; };
+		25998EE414BC1A1D00CA2490 /* ARRelationships.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationships.h; sourceTree = "<group>"; };
+		25998EE514BC1A1D00CA2490 /* NSString+lowercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+lowercaseFirst.h"; sourceTree = "<group>"; };
+		25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+lowercaseFirst.m"; sourceTree = "<group>"; };
+		25998EEA14BC1A8300CA2490 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		25998EEB14BC1A8300CA2490 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		25998EFB14BC27FD00CA2490 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		25998EFC14BC27FD00CA2490 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		25998F0114BC2D8500CA2490 /* NSObject+properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+properties.h"; sourceTree = "<group>"; };
+		25998F0214BC2D8500CA2490 /* NSObject+properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+properties.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		25998EBA14BC199C00CA2490 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25998EFA14BC1DD400CA2490 /* libsqlite3.0.dylib in Frameworks */,
+				25998EC214BC199C00CA2490 /* UIKit.framework in Frameworks */,
+				25998EC414BC199C00CA2490 /* Foundation.framework in Frameworks */,
+				25998EC614BC199C00CA2490 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		25998EB214BC199C00CA2490 = {
+			isa = PBXGroup;
+			children = (
+				25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */,
+				25998EC714BC199C00CA2490 /* iActiveRecord */,
+				25998EC014BC199C00CA2490 /* Frameworks */,
+				25998EBE14BC199C00CA2490 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		25998EBE14BC199C00CA2490 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25998EBD14BC199C00CA2490 /* iActiveRecord.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		25998EC014BC199C00CA2490 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				25998EC114BC199C00CA2490 /* UIKit.framework */,
+				25998EC314BC199C00CA2490 /* Foundation.framework */,
+				25998EC514BC199C00CA2490 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		25998EC714BC199C00CA2490 /* iActiveRecord */ = {
+			isa = PBXGroup;
+			children = (
+				25998EDC14BC19E200CA2490 /* Classes */,
+				25998EC814BC199C00CA2490 /* Supporting Files */,
+			);
+			path = iActiveRecord;
+			sourceTree = "<group>";
+		};
+		25998EC814BC199C00CA2490 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				25998EC914BC199C00CA2490 /* iActiveRecord-Info.plist */,
+				25998ECA14BC199C00CA2490 /* InfoPlist.strings */,
+				25998ECD14BC199C00CA2490 /* main.m */,
+				25998ECF14BC199C00CA2490 /* iActiveRecord-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		25998EDC14BC19E200CA2490 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				25998EFE14BC2D4600CA2490 /* Extra */,
+				25998EED14BC1A9A00CA2490 /* Test Entities */,
+				25998EDF14BC19F100CA2490 /* ActiveRecord */,
+				25998EDE14BC19E900CA2490 /* AppDelegate */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		25998EDE14BC19E900CA2490 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				25998ED014BC199C00CA2490 /* AppDelegate.h */,
+				25998ED114BC199C00CA2490 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		25998EDF14BC19F100CA2490 /* ActiveRecord */ = {
+			isa = PBXGroup;
+			children = (
+				25998EE014BC1A1D00CA2490 /* ActiveRecord.h */,
+				25998EE114BC1A1D00CA2490 /* ActiveRecord.m */,
+				25998EE214BC1A1D00CA2490 /* ARDatabaseManager.h */,
+				25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */,
+				25998EE414BC1A1D00CA2490 /* ARRelationships.h */,
+				2598293D14BD740100207D16 /* ARObjectProperty.h */,
+				2598293E14BD740100207D16 /* ARObjectProperty.m */,
+				2598294114BDDB4200207D16 /* class_getSubclasses.h */,
+			);
+			name = ActiveRecord;
+			sourceTree = "<group>";
+		};
+		25998EED14BC1A9A00CA2490 /* Test Entities */ = {
+			isa = PBXGroup;
+			children = (
+				25998EEA14BC1A8300CA2490 /* User.h */,
+				25998EEB14BC1A8300CA2490 /* User.m */,
+				25998EFB14BC27FD00CA2490 /* Group.h */,
+				25998EFC14BC27FD00CA2490 /* Group.m */,
+			);
+			name = "Test Entities";
+			sourceTree = "<group>";
+		};
+		25998EFE14BC2D4600CA2490 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				25998F0014BC2D6600CA2490 /* NSObject */,
+				25998EFF14BC2D5400CA2490 /* NSString */,
+			);
+			name = Extra;
+			sourceTree = "<group>";
+		};
+		25998EFF14BC2D5400CA2490 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				25998EE514BC1A1D00CA2490 /* NSString+lowercaseFirst.h */,
+				25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */,
+			);
+			name = NSString;
+			sourceTree = "<group>";
+		};
+		25998F0014BC2D6600CA2490 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				25998F0114BC2D8500CA2490 /* NSObject+properties.h */,
+				25998F0214BC2D8500CA2490 /* NSObject+properties.m */,
+			);
+			name = NSObject;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		25998EBC14BC199C00CA2490 /* iActiveRecord */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25998ED514BC199C00CA2490 /* Build configuration list for PBXNativeTarget "iActiveRecord" */;
+			buildPhases = (
+				25998EB914BC199C00CA2490 /* Sources */,
+				25998EBA14BC199C00CA2490 /* Frameworks */,
+				25998EBB14BC199C00CA2490 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iActiveRecord;
+			productName = iActiveRecord;
+			productReference = 25998EBD14BC199C00CA2490 /* iActiveRecord.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		25998EB414BC199C00CA2490 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 25998EB714BC199C00CA2490 /* Build configuration list for PBXProject "iActiveRecord" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 25998EB214BC199C00CA2490;
+			productRefGroup = 25998EBE14BC199C00CA2490 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				25998EBC14BC199C00CA2490 /* iActiveRecord */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		25998EBB14BC199C00CA2490 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		25998EB914BC199C00CA2490 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25998ECE14BC199C00CA2490 /* main.m in Sources */,
+				25998ED214BC199C00CA2490 /* AppDelegate.m in Sources */,
+				25998EE714BC1A1D00CA2490 /* ActiveRecord.m in Sources */,
+				25998EE814BC1A1D00CA2490 /* ARDatabaseManager.m in Sources */,
+				25998EE914BC1A1D00CA2490 /* NSString+lowercaseFirst.m in Sources */,
+				25998EEC14BC1A8300CA2490 /* User.m in Sources */,
+				25998EFD14BC27FD00CA2490 /* Group.m in Sources */,
+				25998F0314BC2D8500CA2490 /* NSObject+properties.m in Sources */,
+				2598293F14BD740100207D16 /* ARObjectProperty.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		25998ECA14BC199C00CA2490 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25998ECB14BC199C00CA2490 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		25998ED314BC199C00CA2490 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		25998ED414BC199C00CA2490 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		25998ED614BC199C00CA2490 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iActiveRecord/iActiveRecord-Prefix.pch";
+				INFOPLIST_FILE = "iActiveRecord/iActiveRecord-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		25998ED714BC199C00CA2490 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iActiveRecord/iActiveRecord-Prefix.pch";
+				INFOPLIST_FILE = "iActiveRecord/iActiveRecord-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		25998EB714BC199C00CA2490 /* Build configuration list for PBXProject "iActiveRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25998ED314BC199C00CA2490 /* Debug */,
+				25998ED414BC199C00CA2490 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		25998ED514BC199C00CA2490 /* Build configuration list for PBXNativeTarget "iActiveRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25998ED614BC199C00CA2490 /* Debug */,
+				25998ED714BC199C00CA2490 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 25998EB414BC199C00CA2490 /* Project object */;
+}

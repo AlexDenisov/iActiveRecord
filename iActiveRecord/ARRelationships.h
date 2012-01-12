@@ -13,11 +13,12 @@
 
 #define HAS_MANY(relative_class, accessor) \
   - (NSArray *)accessor{\
-    /*NSString *class_name = @""#relative_class"";*/\
+    NSString *class_name = @""#relative_class"";\
     NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];\
     SEL selector = NSSelectorFromString(stringSelector);\
     id recId = [self id];\
-    NSArray *records = [relative_class performSelector:selector withObject:recId];\
+    Class Record = NSClassFromString(class_name);\
+    NSArray *records = [Record performSelector:selector withObject:recId];\
     return records;\
   }
 
