@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		254F5EBC14C5E71C00AC0D86 /* NSString+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */; };
+		254F5EC014C5E78100AC0D86 /* NSNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */; };
 		2598293F14BD740100207D16 /* ARObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598293E14BD740100207D16 /* ARObjectProperty.m */; };
 		25998EC214BC199C00CA2490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
 		25998EC414BC199C00CA2490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC314BC199C00CA2490 /* Foundation.framework */; };
@@ -24,6 +26,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		254F5EB614C5E01000AC0D86 /* SQLRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLRepresentation.h; sourceTree = "<group>"; };
+		254F5EBA14C5E71C00AC0D86 /* NSString+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+sqlRepresentation.h"; sourceTree = "<group>"; };
+		254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+sqlRepresentation.m"; sourceTree = "<group>"; };
+		254F5EBE14C5E78100AC0D86 /* NSNumber+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+sqlRepresentation.h"; sourceTree = "<group>"; };
+		254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+sqlRepresentation.m"; sourceTree = "<group>"; };
 		2598293D14BD740100207D16 /* ARObjectProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARObjectProperty.h; sourceTree = "<group>"; };
 		2598293E14BD740100207D16 /* ARObjectProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARObjectProperty.m; sourceTree = "<group>"; };
 		2598294114BDDB4200207D16 /* class_getSubclasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = class_getSubclasses.h; sourceTree = "<group>"; };
@@ -68,6 +75,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		254F5EB514C5DFF300AC0D86 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				254F5EB614C5E01000AC0D86 /* SQLRepresentation.h */,
+			);
+			name = Extras;
+			sourceTree = "<group>";
+		};
+		254F5EBD14C5E76700AC0D86 /* NSNumber */ = {
+			isa = PBXGroup;
+			children = (
+				254F5EBE14C5E78100AC0D86 /* NSNumber+sqlRepresentation.h */,
+				254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */,
+			);
+			name = NSNumber;
+			sourceTree = "<group>";
+		};
 		25998EB214BC199C00CA2490 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +189,8 @@
 		25998EFE14BC2D4600CA2490 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				254F5EBD14C5E76700AC0D86 /* NSNumber */,
+				254F5EB514C5DFF300AC0D86 /* Extras */,
 				25998F0014BC2D6600CA2490 /* NSObject */,
 				25998EFF14BC2D5400CA2490 /* NSString */,
 			);
@@ -176,6 +202,8 @@
 			children = (
 				25998EE514BC1A1D00CA2490 /* NSString+lowercaseFirst.h */,
 				25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */,
+				254F5EBA14C5E71C00AC0D86 /* NSString+sqlRepresentation.h */,
+				254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */,
 			);
 			name = NSString;
 			sourceTree = "<group>";
@@ -259,6 +287,8 @@
 				25998EFD14BC27FD00CA2490 /* Group.m in Sources */,
 				25998F0314BC2D8500CA2490 /* NSObject+properties.m in Sources */,
 				2598293F14BD740100207D16 /* ARObjectProperty.m in Sources */,
+				254F5EBC14C5E71C00AC0D86 /* NSString+sqlRepresentation.m in Sources */,
+				254F5EC014C5E78100AC0D86 /* NSNumber+sqlRepresentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
