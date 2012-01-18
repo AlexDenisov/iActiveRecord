@@ -11,5 +11,6 @@
 @interface NSObject (properties)
 
 + (NSArray *)properties;
++ (NSString *)propertyClassNameWithPropertyName:(NSString *)aName;
 
 @end

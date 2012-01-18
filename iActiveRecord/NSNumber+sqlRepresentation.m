@@ -9,11 +9,17 @@
 #import "NSNumber+sqlRepresentation.h"
 
 @implementation NSNumber (sqlRepresentation)
+
 - (NSString *)toSql {
     return [NSString stringWithFormat:@"%@", [self floatValue]];
 }
 
 + (const char *)sqlType {
-    return "real";
+    return "integer";
 }
+
++ (id)fromSql:(NSString *)sqlData{
+    return [NSNumber numberWithInteger:[sqlData integerValue]];
+}
+
 @end

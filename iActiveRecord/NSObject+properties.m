@@ -29,4 +29,14 @@
     return propertiesArray;
 }
 
++ (NSString *)propertyClassNameWithPropertyName:(NSString *)aName {
+    NSArray *properties = [[self class] properties];
+    for(ARObjectProperty *p in properties){
+        if([p.propertyName isEqualToString:aName]){
+            return p.propertyType;
+        }
+    }
+    return nil;
+}
+
 @end

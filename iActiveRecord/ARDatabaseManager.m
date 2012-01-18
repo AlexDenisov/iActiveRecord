@@ -84,8 +84,8 @@ static ARDatabaseManager *instance = nil;
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest{
     NSLog(@"Start request: %@", aSqlRequest);
     NSMutableArray *resultArray = nil;
-    NSString *aKey;
-    NSString *aValue;
+    NSString *propertyName;
+    id aValue;
     Class Record;
     char **results;
     int nRows;
@@ -103,15 +103,22 @@ static ARDatabaseManager *instance = nil;
         for(int i=0;i<nRows-1;i++){
             id record = [Record newRecord];
             for(int j=0;j<nColumns;j++){
-                aKey = [NSString stringWithUTF8String:results[j]];
+                propertyName = [NSString stringWithUTF8String:results[j]];
                 int index = (i+1)*nColumns + j;
                 const char *pszValue = results[index];
+                
                 if(pszValue){
-                    aValue = [NSString stringWithUTF8String:pszValue];
+                    NSString *propertyClassName = [Record 
+                                                   performSelector:@selector(propertyClassNameWithPropertyName:) 
+                                                   withObject:propertyName];
+                    Class propertyClass = NSClassFromString(propertyClassName);
+                    NSString *sqlData = [NSString stringWithUTF8String:pszValue];
+                    aValue = [propertyClass performSelector:@selector(fromSql:) 
+                                                 withObject:sqlData];
                 }else{
                     aValue = @"";
                 }
-                [record setValue:aValue forKey:aKey];
+                [record setValue:aValue forKey:propertyName];
             }
             [resultArray addObject:record];
         }

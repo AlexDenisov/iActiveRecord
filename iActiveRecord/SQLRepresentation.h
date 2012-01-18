@@ -9,3 +9,5 @@
 #import <Foundation/Foundation.h>
 
 #import "NSString+sqlRepresentation.h"
+#import "NSNumber+sqlRepresentation.h"
+#import "NSDecimalNumber+sqlRepresentation.h"

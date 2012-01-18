@@ -10,6 +10,10 @@
 
 @implementation NSString (sqlRepresentation)
 
++ (id)fromSql:(NSString *)sqlData{
+    return sqlData;
+}
+
 - (NSString *)toSql {
     return [NSString stringWithFormat:@"'%@'", self];
 }

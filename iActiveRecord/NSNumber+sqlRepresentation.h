@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NSNumber (sqlRepresentation)
+
 + (const char *)sqlType;
 - (NSString *)toSql;
++ (id)fromSql:(NSString *)sqlData;
+
 @end
