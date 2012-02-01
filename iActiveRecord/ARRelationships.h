@@ -22,4 +22,23 @@
     return records;\
   }
 
+#define HAS_MANY_THROUGH(relative_class, relationship, accessor) \
+    - (NSArray *)groups\
+    {\
+        NSMutableArray *relativeObjects = [[NSMutableArray alloc] init];\
+        NSArray *relationships;\
+        NSString *class_name = @""#relative_class"";\
+        NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id", class_name];\
+        SEL selector = NSSelectorFromString(stringSelector);\
+        relationships = [UserGroupRelationship performSelector:selector withObject:self.id];\
+        NSString *relativeStringSelector = [NSString stringWithFormat:@"%@Id", [class_name lowercaseFirst]];\
+        SEL relativeIdSelector = NSSelectorFromString(relativeStringSelector);\
+        for(relationship *rel in relationships)\
+        {\
+            \
+            id tmpRelativeObject = [relative_class findById:[rel performSelector:relativeIdSelector]];\
+            [relativeObjects addObject:tmpRelativeObject];\
+        }\
+        return relativeObjects;\
+    }\
 

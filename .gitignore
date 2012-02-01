@@ -5,4 +5,5 @@ a.out
 main.m
 User.*
 Group.*
+UserGroupRelationship.*
 .DS_Store

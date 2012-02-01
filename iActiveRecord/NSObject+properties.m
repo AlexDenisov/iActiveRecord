@@ -14,7 +14,7 @@
 
 + (NSArray *)properties {
     NSMutableArray *propertiesArray = [NSMutableArray array]; 
-    Class ActiveRecordClass = NSClassFromString(@"ActiveRecord");
+    Class ActiveRecordClass = NSClassFromString(@"NSObject");
     id CurrentClass = objc_getClass([[[self class] description] UTF8String]);
     while(nil != CurrentClass && CurrentClass != ActiveRecordClass){
         unsigned int outCount, i;
