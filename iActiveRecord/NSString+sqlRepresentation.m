@@ -19,7 +19,7 @@
 }
 
 + (const char *)sqlType {
-    return "text";
+    return "text(128)";
 }
 
 @end
