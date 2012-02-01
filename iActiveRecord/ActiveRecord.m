@@ -36,6 +36,10 @@ NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
 
 MIGRATION_HELPER
 
++ (void)initIgnoredFields {
+    NSLog(@"Overriden");
+}
+
 + (void)ignoreField:(NSString *)aField {
     if(nil == ignoredFields){
         ignoredFields = [[NSMutableSet alloc] init];
@@ -154,6 +158,7 @@ VALIDATION_HELPER
 #pragma mark - 
 
 + (const char *)sqlOnCreate {
+    [self initIgnoredFields];
     NSMutableString *sqlString = [NSMutableString stringWithFormat:@"create table %@(id integer primary key ", 
                                   [self performSelector:@selector(tableName)]];
     NSArray *properties = [self performSelector:@selector(properties)];
