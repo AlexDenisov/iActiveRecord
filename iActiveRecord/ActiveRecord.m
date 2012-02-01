@@ -6,6 +6,7 @@
 #import "ARValidations.h"
 #import "ARValidatableProtocol.h"
 #import "ARErrorHelper.h"
+#import "ARMigrationsHelper.h"
 
 #pragma mark - Dynamic functions proptotypes
 NSArray* dynamicallyFind(id self, SEL _cmd, id arg);
@@ -27,6 +28,21 @@ NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
 @synthesize id;
 //@synthesize errorMessages;
 
+#pragma mark - IgnoreFields
+
+//IGNORE_FIELDS_DO(
+//    IGNORE_FIELD(id)
+//)
+
+MIGRATION_HELPER
+
++ (void)ignoreField:(NSString *)aField {
+    if(nil == ignoredFields){
+        ignoredFields = [[NSMutableSet alloc] init];
+    }
+    [ignoredFields addObject:aField];
+}
+
 #pragma mark - validations
 
 VALIDATION_HELPER
@@ -36,7 +52,7 @@ VALIDATION_HELPER
 }
 
 - (NSString *)recordName {
-    return [[self class] tableName];
+    return [[self class] description];
 }
 
 + (void)validateField:(NSString *)aField asUnique:(BOOL)aUnique {
@@ -146,9 +162,14 @@ VALIDATION_HELPER
     }
     Class propertyClass = nil;
     for(ARObjectProperty *property in properties){
-        propertyClass = NSClassFromString(property.propertyType);
-        [sqlString appendFormat:@", %@ %s", property.propertyName, 
-         [propertyClass performSelector:@selector(sqlType)]];
+        if(![ignoredFields containsObject:property.propertyName])
+        {
+            if(![property.propertyName isEqualToString:@"id"]){
+                propertyClass = NSClassFromString(property.propertyType);
+                [sqlString appendFormat:@", %@ %s", property.propertyName, 
+                [propertyClass performSelector:@selector(sqlType)]];
+            }
+        }
     }
     [sqlString appendFormat:@")"];
     return [sqlString UTF8String];
@@ -162,9 +183,11 @@ VALIDATION_HELPER
     NSMutableArray *existedProperties = [[NSMutableArray alloc] init];
     ARObjectProperty *property = nil;
     for(property in properties){
-        id value = [self valueForKey:property.propertyName];
-        if(nil != value){
-            [existedProperties addObject:property];
+        if(![ignoredFields containsObject:property.propertyName]){
+            id value = [self valueForKey:property.propertyName];
+            if(nil != value){
+                [existedProperties addObject:property];
+            }
         }
     }
     if([existedProperties count] == 0){
@@ -181,8 +204,8 @@ VALIDATION_HELPER
     [sqlString appendFormat:@"%@", property.propertyName];
     [sqlValues appendFormat:@"%@", [propertyValue performSelector:@selector(toSql)]];
     
-    for(;index < [properties count] - 1;index++){
-        property = [properties objectAtIndex:index];
+    for(;index < [existedProperties count] - 1;index++){
+        property = [existedProperties objectAtIndex:index];
         id propertyValue = [self valueForKey:property.propertyName];
         [sqlString appendFormat:@", %@", property.propertyName];
         [ sqlValues appendFormat:@", %@", [propertyValue performSelector:@selector(toSql)]];
@@ -212,9 +235,13 @@ VALIDATION_HELPER
 }
 
 + (id)newRecord {
-  Class RecordClass = [self class];
-  id record = [[RecordClass alloc] init];
-  return record;
+    Class RecordClass = [self class];
+    id record = [[RecordClass alloc] init];
+    if([RecordClass conformsToProtocol:@protocol(ARValidatableProtocol)]){
+        [self performSelector:@selector(initValidations)];
+    }
+    [self initIgnoredFields];
+    return record;
 }
 
 + (NSArray *)allRecords {
@@ -235,6 +262,9 @@ VALIDATION_HELPER
 }
 
 - (BOOL)save {
+    if(![self isValid]){
+        return NO;
+    }
     const char *sql = [self sqlOnSave];
     if(NULL != sql){
         [[ARDatabaseManager sharedInstance] executeSqlQuery:sql];

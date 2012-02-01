@@ -67,6 +67,7 @@
 		25A1131F14D9BAAE000720E7 /* ARValidations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidations.h; sourceTree = "<group>"; };
 		25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatableProtocol.h; sourceTree = "<group>"; };
 		25A1132614D9BCF7000720E7 /* ARErrorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrorHelper.h; sourceTree = "<group>"; };
+		25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMigrationsHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +193,7 @@
 				25A1131F14D9BAAE000720E7 /* ARValidations.h */,
 				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
 				25A1132614D9BCF7000720E7 /* ARErrorHelper.h */,
+				25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */,
 			);
 			name = ActiveRecord;
 			sourceTree = "<group>";

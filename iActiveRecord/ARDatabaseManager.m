@@ -72,7 +72,7 @@ static ARDatabaseManager *instance = nil;
     if(SQLITE_OK == sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
         NSLog(@"Query '%s' executed", anSqlQuery);
     }else{
-        NSLog(@"%s", sqlite3_errmsg(database));
+        NSLog(@"Couldn't execute query %s : %s", anSqlQuery, sqlite3_errmsg(database));
     }
 }
 
@@ -154,7 +154,11 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSArray *)allRecordsWithName:(NSString *)aName whereKey:(NSString *)aKey hasValue:(id)aValue{
-    NSString *sql = [NSString stringWithFormat:@"select * from %@ where %@ = %@", [self tableName:aName], aKey, aValue];
+    NSString *sql = [NSString stringWithFormat:
+                     @"select * from %@ where %@ = %@", 
+                     [self tableName:aName], 
+                     aKey, 
+                     [aValue toSql]];
     NSArray *records = [self allRecordsWithName:aName withSql:sql];
     return records;
 }

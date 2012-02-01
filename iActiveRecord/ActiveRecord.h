@@ -2,6 +2,7 @@
 #import "ARRelationships.h"
 #import "ARValidations.h"
 #import "ARValidatableProtocol.h"
+#import "ARMigrationsHelper.h"
 
 @interface ActiveRecord : NSObject
 {
@@ -11,6 +12,11 @@
 
 //@property (nonatomic, retain) NSMutableSet *errorMessages;
 @property (nonatomic, retain) NSNumber *id;
+
+#pragma mark - IgnoreFields
+
++ (void)initIgnoredFields;
++ (void)ignoreField:(NSString *)aField;
 
 #pragma mark - validations
 
