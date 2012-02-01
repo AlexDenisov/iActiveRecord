@@ -30,6 +30,17 @@ NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
 
 #pragma mark - IgnoreFields
 
+- (id)init {
+    self = [super init];
+    if(nil != self){
+        if([[self class] conformsToProtocol:@protocol(ARValidatableProtocol)]){
+            [[self class] performSelector:@selector(initValidations)];
+        }
+        [[self class] initIgnoredFields];
+    }
+    return self;    
+}
+
 //IGNORE_FIELDS_DO(
 //    IGNORE_FIELD(id)
 //)
@@ -241,12 +252,7 @@ VALIDATION_HELPER
 
 + (id)newRecord {
     Class RecordClass = [self class];
-    id record = [[RecordClass alloc] init];
-    if([RecordClass conformsToProtocol:@protocol(ARValidatableProtocol)]){
-        [self performSelector:@selector(initValidations)];
-    }
-    [self initIgnoredFields];
-    return record;
+    return [[RecordClass alloc] init];
 }
 
 + (NSArray *)allRecords {
