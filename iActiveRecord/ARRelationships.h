@@ -35,8 +35,8 @@
         SEL relativeIdSelector = NSSelectorFromString(relativeStringSelector);\
         for(relationship *rel in relationships)\
         {\
-            \
-            id tmpRelativeObject = [relative_class findById:[rel performSelector:relativeIdSelector]];\
+            id recordId = [rel performSelector:relativeIdSelector];\
+            id tmpRelativeObject = [relative_class performSelector:@selector(findById:) withObject:recordId];\
             [relativeObjects addObject:tmpRelativeObject];\
         }\
         return relativeObjects;\
