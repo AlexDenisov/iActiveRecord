@@ -30,7 +30,7 @@
         NSString *class_name = @""#relative_class"";\
         NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id", class_name];\
         SEL selector = NSSelectorFromString(stringSelector);\
-        relationships = [relationship performSelector:selector withObject:self.id];\
+        relationships = [relationship performSelector:selector withObject:[self performSelector:@selector(id)]];\
         NSString *relativeStringSelector = [NSString stringWithFormat:@"%@Id", [class_name lowercaseFirst]];\
         SEL relativeIdSelector = NSSelectorFromString(relativeStringSelector);\
         for(relationship *rel in relationships)\
