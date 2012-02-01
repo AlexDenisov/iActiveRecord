@@ -64,6 +64,9 @@
 		25998F0214BC2D8500CA2490 /* NSObject+properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+properties.m"; sourceTree = "<group>"; };
 		25A1131414D9AA59000720E7 /* UserGroupRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGroupRelationship.h; sourceTree = "<group>"; };
 		25A1131514D9AA59000720E7 /* UserGroupRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGroupRelationship.m; sourceTree = "<group>"; };
+		25A1131F14D9BAAE000720E7 /* ARValidations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidations.h; sourceTree = "<group>"; };
+		25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatableProtocol.h; sourceTree = "<group>"; };
+		25A1132614D9BCF7000720E7 /* ARErrorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrorHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +189,9 @@
 				2598293D14BD740100207D16 /* ARObjectProperty.h */,
 				2598293E14BD740100207D16 /* ARObjectProperty.m */,
 				2598294114BDDB4200207D16 /* class_getSubclasses.h */,
+				25A1131F14D9BAAE000720E7 /* ARValidations.h */,
+				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
+				25A1132614D9BCF7000720E7 /* ARErrorHelper.h */,
 			);
 			name = ActiveRecord;
 			sourceTree = "<group>";

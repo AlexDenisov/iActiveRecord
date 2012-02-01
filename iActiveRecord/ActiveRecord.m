@@ -3,6 +3,9 @@
 #import "NSString+lowercaseFirst.h"
 #import <objc/runtime.h>
 #import "ARObjectProperty.h"
+#import "ARValidations.h"
+#import "ARValidatableProtocol.h"
+#import "ARErrorHelper.h"
 
 #pragma mark - Dynamic functions proptotypes
 NSArray* dynamicallyFind(id self, SEL _cmd, id arg);
@@ -22,6 +25,117 @@ NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
 @implementation ActiveRecord
 
 @synthesize id;
+//@synthesize errorMessages;
+
+#pragma mark - validations
+
+VALIDATION_HELPER
+
++ (NSString *)className {
+    return [[self class] description];
+}
+
+- (NSString *)recordName {
+    return [[self class] tableName];
+}
+
++ (void)validateField:(NSString *)aField asUnique:(BOOL)aUnique {
+    if(nil == uniqueFields){
+        uniqueFields = [[NSMutableSet alloc] init];
+    }
+    
+    BOOL contains = [uniqueFields containsObject:aField];
+    if(aUnique){
+        if(contains){
+            return;
+        }
+        [uniqueFields addObject:aField];
+        return;
+    }
+    if(contains){
+        [uniqueFields removeObject:aField];
+        return;
+    }    
+}
+
++ (void)validateField:(NSString *)aField asPresence:(BOOL)aPresence {
+    if(nil == presenceFields){
+        presenceFields = [[NSMutableSet alloc] init];
+    }
+    BOOL contains = [presenceFields containsObject:aField];
+    if(aPresence){
+        if(contains){
+            return;
+        }
+        [presenceFields addObject:aField];
+        return;
+    }
+    if(contains){
+        [presenceFields removeObject:aField];
+        return;
+    } 
+}
+
+- (void)resetErrors {
+    [errorMessages release];
+    errorMessages = nil;
+}
+
+- (void)addError:(NSString *)errMessage {
+    if(nil == errorMessages){
+        errorMessages = [[NSMutableSet alloc] init];
+    }
+    [errorMessages addObject:errMessage];
+}
+
+- (void)logErrors {
+    for(NSString *error in errorMessages){
+        NSLog(@"%@", error);
+    }
+}
+
+- (void)validate {
+    if(![self conformsToProtocol:@protocol(ARValidatableProtocol)]){
+        return;
+    }
+    [self validatePresence];
+    [self validateUniqueness];
+}
+
+- (void)validateUniqueness {
+    NSString *recordName = [self recordName];
+    for(NSString *uniqueField in uniqueFields){
+        id aValue = [self valueForKey:uniqueField];
+        NSArray *records = [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName 
+                                                                         whereKey:uniqueField 
+                                                                         hasValue:aValue];
+        if([records count]){
+            NSString *errMessage = [NSString stringWithFormat:@"%@ '%@' %@", 
+                                    uniqueField, 
+                                    aValue,
+                                    AR_Error(kARFieldAlreadyExists)];
+            [self addError:errMessage];
+        }
+    }
+}
+
+- (void)validatePresence {
+    for(NSString *presenceField in presenceFields){
+        NSString *aValue = [self valueForKey:presenceField];
+        if(aValue == nil || [aValue length] == 0){
+            NSString *errMessage = [NSString stringWithFormat:@"%@ %@", 
+                                    presenceField, 
+                                    AR_Error(kARFieldCantBeBlank)];
+            [self addError:errMessage];
+        }
+    }
+}
+
+- (void)initialize {
+    
+}
+
+#pragma mark - 
 
 + (const char *)sqlOnCreate {
     NSMutableString *sqlString = [NSMutableString stringWithFormat:@"create table %@(id integer primary key ", 
@@ -84,7 +198,6 @@ NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
 }
 
 + (BOOL)resolveInstanceMethod:(SEL)name {
-  NSLog(@"%@", NSStringFromSelector(name));
   return NO;
 }
 
@@ -112,6 +225,13 @@ NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
 + (id)findById:(NSNumber *)anId{
   NSString *recordName = [[self class] description];
   return [[ARDatabaseManager sharedInstance] findRecord:recordName byId:anId];
+}
+
+- (BOOL)isValid {
+    [self resetErrors];
+    [self validate];        
+    [self logErrors];
+    return nil == errorMessages;
 }
 
 - (BOOL)save {
