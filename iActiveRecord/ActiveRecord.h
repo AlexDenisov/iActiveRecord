@@ -33,6 +33,12 @@
 - (void)validateUniqueness;
 - (void)validatePresence;
 
+#pragma mark - Relationships
+
+- (id)belongsTo:(NSString *)aClassName;
+- (NSArray *)hasMany:(NSString *)aClassName 
+             through:(NSString *)aRelationsipClassName;
+
 #pragma mark - 
 
 + (const char *)sqlOnCreate;

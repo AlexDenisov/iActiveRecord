@@ -154,6 +154,7 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSArray *)allRecordsWithName:(NSString *)aName whereKey:(NSString *)aKey hasValue:(id)aValue{
+    NSLog(@"%@", [aValue toSql]);
     NSString *sql = [NSString stringWithFormat:
                      @"select * from %@ where %@ = %@", 
                      [self tableName:aName], 

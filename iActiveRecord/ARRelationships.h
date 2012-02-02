@@ -3,12 +3,7 @@
 #define BELONGS_TO(class, accessor) \
   - (id)accessor{\
     NSString *class_name = @""#class"";\
-    NSString *stringSelector = [NSString stringWithFormat:@"%@Id", [class_name lowercaseFirst]];\
-    SEL selector = NSSelectorFromString(stringSelector);\
-    Class Record = NSClassFromString(class_name);\
-    id rec_id = [self performSelector:selector];\
-    id record = [Record findById:rec_id];\
-    return record;\
+    return [self belongsTo:class_name];\
   }
 
 #define HAS_MANY(relative_class, accessor) \
@@ -23,23 +18,11 @@
   }
 
 #define HAS_MANY_THROUGH(relative_class, relationship, accessor) \
-    - (NSArray *)groups\
+    - (NSArray *)accessor\
     {\
-        NSMutableArray *relativeObjects = [[NSMutableArray alloc] init];\
-        NSArray *relationships;\
-        NSString *class_name = @""#relative_class"";\
-        NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id", class_name];\
-        SEL selector = NSSelectorFromString(stringSelector);\
-        relationships = [relationship performSelector:selector withObject:[self performSelector:@selector(id)]];\
-        NSString *relativeStringSelector = [NSString stringWithFormat:@"%@Id", [class_name lowercaseFirst]];\
-        SEL relativeIdSelector = NSSelectorFromString(relativeStringSelector);\
-        for(relationship *rel in relationships)\
-        {\
-            id recordId = [rel performSelector:relativeIdSelector];\
-            id tmpRelativeObject = [relative_class performSelector:@selector(findById:) withObject:recordId];\
-            [relativeObjects addObject:tmpRelativeObject];\
-        }\
-        return relativeObjects;\
+        NSString *className = @""#relative_class"";\
+        NSString *relativeClassName = @""#relationship"";\
+        return [self hasMany:className through:relativeClassName];\
     }\
 
 

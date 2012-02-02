@@ -11,7 +11,7 @@
 @implementation NSNumber (sqlRepresentation)
 
 - (NSString *)toSql {
-    return [NSString stringWithFormat:@"%@", [self floatValue]];
+    return [NSString stringWithFormat:@"%d", [self intValue]];
 }
 
 + (const char *)sqlType {

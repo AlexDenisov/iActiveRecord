@@ -283,4 +283,35 @@ VALIDATION_HELPER
     return NO;
 }
 
+#pragma mark - Relationships
+
+- (id)belongsTo:(NSString *)aClassName {
+    NSString *stringSelector = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
+    SEL selector = NSSelectorFromString(stringSelector);
+    Class Record = NSClassFromString(aClassName);
+    id rec_id = [self performSelector:selector];
+    id record = [Record findById:rec_id];
+    return record;
+}
+
+- (NSArray *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
+    Class RelativeClass = NSClassFromString(aClassName);
+    Class Relationship = NSClassFromString(aRelationsipClassName);
+    NSMutableArray *relativeObjects = [[NSMutableArray alloc] init];
+    NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", aClassName];
+    SEL selector = NSSelectorFromString(stringSelector);
+    NSNumber *recId = [self performSelector:@selector(id)];
+    NSArray *relationships = [Relationship performSelector:selector 
+                                                withObject:recId];
+    NSString *relativeStringSelector = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
+    SEL relativeIdSelector = NSSelectorFromString(relativeStringSelector);
+    for(id rel in relationships)
+    {
+        id recordId = [rel performSelector:relativeIdSelector];
+        id tmpRelativeObject = [RelativeClass performSelector:@selector(findById:) withObject:recordId];
+        [relativeObjects addObject:tmpRelativeObject];
+    }
+    return relativeObjects;
+}
+
 @end
