@@ -36,8 +36,12 @@
 #pragma mark - Relationships
 
 - (id)belongsTo:(NSString *)aClassName;
+
 - (NSArray *)hasMany:(NSString *)aClassName 
              through:(NSString *)aRelationsipClassName;
+- (void)addRecord:(ActiveRecord *)aRecord 
+          ofClass:(NSString *)aClassname 
+          through:(NSString *)aRelationshipClassName;
 
 #pragma mark - 
 

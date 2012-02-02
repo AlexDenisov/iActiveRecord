@@ -24,6 +24,10 @@
         NSString *relativeClassName = @""#relationship"";\
         return [self hasMany:className through:relativeClassName];\
     }\
-
+    - (void)add##relative_class:(ActiveRecord *)aRecord {\
+        NSString *className = @""#relative_class"";\
+        NSString *relativeClassName = @""#relationship"";\
+        [self addRecord:aRecord ofClass:className through:relativeClassName];\
+    }\
 
 

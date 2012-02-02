@@ -278,7 +278,9 @@ VALIDATION_HELPER
     }
     const char *sql = [self sqlOnSave];
     if(NULL != sql){
-        [[ARDatabaseManager sharedInstance] executeSqlQuery:sql];
+        self.id = [[ARDatabaseManager sharedInstance] 
+                          insertRecord:[[self class] tableName] withSqlQuery:sql];
+        
     }
     return NO;
 }
@@ -293,6 +295,8 @@ VALIDATION_HELPER
     id record = [Record findById:rec_id];
     return record;
 }
+
+#pragma mark - Has And Belongs To Many
 
 - (NSArray *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
     Class RelativeClass = NSClassFromString(aClassName);
@@ -312,6 +316,25 @@ VALIDATION_HELPER
         [relativeObjects addObject:tmpRelativeObject];
     }
     return relativeObjects;
+}
+
+- (void)addRecord:(ActiveRecord *)aRecord 
+          ofClass:(NSString *)aClassname 
+          through:(NSString *)aRelationshipClassName 
+{
+    Class RelationshipClass = NSClassFromString(aRelationshipClassName);
+    
+    NSString *currentIdSelectorString = [NSString stringWithFormat:@"set%@Id:", [[self class] description]];
+    NSString *relativeIdSlectorString = [NSString stringWithFormat:@"set%@Id:", aClassname];
+    
+    SEL currentIdSelector = NSSelectorFromString(currentIdSelectorString);
+    SEL relativeIdSelector = NSSelectorFromString(relativeIdSlectorString);
+    
+    NSNumber *relativeRecordId = aRecord.id;
+    ActiveRecord *relationshipRecord = [RelationshipClass newRecord];
+    [relationshipRecord performSelector:currentIdSelector withObject:self.id];
+    [relationshipRecord performSelector:relativeIdSelector withObject:relativeRecordId];
+    [relationshipRecord save];
 }
 
 @end

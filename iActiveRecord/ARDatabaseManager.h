@@ -17,6 +17,9 @@
 
 + (id)sharedInstance;
 
+- (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery;
+- (NSNumber *)getLastId:(NSString *)aRecordName;
+
 - (void)executeSqlQuery:(const char *)anSqlQuery;
 - (NSArray *)allRecordsWithName:(NSString *)aName whereKey:(NSString *)aKey hasValue:(id)aValue;
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest;

@@ -68,6 +68,32 @@ static ARDatabaseManager *instance = nil;
     sqlite3_close(database);
 }
 
+- (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery {
+    [self executeSqlQuery:anSqlQuery];
+    return [self getLastId:aRecordName];
+}
+
+- (NSNumber *)getLastId:(NSString *)aRecordName {
+    char **results;
+    NSNumber *lastId = nil;
+    NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from %@", aRecordName];
+    const char *pszSql = [aSqlRequest UTF8String];
+    if(SQLITE_OK == sqlite3_get_table(database,
+                                      pszSql,
+                                      &results,
+                                      NULL,
+                                      NULL,
+                                      NULL))
+    {
+        lastId = [NSNumber numberWithInt:results[1][0] - 48];
+        sqlite3_free_table(results);
+    }else
+    {
+        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
+    }
+    return lastId;
+}
+
 - (void)executeSqlQuery:(const char *)anSqlQuery {
     if(SQLITE_OK == sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
         NSLog(@"Query '%s' executed", anSqlQuery);
