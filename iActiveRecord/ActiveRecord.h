@@ -53,6 +53,8 @@
 + (NSArray *)allRecords;
 + (id)findById:(NSNumber *)anId;
 
++ (NSInteger)count;
+
 - (BOOL)isValid;
 - (BOOL)save;
 

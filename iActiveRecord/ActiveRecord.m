@@ -220,7 +220,7 @@ VALIDATION_HELPER
     [sqlString appendFormat:@"%@", property.propertyName];
     [sqlValues appendFormat:@"%@", [propertyValue performSelector:@selector(toSql)]];
     
-    for(;index < [existedProperties count] - 1;index++){
+    for(;index < [existedProperties count];index++){
         property = [existedProperties objectAtIndex:index];
         id propertyValue = [self valueForKey:property.propertyName];
         [sqlString appendFormat:@", %@", property.propertyName];
@@ -283,6 +283,11 @@ VALIDATION_HELPER
         
     }
     return NO;
+}
+
+#warning Implement
++ (NSInteger)count {
+    return 0;
 }
 
 #pragma mark - Relationships
