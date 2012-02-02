@@ -9,10 +9,12 @@
 static ARDatabaseManager *instance = nil;
 
 + (id)sharedInstance {
-    if(nil == instance){
-        instance = [[ARDatabaseManager alloc] init];
-    }
-    return instance;
+    @synchronized(self){
+        if(nil == instance){
+            instance = [[ARDatabaseManager alloc] init];
+        }
+        return instance;
+    }    
 }
 
 - (id)init {
