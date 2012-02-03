@@ -306,12 +306,18 @@ VALIDATION_HELPER
 - (NSArray *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
     Class RelativeClass = NSClassFromString(aClassName);
     Class Relationship = NSClassFromString(aRelationsipClassName);
+    
     NSMutableArray *relativeObjects = [[NSMutableArray alloc] init];
-    NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", aClassName];
+    
+    NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];
+    
     SEL selector = NSSelectorFromString(stringSelector);
-    NSNumber *recId = [self performSelector:@selector(id)];
+    
+    NSNumber *recId = self.id;
+    
     NSArray *relationships = [Relationship performSelector:selector 
                                                 withObject:recId];
+    
     NSString *relativeStringSelector = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
     SEL relativeIdSelector = NSSelectorFromString(relativeStringSelector);
     for(id rel in relationships)
