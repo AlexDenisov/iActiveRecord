@@ -278,9 +278,9 @@ VALIDATION_HELPER
     }
     const char *sql = [self sqlOnSave];
     if(NULL != sql){
-        self.id = [[ARDatabaseManager sharedInstance] 
+        NSNumber *tmpId = [[ARDatabaseManager sharedInstance] 
                           insertRecord:[[self class] tableName] withSqlQuery:sql];
-        
+        self.id = self.id == nil ? tmpId : self.id;
     }
     return NO;
 }
