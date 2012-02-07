@@ -348,4 +348,15 @@ VALIDATION_HELPER
     [relationshipRecord save];
 }
 
+- (NSString *)description {
+    NSMutableString *descr = [NSMutableString stringWithFormat:@"%@\n", [[self class] description]];
+    NSArray *properties = [[self class] properties];
+    for(ARObjectProperty *property in properties){
+        [descr appendFormat:@"%@ => %@\n", 
+         property.propertyName, 
+         [self valueForKey:property.propertyName]];
+    }
+    return descr;
+}
+
 @end
