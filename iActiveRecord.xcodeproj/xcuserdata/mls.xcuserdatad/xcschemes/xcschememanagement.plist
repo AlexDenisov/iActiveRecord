@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>UnitTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>iActiveRecord.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>25922AFA14EC286000CBB58A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>25998EBC14BC199C00CA2490</key>
 		<dict>
 			<key>primary</key>

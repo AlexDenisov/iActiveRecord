@@ -7,15 +7,18 @@
   }
 
 #define HAS_MANY(relative_class, accessor) \
-  - (NSArray *)accessor{\
-    NSString *class_name = @""#relative_class"";\
-    NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];\
-    SEL selector = NSSelectorFromString(stringSelector);\
-    id recId = [self id];\
-    Class Record = NSClassFromString(class_name);\
-    NSArray *records = [Record performSelector:selector withObject:recId];\
-    return records;\
-  }
+    - (NSArray *)accessor{\
+        NSString *class_name = @""#relative_class"";\
+        NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];\
+        SEL selector = NSSelectorFromString(stringSelector);\
+        id recId = [self id];\
+        Class Record = NSClassFromString(class_name);\
+        NSArray *records = [Record performSelector:selector withObject:recId];\
+        return records;\
+    }\
+    - (void)add##relative_class:(ActiveRecord *)aRecord {\
+        [self addRecord:aRecord];\
+    }\
 
 #define HAS_MANY_THROUGH(relative_class, relationship, accessor) \
     - (NSArray *)accessor\

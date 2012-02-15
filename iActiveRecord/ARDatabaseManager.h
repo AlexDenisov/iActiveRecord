@@ -9,6 +9,7 @@
 }
 
 - (void)createDatabase;
+- (void)clearDatabase;
 - (void)appendMigrations;
 - (void)openConnection;
 - (void)closeConnection;

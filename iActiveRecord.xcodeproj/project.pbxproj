@@ -9,6 +9,25 @@
 /* Begin PBXBuildFile section */
 		254F5EBC14C5E71C00AC0D86 /* NSString+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */; };
 		254F5EC014C5E78100AC0D86 /* NSNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */; };
+		25922AFD14EC286000CBB58A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
+		25922AFE14EC286000CBB58A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC314BC199C00CA2490 /* Foundation.framework */; };
+		25922AFF14EC286000CBB58A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC514BC199C00CA2490 /* CoreGraphics.framework */; };
+		25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25922B0314EC286000CBB58A /* InfoPlist.strings */; };
+		25922B0714EC286000CBB58A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25922B0614EC286000CBB58A /* main.m */; };
+		25922B1114EC288F00CBB58A /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25922B0F14EC288F00CBB58A /* Cedar-iOS.framework */; };
+		25922B1214EC288F00CBB58A /* OCMock-iPhone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25922B1014EC288F00CBB58A /* OCMock-iPhone.framework */; };
+		25922B4C14EC297F00CBB58A /* libExpecta-ios-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25922B4514EC297F00CBB58A /* libExpecta-ios-universal.a */; };
+		25922B5414EC2BA300CBB58A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EEB14BC1A8300CA2490 /* User.m */; };
+		25922B5614EC2BB600CBB58A /* ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE114BC1A1D00CA2490 /* ActiveRecord.m */; };
+		25922B5814EC2BB600CBB58A /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
+		25922B5B14EC2BB600CBB58A /* ARObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598293E14BD740100207D16 /* ARObjectProperty.m */; };
+		25922B6114EC2BC600CBB58A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */; };
+		25922B6214EC2C0200CBB58A /* NSObject+properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998F0214BC2D8500CA2490 /* NSObject+properties.m */; };
+		25922B6314EC2C2200CBB58A /* NSDecimalNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596BC5614C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m */; };
+		25922B6414EC2C2200CBB58A /* NSNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */; };
+		25922B6514EC2C2200CBB58A /* NSString+lowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */; };
+		25922B6614EC2C2200CBB58A /* NSString+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */; };
+		25922B6714EC2C2200CBB58A /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EFC14BC27FD00CA2490 /* Group.m */; };
 		2596BC5714C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596BC5614C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m */; };
 		2598293F14BD740100207D16 /* ARObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598293E14BD740100207D16 /* ARObjectProperty.m */; };
 		25998EC214BC199C00CA2490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
@@ -33,6 +52,42 @@
 		254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+sqlRepresentation.m"; sourceTree = "<group>"; };
 		254F5EBE14C5E78100AC0D86 /* NSNumber+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+sqlRepresentation.h"; sourceTree = "<group>"; };
 		254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+sqlRepresentation.m"; sourceTree = "<group>"; };
+		25922AFB14EC286000CBB58A /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		25922B0214EC286000CBB58A /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		25922B0414EC286000CBB58A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		25922B0614EC286000CBB58A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		25922B0814EC286000CBB58A /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
+		25922B0F14EC288F00CBB58A /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "../cedar-installer/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<group>"; };
+		25922B1014EC288F00CBB58A /* OCMock-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCMock-iPhone.framework"; path = "../cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal/OCMock-iPhone.framework"; sourceTree = "<group>"; };
+		25922B2F14EC297F00CBB58A /* EXPDoubleTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPDoubleTuple.h; sourceTree = "<group>"; };
+		25922B3014EC297F00CBB58A /* Expecta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expecta.h; sourceTree = "<group>"; };
+		25922B3114EC297F00CBB58A /* ExpectaSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpectaSupport.h; sourceTree = "<group>"; };
+		25922B3214EC297F00CBB58A /* EXPExpect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPExpect.h; sourceTree = "<group>"; };
+		25922B3314EC297F00CBB58A /* EXPFloatTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPFloatTuple.h; sourceTree = "<group>"; };
+		25922B3414EC297F00CBB58A /* EXPMatcherHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPMatcherHelpers.h; sourceTree = "<group>"; };
+		25922B3514EC297F00CBB58A /* EXPMatchers+toBeFalsy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeFalsy.h"; sourceTree = "<group>"; };
+		25922B3614EC297F00CBB58A /* EXPMatchers+toBeGreaterThan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeGreaterThan.h"; sourceTree = "<group>"; };
+		25922B3714EC297F00CBB58A /* EXPMatchers+toBeGreaterThanOrEqualTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeGreaterThanOrEqualTo.h"; sourceTree = "<group>"; };
+		25922B3814EC297F00CBB58A /* EXPMatchers+toBeIdenticalTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeIdenticalTo.h"; sourceTree = "<group>"; };
+		25922B3914EC297F00CBB58A /* EXPMatchers+toBeInstanceOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeInstanceOf.h"; sourceTree = "<group>"; };
+		25922B3A14EC297F00CBB58A /* EXPMatchers+toBeInTheRangeOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeInTheRangeOf.h"; sourceTree = "<group>"; };
+		25922B3B14EC297F00CBB58A /* EXPMatchers+toBeKindOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeKindOf.h"; sourceTree = "<group>"; };
+		25922B3C14EC297F00CBB58A /* EXPMatchers+toBeLessThan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeLessThan.h"; sourceTree = "<group>"; };
+		25922B3D14EC297F00CBB58A /* EXPMatchers+toBeLessThanOrEqualTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeLessThanOrEqualTo.h"; sourceTree = "<group>"; };
+		25922B3E14EC297F00CBB58A /* EXPMatchers+toBeNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeNil.h"; sourceTree = "<group>"; };
+		25922B3F14EC297F00CBB58A /* EXPMatchers+toBeSubclassOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeSubclassOf.h"; sourceTree = "<group>"; };
+		25922B4014EC297F00CBB58A /* EXPMatchers+toBeTruthy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeTruthy.h"; sourceTree = "<group>"; };
+		25922B4114EC297F00CBB58A /* EXPMatchers+toContain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toContain.h"; sourceTree = "<group>"; };
+		25922B4214EC297F00CBB58A /* EXPMatchers+toEqual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toEqual.h"; sourceTree = "<group>"; };
+		25922B4314EC297F00CBB58A /* EXPMatchers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPMatchers.h; sourceTree = "<group>"; };
+		25922B4414EC297F00CBB58A /* EXPUnsupportedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPUnsupportedObject.h; sourceTree = "<group>"; };
+		25922B4514EC297F00CBB58A /* libExpecta-ios-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libExpecta-ios-universal.a"; sourceTree = "<group>"; };
+		25922B4814EC297F00CBB58A /* NSObject+Expecta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Expecta.h"; sourceTree = "<group>"; };
+		25922B4914EC297F00CBB58A /* NSValue+Expecta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+Expecta.h"; sourceTree = "<group>"; };
+		25922B5114EC29D100CBB58A /* SpecSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecSet.h; sourceTree = "<group>"; };
+		25922B5214EC2A7A00CBB58A /* ValidationSpecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationSpecs.h; sourceTree = "<group>"; };
+		25922B6814EC2D1600CBB58A /* DatabaseManagerSpecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManagerSpecs.h; sourceTree = "<group>"; };
+		25922B6914EC310100CBB58A /* RelationshipsSpecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelationshipsSpecs.h; sourceTree = "<group>"; };
 		2596BC5514C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+sqlRepresentation.h"; sourceTree = "<group>"; };
 		2596BC5614C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+sqlRepresentation.m"; sourceTree = "<group>"; };
 		2598293D14BD740100207D16 /* ARObjectProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARObjectProperty.h; sourceTree = "<group>"; };
@@ -71,6 +126,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		25922AF814EC286000CBB58A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25922B6114EC2BC600CBB58A /* libsqlite3.0.dylib in Frameworks */,
+				25922B1114EC288F00CBB58A /* Cedar-iOS.framework in Frameworks */,
+				25922B1214EC288F00CBB58A /* OCMock-iPhone.framework in Frameworks */,
+				25922AFD14EC286000CBB58A /* UIKit.framework in Frameworks */,
+				25922AFE14EC286000CBB58A /* Foundation.framework in Frameworks */,
+				25922AFF14EC286000CBB58A /* CoreGraphics.framework in Frameworks */,
+				25922B4C14EC297F00CBB58A /* libExpecta-ios-universal.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		25998EBA14BC199C00CA2490 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -102,6 +171,70 @@
 			name = NSNumber;
 			sourceTree = "<group>";
 		};
+		25922B0014EC286000CBB58A /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				25922B2D14EC297F00CBB58A /* Expecta */,
+				25922B1314EC28D000CBB58A /* Specs */,
+				25922B0114EC286000CBB58A /* Supporting Files */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		25922B0114EC286000CBB58A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				25922B0214EC286000CBB58A /* UnitTests-Info.plist */,
+				25922B0314EC286000CBB58A /* InfoPlist.strings */,
+				25922B0614EC286000CBB58A /* main.m */,
+				25922B0814EC286000CBB58A /* UnitTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		25922B1314EC28D000CBB58A /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				25922B5214EC2A7A00CBB58A /* ValidationSpecs.h */,
+				25922B5114EC29D100CBB58A /* SpecSet.h */,
+				25922B6814EC2D1600CBB58A /* DatabaseManagerSpecs.h */,
+				25922B6914EC310100CBB58A /* RelationshipsSpecs.h */,
+			);
+			name = Specs;
+			sourceTree = "<group>";
+		};
+		25922B2D14EC297F00CBB58A /* Expecta */ = {
+			isa = PBXGroup;
+			children = (
+				25922B2F14EC297F00CBB58A /* EXPDoubleTuple.h */,
+				25922B3014EC297F00CBB58A /* Expecta.h */,
+				25922B3114EC297F00CBB58A /* ExpectaSupport.h */,
+				25922B3214EC297F00CBB58A /* EXPExpect.h */,
+				25922B3314EC297F00CBB58A /* EXPFloatTuple.h */,
+				25922B3414EC297F00CBB58A /* EXPMatcherHelpers.h */,
+				25922B3514EC297F00CBB58A /* EXPMatchers+toBeFalsy.h */,
+				25922B3614EC297F00CBB58A /* EXPMatchers+toBeGreaterThan.h */,
+				25922B3714EC297F00CBB58A /* EXPMatchers+toBeGreaterThanOrEqualTo.h */,
+				25922B3814EC297F00CBB58A /* EXPMatchers+toBeIdenticalTo.h */,
+				25922B3914EC297F00CBB58A /* EXPMatchers+toBeInstanceOf.h */,
+				25922B3A14EC297F00CBB58A /* EXPMatchers+toBeInTheRangeOf.h */,
+				25922B3B14EC297F00CBB58A /* EXPMatchers+toBeKindOf.h */,
+				25922B3C14EC297F00CBB58A /* EXPMatchers+toBeLessThan.h */,
+				25922B3D14EC297F00CBB58A /* EXPMatchers+toBeLessThanOrEqualTo.h */,
+				25922B3E14EC297F00CBB58A /* EXPMatchers+toBeNil.h */,
+				25922B3F14EC297F00CBB58A /* EXPMatchers+toBeSubclassOf.h */,
+				25922B4014EC297F00CBB58A /* EXPMatchers+toBeTruthy.h */,
+				25922B4114EC297F00CBB58A /* EXPMatchers+toContain.h */,
+				25922B4214EC297F00CBB58A /* EXPMatchers+toEqual.h */,
+				25922B4314EC297F00CBB58A /* EXPMatchers.h */,
+				25922B4414EC297F00CBB58A /* EXPUnsupportedObject.h */,
+				25922B4514EC297F00CBB58A /* libExpecta-ios-universal.a */,
+				25922B4814EC297F00CBB58A /* NSObject+Expecta.h */,
+				25922B4914EC297F00CBB58A /* NSValue+Expecta.h */,
+			);
+			path = Expecta;
+			sourceTree = "<group>";
+		};
 		2596BC5314C7207100C6B5E2 /* NSDecimalNumber */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,8 +247,8 @@
 		25998EB214BC199C00CA2490 = {
 			isa = PBXGroup;
 			children = (
-				25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */,
 				25998EC714BC199C00CA2490 /* iActiveRecord */,
+				25922B0014EC286000CBB58A /* UnitTests */,
 				25998EC014BC199C00CA2490 /* Frameworks */,
 				25998EBE14BC199C00CA2490 /* Products */,
 			);
@@ -125,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				25998EBD14BC199C00CA2490 /* iActiveRecord.app */,
+				25922AFB14EC286000CBB58A /* UnitTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,6 +266,9 @@
 		25998EC014BC199C00CA2490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25922B0F14EC288F00CBB58A /* Cedar-iOS.framework */,
+				25922B1014EC288F00CBB58A /* OCMock-iPhone.framework */,
+				25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */,
 				25998EC114BC199C00CA2490 /* UIKit.framework */,
 				25998EC314BC199C00CA2490 /* Foundation.framework */,
 				25998EC514BC199C00CA2490 /* CoreGraphics.framework */,
@@ -246,6 +383,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		25922AFA14EC286000CBB58A /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25922B0C14EC286000CBB58A /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				25922AF714EC286000CBB58A /* Sources */,
+				25922AF814EC286000CBB58A /* Frameworks */,
+				25922AF914EC286000CBB58A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = 25922AFB14EC286000CBB58A /* UnitTests.app */;
+			productType = "com.apple.product-type.application";
+		};
 		25998EBC14BC199C00CA2490 /* iActiveRecord */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25998ED514BC199C00CA2490 /* Build configuration list for PBXNativeTarget "iActiveRecord" */;
@@ -284,11 +438,20 @@
 			projectRoot = "";
 			targets = (
 				25998EBC14BC199C00CA2490 /* iActiveRecord */,
+				25922AFA14EC286000CBB58A /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		25922AF914EC286000CBB58A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		25998EBB14BC199C00CA2490 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,6 +463,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		25922AF714EC286000CBB58A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25922B6314EC2C2200CBB58A /* NSDecimalNumber+sqlRepresentation.m in Sources */,
+				25922B6414EC2C2200CBB58A /* NSNumber+sqlRepresentation.m in Sources */,
+				25922B6514EC2C2200CBB58A /* NSString+lowercaseFirst.m in Sources */,
+				25922B6614EC2C2200CBB58A /* NSString+sqlRepresentation.m in Sources */,
+				25922B6714EC2C2200CBB58A /* Group.m in Sources */,
+				25922B6214EC2C0200CBB58A /* NSObject+properties.m in Sources */,
+				25922B5614EC2BB600CBB58A /* ActiveRecord.m in Sources */,
+				25922B5814EC2BB600CBB58A /* ARDatabaseManager.m in Sources */,
+				25922B5B14EC2BB600CBB58A /* ARObjectProperty.m in Sources */,
+				25922B5414EC2BA300CBB58A /* User.m in Sources */,
+				25922B0714EC286000CBB58A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		25998EB914BC199C00CA2490 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -323,6 +504,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		25922B0314EC286000CBB58A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25922B0414EC286000CBB58A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		25998ECA14BC199C00CA2490 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -334,6 +523,63 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		25922B0D14EC286000CBB58A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../cedar-installer/cedar/build/Release-iphoneuniversal\"",
+					"\"$(SRCROOT)/../cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"UNIT_TEST=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/UnitTests/Expecta\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lstdc++",
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		25922B0E14EC286000CBB58A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../cedar-installer/cedar/build/Release-iphoneuniversal\"",
+					"\"$(SRCROOT)/../cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
+				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/UnitTests/Expecta\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lstdc++",
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		25998ED314BC199C00CA2490 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -402,6 +648,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		25922B0C14EC286000CBB58A /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25922B0D14EC286000CBB58A /* Debug */,
+				25922B0E14EC286000CBB58A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		25998EB714BC199C00CA2490 /* Build configuration list for PBXProject "iActiveRecord" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

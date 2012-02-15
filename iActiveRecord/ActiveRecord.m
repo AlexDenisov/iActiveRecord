@@ -25,8 +25,10 @@ NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
 
 @implementation ActiveRecord
 
+MIGRATION_HELPER
+VALIDATION_HELPER
+
 @synthesize id;
-//@synthesize errorMessages;
 
 #pragma mark - IgnoreFields
 
@@ -41,11 +43,27 @@ NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
     return self;    
 }
 
-//IGNORE_FIELDS_DO(
-//    IGNORE_FIELD(id)
-//)
+- (void)markAsNew {
+    isNew = YES;
+}
 
-MIGRATION_HELPER
+#pragma mark - ObserveChanges
+
+- (void)didChangeField:(NSString *)aField {
+    NSLog(@"did changed field %@", aField);
+    if([ignoredFields containsObject:aField]){
+        return;
+    }
+    if(nil == changedFields){
+        changedFields = [[NSMutableSet alloc] init];
+    }
+    [changedFields addObject:aField];
+}
+
+- (void)setValue:(id)value forKey:(NSString *)key {
+    [self didChangeField:key];
+    [super setValue:value forKey:key];
+}
 
 + (void)initIgnoredFields {
     NSLog(@"Overriden");
@@ -58,9 +76,7 @@ MIGRATION_HELPER
     [ignoredFields addObject:aField];
 }
 
-#pragma mark - validations
-
-VALIDATION_HELPER
+#pragma mark - 
 
 + (NSString *)className {
     return [[self class] description];
@@ -68,43 +84,6 @@ VALIDATION_HELPER
 
 - (NSString *)recordName {
     return [[self class] description];
-}
-
-+ (void)validateField:(NSString *)aField asUnique:(BOOL)aUnique {
-    if(nil == uniqueFields){
-        uniqueFields = [[NSMutableSet alloc] init];
-    }
-    
-    BOOL contains = [uniqueFields containsObject:aField];
-    if(aUnique){
-        if(contains){
-            return;
-        }
-        [uniqueFields addObject:aField];
-        return;
-    }
-    if(contains){
-        [uniqueFields removeObject:aField];
-        return;
-    }    
-}
-
-+ (void)validateField:(NSString *)aField asPresence:(BOOL)aPresence {
-    if(nil == presenceFields){
-        presenceFields = [[NSMutableSet alloc] init];
-    }
-    BOOL contains = [presenceFields containsObject:aField];
-    if(aPresence){
-        if(contains){
-            return;
-        }
-        [presenceFields addObject:aField];
-        return;
-    }
-    if(contains){
-        [presenceFields removeObject:aField];
-        return;
-    } 
 }
 
 - (void)resetErrors {
@@ -125,48 +104,12 @@ VALIDATION_HELPER
     }
 }
 
-- (void)validate {
-    if(![self conformsToProtocol:@protocol(ARValidatableProtocol)]){
-        return;
-    }
-    [self validatePresence];
-    [self validateUniqueness];
-}
-
-- (void)validateUniqueness {
-    NSString *recordName = [self recordName];
-    for(NSString *uniqueField in uniqueFields){
-        id aValue = [self valueForKey:uniqueField];
-        NSArray *records = [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName 
-                                                                         whereKey:uniqueField 
-                                                                         hasValue:aValue];
-        if([records count]){
-            NSString *errMessage = [NSString stringWithFormat:@"%@ '%@' %@", 
-                                    uniqueField, 
-                                    aValue,
-                                    AR_Error(kARFieldAlreadyExists)];
-            [self addError:errMessage];
-        }
-    }
-}
-
-- (void)validatePresence {
-    for(NSString *presenceField in presenceFields){
-        NSString *aValue = [self valueForKey:presenceField];
-        if(aValue == nil || [aValue length] == 0){
-            NSString *errMessage = [NSString stringWithFormat:@"%@ %@", 
-                                    presenceField, 
-                                    AR_Error(kARFieldCantBeBlank)];
-            [self addError:errMessage];
-        }
-    }
-}
 
 - (void)initialize {
     
 }
 
-#pragma mark - 
+#pragma mark - SQLQueries
 
 + (const char *)sqlOnCreate {
     [self initIgnoredFields];
@@ -232,12 +175,37 @@ VALIDATION_HELPER
     return [sqlString UTF8String];
 }
 
+- (const char *)sqlOnUpdate {
+    NSMutableString *sqlString = [NSMutableString stringWithFormat:@"UPDATE %@ SET ", 
+                                  [[self class] performSelector:@selector(tableName)]];
+    NSArray *updatedValues = [changedFields allObjects];
+    NSInteger index = 0;
+    NSString *propertyName = [updatedValues objectAtIndex:index++];
+    id propertyValue = [self valueForKey:propertyName];
+    [sqlString appendFormat:@"%@=%@", propertyName, [propertyValue performSelector:@selector(toSql)]];
+   
+    for(;index<[updatedValues count];index++){
+        propertyName = [updatedValues objectAtIndex:index++];
+        propertyValue = [self valueForKey:propertyName];
+        [sqlString appendFormat:@", %@=%@", propertyName, [propertyValue performSelector:@selector(toSql)]];
+    }
+    [sqlString appendFormat:@" WHERE id = %@", self.id];
+    return [sqlString UTF8String];
+}
+
++ (const char *)sqlOnDeleteAll {
+    NSString *sql = [NSString stringWithFormat:@"delete from %@", [self tableName]];
+    return [sql UTF8String];
+}
+
+#pragma mark - 
+
 + (NSString *)tableName {
     return [NSString stringWithFormat:@"ar%@", [[self class] description]];
 }
 
 + (BOOL)resolveInstanceMethod:(SEL)name {
-  return NO;
+    return NO;
 }
 
 + (BOOL)resolveClassMethod:(SEL)aSel {
@@ -252,7 +220,9 @@ VALIDATION_HELPER
 
 + (id)newRecord {
     Class RecordClass = [self class];
-    return [[RecordClass alloc] init];
+    ActiveRecord *record = [[RecordClass alloc] init];
+    [record markAsNew];
+    return record;
 }
 
 + (NSArray *)allRecords {
@@ -265,14 +235,139 @@ VALIDATION_HELPER
   return [[ARDatabaseManager sharedInstance] findRecord:recordName byId:anId];
 }
 
-- (BOOL)isValid {
-    [self resetErrors];
-    [self validate];        
-    [self logErrors];
-    return nil == errorMessages;
+#pragma mark - Validations
+
++ (void)validateField:(NSString *)aField asUnique:(BOOL)aUnique {
+    if(nil == uniqueFields){
+        uniqueFields = [[NSMutableSet alloc] init];
+    }
+    
+    BOOL contains = [uniqueFields containsObject:aField];
+    if(aUnique){
+        if(contains){
+            return;
+        }
+        [uniqueFields addObject:aField];
+        return;
+    }
+    if(contains){
+        [uniqueFields removeObject:aField];
+        return;
+    }    
 }
 
++ (void)validateField:(NSString *)aField asPresence:(BOOL)aPresence {
+    if(nil == presenceFields){
+        presenceFields = [[NSMutableSet alloc] init];
+    }
+    BOOL contains = [presenceFields containsObject:aField];
+    if(aPresence){
+        if(contains){
+            return;
+        }
+        [presenceFields addObject:aField];
+        return;
+    }
+    if(contains){
+        [presenceFields removeObject:aField];
+        return;
+    } 
+}
+
+- (BOOL)isValid {
+    BOOL valid = YES;
+    [self resetErrors];
+    if(isNew){
+        valid = [self validateOnSave];              
+    }else{
+        valid = [self validateOnUpdate];
+    }
+    [self logErrors];
+    return valid;
+}
+
+- (BOOL)isValidPresenceOfField:(NSString *)aField {
+    NSString *aValue = [self valueForKey:aField];
+    if(aValue == nil || [aValue length] == 0){
+        NSString *errMessage = [NSString stringWithFormat:@"%@ %@", 
+                                aField, 
+                                AR_Error(kARFieldCantBeBlank)];
+        [self addError:errMessage];
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)isValidUniquenessOfField:(NSString *)aField {
+    NSString *recordName = [self recordName];
+    id aValue = [self valueForKey:aField];
+    NSArray *records = [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName 
+                                                                     whereKey:aField 
+                                                                     hasValue:aValue];
+    if([records count]){
+        NSString *errMessage = [NSString stringWithFormat:@"%@ '%@' %@", 
+                                aField, 
+                                aValue,
+                                AR_Error(kARFieldAlreadyExists)];
+        [self addError:errMessage];
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)validateOnSave {
+    if(![self conformsToProtocol:@protocol(ARValidatableProtocol)]){
+        return YES;
+    }
+    return ([self validatePresence] && [self validateUniqueness]);
+}
+
+- (BOOL)validateOnUpdate {
+    if(![self conformsToProtocol:@protocol(ARValidatableProtocol)]){
+        return YES;
+    }
+    BOOL valid = YES;
+    for(NSString *aField in changedFields){
+        if([presenceFields containsObject:aField]){
+            if(![self isValidPresenceOfField:aField]){
+                valid = NO;
+            }
+        }
+        if([uniqueFields containsObject:aField]){
+            if(![self isValidUniquenessOfField:aField]){
+                valid = NO;
+            }
+        }
+    }
+    return valid;
+}
+
+- (BOOL)validateUniqueness {
+    BOOL valid = YES;
+    for(NSString *uniqueField in uniqueFields){
+        if(![self isValidUniquenessOfField:uniqueField]){
+            valid = NO;
+        }
+    }
+    return valid;
+}
+
+- (BOOL)validatePresence {
+    BOOL valid = YES;
+    for(NSString *presenceField in presenceFields){
+        if(![self isValidPresenceOfField:presenceField]){
+            valid = NO;
+        }
+    }
+    return valid;
+}
+
+#pragma mark - Save/Update
+
 - (BOOL)save {
+    if(!isNew){
+        return [self update];
+    }
     if(![self isValid]){
         return NO;
     }
@@ -281,6 +376,24 @@ VALIDATION_HELPER
         NSNumber *tmpId = [[ARDatabaseManager sharedInstance] 
                           insertRecord:[[self class] tableName] withSqlQuery:sql];
         self.id = self.id == nil ? tmpId : self.id;
+        isNew = NO;
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)update {
+    if(![self isValid]){
+        return NO;
+    }
+    if(![changedFields count]){
+        return YES;
+    }
+    const char *sql = [self sqlOnUpdate];
+    if(NULL != sql){
+        [[ARDatabaseManager sharedInstance] executeSqlQuery:sql];
+        isNew = NO;
+        return YES;
     }
     return NO;
 }
@@ -292,6 +405,8 @@ VALIDATION_HELPER
 
 #pragma mark - Relationships
 
+#pragma mark BelongsTo
+
 - (id)belongsTo:(NSString *)aClassName {
     NSString *stringSelector = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
     SEL selector = NSSelectorFromString(stringSelector);
@@ -301,7 +416,20 @@ VALIDATION_HELPER
     return record;
 }
 
-#pragma mark - Has And Belongs To Many
+#pragma mark HasMany
+
+- (void)addRecord:(ActiveRecord *)aRecord {
+    NSString *setIdSelectorString = [NSString stringWithFormat:@"set%@Id:", [[self class] description]];
+    SEL selector = NSSelectorFromString(setIdSelectorString);
+    [aRecord performSelector:selector withObject:self.id];
+    [aRecord save];
+}
+
+- (NSArray *)hasManyRecords:(NSString *)aClassName {
+    return nil;
+}
+
+#pragma mark HasManyThrough
 
 - (NSArray *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
     Class RelativeClass = NSClassFromString(aClassName);
@@ -353,8 +481,8 @@ VALIDATION_HELPER
     NSArray *properties = [[self class] properties];
     for(ARObjectProperty *property in properties){
         [descr appendFormat:@"%@ => %@\n", 
-         property.propertyName, 
-         [self valueForKey:property.propertyName]];
+        property.propertyName, 
+        [self valueForKey:property.propertyName]];
     }
     return descr;
 }

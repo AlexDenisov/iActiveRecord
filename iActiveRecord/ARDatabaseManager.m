@@ -2,7 +2,11 @@
 #import "ActiveRecord.h"
 #import "class_getSubclasses.h"
 
+#if UNIT_TEST
 #define DEFAULT_DBNAME @"database"
+#else
+#define DEFAULT_DBNAME @"database-test"
+#endif
 
 @implementation ARDatabaseManager
 
@@ -45,6 +49,14 @@ static ARDatabaseManager *instance = nil;
     }
     [self openConnection];
     NSLog(@"Database already exists");
+}
+
+- (void)clearDatabase {
+    NSArray *entities = class_getSubclasses([ActiveRecord class]);
+    for(Class Record in entities){
+        const char *sqlQuery = (const char *)[Record performSelector:@selector(sqlOnDeleteAll)];
+        [self executeSqlQuery:sqlQuery];
+    }
 }
 
 - (void)appendMigrations {
