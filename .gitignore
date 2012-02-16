@@ -3,7 +3,6 @@ tags
 a.out
 *.sqlite
 main.m
-User.*
-Group.*
-UserGroupRelationship.*
 .DS_Store
+iActiveRecord.xcodeproj/project.xcworkspace/xcuserdata/*
+iActiveRecord.xcodeproj/xcuserdata/*
