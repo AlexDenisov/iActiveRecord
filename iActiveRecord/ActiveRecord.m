@@ -419,9 +419,8 @@ VALIDATION_HELPER
 #pragma mark HasMany
 
 - (void)addRecord:(ActiveRecord *)aRecord {
-    NSString *setIdSelectorString = [NSString stringWithFormat:@"set%@Id:", [[self class] description]];
-    SEL selector = NSSelectorFromString(setIdSelectorString);
-    [aRecord performSelector:selector withObject:self.id];
+    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[[self class] description] lowercaseFirst]];
+    [aRecord setValue:self.id forKey:relationIdKey];
     [aRecord save];
 }
 

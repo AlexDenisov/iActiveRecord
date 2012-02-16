@@ -13,7 +13,7 @@
 #import "User.h"
 #import "ARDatabaseManager.h"
 
-SPEC_BEGIN(ARValidations)
+SPEC_BEGIN(ValidationSpecs)
 
 beforeEach(^{
     [[ARDatabaseManager sharedInstance] clearDatabase];
