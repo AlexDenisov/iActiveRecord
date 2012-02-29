@@ -15,4 +15,6 @@
 @property (nonatomic, retain) NSArray *ignoredProperty;
 @property (nonatomic, retain) NSNumber *groupId;
 
+BELONGS_TO_DEC(Group, group)
+
 @end

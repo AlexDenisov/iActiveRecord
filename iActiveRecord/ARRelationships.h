@@ -1,12 +1,19 @@
 #import "NSString+lowercaseFirst.h"
 
-#define BELONGS_TO(class, accessor) \
-  - (id)accessor{\
-    NSString *class_name = @""#class"";\
-    return [self belongsTo:class_name];\
-  }
+#define BELONGS_TO_IMP(class, accessor) \
+    - (id)accessor{\
+        NSString *class_name = @""#class"";\
+        return [self belongsTo:class_name];\
+    }
 
-#define HAS_MANY(relative_class, accessor) \
+#define BELONGS_TO_DEC(class, accessor) \
+    - (id)accessor;
+
+#define HAS_MANY_DEC(relative_class, accessor)\
+    - (NSArray *)accessor;\
+    - (void)add##relative_class:(ActiveRecord *)aRecord;
+
+#define HAS_MANY_IMP(relative_class, accessor) \
     - (NSArray *)accessor{\
         NSString *class_name = @""#relative_class"";\
         NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];\

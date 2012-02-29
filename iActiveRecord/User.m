@@ -14,7 +14,7 @@
 @synthesize ignoredProperty;
 @synthesize groupId;
 
-BELONGS_TO(Group, group)
+BELONGS_TO_IMP(Group, group)
 
 IGNORE_FIELDS_DO(
     IGNORE_FIELD(ignoredProperty)

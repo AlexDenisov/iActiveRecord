@@ -12,7 +12,7 @@
 
 @synthesize name;
 
-HAS_MANY(User, users)
+HAS_MANY_IMP(User, users)
 
 VALIDATIONS_DO(
     VALIDATE_UNIQUENESS_OF(name)
