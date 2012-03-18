@@ -9,10 +9,9 @@
 #import "ARMigrationsHelper.h"
 
 #pragma mark - Dynamic functions proptotypes
-NSArray* dynamicallyFind(id self, SEL _cmd, id arg);
 
+NSArray* dynamicallyFind(id self, SEL _cmd, id arg);
 NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
-    NSLog(@"dynamicallyFind resolving %@", arg);
     NSString *selector = NSStringFromSelector(_cmd);
     NSString *searchKey = [selector substringFromIndex:6];
     searchKey = [searchKey stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]];
@@ -50,7 +49,6 @@ VALIDATION_HELPER
 #pragma mark - ObserveChanges
 
 - (void)didChangeField:(NSString *)aField {
-    NSLog(@"did changed field %@", aField);
     if([ignoredFields containsObject:aField]){
         return;
     }
@@ -66,7 +64,6 @@ VALIDATION_HELPER
 }
 
 + (void)initIgnoredFields {
-    NSLog(@"Overriden");
 }
 
 + (void)ignoreField:(NSString *)aField {

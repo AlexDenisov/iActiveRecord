@@ -17,7 +17,6 @@
 #define IGNORE_FIELDS_DO(igrnored_fileds) \
     MIGRATION_HELPER\
     + (void)initIgnoredFields {\
-        NSLog(@"initialize ignores");\
         if(nil == ignoredFields)\
             ignoredFields = [[NSMutableSet alloc] init];\
     igrnored_fileds\

@@ -41,14 +41,12 @@ static ARDatabaseManager *instance = nil;
 
 - (void)createDatabase {
     if(![[NSFileManager defaultManager] fileExistsAtPath:dbPath]){
-        NSLog(@"Created new database");
         [[NSFileManager defaultManager] createFileAtPath:dbPath contents:nil attributes:nil];
         [self openConnection];
         [self appendMigrations];
         return;
     }
     [self openConnection];
-    NSLog(@"Database already exists");
 }
 
 - (void)clearDatabase {
@@ -60,7 +58,6 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (void)appendMigrations {
-    NSLog(@"appendMigrations");
     NSArray *entities = class_getSubclasses([ActiveRecord class]);
     for(Class Record in entities){
         const char *sqlQuery = (const char *)[Record performSelector:@selector(sqlOnCreate)];
@@ -122,7 +119,6 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest{
-    NSLog(@"Start request: %@", aSqlRequest);
     NSMutableArray *resultArray = nil;
     NSString *propertyName;
     id aValue;
@@ -193,13 +189,15 @@ static ARDatabaseManager *instance = nil;
     return records;
 }
 
-- (NSArray *)allRecordsWithName:(NSString *)aName whereKey:(NSString *)aKey hasValue:(id)aValue{
-    NSLog(@"%@", [aValue toSql]);
+- (NSArray *)allRecordsWithName:(NSString *)aName 
+                       whereKey:(NSString *)aKey 
+                       hasValue:(id)aValue
+{
     NSString *sql = [NSString stringWithFormat:
                      @"select * from %@ where %@ = %@", 
                      [self tableName:aName], 
                      aKey, 
-                     [aValue toSql]];
+                     [aValue performSelector:@selector(toSql)]];
     NSArray *records = [self allRecordsWithName:aName withSql:sql];
     return records;
 }
