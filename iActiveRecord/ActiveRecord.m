@@ -7,6 +7,7 @@
 #import "ARValidatableProtocol.h"
 #import "ARErrorHelper.h"
 #import "ARMigrationsHelper.h"
+#import "NSObject+properties.h"
 
 #pragma mark - Dynamic functions proptotypes
 
@@ -112,7 +113,7 @@ VALIDATION_HELPER
     [self initIgnoredFields];
     NSMutableString *sqlString = [NSMutableString stringWithFormat:@"create table %@(id integer primary key ", 
                                   [self performSelector:@selector(tableName)]];
-    NSArray *properties = [self performSelector:@selector(properties)];
+    NSArray *properties = [self activeRecordProperties];
     if([properties count] == 0){
         return NULL;
     }
@@ -132,7 +133,7 @@ VALIDATION_HELPER
 }
 
 - (const char *)sqlOnSave {
-    NSArray *properties = [[self class] performSelector:@selector(properties)];
+    NSArray *properties = [[self class] activeRecordProperties];
     if([properties count] == 0){
         return NULL;
     }
@@ -231,6 +232,24 @@ VALIDATION_HELPER
   NSString *recordName = [[self class] description];
   return [[ARDatabaseManager sharedInstance] findRecord:recordName byId:anId];
 }
+
+#pragma mark - Equal
+
+- (BOOL)isEqualToRecord:(ActiveRecord *)anOtherRecord {
+    if(nil == anOtherRecord){
+        return NO;
+    }
+    NSArray *properties = [[self class] activeRecordProperties];
+    for(ARObjectProperty *property in properties){
+        id lValue = [self valueForKey:property.propertyName];
+        id rValue = [anOtherRecord valueForKey:property.propertyName];
+        if( ![lValue isEqual:rValue] ){
+            return NO;
+        }
+    }
+    return YES;
+}
+
 
 #pragma mark - Validations
 
@@ -474,7 +493,7 @@ VALIDATION_HELPER
 
 - (NSString *)description {
     NSMutableString *descr = [NSMutableString stringWithFormat:@"%@\n", [[self class] description]];
-    NSArray *properties = [[self class] properties];
+    NSArray *properties = [[self class] activeRecordProperties];
     for(ARObjectProperty *property in properties){
         [descr appendFormat:@"%@ => %@\n", 
         property.propertyName, 

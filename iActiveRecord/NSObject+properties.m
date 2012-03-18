@@ -12,7 +12,7 @@
 
 @implementation NSObject (properties)
 
-+ (NSArray *)properties {
++ (NSArray *)activeRecordProperties {
     NSMutableArray *propertiesArray = [NSMutableArray array]; 
     Class ActiveRecordClass = NSClassFromString(@"NSObject");
     id CurrentClass = objc_getClass([[[self class] description] UTF8String]);
@@ -30,7 +30,7 @@
 }
 
 + (NSString *)propertyClassNameWithPropertyName:(NSString *)aName {
-    NSArray *properties = [[self class] properties];
+    NSArray *properties = [[self class] activeRecordProperties];
     for(ARObjectProperty *p in properties){
         if([p.propertyName isEqualToString:aName]){
             return p.propertyType;

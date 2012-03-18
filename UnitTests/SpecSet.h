@@ -9,3 +9,4 @@
 #import "DatabaseManagerSpecs.h"
 #import "ValidationSpecs.h"
 #import "RelationshipsSpecs.h"
+#import "FinderSpecs.h"

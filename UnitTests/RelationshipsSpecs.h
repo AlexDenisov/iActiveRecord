@@ -42,6 +42,9 @@ describe(@"HasMany", ^{
         NSInteger count = [users count];
         expect(count).toEqual(2);
     });
+});
+
+describe(@"BelongsTo", ^{
     it(@"User should have one group", ^{
         User *john = [User newRecord];
         john.name = @"John";

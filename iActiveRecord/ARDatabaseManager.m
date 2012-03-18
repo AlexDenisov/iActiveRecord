@@ -1,6 +1,7 @@
 #import "ARDatabaseManager.h"
 #import "ActiveRecord.h"
 #import "class_getSubclasses.h"
+#import "SQLRepresentation.h"
 
 #if UNIT_TEST
 #define DEFAULT_DBNAME @"database"
@@ -199,6 +200,25 @@ static ARDatabaseManager *instance = nil;
                      aKey, 
                      [aValue performSelector:@selector(toSql)]];
     NSArray *records = [self allRecordsWithName:aName withSql:sql];
+    return records;
+}
+
+- (NSArray *)allRecordsWithName:(NSString *)aName 
+                       whereKey:(NSString *)aKey 
+                             in:(NSArray *)aValues 
+{
+    NSMutableArray *sqlValues = [NSMutableArray new];
+    for(id value in aValues){
+        [sqlValues addObject:[value performSelector:@selector(toSql)]];
+    }
+    NSString *in = [sqlValues componentsJoinedByString:@","];
+    NSString *sql = [NSString stringWithFormat:
+                     @"SELECT * FROM %@ WHERE %@ IN (%@)", 
+                     [self tableName:aName], 
+                     aKey, 
+                     in];
+    NSArray *records = [self allRecordsWithName:aName withSql:sql];
+    [sqlValues release];
     return records;
 }
 

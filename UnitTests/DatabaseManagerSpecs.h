@@ -1,9 +1,9 @@
 //
-//  ARDatabaseManager.h
+//  FinderSpecs.h
 //  iActiveRecord
 //
-//  Created by mls on 15.02.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Alex Denisov on 15.02.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
@@ -24,6 +24,39 @@ describe(@"ARDatabase", ^{
         [[ARDatabaseManager sharedInstance] clearDatabase];
         NSInteger count = [[User allRecords] count];
         expect(0).toEqual(count);
+    });
+});
+
+describe(@"whereKeyHasValue", ^{
+    it(@"should find user by key/value", ^{
+        NSString *username = @"Peter";
+        User *peter = [User newRecord];
+        peter.name = username;
+        [peter save];
+        User *founded = [[[ARDatabaseManager sharedInstance] allRecordsWithName:@"User"
+                                                                       whereKey:@"name" 
+                                                                       hasValue:username] objectAtIndex:0];
+        BOOL equality = [peter.name isEqualToString:founded.name];
+        expect(equality).toEqual(YES);
+    });
+});
+
+describe(@"whereKeyIn", ^{
+    it(@"should find user by key in array", ^{
+        NSString *username = @"Peter";
+        User *peter = [User newRecord];
+        peter.name = username;
+        [peter save];
+        NSArray *names = [NSArray arrayWithObjects:
+                          @"Vavilen", 
+                          username, 
+                          @"Tyler", nil];
+        User *founded = [[[ARDatabaseManager sharedInstance] allRecordsWithName:@"User"
+                                                                       whereKey:@"name"
+                                                                             in:names] objectAtIndex:0];
+        
+        BOOL equality = [peter.name isEqualToString:founded.name];
+        expect(equality).toEqual(YES);
     });
 });
 

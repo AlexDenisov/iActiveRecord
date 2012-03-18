@@ -23,6 +23,7 @@
 
 - (void)executeSqlQuery:(const char *)anSqlQuery;
 - (NSArray *)allRecordsWithName:(NSString *)aName whereKey:(NSString *)aKey hasValue:(id)aValue;
+- (NSArray *)allRecordsWithName:(NSString *)aName whereKey:(NSString *)aKey in:(NSArray *)aValues;
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest;
 - (NSArray *)allRecordsWithName:(NSString *)aName;
 - (NSArray *)findRecords:(NSString *)aRecordName byId:(NSNumber *)anId;

@@ -77,11 +77,18 @@
 - (BOOL)isValidUniquenessOfField:(NSString *)aField;
 - (BOOL)isValidPresenceOfField:(NSString *)aField;
 
+#pragma mark - Equal
+
+- (BOOL)isEqualToRecord:(ActiveRecord *)anOtherRecord;
+
 #pragma mark - 
 
 + (NSString *)tableName;
 + (id)newRecord;
 + (NSArray *)allRecords;
+
+#pragma mark - Finders
+
 + (id)findById:(NSNumber *)anId;
 
 + (NSInteger)count;

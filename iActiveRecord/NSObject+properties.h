@@ -10,7 +10,7 @@
 
 @interface NSObject (properties)
 
-+ (NSArray *)properties;
++ (NSArray *)activeRecordProperties;
 + (NSString *)propertyClassNameWithPropertyName:(NSString *)aName;
 
 @end
