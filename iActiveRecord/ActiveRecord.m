@@ -11,8 +11,12 @@
 
 #pragma mark - Dynamic functions proptotypes
 
-NSArray* dynamicallyFind(id self, SEL _cmd, id arg);
-NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
+NSArray* dynamicallyFindBy(id self, SEL _cmd, id arg);
+NSArray* dynamicallyFindWhere(id self, SEL _cmd, id arg);
+
+#pragma mark - Dynamic functions implementation
+
+NSArray* dynamicallyFindBy(id self, SEL _cmd, id arg){
     NSString *selector = NSStringFromSelector(_cmd);
     NSString *searchKey = [selector substringFromIndex:6];
     searchKey = [searchKey stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]];
@@ -20,6 +24,18 @@ NSArray* dynamicallyFind(id self, SEL _cmd, id arg){
     NSArray *records = [[ARDatabaseManager sharedInstance] allRecordsWithName:[[self class] description] 
                                                                      whereKey:searchKey 
                                                                      hasValue:arg];
+    return records;
+}
+
+NSArray* dynamicallyFindWhere(id self, SEL _cmd, id arg){
+    NSString *selector = NSStringFromSelector(_cmd);
+    NSString *searchKey = [selector substringFromIndex:9];
+    searchKey = [searchKey stringByReplacingOccurrencesOfString:@"In:" withString:@""];
+    searchKey = [searchKey stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]];
+    searchKey = [searchKey lowercaseFirst];
+    NSArray *records = [[ARDatabaseManager sharedInstance] allRecordsWithName:[[self class] description] 
+                                                                     whereKey:searchKey 
+                                                                     in:arg];
     return records;
 }
 
@@ -210,7 +226,12 @@ VALIDATION_HELPER
     NSString *selectorName = NSStringFromSelector(aSel);
     if([selectorName hasPrefix:@"findBy"]){
         Class selfMetaClass = objc_getMetaClass([[[self class] description]  UTF8String]);
-        class_addMethod(selfMetaClass, aSel, (IMP)dynamicallyFind, "[]@:@");
+        class_addMethod(selfMetaClass, aSel, (IMP)dynamicallyFindBy, "[]@:@");
+        return YES;
+    }
+    if([selectorName hasPrefix:@"findWhere"]){
+        Class selfMetaClass = objc_getMetaClass([[[self class] description]  UTF8String]);
+        class_addMethod(selfMetaClass, aSel, (IMP)dynamicallyFindWhere, "[]@:@");
         return YES;
     }
     return [super resolveInstanceMethod:aSel];
@@ -231,6 +252,13 @@ VALIDATION_HELPER
 + (id)findById:(NSNumber *)anId{
   NSString *recordName = [[self class] description];
   return [[ARDatabaseManager sharedInstance] findRecord:recordName byId:anId];
+}
+
++ (NSArray *)findWhereIdIn:(NSArray *)aValues {
+    NSString *recordName = [[self class] description];
+    return [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName
+                                                         whereKey:@"id"
+                                                               in:aValues];
 }
 
 #pragma mark - Equal

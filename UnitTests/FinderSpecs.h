@@ -43,4 +43,33 @@ describe(@"findBy", ^{
     });
 });
 
+describe(@"findWhere In", ^{
+    it(@"user should be founded by id in array", ^{
+        NSString *username = @"Peter";
+        User *peter = [User newRecord];
+        peter.name = username;
+        [peter save];
+        NSArray *values = [NSArray arrayWithObjects:
+                          [NSNumber numberWithInt:24], 
+                          peter.id, 
+                          [NSNumber numberWithInt:143], nil];
+        User *founded = [[User findWhereIdIn:values] objectAtIndex:0];
+        BOOL equality = [peter.name isEqualToString:founded.name];
+        expect(equality).toEqual(YES);
+    });
+    it(@"user should be founded by name in array", ^{
+        NSString *username = @"Peter";
+        User *peter = [User newRecord];
+        peter.name = username;
+        [peter save];
+        NSArray *names = [NSArray arrayWithObjects:
+                          @"Vavilen", 
+                          username, 
+                          @"Tyler", nil];
+        User *founded = [[User performSelector:@selector(findWhereNameIn:) withObject:names] objectAtIndex:0];
+        BOOL equality = [peter.name isEqualToString:founded.name];
+        expect(equality).toEqual(YES);
+    });
+});
+
 SPEC_END

@@ -90,7 +90,7 @@
 #pragma mark - Finders
 
 + (id)findById:(NSNumber *)anId;
-
++ (NSArray *)findWhereIdIn:(NSArray *)aValues;
 + (NSInteger)count;
 
 
