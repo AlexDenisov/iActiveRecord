@@ -222,4 +222,25 @@ static ARDatabaseManager *instance = nil;
     return records;
 }
 
+- (NSInteger)countOfRecordsWithName:(NSString *)aName {
+    char **results;
+    NSInteger count = 0;
+    NSString *aSqlRequest = [NSString stringWithFormat:@"SELECT count(id) FROM %@", [self tableName:aName]];
+    const char *pszSql = [aSqlRequest UTF8String];
+    if(SQLITE_OK == sqlite3_get_table(database,
+                                      pszSql,
+                                      &results,
+                                      NULL,
+                                      NULL,
+                                      NULL))
+    {
+        count = results[1][0] - 48;
+        sqlite3_free_table(results);
+    }else
+    {
+        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
+    }
+    return count;
+}
+
 @end

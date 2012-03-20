@@ -148,6 +148,11 @@ VALIDATION_HELPER
     return [sqlString UTF8String];
 }
 
+- (const char *)sqlOnDelete {
+    NSString *sqlString = [NSString stringWithFormat:@"delete from %@ where id = %@", [self tableName], self.id];
+    return [sqlString UTF8String];
+}
+
 - (const char *)sqlOnSave {
     NSArray *properties = [[self class] activeRecordProperties];
     if([properties count] == 0){
@@ -216,6 +221,10 @@ VALIDATION_HELPER
 
 + (NSString *)tableName {
     return [NSString stringWithFormat:@"ar%@", [[self class] description]];
+}
+
+- (NSString *)tableName {
+    return [[self class] tableName];
 }
 
 + (BOOL)resolveInstanceMethod:(SEL)name {
@@ -442,9 +451,8 @@ VALIDATION_HELPER
     return NO;
 }
 
-#warning Implement
 + (NSInteger)count {
-    return 0;
+    return [[ARDatabaseManager sharedInstance] countOfRecordsWithName:[[self class] description]];
 }
 
 #pragma mark - Relationships
@@ -528,6 +536,16 @@ VALIDATION_HELPER
         [self valueForKey:property.propertyName]];
     }
     return descr;
+}
+
+#pragma mark - Drop records
+
++ (void)dropAllRecords {
+    [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDeleteAll]];
+}
+
+- (void)dropRecord {
+    [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDelete]];
 }
 
 @end

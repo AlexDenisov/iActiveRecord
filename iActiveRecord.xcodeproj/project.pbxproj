@@ -41,8 +41,8 @@
 		25998EFD14BC27FD00CA2490 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EFC14BC27FD00CA2490 /* Group.m */; };
 		25998F0314BC2D8500CA2490 /* NSObject+properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998F0214BC2D8500CA2490 /* NSObject+properties.m */; };
 		25A1131614D9AA59000720E7 /* UserGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A1131514D9AA59000720E7 /* UserGroupRelationship.m */; };
+		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
 		CAA8DE951515DA02004AB173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA8DE941515DA02004AB173 /* main.m */; };
-		CAA8DEC91515DD29004AB173 /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA8DEC81515DD29004AB173 /* Cedar-iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,9 +119,10 @@
 		25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatableProtocol.h; sourceTree = "<group>"; };
 		25A1132614D9BCF7000720E7 /* ARErrorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrorHelper.h; sourceTree = "<group>"; };
 		25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMigrationsHelper.h; sourceTree = "<group>"; };
+		CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropRecordSpecs.h; sourceTree = "<group>"; };
+		CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "/opt/cedar/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<absolute>"; };
+		CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountSpecs.h; sourceTree = "<group>"; };
 		CAA8DE941515DA02004AB173 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CAA8DEC71515DD04004AB173 /* OCMock-iPhone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OCMock-iPhone.framework"; path = "/tmp/cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal/OCMock-iPhone.framework"; sourceTree = "<absolute>"; };
-		CAA8DEC81515DD29004AB173 /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "/tmp/cedar-installer/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<absolute>"; };
 		CAA8DECA1515E9CF004AB173 /* FinderSpecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderSpecs.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,7 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAA8DEC91515DD29004AB173 /* Cedar-iOS.framework in Frameworks */,
+				CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */,
 				25922B6114EC2BC600CBB58A /* libsqlite3.0.dylib in Frameworks */,
 				25922AFD14EC286000CBB58A /* UIKit.framework in Frameworks */,
 				25922AFE14EC286000CBB58A /* Foundation.framework in Frameworks */,
@@ -199,6 +200,8 @@
 				25922B6814EC2D1600CBB58A /* DatabaseManagerSpecs.h */,
 				25922B6914EC310100CBB58A /* RelationshipsSpecs.h */,
 				CAA8DECA1515E9CF004AB173 /* FinderSpecs.h */,
+				CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */,
+				CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -266,8 +269,7 @@
 		25998EC014BC199C00CA2490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CAA8DEC81515DD29004AB173 /* Cedar-iOS.framework */,
-				CAA8DEC71515DD04004AB173 /* OCMock-iPhone.framework */,
+				CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */,
 				25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */,
 				25998EC114BC199C00CA2490 /* UIKit.framework */,
 				25998EC314BC199C00CA2490 /* Foundation.framework */,
@@ -533,6 +535,8 @@
 					"\"$(SRCROOT)/../cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
 					"\"/tmp/cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
 					"\"/tmp/cedar-installer/cedar/build/Release-iphoneuniversal\"",
+					"\"/opt/cedar/cedar/build/Release-iphoneuniversal\"",
+					/opt/cedar/cedar/Externals/OCMock/Source/build/Release,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
@@ -566,6 +570,8 @@
 					"\"$(SRCROOT)/../cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
 					"\"/tmp/cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
 					"\"/tmp/cedar-installer/cedar/build/Release-iphoneuniversal\"",
+					"\"/opt/cedar/cedar/build/Release-iphoneuniversal\"",
+					/opt/cedar/cedar/Externals/OCMock/Source/build/Release,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";

@@ -10,3 +10,5 @@
 #import "ValidationSpecs.h"
 #import "RelationshipsSpecs.h"
 #import "FinderSpecs.h"
+#import "DropRecordSpecs.h"
+#import "CountSpecs.h"

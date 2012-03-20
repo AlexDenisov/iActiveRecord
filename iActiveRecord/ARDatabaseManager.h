@@ -29,4 +29,6 @@
 - (NSArray *)findRecords:(NSString *)aRecordName byId:(NSNumber *)anId;
 - (id)findRecord:(NSString *)aRecordName byId:(NSNumber *)anId;
 
+- (NSInteger)countOfRecordsWithName:(NSString *)aName;
+
 @end

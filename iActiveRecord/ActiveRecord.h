@@ -58,6 +58,7 @@
 
 + (const char *)sqlOnCreate;
 + (const char *)sqlOnDeleteAll;
+- (const char *)sqlOnDelete;
 - (const char *)sqlOnSave;
 - (const char *)sqlOnUpdate;
 
@@ -84,6 +85,8 @@
 #pragma mark - 
 
 + (NSString *)tableName;
+- (NSString *)tableName;
+
 + (id)newRecord;
 + (NSArray *)allRecords;
 
@@ -92,6 +95,11 @@
 + (id)findById:(NSNumber *)anId;
 + (NSArray *)findWhereIdIn:(NSArray *)aValues;
 + (NSInteger)count;
+
+#pragma mark - Drop records
+
++ (void)dropAllRecords;
+- (void)dropRecord;
 
 
 - (BOOL)save;
