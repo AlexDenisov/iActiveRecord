@@ -254,8 +254,8 @@ VALIDATION_HELPER
 }
 
 + (NSArray *)allRecords {
-  NSString *recordName = [[self class] description];
-  return [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName];
+    NSString *recordName = [[self class] description];
+    return [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName];
 }
 
 + (id)findById:(NSNumber *)anId{
@@ -538,6 +538,13 @@ VALIDATION_HELPER
     return descr;
 }
 
+#pragma mark - Lazy Fetching
+
++ (ARLazyFetcher *)lazyFetcher {
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:[self class]];
+    return fetcher;
+}
+
 #pragma mark - Drop records
 
 + (void)dropAllRecords {
@@ -546,6 +553,19 @@ VALIDATION_HELPER
 
 - (void)dropRecord {
     [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDelete]];
+}
+
+#pragma mark - TableFields
+
++ (NSArray *)tableFields {
+    NSArray *properties = [self activeRecordProperties];
+    NSMutableArray *tableFields = [NSMutableArray arrayWithCapacity:[properties count]];
+    for(ARObjectProperty *property in properties){
+        if(![ignoredFields containsObject:property.propertyName]){
+            [tableFields addObject:property];
+        }
+    }
+    return tableFields;
 }
 
 @end

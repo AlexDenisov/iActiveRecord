@@ -22,14 +22,16 @@ afterEach(^{
 });
 
 describe(@"Count", ^{
-    it(@"should return count one record", ^{
+    it(@"should return 2", ^{
         NSString *username = @"Peter";
         User *peter = [User newRecord];
         peter.name = username;
         [peter save];
-        
+        User *john = [User newRecord];
+        john.name = @"john";
+        [john save];
         NSInteger count = [User count];
-        expect(count).toEqual(1);
+        expect(count).toEqual(2);
     });
 });
 

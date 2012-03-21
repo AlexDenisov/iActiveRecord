@@ -12,3 +12,5 @@
 #import "FinderSpecs.h"
 #import "DropRecordSpecs.h"
 #import "CountSpecs.h"
+#import "ARLazyFetcherSpecs.h"
+#import "ARFactorySpecs.h"

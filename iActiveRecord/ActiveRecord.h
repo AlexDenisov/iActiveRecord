@@ -3,6 +3,7 @@
 #import "ARValidations.h"
 #import "ARValidatableProtocol.h"
 #import "ARMigrationsHelper.h"
+#import "ARLazyFetcher.h"
 
 @interface ActiveRecord : NSObject
 {
@@ -33,7 +34,6 @@
 - (void)resetErrors;
 - (void)addError:(NSString *)errMessage;
 - (void)logErrors;
-
 
 #pragma mark - Relationships
 
@@ -82,7 +82,7 @@
 
 - (BOOL)isEqualToRecord:(ActiveRecord *)anOtherRecord;
 
-#pragma mark - 
+#pragma mark - TableName
 
 + (NSString *)tableName;
 - (NSString *)tableName;
@@ -101,6 +101,15 @@
 + (void)dropAllRecords;
 - (void)dropRecord;
 
+#pragma mark - TableFields
+
++ (NSArray *)tableFields;
+
+#pragma mark - Lazy Fetching
+
++ (ARLazyFetcher *)lazyFetcher;
+
+#pragma mark - Update/Save
 
 - (BOOL)save;
 - (BOOL)update;

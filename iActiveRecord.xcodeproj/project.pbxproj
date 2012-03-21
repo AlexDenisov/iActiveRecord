@@ -42,7 +42,11 @@
 		25998F0314BC2D8500CA2490 /* NSObject+properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998F0214BC2D8500CA2490 /* NSObject+properties.m */; };
 		25A1131614D9AA59000720E7 /* UserGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A1131514D9AA59000720E7 /* UserGroupRelationship.m */; };
 		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
+		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
+		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CAA8DE951515DA02004AB173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA8DE941515DA02004AB173 /* main.m */; };
+		CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
+		CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,8 +126,15 @@
 		CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropRecordSpecs.h; sourceTree = "<group>"; };
 		CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "/opt/cedar/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<absolute>"; };
 		CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountSpecs.h; sourceTree = "<group>"; };
+		CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcher.h; sourceTree = "<group>"; };
+		CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLazyFetcher.m; sourceTree = "<group>"; };
+		CA3D18081519D61F00FA3F3C /* ARLazyFetcherSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcherSpecs.h; sourceTree = "<group>"; };
+		CA3D18091519D63300FA3F3C /* FooSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FooSpec.h; sourceTree = "<group>"; };
 		CAA8DE941515DA02004AB173 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAA8DECA1515E9CF004AB173 /* FinderSpecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderSpecs.h; sourceTree = "<group>"; };
+		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
+		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
+		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +213,9 @@
 				CAA8DECA1515E9CF004AB173 /* FinderSpecs.h */,
 				CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */,
 				CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */,
+				CA3D18081519D61F00FA3F3C /* ARLazyFetcherSpecs.h */,
+				CA3D18091519D63300FA3F3C /* FooSpec.h */,
+				CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -321,18 +335,9 @@
 		25998EDF14BC19F100CA2490 /* ActiveRecord */ = {
 			isa = PBXGroup;
 			children = (
-				25998EE014BC1A1D00CA2490 /* ActiveRecord.h */,
-				25998EE114BC1A1D00CA2490 /* ActiveRecord.m */,
-				25998EE214BC1A1D00CA2490 /* ARDatabaseManager.h */,
-				25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */,
-				25998EE414BC1A1D00CA2490 /* ARRelationships.h */,
-				2598293D14BD740100207D16 /* ARObjectProperty.h */,
-				2598293E14BD740100207D16 /* ARObjectProperty.m */,
-				2598294114BDDB4200207D16 /* class_getSubclasses.h */,
-				25A1131F14D9BAAE000720E7 /* ARValidations.h */,
-				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
-				25A1132614D9BCF7000720E7 /* ARErrorHelper.h */,
-				25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */,
+				CA3D18031519D57A00FA3F3C /* Classes */,
+				CA3D18021519D56A00FA3F3C /* Managers */,
+				CA3D18001519D55300FA3F3C /* Helpers */,
 			);
 			name = ActiveRecord;
 			sourceTree = "<group>";
@@ -380,6 +385,43 @@
 				25998F0214BC2D8500CA2490 /* NSObject+properties.m */,
 			);
 			name = NSObject;
+			sourceTree = "<group>";
+		};
+		CA3D18001519D55300FA3F3C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2598294114BDDB4200207D16 /* class_getSubclasses.h */,
+				25998EE414BC1A1D00CA2490 /* ARRelationships.h */,
+				25A1131F14D9BAAE000720E7 /* ARValidations.h */,
+				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
+				25A1132614D9BCF7000720E7 /* ARErrorHelper.h */,
+				25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		CA3D18021519D56A00FA3F3C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				25998EE214BC1A1D00CA2490 /* ARDatabaseManager.h */,
+				25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		CA3D18031519D57A00FA3F3C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2598293D14BD740100207D16 /* ARObjectProperty.h */,
+				2598293E14BD740100207D16 /* ARObjectProperty.m */,
+				25998EE014BC1A1D00CA2490 /* ActiveRecord.h */,
+				25998EE114BC1A1D00CA2490 /* ActiveRecord.m */,
+				CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */,
+				CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */,
+				CAAF5D8E151A1430004C4329 /* ARFactory.h */,
+				CAAF5D8F151A1430004C4329 /* ARFactory.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,6 +522,8 @@
 				25922B5B14EC2BB600CBB58A /* ARObjectProperty.m in Sources */,
 				25922B5414EC2BA300CBB58A /* User.m in Sources */,
 				25922B0714EC286000CBB58A /* main.m in Sources */,
+				CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */,
+				CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +544,8 @@
 				2596BC5714C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m in Sources */,
 				25A1131614D9AA59000720E7 /* UserGroupRelationship.m in Sources */,
 				CAA8DE951515DA02004AB173 /* main.m in Sources */,
+				CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */,
+				CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

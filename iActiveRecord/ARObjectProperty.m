@@ -26,14 +26,4 @@
     return self;
 }
 
-- (const char *)sqltype {
-    if([self.propertyType isEqualToString:@"NSNumber"]){
-        return "integer";
-    }
-    if([self.propertyType isEqualToString:@"NSString"]){
-        return "text";
-    }
-    return NULL;
-}
-
 @end

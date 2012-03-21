@@ -97,7 +97,8 @@ static ARDatabaseManager *instance = nil;
                                       NULL,
                                       NULL))
     {
-        lastId = [NSNumber numberWithInt:results[1][0] - 48];
+        NSInteger intId = [[NSString stringWithUTF8String:results[1]] integerValue];
+        lastId = [NSNumber numberWithInt:intId];
         sqlite3_free_table(results);
     }else
     {
@@ -234,8 +235,9 @@ static ARDatabaseManager *instance = nil;
                                       NULL,
                                       NULL))
     {
-        count = results[1][0] - 48;
+        NSString *result = [NSString stringWithUTF8String:results[1]];
         sqlite3_free_table(results);
+        count = [result integerValue];
     }else
     {
         NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
