@@ -1,3 +1,11 @@
+//
+//  ARDatabaseManager.m
+//  iActiveRecord
+//
+//  Created by Alex Denisov on 10.01.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//
+
 #import "ARDatabaseManager.h"
 #import "ActiveRecord.h"
 #import "class_getSubclasses.h"
@@ -114,7 +122,7 @@ static ARDatabaseManager *instance = nil;
         NSLog(@"Couldn't execute query %s : %s", anSqlQuery, sqlite3_errmsg(database));
     }
 }
-
+ 
 - (NSString *)documentsDirectory {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return ([paths count] > 0) ? [paths objectAtIndex:0] : nil;

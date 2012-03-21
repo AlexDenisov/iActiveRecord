@@ -1,3 +1,11 @@
+//
+//  ActiveRecord.m
+//  iActiveRecord
+//
+//  Created by Alex Denisov on 10.01.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//
+
 #import "ActiveRecord.h"
 #import "ARDatabaseManager.h"
 #import "NSString+lowercaseFirst.h"
@@ -149,7 +157,10 @@ VALIDATION_HELPER
 }
 
 - (const char *)sqlOnDelete {
-    NSString *sqlString = [NSString stringWithFormat:@"delete from %@ where id = %@", [self tableName], self.id];
+    NSString *sqlString = [NSString stringWithFormat:
+                           @"delete from %@ where id = %@", 
+                           [self tableName], 
+                           self.id];
     return [sqlString UTF8String];
 }
 
@@ -550,7 +561,7 @@ VALIDATION_HELPER
 + (void)dropAllRecords {
     [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDeleteAll]];
 }
-
+ 
 - (void)dropRecord {
     [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDelete]];
 }

@@ -2,8 +2,8 @@
 //  ARValidations.h
 //  iActiveRecord
 //
-//  Created by mls on 01.02.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Alex Denisov on 01.02.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

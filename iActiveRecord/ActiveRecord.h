@@ -1,3 +1,11 @@
+//
+//  ActiveRecord.m
+//  iActiveRecord
+//
+//  Created by Alex Denisov on 10.01.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//
+
 #import <Foundation/Foundation.h>
 #import "ARRelationships.h"
 #import "ARValidations.h"
@@ -29,7 +37,7 @@
 #pragma mark - validations
 
 - (NSString *)recordName;
-
+ 
 
 - (void)resetErrors;
 - (void)addError:(NSString *)errMessage;

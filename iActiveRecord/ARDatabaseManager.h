@@ -1,8 +1,17 @@
+//
+//  ARDatabaseManager.m
+//  iActiveRecord
+//
+//  Created by Alex Denisov on 10.01.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//
+
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
 @interface ARDatabaseManager : NSObject
 {
+    @private
     sqlite3 *database;
     NSString *dbPath;
     NSString *dbName;
@@ -32,3 +41,4 @@
 - (NSInteger)countOfRecordsWithName:(NSString *)aName;
 
 @end
+ 

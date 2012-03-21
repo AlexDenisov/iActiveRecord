@@ -1,5 +1,13 @@
-#import "NSString+lowercaseFirst.h"
+//
+//  ARRelationships.m
+//  iActiveRecord
+//
+//  Created by Alex Denisov on 10.01.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//
 
+#import "NSString+lowercaseFirst.h"
+ 
 #define BELONGS_TO_IMP(class, accessor) \
     - (id)accessor{\
         NSString *class_name = @""#class"";\

@@ -2,10 +2,9 @@
 //  User.m
 //  iActiveRecord
 //
-//  Created by mls on 10.01.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Alex Denisov on 10.01.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
-
 #import "User.h"
 
 @implementation User

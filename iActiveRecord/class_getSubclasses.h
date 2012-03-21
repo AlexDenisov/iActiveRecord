@@ -2,8 +2,8 @@
 //  class_getSubclasses.h
 //  iActiveRecord
 //
-//  Created by mls on 11.01.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Alex Denisov on 21.03.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
