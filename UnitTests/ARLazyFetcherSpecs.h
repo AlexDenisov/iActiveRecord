@@ -18,16 +18,62 @@ SPEC_BEGIN(ARLazyFetcherSpecs)
 
 beforeEach(^{
     [[ARDatabaseManager sharedInstance] clearDatabase];
+    [ARFactory buildFew:10 recordsNamed:@"User"];
 });
+
 afterEach(^{
     [[ARDatabaseManager sharedInstance] clearDatabase];
 });
 
-describe(@"ActiveRecord", ^{
-    it(@"fetchRecords without parameters should return all records ", ^{
-        [ARFactory buildFew:10 recordsNamed:@"User"];
+describe(@"LazyFetcher", ^{
+    it(@"without parameters should return all records ", ^{
         NSArray *records = [[User lazyFetcher] fetchRecords];
         expect([records count]).toEqual(10);
+    });
+    it(@"LIMIT should return limited count of records", ^{
+        NSInteger limit = 5;
+        NSArray *records = [[[User lazyFetcher] limit:limit] fetchRecords];
+        expect([records count]).toEqual(limit);
+    });
+    it(@"OFFSET should return records from third record", ^{
+        NSInteger offset = 3;
+        NSArray *records = [[[User lazyFetcher] offset:offset] fetchRecords];
+        User *first = [records first];
+        expect(first.id.integerValue).toEqual(offset + 1);
+    });
+    it(@"LIMIT/OFFSET should return 5 records starts from 3-d", ^{
+        NSInteger limit = 5;
+        NSInteger offset = 3;
+        NSArray *records = [[[[User lazyFetcher] limit:limit] offset:offset] fetchRecords];
+        User *first = [records first];
+        expect(first.id.integerValue).toEqual(offset + 1);
+        expect(records.count).toEqual(limit);
+    });
+    describe(@"ORDER BY", ^{
+        it(@"ASC should sort records in ascending order", ^{
+            NSArray *records = [[[User lazyFetcher] orderBy:@"id"
+                                                  ascending:YES] fetchRecords];
+            int idx = 1;
+            BOOL sortCorrect = YES;
+            for(User *user in records){
+                if(user.id.integerValue != idx++){
+                    sortCorrect = NO;
+                }
+            }
+            expect(sortCorrect).toEqual(YES);
+        });
+        it(@"DESC should sort records in descending order", ^{
+            NSArray *records = [[[User lazyFetcher] orderBy:@"id"
+                                                  ascending:NO] fetchRecords];
+            int idx = 10;
+            BOOL sortCorrect = YES;
+            for(User *user in records){
+                if(user.id.integerValue != idx--){
+                    sortCorrect = NO;
+                }
+            }
+            expect(sortCorrect).toEqual(YES);
+        });
     });
 });
 

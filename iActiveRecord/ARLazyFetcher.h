@@ -15,6 +15,10 @@
     NSNumber *offset;
     Class record;
     NSString *sqlRequest;
+    NSMutableDictionary *orderByConditions;
+    
+    //  not implemented yet
+    NSMutableDictionary *whereConditions;
 }
 
 #pragma mark - Private methods
@@ -24,6 +28,8 @@
 #pragma mark - Public methods
 - (ARLazyFetcher *)limit:(NSInteger)aLimit;
 - (ARLazyFetcher *)offset:(NSInteger)anOffset;
+- (ARLazyFetcher *)whereField:(NSString *)aField hasValue:(id)aValue; 
+- (ARLazyFetcher *)orderBy:(NSString *)aField ascending:(BOOL)isAscending;
 
 - (NSArray *)fetchRecords;
 

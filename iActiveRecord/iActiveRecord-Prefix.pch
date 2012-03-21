@@ -13,4 +13,5 @@
     #import <Foundation/Foundation.h>
     #import "NSObject+properties.h"
     #import "SQLRepresentation.h"
+    #import "NSArray+objectsAccessors.h"
 #endif

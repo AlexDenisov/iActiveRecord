@@ -47,6 +47,8 @@
 		CAA8DE951515DA02004AB173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA8DE941515DA02004AB173 /* main.m */; };
 		CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
+		CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
+		CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +137,8 @@
 		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
 		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
+		CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+objectsAccessors.h"; sourceTree = "<group>"; };
+		CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+objectsAccessors.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +362,7 @@
 		25998EFE14BC2D4600CA2490 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CAAF5D9D151A511C004C4329 /* NSArray */,
 				2596BC5314C7207100C6B5E2 /* NSDecimalNumber */,
 				254F5EBD14C5E76700AC0D86 /* NSNumber */,
 				254F5EB514C5DFF300AC0D86 /* Extras */,
@@ -422,6 +427,15 @@
 				CAAF5D8F151A1430004C4329 /* ARFactory.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		CAAF5D9D151A511C004C4329 /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */,
+				CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */,
+			);
+			name = NSArray;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -524,6 +538,7 @@
 				25922B0714EC286000CBB58A /* main.m in Sources */,
 				CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */,
 				CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */,
+				CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +561,7 @@
 				CAA8DE951515DA02004AB173 /* main.m in Sources */,
 				CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */,
 				CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */,
+				CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
