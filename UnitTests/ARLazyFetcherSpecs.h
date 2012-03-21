@@ -62,6 +62,33 @@ describe(@"LazyFetcher", ^{
             }
             expect(sortCorrect).toEqual(YES);
         });
+        it(@"ASC with LIMIT should sort limited records in ascending order", ^{
+            NSInteger limit = 5;
+            NSArray *records = [[[[User lazyFetcher] orderBy:@"id"
+                                                   ascending:YES] limit:limit] fetchRecords];
+            int idx = 1;
+            BOOL sortCorrect = YES;
+            for(User *user in records){
+                if(user.id.integerValue != idx++){
+                    sortCorrect = NO;
+                }
+            }
+            expect(sortCorrect).toEqual(YES);
+        });
+        it(@"ASC with LIMIT/OFFSET should sort limited records in ascending order", ^{
+            NSInteger limit = 5;
+            NSInteger offset = 4;
+            NSArray *records = [[[[[User lazyFetcher] orderBy:@"id"
+                                                   ascending:YES] offset:offset] limit:limit] fetchRecords];
+            int idx = offset + 1;
+            BOOL sortCorrect = YES;
+            for(User *user in records){
+                if(user.id.integerValue != idx++){
+                    sortCorrect = NO;
+                }
+            }
+            expect(sortCorrect).toEqual(YES);
+        });
         it(@"DESC should sort records in descending order", ^{
             NSArray *records = [[[User lazyFetcher] orderBy:@"id"
                                                   ascending:NO] fetchRecords];
