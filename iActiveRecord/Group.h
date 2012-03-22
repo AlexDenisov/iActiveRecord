@@ -8,6 +8,10 @@
 
 #import "ActiveRecord.h"
 
+/*
+    Group has many users
+ */
+
 @interface Group : ActiveRecord
     <ARValidatableProtocol>
 

@@ -40,7 +40,6 @@
 		25998EFA14BC1DD400CA2490 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */; };
 		25998EFD14BC27FD00CA2490 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EFC14BC27FD00CA2490 /* Group.m */; };
 		25998F0314BC2D8500CA2490 /* NSObject+properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998F0214BC2D8500CA2490 /* NSObject+properties.m */; };
-		25A1131614D9AA59000720E7 /* UserGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A1131514D9AA59000720E7 /* UserGroupRelationship.m */; };
 		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
 		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
@@ -49,6 +48,12 @@
 		CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
 		CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
+		CAAF5DCA151BA3F4004C4329 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DC9151BA3F4004C4329 /* Project.m */; };
+		CAAF5DCD151BA40F004C4329 /* UserProjectRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */; };
+		CAAF5DCE151BA40F004C4329 /* UserProjectRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */; };
+		CAAF5DD1151BA693004C4329 /* README in Resources */ = {isa = PBXBuildFile; fileRef = CAAF5DD0151BA693004C4329 /* README */; };
+		CAAF5DD2151BA693004C4329 /* README in Resources */ = {isa = PBXBuildFile; fileRef = CAAF5DD0151BA693004C4329 /* README */; };
+		CAAF5DD3151BB24E004C4329 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DC9151BA3F4004C4329 /* Project.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,8 +124,6 @@
 		25998EFC14BC27FD00CA2490 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		25998F0114BC2D8500CA2490 /* NSObject+properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+properties.h"; sourceTree = "<group>"; };
 		25998F0214BC2D8500CA2490 /* NSObject+properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+properties.m"; sourceTree = "<group>"; };
-		25A1131414D9AA59000720E7 /* UserGroupRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGroupRelationship.h; sourceTree = "<group>"; };
-		25A1131514D9AA59000720E7 /* UserGroupRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGroupRelationship.m; sourceTree = "<group>"; };
 		25A1131F14D9BAAE000720E7 /* ARValidations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidations.h; sourceTree = "<group>"; };
 		25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatableProtocol.h; sourceTree = "<group>"; };
 		25A1132614D9BCF7000720E7 /* ARErrorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrorHelper.h; sourceTree = "<group>"; };
@@ -139,6 +142,11 @@
 		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
 		CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+objectsAccessors.h"; sourceTree = "<group>"; };
 		CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+objectsAccessors.m"; sourceTree = "<group>"; };
+		CAAF5DC8151BA3F4004C4329 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		CAAF5DC9151BA3F4004C4329 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		CAAF5DCB151BA40E004C4329 /* UserProjectRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProjectRelationship.h; sourceTree = "<group>"; };
+		CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProjectRelationship.m; sourceTree = "<group>"; };
+		CAAF5DD0151BA693004C4329 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +276,7 @@
 		25998EB214BC199C00CA2490 = {
 			isa = PBXGroup;
 			children = (
+				CAAF5DCF151BA685004C4329 /* Readme */,
 				25998EC714BC199C00CA2490 /* iActiveRecord */,
 				25922B0014EC286000CBB58A /* UnitTests */,
 				25998EC014BC199C00CA2490 /* Frameworks */,
@@ -353,8 +362,10 @@
 				25998EEB14BC1A8300CA2490 /* User.m */,
 				25998EFB14BC27FD00CA2490 /* Group.h */,
 				25998EFC14BC27FD00CA2490 /* Group.m */,
-				25A1131414D9AA59000720E7 /* UserGroupRelationship.h */,
-				25A1131514D9AA59000720E7 /* UserGroupRelationship.m */,
+				CAAF5DC8151BA3F4004C4329 /* Project.h */,
+				CAAF5DC9151BA3F4004C4329 /* Project.m */,
+				CAAF5DCB151BA40E004C4329 /* UserProjectRelationship.h */,
+				CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */,
 			);
 			name = "Test Entities";
 			sourceTree = "<group>";
@@ -438,6 +449,14 @@
 			name = NSArray;
 			sourceTree = "<group>";
 		};
+		CAAF5DCF151BA685004C4329 /* Readme */ = {
+			isa = PBXGroup;
+			children = (
+				CAAF5DD0151BA693004C4329 /* README */,
+			);
+			name = Readme;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -507,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
+				CAAF5DD2151BA693004C4329 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */,
+				CAAF5DD1151BA693004C4329 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAAF5DD3151BB24E004C4329 /* Project.m in Sources */,
 				25922B6314EC2C2200CBB58A /* NSDecimalNumber+sqlRepresentation.m in Sources */,
 				25922B6414EC2C2200CBB58A /* NSNumber+sqlRepresentation.m in Sources */,
 				25922B6514EC2C2200CBB58A /* NSString+lowercaseFirst.m in Sources */,
@@ -539,6 +561,7 @@
 				CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */,
 				CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */,
 				CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */,
+				CAAF5DCE151BA40F004C4329 /* UserProjectRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,11 +580,12 @@
 				254F5EBC14C5E71C00AC0D86 /* NSString+sqlRepresentation.m in Sources */,
 				254F5EC014C5E78100AC0D86 /* NSNumber+sqlRepresentation.m in Sources */,
 				2596BC5714C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m in Sources */,
-				25A1131614D9AA59000720E7 /* UserGroupRelationship.m in Sources */,
 				CAA8DE951515DA02004AB173 /* main.m in Sources */,
 				CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */,
 				CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */,
 				CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */,
+				CAAF5DCA151BA3F4004C4329 /* Project.m in Sources */,
+				CAAF5DCD151BA40F004C4329 /* UserProjectRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,7 +35,11 @@
         [self addRecord:aRecord];\
     }\
 
-#define HAS_MANY_THROUGH(relative_class, relationship, accessor) \
+#define HAS_MANY_THROUGH_DEC(relative_class, relationship, accessor) \
+    - (NSArray *)accessor;\
+    - (void)add##relative_class:(ActiveRecord *)aRecord;
+
+#define HAS_MANY_THROUGH_IMP(relative_class, relationship, accessor) \
     - (NSArray *)accessor\
     {\
         NSString *className = @""#relative_class"";\

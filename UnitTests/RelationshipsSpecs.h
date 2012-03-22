@@ -12,6 +12,7 @@
 
 #import "User.h"
 #import "Group.h"
+#import "Project.h"
 #import "ARDatabaseManager.h"
 
 SPEC_BEGIN(RelationshipsSpecs)
@@ -61,6 +62,39 @@ describe(@"BelongsTo", ^{
         [students addUser:peter];
         Group *group = [john group];
         expect([group name]).toEqual([students name]);
+    });
+});
+
+describe(@"HasManyThrough", ^{
+    it(@"Users should have many projects", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+        [john save];
+        User *peter = [User newRecord];
+        peter.name = @"Peter";
+        [peter save];
+        User *vova = [User newRecord];
+        vova.name = @"Vladimir";
+        [vova save];
+        
+        Project *worldConquest = [Project newRecord];
+        worldConquest.name = @"Conquest of the World";
+        [worldConquest save];
+        
+        Project *makeTea = [Project newRecord];
+        makeTea.name = @"Make tea";
+        [makeTea save];
+        
+        [worldConquest addUser:john];
+        [worldConquest addUser:peter];
+        
+        [makeTea addUser:john];
+        [makeTea addUser:vova];
+        
+        NSArray *projects = [john projects];
+        NSArray *users = [worldConquest users];
+        expect(projects.count).toEqual(2);
+        expect(users.count).toEqual(2);
     });
 });
 

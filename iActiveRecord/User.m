@@ -14,6 +14,7 @@
 @synthesize groupId;
 
 BELONGS_TO_IMP(Group, group)
+HAS_MANY_THROUGH_IMP(Project, UserProjectRelationship, projects)
 
 IGNORE_FIELDS_DO(
     IGNORE_FIELD(ignoredProperty)
