@@ -96,12 +96,20 @@
 - (NSString *)tableName;
 
 + (id)newRecord;
-+ (NSArray *)allRecords;
 
-#pragma mark - Finders
+#pragma mark - Fetchers
 
+//  return only one record
 + (id)findById:(NSNumber *)anId;
+
+//  return records immediately
++ (NSArray *)allRecords;
 + (NSArray *)findWhereIdIn:(NSArray *)aValues;
+
+//  return lazy fetcher, whch allows add some filters
++ (ARLazyFetcher *)lazyAllRecords;
++ (ARLazyFetcher *)lazyFindWhereIdIn:(NSArray *)aValues;
+
 + (NSInteger)count;
 
 #pragma mark - Drop records

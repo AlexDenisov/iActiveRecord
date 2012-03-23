@@ -30,26 +30,35 @@ describe(@"LazyFetcher", ^{
         NSArray *records = [[User lazyFetcher] fetchRecords];
         expect([records count]).toEqual(10);
     });
-    it(@"LIMIT should return limited count of records", ^{
-        NSInteger limit = 5;
-        NSArray *records = [[[User lazyFetcher] limit:limit] fetchRecords];
-        expect([records count]).toEqual(limit);
+    it(@"allRecords should return all records", ^{ // thank, captain
+        NSArray *users = [[User lazyAllRecords] fetchRecords];
+        expect(users.count).toEqual([User count]);
     });
-    it(@"OFFSET should return records from third record", ^{
-        NSInteger offset = 3;
-        NSArray *records = [[[User lazyFetcher] offset:offset] fetchRecords];
-        User *first = [records first];
-        expect(first.id.integerValue).toEqual(offset + 1);
+    
+    describe(@"Limit/Offset", ^{
+        it(@"LIMIT should return limited count of records", ^{
+            NSInteger limit = 5;
+            NSArray *records = [[[User lazyFetcher] limit:limit] fetchRecords];
+            expect([records count]).toEqual(limit);
+        });
+        it(@"OFFSET should return records from third record", ^{
+            NSInteger offset = 3;
+            NSArray *records = [[[User lazyFetcher] offset:offset] fetchRecords];
+            User *first = [records first];
+            expect(first.id.integerValue).toEqual(offset + 1);
+        });
+        it(@"LIMIT/OFFSET should return 5 records starts from 3-d", ^{
+            NSInteger limit = 5;
+            NSInteger offset = 3;
+            NSArray *records = [[[[User lazyFetcher] limit:limit] offset:offset] fetchRecords];
+            User *first = [records first];
+            expect(first.id.integerValue).toEqual(offset + 1);
+            expect(records.count).toEqual(limit);
+        });
+
     });
-    it(@"LIMIT/OFFSET should return 5 records starts from 3-d", ^{
-        NSInteger limit = 5;
-        NSInteger offset = 3;
-        NSArray *records = [[[[User lazyFetcher] limit:limit] offset:offset] fetchRecords];
-        User *first = [records first];
-        expect(first.id.integerValue).toEqual(offset + 1);
-        expect(records.count).toEqual(limit);
-    });
-    describe(@"ORDER BY", ^{
+    
+    describe(@"Order by", ^{
         it(@"ASC should sort records in ascending order", ^{
             NSArray *records = [[[User lazyFetcher] orderBy:@"id"
                                                   ascending:YES] fetchRecords];
@@ -101,6 +110,19 @@ describe(@"LazyFetcher", ^{
             }
             expect(sortCorrect).toEqual(YES);
         });
+    });
+    
+    describe(@"Where conditions", ^{
+
+//        it(@"where in should find record with ID=1 in array=[1,3,4,6]", ^{
+//            NSArray *ids = [NSArray arrayWithObjects:
+//                            [NSNumber numberWithInt:1],
+//                            [NSNumber numberWithInt:3],
+//                            [NSNumber numberWithInt:4],
+//                            [NSNumber numberWithInt:6], nil];
+//            ARLazyFetcher *fetcher = [User lazyFetcher];
+//            [fetcher orderBy:@"id"];
+//        });
     });
 });
 
