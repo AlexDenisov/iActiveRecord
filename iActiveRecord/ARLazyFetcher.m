@@ -8,6 +8,7 @@
 
 #import "ARLazyFetcher.h"
 #import "ARDatabaseManager.h"
+#import "ARWhereStatement.h"
 
 @implementation ARLazyFetcher
 
@@ -17,7 +18,9 @@
         limit = nil;
         offset = nil;
         sqlRequest = nil;
-        whereConditions = nil;
+        whereHasConditions = nil;
+        whereInConditions = nil;
+        whereNotInConditions = nil;
         orderByConditions = nil;
     }
     return self;
@@ -26,13 +29,24 @@
 - (id)initWithRecord:(Class)aRecord
 {
     self = [self init];
-    record = aRecord;
+    recordClass = aRecord;
+    return self;
+}
+
+- (id)initWithRecord:(Class)aRecord withInitialSql:(NSString *)anInitialSql {
+    self = [self initWithRecord:aRecord];
+    if(self){
+        sqlRequest = [anInitialSql copy];
+    }
     return self;
 }
 
 - (void)dealloc {
+    [whereStatement release];
     [orderByConditions release];
-    [whereConditions release];
+    [whereInConditions release];
+    [whereHasConditions release];
+    [whereNotInConditions release];
     [sqlRequest release];
     [limit release];
     [offset release];
@@ -40,28 +54,59 @@
 }
 
 - (void)buildSql {
-    NSString *tableName = [record performSelector:@selector(tableName)];
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT * FROM %@ ", tableName];
+    NSMutableString *sql = nil;
+    NSString *limitOffset = [self createLimitOffsetStatement];
+    NSString *orderBy = [self createOrderbyStatement];
+    NSString *where = [self createWhereStatement];
     
-    if(orderByConditions){
-        [sql appendFormat:@" ORDER BY "];
-        for(NSString *key in [orderByConditions allKeys]){
-            NSString *order = [[orderByConditions valueForKey:key] boolValue] ? @"ASC" : @"DESC";
-            [sql appendFormat:@" %@ %@ ,", key, order];
-        }
-        [sql replaceCharactersInRange:NSMakeRange(sql.length - 1, 1) withString:@""];
+    if(sqlRequest == nil){
+        NSString *tableName = [recordClass performSelector:@selector(tableName)];
+        sql = [NSMutableString stringWithFormat:@"SELECT * FROM %@ ", tableName];
+    }else{
+        sql = [NSMutableString stringWithString:sqlRequest];
     }
     
+    
+    [sql appendString:where];
+    [sql appendString:orderBy];
+    [sql appendString:limitOffset];
+    
+    NSLog(@"LazyRequest: %@", sql);
+    sqlRequest = [sql copy];
+}
+
+- (NSString *)createWhereStatement {
+    NSMutableString *statement = [NSMutableString string];
+    if(whereStatement){
+        [statement appendFormat:@" WHERE ( %@ ) ", [whereStatement statement]];
+    }
+    return statement;
+}
+
+- (NSString *)createOrderbyStatement {
+    NSMutableString *statement = [NSMutableString string];
+    if(orderByConditions){
+        [statement appendFormat:@" ORDER BY "];
+        for(NSString *key in [orderByConditions allKeys]){
+            NSString *order = [[orderByConditions valueForKey:key] boolValue] ? @"ASC" : @"DESC";
+            [statement appendFormat:@" %@ %@ ,", key, order];
+        }
+        [statement replaceCharactersInRange:NSMakeRange(statement.length - 1, 1) withString:@""];
+    }
+    return statement;
+}
+
+- (NSString *)createLimitOffsetStatement {
+    NSMutableString *statement = [NSMutableString string];
     NSInteger limitNum = -1;
     if(limit){
         limitNum = limit.integerValue;
     }
-    [sql appendFormat:@" LIMIT %d ", limitNum];
+    [statement appendFormat:@" LIMIT %d ", limitNum];
     if(offset){
-        [sql appendFormat:@" OFFSET %d ", offset.integerValue];
+        [statement appendFormat:@" OFFSET %d ", offset.integerValue];
     }
-    NSLog(@"LazyRequest: %@", sql);
-    sqlRequest = [sql copy];
+    return statement;
 }
 
 - (ARLazyFetcher *)offset:(NSInteger)anOffset {
@@ -76,14 +121,43 @@
     return self;
 }
 
-- (ARLazyFetcher *)whereField:(NSString *)aField hasValue:(id)aValue {
-    if(whereConditions == nil){
-        whereConditions = [NSMutableDictionary new];
-    }
-    [whereConditions setValue:aValue
-                       forKey:aField];
+#pragma mark - Where Conditions
+
+- (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement {
+    [whereStatement release];
+    whereStatement = [aStatement retain];
     return self;
 }
+
+- (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue {
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                              equalToValue:aValue];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                          notEqualToValue:aValue];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues {
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                                    in:aValues];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                                    notIn:aValues];
+    [self setWhereStatement:where];
+    return self;
+}
+
+#pragma mark - OrderBy
 
 - (ARLazyFetcher *)orderBy:(NSString *)aField
                  ascending:(BOOL)isAscending
@@ -97,10 +171,15 @@
     return self;
 }
 
+- (ARLazyFetcher *)orderBy:(NSString *)aField {
+    return [self orderBy:aField ascending:YES];
+}
+
+#pragma mark - Immediately fetch
+
 - (NSArray *)fetchRecords {
     [self buildSql];
-    NSLog(@"SQLRequest %@", sqlRequest);
-    return [[ARDatabaseManager sharedInstance] allRecordsWithName:[record description]
+    return [[ARDatabaseManager sharedInstance] allRecordsWithName:[recordClass description]
                                                           withSql:sqlRequest];
 }
 

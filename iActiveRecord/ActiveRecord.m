@@ -264,14 +264,18 @@ VALIDATION_HELPER
     return record;
 }
 
+
+
++ (id)findById:(NSNumber *)anId{
+    NSString *recordName = [[self class] description];
+    return [[ARDatabaseManager sharedInstance] findRecord:recordName byId:anId];
+}
+
+#pragma mark - Fetchers
+
 + (NSArray *)allRecords {
     NSString *recordName = [[self class] description];
     return [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName];
-}
-
-+ (id)findById:(NSNumber *)anId{
-  NSString *recordName = [[self class] description];
-  return [[ARDatabaseManager sharedInstance] findRecord:recordName byId:anId];
 }
 
 + (NSArray *)findWhereIdIn:(NSArray *)aValues {
@@ -279,6 +283,20 @@ VALIDATION_HELPER
     return [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName
                                                          whereKey:@"id"
                                                                in:aValues];
+}
+
++ (ARLazyFetcher *)lazyAllRecords {
+    ARLazyFetcher *lazyFetcher = [[ARLazyFetcher alloc] initWithRecord:self];
+    return [lazyFetcher autorelease];
+}
+
++ (ARLazyFetcher *)lazyFindWhereIdIn:(NSArray *)aValues {
+    return nil;
+}
+
++ (ARLazyFetcher *)lazyFetcher {
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:[self class]];
+    return [fetcher autorelease];
 }
 
 #pragma mark - Equal
@@ -547,13 +565,6 @@ VALIDATION_HELPER
         [self valueForKey:property.propertyName]];
     }
     return descr;
-}
-
-#pragma mark - Lazy Fetching
-
-+ (ARLazyFetcher *)lazyFetcher {
-    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:[self class]];
-    return fetcher;
 }
 
 #pragma mark - Drop records
