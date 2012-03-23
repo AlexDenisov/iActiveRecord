@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class ARWhereSimpleStatement;
+@class ARWhereStatement;
 
 @interface ARLazyFetcher : NSObject
 {
@@ -19,7 +19,7 @@
     NSString *sqlRequest;
     NSMutableDictionary *orderByConditions;
     
-    ARWhereSimpleStatement *whereStatement;
+    ARWhereStatement *whereStatement;
     
     //  not implemented yet
     NSMutableDictionary *whereHasConditions;
@@ -42,7 +42,7 @@
 
 //  not implemented yet
 
-- (ARLazyFetcher *)setWhereStatement:(ARWhereSimpleStatement *)aStatement;
+- (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement;
 
 - (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue; 
 - (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue; 

@@ -13,7 +13,7 @@
 #import "User.h"
 #import "ARDatabaseManager.h"
 #import "ARFactory.h"
-#import "ARWhereSimpleStatement.h"
+#import "ARWhereStatement.h"
 
 SPEC_BEGIN(ARLazyFetcherSpecs)
 
@@ -169,12 +169,12 @@ describe(@"LazyFetcher", ^{
                 john.name = username;
                 [john save];
                 
-                ARWhereSimpleStatement *nameStatement = [ARWhereSimpleStatement whereField:@"name"
+                ARWhereStatement *nameStatement = [ARWhereStatement whereField:@"name"
                                                                               equalToValue:username];
-                ARWhereSimpleStatement *idStatement = [ARWhereSimpleStatement whereField:@"id" 
+                ARWhereStatement *idStatement = [ARWhereStatement whereField:@"id" 
                                                                                       in:ids];
                 
-                ARWhereSimpleStatement *finalStatement = [ARWhereSimpleStatement concatenateStatement:nameStatement 
+                ARWhereStatement *finalStatement = [ARWhereStatement concatenateStatement:nameStatement 
                                                                                         withStatement:idStatement 
                                                                                   useLogicalOperation:ARLogicalOr];
                 

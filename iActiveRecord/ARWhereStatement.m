@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
-#import "ARWhereSimpleStatement.h"
+#import "ARWhereStatement.h"
 
-@implementation ARWhereSimpleStatement
+@implementation ARWhereStatement
 
 - (id)initWithStatement:(NSString *)aStatement {
     self = [super init];
@@ -23,44 +23,44 @@
     [super dealloc];
 }
 
-+ (ARWhereSimpleStatement *)whereField:(NSString *)aField equalToValue:(id)aValue {
++ (ARWhereStatement *)whereField:(NSString *)aField equalToValue:(id)aValue {
     NSString *stmt = [NSString stringWithFormat:
                       @" %@ = %@ ",
                       aField,
                       [aValue performSelector:@selector(toSql)]];
-    return [[[ARWhereSimpleStatement alloc] initWithStatement:stmt] autorelease];
+    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
 }
 
-+ (ARWhereSimpleStatement *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
++ (ARWhereStatement *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
     NSString *stmt = [NSString stringWithFormat:
                       @" %@ <> %@ ",
                       aField,
                       [aValue performSelector:@selector(toSql)]];
-    return [[[ARWhereSimpleStatement alloc] initWithStatement:stmt] autorelease];
+    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
 }
 
-+ (ARWhereSimpleStatement *)whereField:(NSString *)aField in:(NSArray *)aValues {
++ (ARWhereStatement *)whereField:(NSString *)aField in:(NSArray *)aValues {
     NSMutableArray *sqlValues = [NSMutableArray arrayWithCapacity:aValues.count];
     for(id value in aValues){
         [sqlValues addObject:[value performSelector:@selector(toSql)]];
     }
     NSString *values = [sqlValues componentsJoinedByString:@" , "];
     NSString *stmt = [NSString stringWithFormat:@" %@ IN (%@)", aField, values];
-    return [[[ARWhereSimpleStatement alloc] initWithStatement:stmt] autorelease];
+    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
 }
 
-+ (ARWhereSimpleStatement *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
++ (ARWhereStatement *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
     NSMutableArray *sqlValues = [NSMutableArray arrayWithCapacity:aValues.count];
     for(id value in aValues){
         [sqlValues addObject:[value performSelector:@selector(toSql)]];
     }
     NSString *values = [sqlValues componentsJoinedByString:@" , "];
     NSString *stmt = [NSString stringWithFormat:@" %@ NOT IN (%@)", aField, values];
-    return [[[ARWhereSimpleStatement alloc] initWithStatement:stmt] autorelease];
+    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
 }
 
-+ (ARWhereSimpleStatement *)concatenateStatement:(ARWhereSimpleStatement *)aFirstStatement 
-                                   withStatement:(ARWhereSimpleStatement *)aSecondStatement
++ (ARWhereStatement *)concatenateStatement:(ARWhereStatement *)aFirstStatement 
+                                   withStatement:(ARWhereStatement *)aSecondStatement
                              useLogicalOperation:(ARLogicalOperation)logicalOperation
 {
     NSString *logic = logicalOperation == ARLogicalOr ? @"OR" : @"AND";
@@ -69,7 +69,7 @@
                       [aFirstStatement statement],
                       logic,
                       [aSecondStatement statement]];
-    return [[[ARWhereSimpleStatement alloc] initWithStatement:stmt] autorelease];
+    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
 }
 
 - (NSString *)statement {

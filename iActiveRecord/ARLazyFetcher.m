@@ -8,7 +8,7 @@
 
 #import "ARLazyFetcher.h"
 #import "ARDatabaseManager.h"
-#import "ARWhereSimpleStatement.h"
+#import "ARWhereStatement.h"
 
 @implementation ARLazyFetcher
 
@@ -123,35 +123,35 @@
 
 #pragma mark - Where Conditions
 
-- (ARLazyFetcher *)setWhereStatement:(ARWhereSimpleStatement *)aStatement {
+- (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement {
     [whereStatement release];
     whereStatement = [aStatement retain];
     return self;
 }
 
 - (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue {
-    ARWhereSimpleStatement *where = [ARWhereSimpleStatement whereField:aField
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
                                                               equalToValue:aValue];
     [self setWhereStatement:where];
     return self;
 }
 
 - (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
-    ARWhereSimpleStatement *where = [ARWhereSimpleStatement whereField:aField
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
                                                           notEqualToValue:aValue];
     [self setWhereStatement:where];
     return self;
 }
 
 - (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues {
-    ARWhereSimpleStatement *where = [ARWhereSimpleStatement whereField:aField
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
                                                                     in:aValues];
     [self setWhereStatement:where];
     return self;
 }
 
 - (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
-    ARWhereSimpleStatement *where = [ARWhereSimpleStatement whereField:aField
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
                                                                     notIn:aValues];
     [self setWhereStatement:where];
     return self;
