@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    ARLogicalAnd,
+    ARLogicalOr
+} ARLogicalOperation;
+
 @interface ARWhereSimpleStatement : NSObject
 {
     @private
@@ -21,5 +26,9 @@
 + (ARWhereSimpleStatement *)whereField:(NSString *)aField notEqualToValue:(id)aValue;
 + (ARWhereSimpleStatement *)whereField:(NSString *)aField in:(NSArray *)aValues;
 + (ARWhereSimpleStatement *)whereField:(NSString *)aField notIn:(NSArray *)aValues;
+
++ (ARWhereSimpleStatement *)concatenateStatement:(ARWhereSimpleStatement *)aFirstStatement 
+                                   withStatement:(ARWhereSimpleStatement *)aSecondStatement 
+                             useLogicalOperation:(ARLogicalOperation)logicalOperation;
 
 @end

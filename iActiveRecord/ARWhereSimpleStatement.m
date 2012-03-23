@@ -46,7 +46,7 @@
     }
     NSString *values = [sqlValues componentsJoinedByString:@" , "];
     NSString *stmt = [NSString stringWithFormat:@" %@ IN (%@)", aField, values];
-    return [[ARWhereSimpleStatement alloc] initWithStatement:stmt];
+    return [[[ARWhereSimpleStatement alloc] initWithStatement:stmt] autorelease];
 }
 
 + (ARWhereSimpleStatement *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
@@ -56,7 +56,20 @@
     }
     NSString *values = [sqlValues componentsJoinedByString:@" , "];
     NSString *stmt = [NSString stringWithFormat:@" %@ NOT IN (%@)", aField, values];
-    return [[ARWhereSimpleStatement alloc] initWithStatement:stmt];
+    return [[[ARWhereSimpleStatement alloc] initWithStatement:stmt] autorelease];
+}
+
++ (ARWhereSimpleStatement *)concatenateStatement:(ARWhereSimpleStatement *)aFirstStatement 
+                                   withStatement:(ARWhereSimpleStatement *)aSecondStatement
+                             useLogicalOperation:(ARLogicalOperation)logicalOperation
+{
+    NSString *logic = logicalOperation == ARLogicalOr ? @"OR" : @"AND";
+    NSString *stmt = [NSString stringWithFormat:
+                      @" ( %@ ) %@ ( %@ ) ", 
+                      [aFirstStatement statement],
+                      logic,
+                      [aSecondStatement statement]];
+    return [[[ARWhereSimpleStatement alloc] initWithStatement:stmt] autorelease];
 }
 
 - (NSString *)statement {

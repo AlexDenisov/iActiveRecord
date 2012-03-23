@@ -13,6 +13,7 @@
 #import "User.h"
 #import "ARDatabaseManager.h"
 #import "ARFactory.h"
+#import "ARWhereSimpleStatement.h"
 
 SPEC_BEGIN(ARLazyFetcherSpecs)
 
@@ -113,47 +114,87 @@ describe(@"LazyFetcher", ^{
     });
     
     describe(@"Where conditions", ^{
-        it(@"whereField equalToValue should find record", ^{
-            NSString *username = @"john";
-            User *john = [User newRecord];
-            john.name = username;
-            [john save];
-            ARLazyFetcher *fetcher = [User lazyFetcher];
-            [fetcher whereField:@"name" equalToValue:username];
-            User *founded = [[fetcher fetchRecords] first];
-            expect(founded.name).toEqual(username);
+        describe(@"Simple where conditions", ^{
+            it(@"whereField equalToValue should find record", ^{
+                NSString *username = @"john";
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher whereField:@"name" equalToValue:username];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).toEqual(username);
+            });
+            it(@"whereField notEqualToValue should not find record", ^{
+                NSString *username = @"john";
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher whereField:@"name" notEqualToValue:username];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).Not.toEqual(username);
+            });
+            it(@"WhereField in should find record", ^{
+                NSString *username = @"john";
+                NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher whereField:@"name" in:names];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).toEqual(username);
+            });
+            it(@"WhereField notIn should not find record", ^{
+                NSString *username = @"john";
+                NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher whereField:@"name" notIn:names];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).Not.toEqual(username);
+            });
         });
-        it(@"whereField notEqualToValue should not find record", ^{
-            NSString *username = @"john";
-            User *john = [User newRecord];
-            john.name = username;
-            [john save];
-            ARLazyFetcher *fetcher = [User lazyFetcher];
-            [fetcher whereField:@"name" notEqualToValue:username];
-            User *founded = [[fetcher fetchRecords] first];
-            expect(founded.name).Not.toEqual(username);
-        });
-        it(@"WhereFieldIn should find record", ^{
-            NSString *username = @"john";
-            NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
-            User *john = [User newRecord];
-            john.name = username;
-            [john save];
-            ARLazyFetcher *fetcher = [User lazyFetcher];
-            [fetcher whereField:@"name" in:names];
-            User *founded = [[fetcher fetchRecords] first];
-            expect(founded.name).toEqual(username);
-        });
-        it(@"WhereFieldNotIn should not find record", ^{
-            NSString *username = @"john";
-            NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
-            User *john = [User newRecord];
-            john.name = username;
-            [john save];
-            ARLazyFetcher *fetcher = [User lazyFetcher];
-            [fetcher whereField:@"name" notIn:names];
-            User *founded = [[fetcher fetchRecords] first];
-            expect(founded.name).Not.toEqual(username);
+        describe(@"Complex where conditions", ^{
+            it(@"Two conditions should return actual values", ^{
+                NSArray *ids = [NSArray arrayWithObjects:
+                                [NSNumber numberWithInt:1],
+                                [NSNumber numberWithInt:15], 
+                                nil];
+                NSString *username = @"john";
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                
+                ARWhereSimpleStatement *nameStatement = [ARWhereSimpleStatement whereField:@"name"
+                                                                              equalToValue:username];
+                ARWhereSimpleStatement *idStatement = [ARWhereSimpleStatement whereField:@"id" 
+                                                                                      in:ids];
+                
+                ARWhereSimpleStatement *finalStatement = [ARWhereSimpleStatement concatenateStatement:nameStatement 
+                                                                                        withStatement:idStatement 
+                                                                                  useLogicalOperation:ARLogicalOr];
+                
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher setWhereStatement:finalStatement];
+                [fetcher orderBy:@"id"];
+                NSArray *records = [fetcher fetchRecords];
+                BOOL idStatementSuccess = NO;
+                BOOL nameStatementSuccess = NO;
+                for(User *user in records){
+                    if([ids containsObject:user.id]){
+                        idStatementSuccess = YES;
+                    }
+                    if([user.name isEqualToString:username]){
+                        nameStatementSuccess = YES;
+                    }
+                }
+                expect(idStatementSuccess).toEqual(YES);
+                expect(nameStatementSuccess).toEqual(YES); 
+            });
         });
     });
 });
