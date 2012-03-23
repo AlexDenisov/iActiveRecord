@@ -8,6 +8,7 @@
 
 #import "ARLazyFetcher.h"
 #import "ARDatabaseManager.h"
+#import "ARWhereSimpleStatement.h"
 
 @implementation ARLazyFetcher
 
@@ -41,6 +42,7 @@
 }
 
 - (void)dealloc {
+    [whereStatement release];
     [orderByConditions release];
     [whereInConditions release];
     [whereHasConditions release];
@@ -53,6 +55,10 @@
 
 - (void)buildSql {
     NSMutableString *sql = nil;
+    NSString *limitOffset = [self createLimitOffsetStatement];
+    NSString *orderBy = [self createOrderbyStatement];
+    NSString *where = [self createWhereStatement];
+    
     if(sqlRequest == nil){
         NSString *tableName = [recordClass performSelector:@selector(tableName)];
         sql = [NSMutableString stringWithFormat:@"SELECT * FROM %@ ", tableName];
@@ -60,25 +66,47 @@
         sql = [NSMutableString stringWithString:sqlRequest];
     }
     
+    
+    [sql appendString:where];
+    [sql appendString:orderBy];
+    [sql appendString:limitOffset];
+    
+    NSLog(@"LazyRequest: %@", sql);
+    sqlRequest = [sql copy];
+}
+
+- (NSString *)createWhereStatement {
+    NSMutableString *statement = [NSMutableString string];
+    if(whereStatement){
+        [statement appendFormat:@" WHERE ( %@ ) ", [whereStatement statement]];
+    }
+    return statement;
+}
+
+- (NSString *)createOrderbyStatement {
+    NSMutableString *statement = [NSMutableString string];
     if(orderByConditions){
-        [sql appendFormat:@" ORDER BY "];
+        [statement appendFormat:@" ORDER BY "];
         for(NSString *key in [orderByConditions allKeys]){
             NSString *order = [[orderByConditions valueForKey:key] boolValue] ? @"ASC" : @"DESC";
-            [sql appendFormat:@" %@ %@ ,", key, order];
+            [statement appendFormat:@" %@ %@ ,", key, order];
         }
-        [sql replaceCharactersInRange:NSMakeRange(sql.length - 1, 1) withString:@""];
+        [statement replaceCharactersInRange:NSMakeRange(statement.length - 1, 1) withString:@""];
     }
-    
+    return statement;
+}
+
+- (NSString *)createLimitOffsetStatement {
+    NSMutableString *statement = [NSMutableString string];
     NSInteger limitNum = -1;
     if(limit){
         limitNum = limit.integerValue;
     }
-    [sql appendFormat:@" LIMIT %d ", limitNum];
+    [statement appendFormat:@" LIMIT %d ", limitNum];
     if(offset){
-        [sql appendFormat:@" OFFSET %d ", offset.integerValue];
+        [statement appendFormat:@" OFFSET %d ", offset.integerValue];
     }
-    NSLog(@"LazyRequest: %@", sql);
-    sqlRequest = [sql copy];
+    return statement;
 }
 
 - (ARLazyFetcher *)offset:(NSInteger)anOffset {
@@ -94,20 +122,38 @@
 }
 
 #pragma mark - Where Conditions
-- (ARLazyFetcher *)whereField:(NSString *)aField hasValue:(id)aValue {
-    if(whereHasConditions == nil){
-        whereHasConditions = [NSMutableDictionary new];
-    }
-    [whereHasConditions setValue:aValue
-                       forKey:aField];
+
+- (ARLazyFetcher *)setWhereStatement:(ARWhereSimpleStatement *)aStatement {
+    [whereStatement release];
+    whereStatement = [aStatement retain];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue {
+    ARWhereSimpleStatement *where = [ARWhereSimpleStatement whereField:aField
+                                                              equalToValue:aValue];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
+    ARWhereSimpleStatement *where = [ARWhereSimpleStatement whereField:aField
+                                                          notEqualToValue:aValue];
+    [self setWhereStatement:where];
     return self;
 }
 
 - (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues {
+    ARWhereSimpleStatement *where = [ARWhereSimpleStatement whereField:aField
+                                                                    in:aValues];
+    [self setWhereStatement:where];
     return self;
 }
 
 - (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
+    ARWhereSimpleStatement *where = [ARWhereSimpleStatement whereField:aField
+                                                                    notIn:aValues];
+    [self setWhereStatement:where];
     return self;
 }
 

@@ -54,6 +54,8 @@
 		CAAF5DD1151BA693004C4329 /* README in Resources */ = {isa = PBXBuildFile; fileRef = CAAF5DD0151BA693004C4329 /* README */; };
 		CAAF5DD2151BA693004C4329 /* README in Resources */ = {isa = PBXBuildFile; fileRef = CAAF5DD0151BA693004C4329 /* README */; };
 		CAAF5DD3151BB24E004C4329 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DC9151BA3F4004C4329 /* Project.m */; };
+		CAAF5E25151CAC58004C4329 /* ARWhereSimpleStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereSimpleStatement.m */; };
+		CAAF5E26151CAC58004C4329 /* ARWhereSimpleStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereSimpleStatement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,6 +149,8 @@
 		CAAF5DCB151BA40E004C4329 /* UserProjectRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProjectRelationship.h; sourceTree = "<group>"; };
 		CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProjectRelationship.m; sourceTree = "<group>"; };
 		CAAF5DD0151BA693004C4329 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		CAAF5E23151CAC58004C4329 /* ARWhereSimpleStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ARWhereSimpleStatement.h; sourceTree = "<group>"; };
+		CAAF5E24151CAC58004C4329 /* ARWhereSimpleStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARWhereSimpleStatement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,6 +440,8 @@
 				CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */,
 				CAAF5D8E151A1430004C4329 /* ARFactory.h */,
 				CAAF5D8F151A1430004C4329 /* ARFactory.m */,
+				CAAF5E23151CAC58004C4329 /* ARWhereSimpleStatement.h */,
+				CAAF5E24151CAC58004C4329 /* ARWhereSimpleStatement.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -562,6 +568,7 @@
 				CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */,
 				CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */,
 				CAAF5DCE151BA40F004C4329 /* UserProjectRelationship.m in Sources */,
+				CAAF5E26151CAC58004C4329 /* ARWhereSimpleStatement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +593,7 @@
 				CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */,
 				CAAF5DCA151BA3F4004C4329 /* Project.m in Sources */,
 				CAAF5DCD151BA40F004C4329 /* UserProjectRelationship.m in Sources */,
+				CAAF5E25151CAC58004C4329 /* ARWhereSimpleStatement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

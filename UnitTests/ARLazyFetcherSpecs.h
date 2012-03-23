@@ -113,16 +113,48 @@ describe(@"LazyFetcher", ^{
     });
     
     describe(@"Where conditions", ^{
-
-//        it(@"where in should find record with ID=1 in array=[1,3,4,6]", ^{
-//            NSArray *ids = [NSArray arrayWithObjects:
-//                            [NSNumber numberWithInt:1],
-//                            [NSNumber numberWithInt:3],
-//                            [NSNumber numberWithInt:4],
-//                            [NSNumber numberWithInt:6], nil];
-//            ARLazyFetcher *fetcher = [User lazyFetcher];
-//            [fetcher orderBy:@"id"];
-//        });
+        it(@"whereField equalToValue should find record", ^{
+            NSString *username = @"john";
+            User *john = [User newRecord];
+            john.name = username;
+            [john save];
+            ARLazyFetcher *fetcher = [User lazyFetcher];
+            [fetcher whereField:@"name" equalToValue:username];
+            User *founded = [[fetcher fetchRecords] first];
+            expect(founded.name).toEqual(username);
+        });
+        it(@"whereField notEqualToValue should not find record", ^{
+            NSString *username = @"john";
+            User *john = [User newRecord];
+            john.name = username;
+            [john save];
+            ARLazyFetcher *fetcher = [User lazyFetcher];
+            [fetcher whereField:@"name" notEqualToValue:username];
+            User *founded = [[fetcher fetchRecords] first];
+            expect(founded.name).Not.toEqual(username);
+        });
+        it(@"WhereFieldIn should find record", ^{
+            NSString *username = @"john";
+            NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
+            User *john = [User newRecord];
+            john.name = username;
+            [john save];
+            ARLazyFetcher *fetcher = [User lazyFetcher];
+            [fetcher whereField:@"name" in:names];
+            User *founded = [[fetcher fetchRecords] first];
+            expect(founded.name).toEqual(username);
+        });
+        it(@"WhereFieldNotIn should not find record", ^{
+            NSString *username = @"john";
+            NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
+            User *john = [User newRecord];
+            john.name = username;
+            [john save];
+            ARLazyFetcher *fetcher = [User lazyFetcher];
+            [fetcher whereField:@"name" notIn:names];
+            User *founded = [[fetcher fetchRecords] first];
+            expect(founded.name).Not.toEqual(username);
+        });
     });
 });
 

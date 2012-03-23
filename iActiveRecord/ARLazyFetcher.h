@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class ARWhereSimpleStatement;
+
 @interface ARLazyFetcher : NSObject
 {
     @private
@@ -16,6 +18,8 @@
     Class recordClass;
     NSString *sqlRequest;
     NSMutableDictionary *orderByConditions;
+    
+    ARWhereSimpleStatement *whereStatement;
     
     //  not implemented yet
     NSMutableDictionary *whereHasConditions;
@@ -26,14 +30,22 @@
 #pragma mark - Private methods
 - (id)initWithRecord:(Class )aRecord;
 - (id)initWithRecord:(Class)aRecord withInitialSql:(NSString *)anInitialSql;
+
 - (void)buildSql;
+- (NSString *)createOrderbyStatement;
+- (NSString *)createWhereStatement;
+- (NSString *)createLimitOffsetStatement;
 
 #pragma mark - Public methods
 - (ARLazyFetcher *)limit:(NSInteger)aLimit;
 - (ARLazyFetcher *)offset:(NSInteger)anOffset;
 
 //  not implemented yet
-- (ARLazyFetcher *)whereField:(NSString *)aField hasValue:(id)aValue; 
+
+- (ARLazyFetcher *)setWhereStatement:(ARWhereSimpleStatement *)aStatement;
+
+- (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue; 
+- (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue; 
 - (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues;
 - (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues;
 
