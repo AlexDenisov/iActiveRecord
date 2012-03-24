@@ -16,6 +16,6 @@
 
 @property (nonatomic, copy) NSString *name;
 
-HAS_MANY_THROUGH_DEC(User, UserProjectRelationship, users)
+has_many_through_dec(User, UserProjectRelationship, users)
 
 @end

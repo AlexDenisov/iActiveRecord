@@ -62,8 +62,8 @@
 
 @implementation ActiveRecord
 
-MIGRATION_HELPER
-VALIDATION_HELPER
+migration_helper
+validation_helper
 
 @synthesize id;
 

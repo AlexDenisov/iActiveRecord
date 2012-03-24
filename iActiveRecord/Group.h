@@ -17,6 +17,6 @@
 
 @property (nonatomic, copy) NSString *name;
 
-HAS_MANY_DEC(User, users)
+has_many_dec(User, users)
 
 @end

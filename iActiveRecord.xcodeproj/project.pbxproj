@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		CA62C33E151E0F7300E54276 /* ARAggregate */ = {
+		CA62C33E151E0F7300E54276 /* Build_Framework */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = CA62C33F151E0F7300E54276 /* Build configuration list for PBXAggregateTarget "ARAggregate" */;
+			buildConfigurationList = CA62C33F151E0F7300E54276 /* Build configuration list for PBXAggregateTarget "Build_Framework" */;
 			buildPhases = (
 				CA62C342151E0FB100E54276 /* ShellScript */,
 			);
 			dependencies = (
 			);
-			name = ARAggregate;
+			name = Build_Framework;
 			productName = ARAggregate;
 		};
 /* End PBXAggregateTarget section */
@@ -183,7 +183,6 @@
 		CA3D18091519D63300FA3F3C /* FooSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FooSpec.h; sourceTree = "<group>"; };
 		CA62C2E9151E039900E54276 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		CA62C307151E0AB800E54276 /* ActiveRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA62C308151E0AB800E54276 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		CA62C30B151E0AB800E54276 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		CA62C30C151E0AB800E54276 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		CA62C30D151E0AB800E54276 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -366,7 +365,6 @@
 				25998EC314BC199C00CA2490 /* Foundation.framework */,
 				25998EC514BC199C00CA2490 /* CoreGraphics.framework */,
 				CA62C2E9151E039900E54276 /* CoreFoundation.framework */,
-				CA62C308151E0AB800E54276 /* Cocoa.framework */,
 				CA62C30A151E0AB800E54276 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -660,7 +658,7 @@
 				25998EBC14BC199C00CA2490 /* iActiveRecord */,
 				25922AFA14EC286000CBB58A /* UnitTests */,
 				CA62C306151E0AB800E54276 /* ActiveRecord */,
-				CA62C33E151E0F7300E54276 /* ARAggregate */,
+				CA62C33E151E0F7300E54276 /* Build_Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -1048,13 +1046,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CA62C33F151E0F7300E54276 /* Build configuration list for PBXAggregateTarget "ARAggregate" */ = {
+		CA62C33F151E0F7300E54276 /* Build configuration list for PBXAggregateTarget "Build_Framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CA62C340151E0F7300E54276 /* Debug */,
 				CA62C341151E0F7300E54276 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

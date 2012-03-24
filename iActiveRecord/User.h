@@ -21,7 +21,7 @@
 //  used in belongs to relationship
 @property (nonatomic, retain) NSNumber *groupId;
 
-BELONGS_TO_DEC(Group, group)
-HAS_MANY_THROUGH_DEC(Project, UserProjectRelationship, projects)
+belongs_to_dec(Group, group)
+has_many_through_dec(Project, UserProjectRelationship, projects)
 
 @end

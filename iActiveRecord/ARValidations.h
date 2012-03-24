@@ -8,20 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-#define VALIDATE_UNIQUENESS_OF(aField)\
+#define validate_uniqueness_of(aField)\
     [ActiveRecord validateField:(@""#aField"")\
                        asUnique:YES];
 
-#define VALIDATE_PRESENCE_OF(aField)\
+#define validate_presence_of(aField)\
     [ActiveRecord validateField:(@""#aField"")\
                      asPresence:YES];
 
-#define VALIDATION_HELPER \
+#define validation_helper \
     static NSMutableSet *uniqueFields = nil;\
     static NSMutableSet *presenceFields = nil;
 
-#define VALIDATIONS_DO(validations) \
-    VALIDATION_HELPER\
+#define validation_do(validations) \
+    validation_helper\
     + (void)initValidations {\
         if(nil == uniqueFields)\
             uniqueFields = [[NSMutableSet alloc] init];\

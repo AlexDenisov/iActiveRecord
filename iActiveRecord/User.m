@@ -13,16 +13,16 @@
 @synthesize ignoredProperty;
 @synthesize groupId;
 
-BELONGS_TO_IMP(Group, group)
-HAS_MANY_THROUGH_IMP(Project, UserProjectRelationship, projects)
+belonsg_to_imp(Group, group)
+has_many_through_imp(Project, UserProjectRelationship, projects)
 
-IGNORE_FIELDS_DO(
-    IGNORE_FIELD(ignoredProperty)
+ignore_fields_do(
+    ignore_field(ignoredProperty)
 )
 
-VALIDATIONS_DO(
-    VALIDATE_UNIQUENESS_OF(name)
-    VALIDATE_PRESENCE_OF(name)
+validation_do(
+    validate_uniqueness_of(name)
+    validate_presence_of(name)
 )
 
 @end

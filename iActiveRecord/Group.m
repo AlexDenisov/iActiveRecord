@@ -12,10 +12,10 @@
 
 @synthesize name;
 
-HAS_MANY_IMP(User, users)
+has_many_imp(User, users)
 
-VALIDATIONS_DO(
-    VALIDATE_UNIQUENESS_OF(name)
+validation_do(
+    validate_uniqueness_of(name)
 )
 
 @end

@@ -8,20 +8,20 @@
 
 #import "NSString+lowercaseFirst.h"
  
-#define BELONGS_TO_IMP(class, accessor) \
+#define belonsg_to_imp(class, accessor) \
     - (id)accessor{\
         NSString *class_name = @""#class"";\
         return [self belongsTo:class_name];\
     }
 
-#define BELONGS_TO_DEC(class, accessor) \
+#define belongs_to_dec(class, accessor) \
     - (id)accessor;
 
-#define HAS_MANY_DEC(relative_class, accessor)\
+#define has_many_dec(relative_class, accessor)\
     - (ARLazyFetcher *)accessor;\
     - (void)add##relative_class:(ActiveRecord *)aRecord;
 
-#define HAS_MANY_IMP(relative_class, accessor) \
+#define has_many_imp(relative_class, accessor) \
     - (ARLazyFetcher *)accessor{\
         NSString *class_name = @""#relative_class"";\
         return [self hasManyRecords:class_name];\
@@ -30,11 +30,11 @@
         [self addRecord:aRecord];\
     }\
 
-#define HAS_MANY_THROUGH_DEC(relative_class, relationship, accessor) \
+#define has_many_through_dec(relative_class, relationship, accessor) \
     - (ARLazyFetcher *)accessor;\
     - (void)add##relative_class:(ActiveRecord *)aRecord;
 
-#define HAS_MANY_THROUGH_IMP(relative_class, relationship, accessor) \
+#define has_many_through_imp(relative_class, relationship, accessor) \
     - (ARLazyFetcher *)accessor\
     {\
         NSString *className = @""#relative_class"";\

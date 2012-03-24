@@ -12,11 +12,11 @@
 
 @synthesize name;
 
-HAS_MANY_THROUGH_IMP(User, UserProjectRelationship, users)
+has_many_through_imp(User, UserProjectRelationship, users)
 
-VALIDATIONS_DO(
-    VALIDATE_PRESENCE_OF(name)
-    VALIDATE_UNIQUENESS_OF(name)
+validation_do(
+    validate_presence_of(name)
+    validate_uniqueness_of(name)
 )
 
 @end
