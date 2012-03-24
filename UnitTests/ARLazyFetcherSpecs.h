@@ -30,12 +30,7 @@ describe(@"LazyFetcher", ^{
     it(@"without parameters should return all records ", ^{
         NSArray *records = [[User lazyFetcher] fetchRecords];
         expect([records count]).toEqual(10);
-    });
-    it(@"allRecords should return all records", ^{ // thank, captain
-        NSArray *users = [[User lazyAllRecords] fetchRecords];
-        expect(users.count).toEqual([User count]);
-    });
-    
+    });    
     describe(@"Limit/Offset", ^{
         it(@"LIMIT should return limited count of records", ^{
             NSInteger limit = 5;

@@ -18,29 +18,24 @@
     - (id)accessor;
 
 #define HAS_MANY_DEC(relative_class, accessor)\
-    - (NSArray *)accessor;\
+    - (ARLazyFetcher *)accessor;\
     - (void)add##relative_class:(ActiveRecord *)aRecord;
 
 #define HAS_MANY_IMP(relative_class, accessor) \
-    - (NSArray *)accessor{\
+    - (ARLazyFetcher *)accessor{\
         NSString *class_name = @""#relative_class"";\
-        NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];\
-        SEL selector = NSSelectorFromString(stringSelector);\
-        id recId = [self id];\
-        Class Record = NSClassFromString(class_name);\
-        NSArray *records = [Record performSelector:selector withObject:recId];\
-        return records;\
+        return [self hasManyRecords:class_name];\
     }\
     - (void)add##relative_class:(ActiveRecord *)aRecord {\
         [self addRecord:aRecord];\
     }\
 
 #define HAS_MANY_THROUGH_DEC(relative_class, relationship, accessor) \
-    - (NSArray *)accessor;\
+    - (ARLazyFetcher *)accessor;\
     - (void)add##relative_class:(ActiveRecord *)aRecord;
 
 #define HAS_MANY_THROUGH_IMP(relative_class, relationship, accessor) \
-    - (NSArray *)accessor\
+    - (ARLazyFetcher *)accessor\
     {\
         NSString *className = @""#relative_class"";\
         NSString *relativeClassName = @""#relationship"";\

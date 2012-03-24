@@ -53,7 +53,7 @@ describe(@"findWhere In", ^{
                           [NSNumber numberWithInt:24], 
                           peter.id, 
                           [NSNumber numberWithInt:143], nil];
-        User *founded = [[User findWhereIdIn:values] objectAtIndex:0];
+        User *founded = [[[User findWhereIdIn:values] fetchRecords] first];
         BOOL equality = [peter.name isEqualToString:founded.name];
         expect(equality).toEqual(YES);
     });

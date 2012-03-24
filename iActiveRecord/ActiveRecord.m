@@ -274,24 +274,14 @@ VALIDATION_HELPER
 #pragma mark - Fetchers
 
 + (NSArray *)allRecords {
-    NSString *recordName = [[self class] description];
-    return [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName];
+    ARLazyFetcher *fetcher = [[[ARLazyFetcher alloc] initWithRecord:[self class]] autorelease];
+    return [fetcher fetchRecords];
 }
 
-+ (NSArray *)findWhereIdIn:(NSArray *)aValues {
-    NSString *recordName = [[self class] description];
-    return [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName
-                                                         whereKey:@"id"
-                                                               in:aValues];
-}
-
-+ (ARLazyFetcher *)lazyAllRecords {
-    ARLazyFetcher *lazyFetcher = [[ARLazyFetcher alloc] initWithRecord:self];
-    return [lazyFetcher autorelease];
-}
-
-+ (ARLazyFetcher *)lazyFindWhereIdIn:(NSArray *)aValues {
-    return nil;
++ (ARLazyFetcher *)findWhereIdIn:(NSArray *)aValues {
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:[self class]];
+    [fetcher whereField:@"id" in:aValues];
+    return [fetcher autorelease];
 }
 
 + (ARLazyFetcher *)lazyFetcher {
@@ -505,36 +495,60 @@ VALIDATION_HELPER
     [aRecord save];
 }
 
-- (NSArray *)hasManyRecords:(NSString *)aClassName {
-    return nil;
+- (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName {
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
+    NSString *selfId = [NSString stringWithFormat:@"%@Id", [[self class] description]];
+    [fetcher whereField:selfId equalToValue:self.id];
+    
+//    NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];
+//    SEL selector = NSSelectorFromString(stringSelector);
+//    id recId = [self id];
+//    Class Record = NSClassFromString(aClassName);
+//    NSArray *records = [Record performSelector:selector withObject:recId];
+    return fetcher;
 }
 
 #pragma mark HasManyThrough
 
-- (NSArray *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
-    Class RelativeClass = NSClassFromString(aClassName);
-    Class Relationship = NSClassFromString(aRelationsipClassName);
+/*
+    SELECT "groups".* FROM "groups" INNER JOIN "group_user_rels" ON "groups"."id" = "group_user_rels"."group_id" WHERE "group_user_rels"."user_id" = 1
+ 
+    SELECT id,name,groupId FROM arUser  INNER JOIN arUserProjectRelationship ON arUser.id = arUserProjectRelationship.userId  WHERE ( arUser.userId = 1 )  LIMIT -1
+ */
+
+- (ARLazyFetcher *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
     
-    NSMutableArray *relativeObjects = [[NSMutableArray alloc] init];
+    NSString *relId = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
     
-    NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];
-    
-    SEL selector = NSSelectorFromString(stringSelector);
-    
-    NSNumber *recId = self.id;
-    
-    NSArray *relationships = [Relationship performSelector:selector 
-                                                withObject:recId];
-    
-    NSString *relativeStringSelector = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
-    SEL relativeIdSelector = NSSelectorFromString(relativeStringSelector);
-    for(id rel in relationships)
-    {
-        id recordId = [rel performSelector:relativeIdSelector];
-        id tmpRelativeObject = [RelativeClass performSelector:@selector(findById:) withObject:recordId];
-        [relativeObjects addObject:tmpRelativeObject];
-    }
-    return relativeObjects;
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
+    [fetcher join:NSClassFromString(aRelationsipClassName)];
+    [fetcher whereField:relId
+               ofRecord:NSClassFromString(aRelationsipClassName)
+           equalToValue:self.id];
+    return [fetcher autorelease];
+//    Class RelativeClass = NSClassFromString(aClassName);
+//    Class Relationship = NSClassFromString(aRelationsipClassName);
+//    
+//    NSMutableArray *relativeObjects = [[NSMutableArray alloc] init];
+//    
+//    NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];
+//    
+//    SEL selector = NSSelectorFromString(stringSelector);
+//    
+//    NSNumber *recId = self.id;
+//    
+//    NSArray *relationships = [Relationship performSelector:selector 
+//                                                withObject:recId];
+//    
+//    NSString *relativeStringSelector = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
+//    SEL relativeIdSelector = NSSelectorFromString(relativeStringSelector);
+//    for(id rel in relationships)
+//    {
+//        id recordId = [rel performSelector:relativeIdSelector];
+//        id tmpRelativeObject = [RelativeClass performSelector:@selector(findById:) withObject:recordId];
+//        [relativeObjects addObject:tmpRelativeObject];
+//    }
+//    return relativeObjects;
 }
 
 - (void)addRecord:(ActiveRecord *)aRecord 

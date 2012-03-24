@@ -23,6 +23,9 @@
     [super dealloc];
 }
 
+
+#warning TODO: refactor!!!
+
 + (ARWhereStatement *)whereField:(NSString *)aField equalToValue:(id)aValue {
     NSString *stmt = [NSString stringWithFormat:
                       @" %@ = %@ ",
@@ -56,6 +59,56 @@
     }
     NSString *values = [sqlValues componentsJoinedByString:@" , "];
     NSString *stmt = [NSString stringWithFormat:@" %@ NOT IN (%@)", aField, values];
+    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+}
+
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord equalToValue:(id)aValue 
+{
+    NSString *stmt = [NSString stringWithFormat:
+                      @" %@.%@ = %@ ",
+                      [aRecord performSelector:@selector(tableName)],
+                      aField,
+                      [aValue performSelector:@selector(toSql)]];
+    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+}
+
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord notEqualToValue:(id)aValue 
+{
+    NSString *stmt = [NSString stringWithFormat:
+                      @" %@.%@ <> %@ ",
+                      [aRecord performSelector:@selector(tableName)],
+                      aField,
+                      [aValue performSelector:@selector(toSql)]];
+    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+}
+
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord in:(NSArray *)aValues
+{
+    NSMutableArray *sqlValues = [NSMutableArray arrayWithCapacity:aValues.count];
+    for(id value in aValues){
+        [sqlValues addObject:[value performSelector:@selector(toSql)]];
+    }
+    NSString *values = [sqlValues componentsJoinedByString:@" , "];
+    NSString *stmt = [NSString stringWithFormat:
+                      @" %@.%@ IN (%@)",
+                      [aRecord performSelector:@selector(tableName)],
+                      aField, 
+                      values];
+    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+}
+
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord notIn:(NSArray *)aValues
+{
+    NSMutableArray *sqlValues = [NSMutableArray arrayWithCapacity:aValues.count];
+    for(id value in aValues){
+        [sqlValues addObject:[value performSelector:@selector(toSql)]];
+    }
+    NSString *values = [sqlValues componentsJoinedByString:@" , "];
+    NSString *stmt = [NSString stringWithFormat:
+                      @" %@.%@ NOT IN (%@)", 
+                      [aRecord performSelector:@selector(tableName)],
+                      aField, 
+                      values];
     return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
 }
 

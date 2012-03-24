@@ -39,7 +39,7 @@ describe(@"HasMany", ^{
         [students save];
         [students addUser:john];
         [students addUser:peter];
-        NSArray *users = [students users];
+        NSArray *users = [[students users] fetchRecords];
         NSInteger count = [users count];
         expect(count).toEqual(2);
     });
@@ -66,7 +66,7 @@ describe(@"BelongsTo", ^{
 });
 
 describe(@"HasManyThrough", ^{
-    it(@"Users should have many projects", ^{
+    it(@"User should have many projects", ^{
         User *john = [User newRecord];
         john.name = @"John";
         [john save];
@@ -91,9 +91,34 @@ describe(@"HasManyThrough", ^{
         [makeTea addUser:john];
         [makeTea addUser:vova];
         
-        NSArray *projects = [john projects];
-        NSArray *users = [worldConquest users];
+        NSArray *projects = [[john projects] fetchRecords];
         expect(projects.count).toEqual(2);
+    });
+    it(@"Project should have many users", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+        [john save];
+        User *peter = [User newRecord];
+        peter.name = @"Peter";
+        [peter save];
+        User *vova = [User newRecord];
+        vova.name = @"Vladimir";
+        [vova save];
+        
+        Project *worldConquest = [Project newRecord];
+        worldConquest.name = @"Conquest of the World";
+        [worldConquest save];
+        
+        Project *makeTea = [Project newRecord];
+        makeTea.name = @"Make tea";
+        [makeTea save];
+        
+        [worldConquest addUser:john];
+        [worldConquest addUser:peter];
+        
+        [makeTea addUser:john];
+        [makeTea addUser:vova];
+        NSArray *users = [[worldConquest users] fetchRecords];
         expect(users.count).toEqual(2);
     });
 });

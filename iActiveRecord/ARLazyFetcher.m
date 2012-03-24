@@ -10,6 +10,14 @@
 #import "ARDatabaseManager.h"
 #import "ARWhereStatement.h"
 #import "ARObjectProperty.h"
+#import "NSString+lowercaseFirst.h"
+
+static const char *joins[] = {"LEFT", "RIGHT", "INNER", "OUTER"};
+
+static NSString* joinString(ARJoinType type) 
+{
+    return [NSString stringWithUTF8String:joins[type]];
+}
 
 @implementation ARLazyFetcher
 
@@ -20,6 +28,7 @@
         offset = nil;
         sqlRequest = nil;
         orderByConditions = nil;
+        useJoin = NO;
     }
     return self;
 }
@@ -40,6 +49,8 @@
 }
 
 - (void)dealloc {
+    [recordField release];
+    [joinField release];
     [onlyFields release];
     [exceptFields release];
     [whereStatement release];
@@ -76,7 +87,7 @@
     NSString *limitOffset = [self createLimitOffsetStatement];
     NSString *orderBy = [self createOrderbyStatement];
     NSString *where = [self createWhereStatement];
-    
+    NSString *join = [self createJoinStatement];
 //    if(sqlRequest == nil){
 //        NSString *tableName = [recordClass performSelector:@selector(tableName)];
 //        sql = [NSMutableString stringWithFormat:@"SELECT * FROM %@ ", tableName];
@@ -85,6 +96,7 @@
 //    }
     
     [sql appendString:select];
+    [sql appendString:join];
     [sql appendString:where];
     [sql appendString:orderBy];
     [sql appendString:limitOffset];
@@ -129,8 +141,41 @@
 
 - (NSString *)createSelectStatement {
     NSMutableString *statement = [NSMutableString stringWithString:@"SELECT "];
-    NSString *fields = [[[self recordFields] allObjects] componentsJoinedByString:@","];
-    [statement appendFormat:@"%@ FROM %@ ", fields, [recordClass performSelector:@selector(tableName)]];
+    NSMutableArray *fields = [NSMutableArray array];
+    NSString *fieldname = nil;
+    for(NSString *field in [self recordFields]){
+        fieldname = [NSString stringWithFormat:
+                     @"%@.%@", 
+                     [recordClass performSelector:@selector(tableName)],
+                     field];
+        [fields addObject:fieldname];
+    }
+    [statement appendFormat:
+     @"%@ FROM %@ ", 
+     [fields componentsJoinedByString:@","], 
+     [recordClass performSelector:@selector(tableName)]];
+    return statement;
+}
+
+/*
+ SELECT column_name(s)
+ FROM table_name1
+ LEFT JOIN table_name2
+ ON table_name1.column_name=table_name2.column_name
+ */
+
+- (NSString *)createJoinStatement {
+    NSMutableString *statement = [NSMutableString string];
+    if (useJoin){
+        NSString *join = joinString(joinType);
+        NSString *joinTable = [joinClass performSelector:@selector(tableName)];
+        NSString *selfTable = [recordClass performSelector:@selector(tableName)];
+        [statement appendFormat:
+         @" %@ JOIN %@ ON %@.%@ = %@.%@ ", 
+         join, joinTable,
+         selfTable, recordField,
+         joinTable, joinField];
+    }
     return statement;
 }
 
@@ -148,6 +193,7 @@
     return self;
 }
 
+#warning TODO: refactor!!!
 #pragma mark - Where Conditions
 
 - (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement {
@@ -158,28 +204,72 @@
 
 - (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue {
     ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                              equalToValue:aValue];
+                                              equalToValue:aValue];
     [self setWhereStatement:where];
     return self;
 }
 
 - (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
     ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                          notEqualToValue:aValue];
+                                           notEqualToValue:aValue];
     [self setWhereStatement:where];
     return self;
 }
 
 - (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues {
     ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                                    in:aValues];
+                                                        in:aValues];
     [self setWhereStatement:where];
     return self;
 }
 
 - (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
     ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                                    notIn:aValues];
+                                                     notIn:aValues];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                     ofRecord:(Class)aRecord 
+                 equalToValue:(id)aValue 
+{
+    ARWhereStatement *where = [ARWhereStatement whereField:aField 
+                                                  ofRecord:aRecord
+                                              equalToValue:aValue];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                     ofRecord:(Class)aRecord 
+              notEqualToValue:(id)aValue 
+{
+    ARWhereStatement *where = [ARWhereStatement whereField:aField 
+                                                  ofRecord:aRecord
+                                           notEqualToValue:aValue];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                     ofRecord:(Class)aRecord 
+                           in:(NSArray *)aValues 
+{
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                  ofRecord:aRecord
+                                                        in:aValues];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                     ofRecord:(Class)aRecord 
+                        notIn:(NSArray *)aValues
+{
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                  ofRecord:aRecord
+                                                     notIn:aValues];
     [self setWhereStatement:where];
     return self;
 }
@@ -231,6 +321,36 @@
         [exceptFields addObject:field];
     }
     va_end(args);
+    return self;
+}
+
+#pragma mark - Joins
+
+- (ARLazyFetcher *)join:(Class)aJoinRecord {
+    
+    NSString *_recordField = [@"id" copy];
+    NSString *_joinField = [NSString stringWithFormat:
+                 @"%@Id",
+                 [[recordClass description] lowercaseFirst]];
+    [self join:aJoinRecord 
+       useJoin:ARJoinInner 
+       onField:_recordField
+      andField:_joinField];    
+    return self;
+}
+
+- (ARLazyFetcher *)join:(Class)aJoinRecord 
+                useJoin:(ARJoinType)aJoinType 
+                onField:(NSString *)aFirstField 
+               andField:(NSString *)aSecondField
+{
+    joinClass = aJoinRecord;
+    joinType = aJoinType;
+    [recordField release];
+    recordField = [aFirstField copy];
+    [joinField release];
+    joinField = [aSecondField copy];
+    useJoin = YES;
     return self;
 }
 

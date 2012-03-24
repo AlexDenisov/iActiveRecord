@@ -50,12 +50,12 @@
 
 #pragma mark HasMany
 
-- (NSArray *)hasManyRecords:(NSString *)aClassName;
+- (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName;
 - (void)addRecord:(ActiveRecord *)aRecord;
 
 #pragma mark HasManyThrough
 
-- (NSArray *)hasMany:(NSString *)aClassName 
+- (ARLazyFetcher *)hasMany:(NSString *)aClassName 
              through:(NSString *)aRelationsipClassName;
 - (void)addRecord:(ActiveRecord *)aRecord 
           ofClass:(NSString *)aClassname 
@@ -103,11 +103,11 @@
 
 //  return records immediately
 + (NSArray *)allRecords;
-+ (NSArray *)findWhereIdIn:(NSArray *)aValues;
 
-//  return lazy fetcher, whch allows add some filters
-+ (ARLazyFetcher *)lazyAllRecords;
-+ (ARLazyFetcher *)lazyFindWhereIdIn:(NSArray *)aValues;
+#pragma mark - Lazy Fetching
+
++ (ARLazyFetcher *)lazyFetcher;
++ (ARLazyFetcher *)findWhereIdIn:(NSArray *)aValues;
 
 + (NSInteger)count;
 
@@ -119,10 +119,6 @@
 #pragma mark - TableFields
 
 + (NSArray *)tableFields;
-
-#pragma mark - Lazy Fetching
-
-+ (ARLazyFetcher *)lazyFetcher;
 
 #pragma mark - Update/Save
 

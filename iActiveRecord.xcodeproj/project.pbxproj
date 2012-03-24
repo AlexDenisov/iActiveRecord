@@ -149,7 +149,7 @@
 		CAAF5DCB151BA40E004C4329 /* UserProjectRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProjectRelationship.h; sourceTree = "<group>"; };
 		CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProjectRelationship.m; sourceTree = "<group>"; };
 		CAAF5DD0151BA693004C4329 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ARWhereStatement.h; sourceTree = "<group>"; };
+		CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARWhereStatement.h; sourceTree = "<group>"; };
 		CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARWhereStatement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -410,11 +410,11 @@
 		CA3D18001519D55300FA3F3C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				25A1132614D9BCF7000720E7 /* ARErrorHelper.h */,
 				2598294114BDDB4200207D16 /* class_getSubclasses.h */,
 				25998EE414BC1A1D00CA2490 /* ARRelationships.h */,
 				25A1131F14D9BAAE000720E7 /* ARValidations.h */,
 				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
-				25A1132614D9BCF7000720E7 /* ARErrorHelper.h */,
 				25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */,
 			);
 			name = Helpers;

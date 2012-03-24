@@ -27,6 +27,11 @@ typedef enum {
 + (ARWhereStatement *)whereField:(NSString *)aField in:(NSArray *)aValues;
 + (ARWhereStatement *)whereField:(NSString *)aField notIn:(NSArray *)aValues;
 
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord equalToValue:(id)aValue;
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord notEqualToValue:(id)aValue;
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord in:(NSArray *)aValues;
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord notIn:(NSArray *)aValues;
+
 + (ARWhereStatement *)concatenateStatement:(ARWhereStatement *)aFirstStatement 
                                    withStatement:(ARWhereStatement *)aSecondStatement 
                              useLogicalOperation:(ARLogicalOperation)logicalOperation;
