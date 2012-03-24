@@ -16,6 +16,7 @@
 #import "ARErrorHelper.h"
 #import "ARMigrationsHelper.h"
 #import "NSObject+properties.h"
+#import "NSArray+objectsAccessors.h"
 
 
 @interface ActiveRecord (Private)
