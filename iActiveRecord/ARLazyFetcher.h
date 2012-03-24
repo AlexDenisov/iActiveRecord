@@ -18,29 +18,27 @@
     Class recordClass;
     NSString *sqlRequest;
     NSMutableDictionary *orderByConditions;
+    NSMutableSet *onlyFields;
+    NSMutableSet *exceptFields;
     
     ARWhereStatement *whereStatement;
-    
-    //  not implemented yet
-    NSMutableDictionary *whereHasConditions;
-    NSMutableDictionary *whereInConditions;
-    NSMutableDictionary *whereNotInConditions;
 }
 
 #pragma mark - Private methods
 - (id)initWithRecord:(Class )aRecord;
 - (id)initWithRecord:(Class)aRecord withInitialSql:(NSString *)anInitialSql;
 
+- (NSSet *)recordFields;
+
 - (void)buildSql;
 - (NSString *)createOrderbyStatement;
 - (NSString *)createWhereStatement;
 - (NSString *)createLimitOffsetStatement;
+- (NSString *)createSelectStatement;
 
 #pragma mark - Public methods
 - (ARLazyFetcher *)limit:(NSInteger)aLimit;
 - (ARLazyFetcher *)offset:(NSInteger)anOffset;
-
-//  not implemented yet
 
 - (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement;
 
@@ -48,6 +46,9 @@
 - (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue; 
 - (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues;
 - (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues;
+
+- (ARLazyFetcher *)only:(NSString *)aFirstParam, ...;
+- (ARLazyFetcher *)except:(NSString *)aFirstParam, ...;
 
 //  by default sort ASCENDING
 - (ARLazyFetcher *)orderBy:(NSString *)aField ascending:(BOOL)isAscending;

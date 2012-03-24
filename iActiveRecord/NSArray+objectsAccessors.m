@@ -14,4 +14,8 @@
     return [self objectAtIndex:0];
 }
 
+- (id)last {
+    return [self lastObject];
+}
+
 @end

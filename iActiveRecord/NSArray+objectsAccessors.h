@@ -11,5 +11,6 @@
 @interface NSArray (objectsAccessors)
 
 - (id)first;
+- (id)last;
 
 @end

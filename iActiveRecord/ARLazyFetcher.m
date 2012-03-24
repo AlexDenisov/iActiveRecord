@@ -9,6 +9,7 @@
 #import "ARLazyFetcher.h"
 #import "ARDatabaseManager.h"
 #import "ARWhereStatement.h"
+#import "ARObjectProperty.h"
 
 @implementation ARLazyFetcher
 
@@ -18,9 +19,6 @@
         limit = nil;
         offset = nil;
         sqlRequest = nil;
-        whereHasConditions = nil;
-        whereInConditions = nil;
-        whereNotInConditions = nil;
         orderByConditions = nil;
     }
     return self;
@@ -42,31 +40,51 @@
 }
 
 - (void)dealloc {
+    [onlyFields release];
+    [exceptFields release];
     [whereStatement release];
     [orderByConditions release];
-    [whereInConditions release];
-    [whereHasConditions release];
-    [whereNotInConditions release];
     [sqlRequest release];
     [limit release];
     [offset release];
     [super dealloc];
 }
 
+#pragma mark - Building SQL request
+
+- (NSSet *)recordFields {
+    NSMutableSet *fields = [NSMutableSet set];
+    if(onlyFields){
+        [fields addObjectsFromArray:[onlyFields allObjects]];
+    }else {
+        NSArray *properties = [recordClass performSelector:@selector(tableFields)];
+        for(ARObjectProperty *property in properties){
+            [fields addObject:property.propertyName];
+        }
+    }
+    if(exceptFields){
+        for(NSString *field in exceptFields){
+            [fields removeObject:field];
+        }
+    }
+    return fields;
+}
+
 - (void)buildSql {
-    NSMutableString *sql = nil;
+    NSMutableString *sql = [NSMutableString string];
+    NSString *select = [self createSelectStatement];
     NSString *limitOffset = [self createLimitOffsetStatement];
     NSString *orderBy = [self createOrderbyStatement];
     NSString *where = [self createWhereStatement];
     
-    if(sqlRequest == nil){
-        NSString *tableName = [recordClass performSelector:@selector(tableName)];
-        sql = [NSMutableString stringWithFormat:@"SELECT * FROM %@ ", tableName];
-    }else{
-        sql = [NSMutableString stringWithString:sqlRequest];
-    }
+//    if(sqlRequest == nil){
+//        NSString *tableName = [recordClass performSelector:@selector(tableName)];
+//        sql = [NSMutableString stringWithFormat:@"SELECT * FROM %@ ", tableName];
+//    }else{
+//        sql = [NSMutableString stringWithString:sqlRequest];
+//    }
     
-    
+    [sql appendString:select];
     [sql appendString:where];
     [sql appendString:orderBy];
     [sql appendString:limitOffset];
@@ -78,7 +96,7 @@
 - (NSString *)createWhereStatement {
     NSMutableString *statement = [NSMutableString string];
     if(whereStatement){
-        [statement appendFormat:@" WHERE ( %@ ) ", [whereStatement statement]];
+        [statement appendFormat:@" WHERE (%@) ", [whereStatement statement]];
     }
     return statement;
 }
@@ -108,6 +126,15 @@
     }
     return statement;
 }
+
+- (NSString *)createSelectStatement {
+    NSMutableString *statement = [NSMutableString stringWithString:@"SELECT "];
+    NSString *fields = [[[self recordFields] allObjects] componentsJoinedByString:@","];
+    [statement appendFormat:@"%@ FROM %@ ", fields, [recordClass performSelector:@selector(tableName)]];
+    return statement;
+}
+
+#pragma mark - Helpers
 
 - (ARLazyFetcher *)offset:(NSInteger)anOffset {
     [offset release];
@@ -173,6 +200,38 @@
 
 - (ARLazyFetcher *)orderBy:(NSString *)aField {
     return [self orderBy:aField ascending:YES];
+}
+
+#pragma mark - Select
+
+- (ARLazyFetcher *)only:(NSString *)aFirstParam, ... {
+    if(onlyFields == nil){
+        onlyFields = [NSMutableSet new];
+    }
+    [onlyFields addObject:aFirstParam];
+    va_list args;
+    va_start(args, aFirstParam);
+    NSString *field = nil;
+    while((field = va_arg(args, NSString *))) {
+        [onlyFields addObject:field];
+    }
+    va_end(args);
+    return self;
+}
+
+- (ARLazyFetcher *)except:(NSString *)aFirstParam, ... {
+    if(exceptFields == nil){
+        exceptFields = [NSMutableSet new];
+    }
+    [exceptFields addObject:aFirstParam];
+    va_list args;
+    va_start(args, aFirstParam);
+    NSString *field = nil;
+    while((field = va_arg(args, NSString *))) {
+        [exceptFields addObject:field];
+    }
+    va_end(args);
+    return self;
 }
 
 #pragma mark - Immediately fetch

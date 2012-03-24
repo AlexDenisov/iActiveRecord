@@ -37,7 +37,6 @@
 #pragma mark - validations
 
 - (NSString *)recordName;
- 
 
 - (void)resetErrors;
 - (void)addError:(NSString *)errMessage;

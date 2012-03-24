@@ -197,6 +197,27 @@ describe(@"LazyFetcher", ^{
             });
         });
     });
+    
+    describe(@"select", ^{
+        it(@"only should return only listed fields", ^{
+            ARLazyFetcher *fetcher = [[User lazyFetcher] only:@"name", @"id", nil];
+            User *john = [User newRecord];
+            john.name = @"john";
+            john.groupId = [NSNumber numberWithInt:145];
+            [john save];
+            User *user = [[fetcher fetchRecords] last];
+            expect(user.groupId).toBeNil();
+        });
+        it(@"except should return only not listed fields", ^{
+            ARLazyFetcher *fetcher = [[User lazyFetcher] except:@"name", nil];
+            User *john = [User newRecord];
+            john.name = @"john";
+            john.groupId = [NSNumber numberWithInt:145];
+            [john save];
+            User *user = [[fetcher fetchRecords] last];
+            expect(user.name).toBeNil();
+        });
+    });
 });
 
 SPEC_END
