@@ -87,6 +87,7 @@
 		CA62C33A151E0F0700E54276 /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA62C33C151E0F0700E54276 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
 		CA62C33D151E0F0700E54276 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
+		CA62C392151E710800E54276 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA62C391151E710700E54276 /* README.md */; };
 		CAA8DE951515DA02004AB173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA8DE941515DA02004AB173 /* main.m */; };
 		CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
@@ -189,6 +190,7 @@
 		CA62C310151E0AB800E54276 /* ARBundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARBundle-Info.plist"; sourceTree = "<group>"; };
 		CA62C312151E0AB800E54276 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA62C314151E0AB800E54276 /* ARBundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARBundle-Prefix.pch"; sourceTree = "<group>"; };
+		CA62C391151E710700E54276 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		CAA8DE941515DA02004AB173 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				CAAF5DD0151BA693004C4329 /* README */,
+				CA62C391151E710700E54276 /* README.md */,
 			);
 			name = Readme;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 			files = (
 				25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */,
 				CAAF5DD1151BA693004C4329 /* README in Resources */,
+				CA62C392151E710800E54276 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
