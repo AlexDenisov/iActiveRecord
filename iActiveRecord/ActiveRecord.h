@@ -38,6 +38,7 @@
            asPresence:(BOOL)aPresence;
 
 - (BOOL)isValid;
+- (NSArray *)errorMessages;
 
 
 + (id)newRecord;

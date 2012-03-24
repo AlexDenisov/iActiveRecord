@@ -372,6 +372,10 @@ validation_helper
     return YES;
 }
 
+- (NSArray *)errorMessages {
+    return [errorMessages allObjects];
+}
+
 - (BOOL)validateOnSave {
     if(![self conformsToProtocol:@protocol(ARValidatableProtocol)]){
         return YES;
