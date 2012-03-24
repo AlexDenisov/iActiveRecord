@@ -13,6 +13,10 @@
 #import "ARMigrationsHelper.h"
 #import "ARLazyFetcher.h"
 #import "NSArray+objectsAccessors.h"
+#import "ARWhereStatement.h"
+#import "ARObjectProperty.h"
+#import "ARDatabaseManager.h"
+#import "ARErrorHelper.h"
 
 @interface ActiveRecord : NSObject
 {
