@@ -192,12 +192,13 @@ VALIDATION_HELPER
         }
     }
     if([existedProperties count] == 0){
+        [existedProperties release];
         return NULL;
     }
     
     NSMutableString *sqlString = [NSMutableString stringWithFormat:@"insert into %@(", 
                                   [[self class] performSelector:@selector(tableName)]];
-    NSMutableString *sqlValues = [[NSMutableString alloc] initWithFormat:@" values("];
+    NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" values("];
     
     int index = 0;
     property = [existedProperties objectAtIndex:index++];
@@ -211,6 +212,7 @@ VALIDATION_HELPER
         [sqlString appendFormat:@", %@", property.propertyName];
         [ sqlValues appendFormat:@", %@", [propertyValue performSelector:@selector(toSql)]];
     }
+    [existedProperties release];
     [sqlValues appendString:@") "];
     [sqlString appendString:@") "];
     [sqlString appendString:sqlValues];
@@ -357,6 +359,7 @@ VALIDATION_HELPER
     [fetcher whereField:aField
            equalToValue:aValue];
     NSArray *records =  [fetcher fetchRecords];
+    [fetcher release];
 #warning TODO: implement count in ARLazyFetcher
     if([records count]){
         NSString *errMessage = [NSString stringWithFormat:@"%@ '%@' %@", 
@@ -515,6 +518,7 @@ VALIDATION_HELPER
     [relationshipRecord performSelector:currentIdSelector withObject:self.id];
     [relationshipRecord performSelector:relativeIdSelector withObject:relativeRecordId];
     [relationshipRecord save];
+    [relationshipRecord release];
 }
 
 - (NSString *)description {

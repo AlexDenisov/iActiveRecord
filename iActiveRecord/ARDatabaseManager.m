@@ -167,6 +167,7 @@ static ARDatabaseManager *instance = nil;
                 [record setValue:aValue forKey:propertyName];
             }
             [resultArray addObject:record];
+            [record release];
         }
         sqlite3_free_table(results);
     }else

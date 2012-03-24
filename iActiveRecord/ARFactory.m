@@ -29,7 +29,7 @@
 
 + (ActiveRecord *)buildRecordWithName:(NSString *)aRecordName withSeed:(NSInteger)aSeed {
     Class RecordClass = NSClassFromString(aRecordName);
-    ActiveRecord *record = [RecordClass newRecord];
+    ActiveRecord *record = [[RecordClass newRecord] autorelease];
     record = [self buildPropertiesOfRecord:record
                                   withSeed:aSeed];
     return record;

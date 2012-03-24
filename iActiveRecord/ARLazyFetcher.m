@@ -333,7 +333,7 @@ static NSString* joinString(ARJoinType type)
 
 - (ARLazyFetcher *)join:(Class)aJoinRecord {
     
-    NSString *_recordField = [@"id" copy];
+    NSString *_recordField = @"id";
     NSString *_joinField = [NSString stringWithFormat:
                  @"%@Id",
                  [[recordClass description] lowercaseFirst]];
