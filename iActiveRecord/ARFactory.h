@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#warning Implement seeding for all types
-
 @class ActiveRecord;
 
 @interface ARFactory : NSObject

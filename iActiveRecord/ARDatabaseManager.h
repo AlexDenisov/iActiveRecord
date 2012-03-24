@@ -22,6 +22,7 @@
 - (void)appendMigrations;
 - (void)openConnection;
 - (void)closeConnection;
+
 - (NSString *)tableName:(NSString *)modelName;
 - (NSString *)documentsDirectory;
 
@@ -29,15 +30,8 @@
 
 - (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery;
 - (NSNumber *)getLastId:(NSString *)aRecordName;
-
 - (void)executeSqlQuery:(const char *)anSqlQuery;
-- (NSArray *)allRecordsWithName:(NSString *)aName whereKey:(NSString *)aKey hasValue:(id)aValue;
-- (NSArray *)allRecordsWithName:(NSString *)aName whereKey:(NSString *)aKey in:(NSArray *)aValues;
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest;
-- (NSArray *)allRecordsWithName:(NSString *)aName;
-- (NSArray *)findRecords:(NSString *)aRecordName byId:(NSNumber *)anId;
-- (id)findRecord:(NSString *)aRecordName byId:(NSNumber *)anId;
-
 - (NSInteger)countOfRecordsWithName:(NSString *)aName;
 
 @end

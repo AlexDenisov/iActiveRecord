@@ -19,6 +19,19 @@ static NSString* joinString(ARJoinType type)
     return [NSString stringWithUTF8String:joins[type]];
 }
 
+@interface ARLazyFetcher (Private)
+
+- (NSSet *)recordFields;
+
+- (void)buildSql;
+- (NSString *)createOrderbyStatement;
+- (NSString *)createWhereStatement;
+- (NSString *)createLimitOffsetStatement;
+- (NSString *)createSelectStatement;
+- (NSString *)createJoinStatement;
+
+@end
+
 @implementation ARLazyFetcher
 
 - (id)init {
@@ -83,25 +96,18 @@ static NSString* joinString(ARJoinType type)
 
 - (void)buildSql {
     NSMutableString *sql = [NSMutableString string];
+    
     NSString *select = [self createSelectStatement];
     NSString *limitOffset = [self createLimitOffsetStatement];
     NSString *orderBy = [self createOrderbyStatement];
     NSString *where = [self createWhereStatement];
     NSString *join = [self createJoinStatement];
-//    if(sqlRequest == nil){
-//        NSString *tableName = [recordClass performSelector:@selector(tableName)];
-//        sql = [NSMutableString stringWithFormat:@"SELECT * FROM %@ ", tableName];
-//    }else{
-//        sql = [NSMutableString stringWithString:sqlRequest];
-//    }
     
     [sql appendString:select];
     [sql appendString:join];
     [sql appendString:where];
     [sql appendString:orderBy];
     [sql appendString:limitOffset];
-    
-    NSLog(@"LazyRequest: %@", sql);
     sqlRequest = [sql copy];
 }
 
@@ -157,13 +163,6 @@ static NSString* joinString(ARJoinType type)
     return statement;
 }
 
-/*
- SELECT column_name(s)
- FROM table_name1
- LEFT JOIN table_name2
- ON table_name1.column_name=table_name2.column_name
- */
-
 - (NSString *)createJoinStatement {
     NSMutableString *statement = [NSMutableString string];
     if (useJoin){
@@ -193,10 +192,16 @@ static NSString* joinString(ARJoinType type)
     return self;
 }
 
-#warning TODO: refactor!!!
 #pragma mark - Where Conditions
 
+- (ARWhereStatement *)whereStatement {
+    return whereStatement;
+}
+
 - (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement {
+    if([whereStatement isEqual:aStatement]){
+        return self;
+    }
     [whereStatement release];
     whereStatement = [aStatement retain];
     return self;

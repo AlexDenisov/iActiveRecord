@@ -138,7 +138,6 @@
 		CA3D18081519D61F00FA3F3C /* ARLazyFetcherSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcherSpecs.h; sourceTree = "<group>"; };
 		CA3D18091519D63300FA3F3C /* FooSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FooSpec.h; sourceTree = "<group>"; };
 		CAA8DE941515DA02004AB173 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CAA8DECA1515E9CF004AB173 /* FinderSpecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderSpecs.h; sourceTree = "<group>"; };
 		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
 		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
@@ -226,7 +225,6 @@
 				25922B5114EC29D100CBB58A /* SpecSet.h */,
 				25922B6814EC2D1600CBB58A /* DatabaseManagerSpecs.h */,
 				25922B6914EC310100CBB58A /* RelationshipsSpecs.h */,
-				CAA8DECA1515E9CF004AB173 /* FinderSpecs.h */,
 				CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */,
 				CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */,
 				CA3D18081519D61F00FA3F3C /* ARLazyFetcherSpecs.h */,

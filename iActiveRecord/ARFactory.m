@@ -35,10 +35,8 @@
     return record;
 }
 
-#warning Write this more pretty!!!
-
 + (ActiveRecord *)buildPropertiesOfRecord:(ActiveRecord *)aRecord withSeed:(NSInteger)aSeed {
-    NSArray *properties = [[aRecord class] tableFields];
+    NSArray *properties = [[aRecord class] performSelector:@selector(tableFields)];
     for(ARObjectProperty *property in properties){
         if([property.propertyName isEqualToString:@"id"]){
             continue;

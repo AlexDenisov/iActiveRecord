@@ -40,24 +40,10 @@ typedef enum {
     NSNumber *offset;
 }
 
-#pragma mark - Private methods
 - (id)initWithRecord:(Class )aRecord;
-- (id)initWithRecord:(Class)aRecord withInitialSql:(NSString *)anInitialSql;
 
-- (NSSet *)recordFields;
-
-- (void)buildSql;
-- (NSString *)createOrderbyStatement;
-- (NSString *)createWhereStatement;
-- (NSString *)createLimitOffsetStatement;
-- (NSString *)createSelectStatement;
-- (NSString *)createJoinStatement;
-
-#pragma mark - Public methods
 - (ARLazyFetcher *)limit:(NSInteger)aLimit;
 - (ARLazyFetcher *)offset:(NSInteger)anOffset;
-
-- (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement;
 
 - (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue; 
 - (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue; 
@@ -93,11 +79,13 @@ typedef enum {
                 onField:(NSString *)aFirstField 
                andField:(NSString *)aSecondField;
 
-//  by default sort ASCENDING
 - (ARLazyFetcher *)orderBy:(NSString *)aField ascending:(BOOL)isAscending;
-- (ARLazyFetcher *)orderBy:(NSString *)aField;
+- (ARLazyFetcher *)orderBy:(NSString *)aField;// ASC by default
 
-//  immediately fetch records
+- (ARWhereStatement *)whereStatement;
+- (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement;
+
 - (NSArray *)fetchRecords;
+
 
 @end

@@ -8,6 +8,12 @@
 
 #import "ARWhereStatement.h"
 
+@interface ARWhereStatement (Private)
+
++ (ARWhereStatement *)statement:(NSString *)aStmt;
+
+@end
+
 @implementation ARWhereStatement
 
 - (id)initWithStatement:(NSString *)aStatement {
@@ -23,6 +29,9 @@
     [super dealloc];
 }
 
++ (ARWhereStatement *)statement:(NSString *)aStmt {
+    return [[[ARWhereStatement alloc] initWithStatement:aStmt] autorelease];
+}
 
 #warning TODO: refactor!!!
 
@@ -31,7 +40,7 @@
                       @" %@ = %@ ",
                       aField,
                       [aValue performSelector:@selector(toSql)]];
-    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+    return [ARWhereStatement statement:stmt];
 }
 
 + (ARWhereStatement *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
@@ -39,7 +48,7 @@
                       @" %@ <> %@ ",
                       aField,
                       [aValue performSelector:@selector(toSql)]];
-    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+    return [ARWhereStatement statement:stmt];
 }
 
 + (ARWhereStatement *)whereField:(NSString *)aField in:(NSArray *)aValues {
@@ -49,7 +58,7 @@
     }
     NSString *values = [sqlValues componentsJoinedByString:@" , "];
     NSString *stmt = [NSString stringWithFormat:@" %@ IN (%@)", aField, values];
-    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+    return [ARWhereStatement statement:stmt];
 }
 
 + (ARWhereStatement *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
@@ -59,7 +68,7 @@
     }
     NSString *values = [sqlValues componentsJoinedByString:@" , "];
     NSString *stmt = [NSString stringWithFormat:@" %@ NOT IN (%@)", aField, values];
-    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+    return [ARWhereStatement statement:stmt];
 }
 
 + (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord equalToValue:(id)aValue 
@@ -69,7 +78,7 @@
                       [aRecord performSelector:@selector(tableName)],
                       aField,
                       [aValue performSelector:@selector(toSql)]];
-    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+    return [ARWhereStatement statement:stmt];
 }
 
 + (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord notEqualToValue:(id)aValue 
@@ -79,7 +88,7 @@
                       [aRecord performSelector:@selector(tableName)],
                       aField,
                       [aValue performSelector:@selector(toSql)]];
-    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+    return [ARWhereStatement statement:stmt];
 }
 
 + (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord in:(NSArray *)aValues
@@ -94,7 +103,7 @@
                       [aRecord performSelector:@selector(tableName)],
                       aField, 
                       values];
-    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+    return [ARWhereStatement statement:stmt];
 }
 
 + (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord notIn:(NSArray *)aValues
@@ -109,7 +118,7 @@
                       [aRecord performSelector:@selector(tableName)],
                       aField, 
                       values];
-    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+    return [ARWhereStatement statement:stmt];
 }
 
 + (ARWhereStatement *)concatenateStatement:(ARWhereStatement *)aFirstStatement 
@@ -118,11 +127,11 @@
 {
     NSString *logic = logicalOperation == ARLogicalOr ? @"OR" : @"AND";
     NSString *stmt = [NSString stringWithFormat:
-                      @" ( %@ ) %@ ( %@ ) ", 
+                      @" (%@) %@ (%@) ", 
                       [aFirstStatement statement],
                       logic,
                       [aSecondStatement statement]];
-    return [[[ARWhereStatement alloc] initWithStatement:stmt] autorelease];
+    return [ARWhereStatement statement:stmt];
 }
 
 - (NSString *)statement {

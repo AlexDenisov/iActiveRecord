@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define IGNORE_FIELD(aField)\
-    [ActiveRecord ignoreField:(@""#aField"")];
+    [ActiveRecord performSelector:@selector(ignoreField:) withObject:(@""#aField"")];
 
 #define MIGRATION_HELPER \
     static NSMutableSet *ignoredFields = nil;\

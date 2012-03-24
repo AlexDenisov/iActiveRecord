@@ -15,114 +15,41 @@
 
 @interface ActiveRecord : NSObject
 {
-    NSNumber *id;
-    NSMutableSet *errorMessages;
-    NSMutableSet *changedFields;
 @private
     BOOL isNew;
+    NSMutableSet *errorMessages;
+    NSMutableSet *changedFields;
 }
 
-//@property (nonatomic, retain) NSMutableSet *errorMessages;
 @property (nonatomic, retain) NSNumber *id;
 
-#pragma mark - ObserveChanges
 - (void)markAsNew;
-- (void)didChangeField:(NSString *)aField;
-
-#pragma mark - IgnoreFields
-
-+ (void)initIgnoredFields;
-+ (void)ignoreField:(NSString *)aField;
-
-#pragma mark - validations
-
-- (NSString *)recordName;
-
-- (void)resetErrors;
-- (void)addError:(NSString *)errMessage;
-- (void)logErrors;
-
-#pragma mark - Relationships
-
-#pragma mark BelongsTo
-
 - (id)belongsTo:(NSString *)aClassName;
-
-#pragma mark HasMany
-
 - (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName;
 - (void)addRecord:(ActiveRecord *)aRecord;
-
-#pragma mark HasManyThrough
-
 - (ARLazyFetcher *)hasMany:(NSString *)aClassName 
              through:(NSString *)aRelationsipClassName;
 - (void)addRecord:(ActiveRecord *)aRecord 
           ofClass:(NSString *)aClassname 
           through:(NSString *)aRelationshipClassName;
-
-#pragma mark - SQLQueries
-
-+ (const char *)sqlOnCreate;
-+ (const char *)sqlOnDeleteAll;
-- (const char *)sqlOnDelete;
-- (const char *)sqlOnSave;
-- (const char *)sqlOnUpdate;
-
-#pragma mark - Validations
-
 + (void)validateField:(NSString *)aField 
              asUnique:(BOOL)aUnique;
 + (void)validateField:(NSString *)aField 
            asPresence:(BOOL)aPresence;
-- (BOOL)validateOnSave;
-- (BOOL)validateOnUpdate;
-
-- (BOOL)validateUniqueness;
-- (BOOL)validatePresence;
 
 - (BOOL)isValid;
-- (BOOL)isValidUniquenessOfField:(NSString *)aField;
-- (BOOL)isValidPresenceOfField:(NSString *)aField;
 
-#pragma mark - Equal
-
-- (BOOL)isEqualToRecord:(ActiveRecord *)anOtherRecord;
-
-#pragma mark - TableName
-
-+ (NSString *)tableName;
-- (NSString *)tableName;
 
 + (id)newRecord;
-
-#pragma mark - Fetchers
-
-//  return only one record
-+ (id)findById:(NSNumber *)anId;
-
-//  return records immediately
-+ (NSArray *)allRecords;
-
-#pragma mark - Lazy Fetching
-
-+ (ARLazyFetcher *)lazyFetcher;
-+ (ARLazyFetcher *)findWhereIdIn:(NSArray *)aValues;
-
-+ (NSInteger)count;
-
-#pragma mark - Drop records
-
-+ (void)dropAllRecords;
-- (void)dropRecord;
-
-#pragma mark - TableFields
-
-+ (NSArray *)tableFields;
-
-#pragma mark - Update/Save
-
 - (BOOL)save;
 - (BOOL)update;
+- (void)dropRecord;
+
++ (NSInteger)count;
++ (NSArray *)allRecords;
++ (ARLazyFetcher *)lazyFetcher;
+
++ (void)dropAllRecords;
+
 
 @end

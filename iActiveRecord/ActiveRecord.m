@@ -17,35 +17,47 @@
 #import "ARMigrationsHelper.h"
 #import "NSObject+properties.h"
 
-#pragma mark - Dynamic functions proptotypes
 
-NSArray* dynamicallyFindBy(id self, SEL _cmd, id arg);
-NSArray* dynamicallyFindWhere(id self, SEL _cmd, id arg);
+@interface ActiveRecord (Private)
 
-#pragma mark - Dynamic functions implementation
+#pragma mark - Validations Declaration
 
-NSArray* dynamicallyFindBy(id self, SEL _cmd, id arg){
-    NSString *selector = NSStringFromSelector(_cmd);
-    NSString *searchKey = [selector substringFromIndex:6];
-    searchKey = [searchKey stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]];
-    searchKey = [searchKey lowercaseFirst];
-    NSArray *records = [[ARDatabaseManager sharedInstance] allRecordsWithName:[[self class] description] 
-                                                                     whereKey:searchKey 
-                                                                     hasValue:arg];
-    return records;
-}
+- (BOOL)validateOnSave;
+- (BOOL)validateOnUpdate;
+- (BOOL)validateUniqueness;
+- (BOOL)validatePresence;
+- (BOOL)isValidUniquenessOfField:(NSString *)aField;
+- (BOOL)isValidPresenceOfField:(NSString *)aField;
 
-NSArray* dynamicallyFindWhere(id self, SEL _cmd, id arg){
-    NSString *selector = NSStringFromSelector(_cmd);
-    NSString *searchKey = [selector substringFromIndex:9];
-    searchKey = [searchKey stringByReplacingOccurrencesOfString:@"In:" withString:@""];
-    searchKey = [searchKey stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]];
-    searchKey = [searchKey lowercaseFirst];
-    NSArray *records = [[ARDatabaseManager sharedInstance] allRecordsWithName:[[self class] description] 
-                                                                     whereKey:searchKey 
-                                                                     in:arg];
-    return records;
-}
+- (void)resetErrors;
+- (void)addError:(NSString *)errMessage;
+- (void)logErrors;
+
+#pragma mark - SQLQueries
+
++ (const char *)sqlOnCreate;
++ (const char *)sqlOnDeleteAll;
+- (const char *)sqlOnDelete;
+- (const char *)sqlOnSave;
+- (const char *)sqlOnUpdate;
+
+#pragma mark - ObserveChanges
+
+- (void)didChangeField:(NSString *)aField;
+
+#pragma mark - IgnoreFields
+
++ (void)initIgnoredFields;
++ (void)ignoreField:(NSString *)aField;
+
+#pragma mark - TableName
+
++ (NSString *)tableName;
+- (NSString *)tableName;
+
++ (NSArray *)tableFields;
+
+@end
 
 @implementation ActiveRecord
 
@@ -65,6 +77,13 @@ VALIDATION_HELPER
         [[self class] initIgnoredFields];
     }
     return self;    
+}
+
+- (void)dealloc {
+    self.id = nil;
+    [errorMessages release];
+    [changedFields release];
+    [super dealloc];
 }
 
 - (void)markAsNew {
@@ -99,14 +118,6 @@ VALIDATION_HELPER
 }
 
 #pragma mark - 
-
-+ (NSString *)className {
-    return [[self class] description];
-}
-
-- (NSString *)recordName {
-    return [[self class] description];
-}
 
 - (void)resetErrors {
     [errorMessages release];
@@ -238,25 +249,6 @@ VALIDATION_HELPER
     return [[self class] tableName];
 }
 
-+ (BOOL)resolveInstanceMethod:(SEL)name {
-    return NO;
-}
-
-+ (BOOL)resolveClassMethod:(SEL)aSel {
-    NSString *selectorName = NSStringFromSelector(aSel);
-    if([selectorName hasPrefix:@"findBy"]){
-        Class selfMetaClass = objc_getMetaClass([[[self class] description]  UTF8String]);
-        class_addMethod(selfMetaClass, aSel, (IMP)dynamicallyFindBy, "[]@:@");
-        return YES;
-    }
-    if([selectorName hasPrefix:@"findWhere"]){
-        Class selfMetaClass = objc_getMetaClass([[[self class] description]  UTF8String]);
-        class_addMethod(selfMetaClass, aSel, (IMP)dynamicallyFindWhere, "[]@:@");
-        return YES;
-    }
-    return [super resolveInstanceMethod:aSel];
-}
-
 + (id)newRecord {
     Class RecordClass = [self class];
     ActiveRecord *record = [[RecordClass alloc] init];
@@ -264,24 +256,11 @@ VALIDATION_HELPER
     return record;
 }
 
-
-
-+ (id)findById:(NSNumber *)anId{
-    NSString *recordName = [[self class] description];
-    return [[ARDatabaseManager sharedInstance] findRecord:recordName byId:anId];
-}
-
 #pragma mark - Fetchers
 
 + (NSArray *)allRecords {
     ARLazyFetcher *fetcher = [[[ARLazyFetcher alloc] initWithRecord:[self class]] autorelease];
     return [fetcher fetchRecords];
-}
-
-+ (ARLazyFetcher *)findWhereIdIn:(NSArray *)aValues {
-    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:[self class]];
-    [fetcher whereField:@"id" in:aValues];
-    return [fetcher autorelease];
 }
 
 + (ARLazyFetcher *)lazyFetcher {
@@ -371,11 +350,13 @@ VALIDATION_HELPER
 }
 
 - (BOOL)isValidUniquenessOfField:(NSString *)aField {
-    NSString *recordName = [self recordName];
+    NSString *recordName = [[self class] description];
     id aValue = [self valueForKey:aField];
-    NSArray *records = [[ARDatabaseManager sharedInstance] allRecordsWithName:recordName 
-                                                                     whereKey:aField 
-                                                                     hasValue:aValue];
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(recordName)];
+    [fetcher whereField:aField
+           equalToValue:aValue];
+    NSArray *records =  [fetcher fetchRecords];
+#warning TODO: implement count in ARLazyFetcher
     if([records count]){
         NSString *errMessage = [NSString stringWithFormat:@"%@ '%@' %@", 
                                 aField, 
@@ -479,12 +460,13 @@ VALIDATION_HELPER
 #pragma mark BelongsTo
 
 - (id)belongsTo:(NSString *)aClassName {
-    NSString *stringSelector = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
-    SEL selector = NSSelectorFromString(stringSelector);
-    Class Record = NSClassFromString(aClassName);
-    id rec_id = [self performSelector:selector];
-    id record = [Record findById:rec_id];
-    return record;
+    NSString *selectorString = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
+    SEL selector = NSSelectorFromString(selectorString);
+    NSNumber *rec_id = [self performSelector:selector];
+    ARLazyFetcher *fetcher = [[[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)] autorelease];
+    [fetcher whereField:@"id"
+           equalToValue:rec_id];
+    return [[fetcher fetchRecords] first];
 }
 
 #pragma mark HasMany
@@ -499,56 +481,20 @@ VALIDATION_HELPER
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     NSString *selfId = [NSString stringWithFormat:@"%@Id", [[self class] description]];
     [fetcher whereField:selfId equalToValue:self.id];
-    
-//    NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];
-//    SEL selector = NSSelectorFromString(stringSelector);
-//    id recId = [self id];
-//    Class Record = NSClassFromString(aClassName);
-//    NSArray *records = [Record performSelector:selector withObject:recId];
-    return fetcher;
+    return [fetcher autorelease];
 }
 
 #pragma mark HasManyThrough
 
-/*
-    SELECT "groups".* FROM "groups" INNER JOIN "group_user_rels" ON "groups"."id" = "group_user_rels"."group_id" WHERE "group_user_rels"."user_id" = 1
- 
-    SELECT id,name,groupId FROM arUser  INNER JOIN arUserProjectRelationship ON arUser.id = arUserProjectRelationship.userId  WHERE ( arUser.userId = 1 )  LIMIT -1
- */
-
 - (ARLazyFetcher *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
     
     NSString *relId = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
-    
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     [fetcher join:NSClassFromString(aRelationsipClassName)];
     [fetcher whereField:relId
                ofRecord:NSClassFromString(aRelationsipClassName)
            equalToValue:self.id];
     return [fetcher autorelease];
-//    Class RelativeClass = NSClassFromString(aClassName);
-//    Class Relationship = NSClassFromString(aRelationsipClassName);
-//    
-//    NSMutableArray *relativeObjects = [[NSMutableArray alloc] init];
-//    
-//    NSString *stringSelector = [NSString stringWithFormat:@"findBy%@Id:", [[self class] description]];
-//    
-//    SEL selector = NSSelectorFromString(stringSelector);
-//    
-//    NSNumber *recId = self.id;
-//    
-//    NSArray *relationships = [Relationship performSelector:selector 
-//                                                withObject:recId];
-//    
-//    NSString *relativeStringSelector = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
-//    SEL relativeIdSelector = NSSelectorFromString(relativeStringSelector);
-//    for(id rel in relationships)
-//    {
-//        id recordId = [rel performSelector:relativeIdSelector];
-//        id tmpRelativeObject = [RelativeClass performSelector:@selector(findById:) withObject:recordId];
-//        [relativeObjects addObject:tmpRelativeObject];
-//    }
-//    return relativeObjects;
 }
 
 - (void)addRecord:(ActiveRecord *)aRecord 
