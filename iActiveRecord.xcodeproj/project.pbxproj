@@ -43,6 +43,8 @@
 		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
 		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
+		CA62C309151E0AB800E54276 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62C308151E0AB800E54276 /* Cocoa.framework */; };
+		CA62C313151E0AB800E54276 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA62C311151E0AB800E54276 /* InfoPlist.strings */; };
 		CAA8DE951515DA02004AB173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA8DE941515DA02004AB173 /* main.m */; };
 		CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
@@ -137,6 +139,15 @@
 		CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLazyFetcher.m; sourceTree = "<group>"; };
 		CA3D18081519D61F00FA3F3C /* ARLazyFetcherSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcherSpecs.h; sourceTree = "<group>"; };
 		CA3D18091519D63300FA3F3C /* FooSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FooSpec.h; sourceTree = "<group>"; };
+		CA62C2E9151E039900E54276 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		CA62C307151E0AB800E54276 /* ARBundle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARBundle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA62C308151E0AB800E54276 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		CA62C30B151E0AB800E54276 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		CA62C30C151E0AB800E54276 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CA62C30D151E0AB800E54276 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CA62C310151E0AB800E54276 /* ARBundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARBundle-Info.plist"; sourceTree = "<group>"; };
+		CA62C312151E0AB800E54276 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CA62C314151E0AB800E54276 /* ARBundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARBundle-Prefix.pch"; sourceTree = "<group>"; };
 		CAA8DE941515DA02004AB173 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
@@ -174,6 +185,14 @@
 				25998EC214BC199C00CA2490 /* UIKit.framework in Frameworks */,
 				25998EC414BC199C00CA2490 /* Foundation.framework in Frameworks */,
 				25998EC614BC199C00CA2490 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA62C304151E0AB800E54276 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA62C309151E0AB800E54276 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +300,7 @@
 				CAAF5DCF151BA685004C4329 /* Readme */,
 				25998EC714BC199C00CA2490 /* iActiveRecord */,
 				25922B0014EC286000CBB58A /* UnitTests */,
+				CA62C30E151E0AB800E54276 /* ARBundle */,
 				25998EC014BC199C00CA2490 /* Frameworks */,
 				25998EBE14BC199C00CA2490 /* Products */,
 			);
@@ -291,6 +311,7 @@
 			children = (
 				25998EBD14BC199C00CA2490 /* iActiveRecord.app */,
 				25922AFB14EC286000CBB58A /* UnitTests.app */,
+				CA62C307151E0AB800E54276 /* ARBundle.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,6 +324,9 @@
 				25998EC114BC199C00CA2490 /* UIKit.framework */,
 				25998EC314BC199C00CA2490 /* Foundation.framework */,
 				25998EC514BC199C00CA2490 /* CoreGraphics.framework */,
+				CA62C2E9151E039900E54276 /* CoreFoundation.framework */,
+				CA62C308151E0AB800E54276 /* Cocoa.framework */,
+				CA62C30A151E0AB800E54276 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -444,6 +468,34 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		CA62C30A151E0AB800E54276 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA62C30B151E0AB800E54276 /* AppKit.framework */,
+				CA62C30C151E0AB800E54276 /* CoreData.framework */,
+				CA62C30D151E0AB800E54276 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		CA62C30E151E0AB800E54276 /* ARBundle */ = {
+			isa = PBXGroup;
+			children = (
+				CA62C30F151E0AB800E54276 /* Supporting Files */,
+			);
+			path = ARBundle;
+			sourceTree = "<group>";
+		};
+		CA62C30F151E0AB800E54276 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CA62C310151E0AB800E54276 /* ARBundle-Info.plist */,
+				CA62C311151E0AB800E54276 /* InfoPlist.strings */,
+				CA62C314151E0AB800E54276 /* ARBundle-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		CAAF5D9D151A511C004C4329 /* NSArray */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,6 +550,23 @@
 			productReference = 25998EBD14BC199C00CA2490 /* iActiveRecord.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CA62C306151E0AB800E54276 /* ARBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA62C315151E0AB800E54276 /* Build configuration list for PBXNativeTarget "ARBundle" */;
+			buildPhases = (
+				CA62C303151E0AB800E54276 /* Sources */,
+				CA62C304151E0AB800E54276 /* Frameworks */,
+				CA62C305151E0AB800E54276 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ARBundle;
+			productName = ARBundle;
+			productReference = CA62C307151E0AB800E54276 /* ARBundle.framework */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -520,6 +589,7 @@
 			targets = (
 				25998EBC14BC199C00CA2490 /* iActiveRecord */,
 				25922AFA14EC286000CBB58A /* UnitTests */,
+				CA62C306151E0AB800E54276 /* ARBundle */,
 			);
 		};
 /* End PBXProject section */
@@ -540,6 +610,14 @@
 			files = (
 				25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */,
 				CAAF5DD1151BA693004C4329 /* README in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA62C305151E0AB800E54276 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA62C313151E0AB800E54276 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +673,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CA62C303151E0AB800E54276 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -610,6 +695,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				25998ECB14BC199C00CA2490 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CA62C311151E0AB800E54276 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA62C312151E0AB800E54276 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -747,6 +840,63 @@
 			};
 			name = Release;
 		};
+		CA62C316151E0AB800E54276 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "ARBundle/ARBundle-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "ARBundle/ARBundle-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				VERSION_INFO_BUILDER = "Alex Denisov";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		CA62C317151E0AB800E54276 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "ARBundle/ARBundle-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "ARBundle/ARBundle-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				VERSION_INFO_BUILDER = "Alex Denisov";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -776,6 +926,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		CA62C315151E0AB800E54276 /* Build configuration list for PBXNativeTarget "ARBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA62C316151E0AB800E54276 /* Debug */,
+				CA62C317151E0AB800E54276 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
