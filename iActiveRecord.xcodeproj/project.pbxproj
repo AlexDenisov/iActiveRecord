@@ -54,6 +54,10 @@
 		25998EFA14BC1DD400CA2490 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */; };
 		25998EFD14BC27FD00CA2490 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EFC14BC27FD00CA2490 /* Group.m */; };
 		25998F0314BC2D8500CA2490 /* NSObject+properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998F0214BC2D8500CA2490 /* NSObject+properties.m */; };
+		CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */ = {isa = PBXBuildFile; fileRef = CA0365BE151FCB5F004167F1 /* NSString+quotedString.h */; };
+		CA0365C1151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
+		CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
+		CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
 		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
@@ -180,6 +184,8 @@
 		25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatableProtocol.h; sourceTree = "<group>"; };
 		25A1132614D9BCF7000720E7 /* ARErrorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrorHelper.h; sourceTree = "<group>"; };
 		25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMigrationsHelper.h; sourceTree = "<group>"; };
+		CA0365BE151FCB5F004167F1 /* NSString+quotedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+quotedString.h"; sourceTree = "<group>"; };
+		CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+quotedString.m"; sourceTree = "<group>"; };
 		CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropRecordSpecs.h; sourceTree = "<group>"; };
 		CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "/opt/cedar/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<absolute>"; };
 		CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountSpecs.h; sourceTree = "<group>"; };
@@ -458,6 +464,8 @@
 				25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */,
 				254F5EBA14C5E71C00AC0D86 /* NSString+sqlRepresentation.h */,
 				254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */,
+				CA0365BE151FCB5F004167F1 /* NSString+quotedString.h */,
+				CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */,
 			);
 			name = NSString;
 			sourceTree = "<group>";
@@ -594,6 +602,7 @@
 				CAF2480B151F298B00120198 /* ARError.h in Headers */,
 				CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */,
 				CAF24828151F3AA700120198 /* ARRepresentationProtocol.h in Headers */,
+				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +757,7 @@
 				CAAF5E26151CAC58004C4329 /* ARWhereStatement.m in Sources */,
 				CAF2480D151F298B00120198 /* ARError.m in Sources */,
 				CAF2481A151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
+				CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,6 +785,7 @@
 				CAAF5E25151CAC58004C4329 /* ARWhereStatement.m in Sources */,
 				CAF2480C151F298B00120198 /* ARError.m in Sources */,
 				CAF24819151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
+				CA0365C1151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,6 +806,7 @@
 				CA62C33D151E0F0700E54276 /* ARDatabaseManager.m in Sources */,
 				CAF2480E151F298B00120198 /* ARError.m in Sources */,
 				CAF2481B151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
+				CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

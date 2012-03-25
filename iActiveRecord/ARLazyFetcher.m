@@ -11,6 +11,7 @@
 #import "ARWhereStatement.h"
 #import "ARObjectProperty.h"
 #import "NSString+lowercaseFirst.h"
+#import "NSString+quotedString.h"
 
 static const char *joins[] = {"LEFT", "RIGHT", "INNER", "OUTER"};
 
@@ -125,7 +126,11 @@ static NSString* joinString(ARJoinType type)
         [statement appendFormat:@" ORDER BY "];
         for(NSString *key in [orderByConditions allKeys]){
             NSString *order = [[orderByConditions valueForKey:key] boolValue] ? @"ASC" : @"DESC";
-            [statement appendFormat:@" %@ %@ ,", key, order];
+            [statement appendFormat:
+             @" %@.%@ %@ ,", 
+             [[recordClass performSelector:@selector(tableName)] quotedString], 
+             [key quotedString], 
+             order];
         }
         [statement replaceCharactersInRange:NSMakeRange(statement.length - 1, 1) withString:@""];
     }
@@ -152,14 +157,14 @@ static NSString* joinString(ARJoinType type)
     for(NSString *field in [self recordFields]){
         fieldname = [NSString stringWithFormat:
                      @"%@.%@", 
-                     [recordClass performSelector:@selector(tableName)],
-                     field];
+                     [[recordClass performSelector:@selector(tableName)] quotedString],
+                     [field quotedString]];
         [fields addObject:fieldname];
     }
     [statement appendFormat:
      @"%@ FROM %@ ", 
      [fields componentsJoinedByString:@","], 
-     [recordClass performSelector:@selector(tableName)]];
+     [[recordClass performSelector:@selector(tableName)] quotedString]];
     return statement;
 }
 
@@ -171,9 +176,10 @@ static NSString* joinString(ARJoinType type)
         NSString *selfTable = [recordClass performSelector:@selector(tableName)];
         [statement appendFormat:
          @" %@ JOIN %@ ON %@.%@ = %@.%@ ", 
-         join, joinTable,
-         selfTable, recordField,
-         joinTable, joinField];
+         join, 
+         [joinTable quotedString],
+         [selfTable quotedString], [recordField quotedString],
+         [joinTable quotedString], [joinField quotedString]];
     }
     return statement;
 }
@@ -209,6 +215,7 @@ static NSString* joinString(ARJoinType type)
 
 - (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue {
     ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                  ofRecord:recordClass
                                               equalToValue:aValue];
     [self setWhereStatement:where];
     return self;
@@ -216,6 +223,7 @@ static NSString* joinString(ARJoinType type)
 
 - (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
     ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                  ofRecord:recordClass
                                            notEqualToValue:aValue];
     [self setWhereStatement:where];
     return self;
@@ -223,6 +231,7 @@ static NSString* joinString(ARJoinType type)
 
 - (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues {
     ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                  ofRecord:recordClass
                                                         in:aValues];
     [self setWhereStatement:where];
     return self;
@@ -230,6 +239,7 @@ static NSString* joinString(ARJoinType type)
 
 - (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
     ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                  ofRecord:recordClass
                                                      notIn:aValues];
     [self setWhereStatement:where];
     return self;
@@ -372,7 +382,7 @@ static NSString* joinString(ARJoinType type)
     
     NSString *select = [NSString stringWithFormat:
                         @"SELECT count(*) FROM %@ ", 
-                        [recordClass performSelector:@selector(tableName)]];
+                        [[recordClass performSelector:@selector(tableName)] quotedString]];
     
     NSString *limitOffset = [self createLimitOffsetStatement];
     NSString *orderBy = [self createOrderbyStatement];

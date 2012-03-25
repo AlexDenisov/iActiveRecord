@@ -15,7 +15,7 @@
 }
 
 - (NSString *)toSql {
-    return [NSString stringWithFormat:@"'%@'", self];
+    return self;
 }
 
 + (const char *)sqlType {

@@ -22,11 +22,6 @@ typedef enum {
 - (id)initWithStatement:(NSString *)aStatement;
 - (NSString *)statement;
 
-+ (ARWhereStatement *)whereField:(NSString *)aField equalToValue:(id)aValue;
-+ (ARWhereStatement *)whereField:(NSString *)aField notEqualToValue:(id)aValue;
-+ (ARWhereStatement *)whereField:(NSString *)aField in:(NSArray *)aValues;
-+ (ARWhereStatement *)whereField:(NSString *)aField notIn:(NSArray *)aValues;
-
 + (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord equalToValue:(id)aValue;
 + (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord notEqualToValue:(id)aValue;
 + (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord in:(NSArray *)aValues;

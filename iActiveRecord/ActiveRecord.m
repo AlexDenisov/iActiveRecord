@@ -17,6 +17,7 @@
 #import "ARMigrationsHelper.h"
 #import "NSObject+properties.h"
 #import "NSArray+objectsAccessors.h"
+#import "NSString+quotedString.h"
 
 
 @interface ActiveRecord (Private)
@@ -180,7 +181,7 @@ validation_helper
     [self initIgnoredFields];
     NSMutableString *sqlString = [NSMutableString stringWithFormat:
                                   @"create table %@(id integer primary key unique ", 
-                                  [self performSelector:@selector(tableName)]];
+                                  [[self tableName] quotedString]];
     NSArray *properties = [self activeRecordProperties];
     if([properties count] == 0){
         return NULL;
@@ -189,7 +190,8 @@ validation_helper
     for(ARObjectProperty *property in [self tableFields]){
         if(![property.propertyName isEqualToString:@"id"]){
             propertyClass = NSClassFromString(property.propertyType);
-            [sqlString appendFormat:@", %@ %s", property.propertyName, 
+            [sqlString appendFormat:@", %@ %s", 
+             [property.propertyName quotedString], 
             [propertyClass performSelector:@selector(sqlType)]];
         }
     }
@@ -200,7 +202,7 @@ validation_helper
 - (const char *)sqlOnDelete {
     NSString *sqlString = [NSString stringWithFormat:
                            @"delete from %@ where id = %@", 
-                           [self tableName], 
+                           [[self tableName] quotedString], 
                            self.id];
     return [sqlString UTF8String];
 }
@@ -224,20 +226,20 @@ validation_helper
     }
     
     NSMutableString *sqlString = [NSMutableString stringWithFormat:@"INSERT INTO %@(", 
-                                  [self tableName]];
+                                  [[self tableName] quotedString]];
     NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" VALUES("];
     
     int index = 0;
     property = [existedProperties objectAtIndex:index++];
     id propertyValue = [self valueForKey:property.propertyName];
-    [sqlString appendFormat:@"%@", property.propertyName];
-    [sqlValues appendFormat:@"%@", [propertyValue performSelector:@selector(toSql)]];
+    [sqlString appendFormat:@"%@", [property.propertyName quotedString]];
+    [sqlValues appendFormat:@"%@", [[propertyValue performSelector:@selector(toSql)] quotedString]];
     
     for(;index < [existedProperties count];index++){
         property = [existedProperties objectAtIndex:index];
         id propertyValue = [self valueForKey:property.propertyName];
-        [sqlString appendFormat:@", %@", property.propertyName];
-        [sqlValues appendFormat:@", %@", [propertyValue performSelector:@selector(toSql)]];
+        [sqlString appendFormat:@", %@", [property.propertyName quotedString]];
+        [sqlValues appendFormat:@", %@", [[propertyValue performSelector:@selector(toSql)] quotedString]];
     }
     [existedProperties release];
     [sqlValues appendString:@") "];
@@ -248,31 +250,33 @@ validation_helper
 
 - (const char *)sqlOnUpdate {
     NSMutableString *sqlString = [NSMutableString stringWithFormat:@"UPDATE %@ SET ", 
-                                  [[self class] performSelector:@selector(tableName)]];
+                                  [[self tableName] quotedString]];
     NSArray *updatedValues = [changedFields allObjects];
     NSInteger index = 0;
     NSString *propertyName = [updatedValues objectAtIndex:index++];
     id propertyValue = [self valueForKey:propertyName];
-    [sqlString appendFormat:@"%@='%@'", propertyName, [propertyValue performSelector:@selector(toSql)]];
+    [sqlString appendFormat:@"%@=%@", [propertyName quotedString], 
+     [[propertyValue performSelector:@selector(toSql)] quotedString]];
    
     for(;index<[updatedValues count];index++){
         propertyName = [updatedValues objectAtIndex:index++];
         propertyValue = [self valueForKey:propertyName];
-        [sqlString appendFormat:@", %@='%@'", propertyName, [propertyValue performSelector:@selector(toSql)]];
+        [sqlString appendFormat:@", %@=%@", [propertyName quotedString], 
+         [[propertyValue performSelector:@selector(toSql)] quotedString]];
     }
     [sqlString appendFormat:@" WHERE id = %@", self.id];
     return [sqlString UTF8String];
 }
 
 + (const char *)sqlOnDeleteAll {
-    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@", [self tableName]];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@", [[self tableName] quotedString]];
     return [sql UTF8String];
 }
 
 #pragma mark - 
 
 + (NSString *)tableName {
-    return [NSString stringWithFormat:@"ar%@", [[self class] description]];
+    return [self className];//[NSString stringWithFormat:@"ar%@", [[self class] description]];
 }
 
 - (NSString *)tableName {

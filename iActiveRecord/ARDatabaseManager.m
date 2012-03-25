@@ -9,6 +9,7 @@
 #import "ARDatabaseManager.h"
 #import "ActiveRecord.h"
 #import "class_getSubclasses.h"
+#import "NSString+quotedString.h"
 
 #if UNIT_TEST
 #define DEFAULT_DBNAME @"database"
@@ -80,7 +81,7 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSString *)tableName:(NSString *)modelName {
-    return [NSString stringWithFormat:@"AR%@", modelName];
+    return [[NSString stringWithFormat:@"%@", modelName] quotedString];
 }
 
 - (void)closeConnection {
@@ -94,8 +95,10 @@ static ARDatabaseManager *instance = nil;
 
 - (void)executeSqlQuery:(const char *)anSqlQuery {
     if(SQLITE_OK != sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
-        NSLog(@"%@", anSqlQuery);
+        
         NSLog(@"Couldn't execute query %s : %s", anSqlQuery, sqlite3_errmsg(database));
+    }else{
+        NSLog(@"Query executed: %s", anSqlQuery);
     }
 }
  
@@ -105,6 +108,7 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest{
+    NSLog(@"Fetch %@ with : %@", aName, aSqlRequest);
     NSMutableArray *resultArray = nil;
     NSString *propertyName;
     id aValue;
@@ -162,7 +166,8 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSNumber *)getLastId:(NSString *)aRecordName {
-    NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from %@", aRecordName];
+    NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from %@", 
+                             [aRecordName quotedString]];
     NSInteger res = [self functionResult:aSqlRequest];
     return [NSNumber numberWithInt:res];
 }

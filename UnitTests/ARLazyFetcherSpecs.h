@@ -165,8 +165,10 @@ describe(@"LazyFetcher", ^{
                 [john save];
                 
                 ARWhereStatement *nameStatement = [ARWhereStatement whereField:@"name"
+                                                                      ofRecord:NSClassFromString(@"User")
                                                                               equalToValue:username];
                 ARWhereStatement *idStatement = [ARWhereStatement whereField:@"id" 
+                                                                            ofRecord:NSClassFromString(@"User")
                                                                                       in:ids];
                 
                 ARWhereStatement *finalStatement = [ARWhereStatement concatenateStatement:nameStatement 

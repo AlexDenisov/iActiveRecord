@@ -13,9 +13,7 @@
 - (NSString *)toSql {
     NSString *str = [[NSString alloc] initWithData:self
                                           encoding:NSUTF8StringEncoding];
-    NSString *sql = [NSString stringWithFormat:@"'%@'", str];
-    [str release];
-    return sql;
+    return [str autorelease];
 }
 
 + (id)fromSql:(NSString *)sqlData {
