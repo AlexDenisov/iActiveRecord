@@ -61,7 +61,6 @@
 		CA62C31F151E0EC400E54276 /* NSArray+objectsAccessors.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C320151E0EC400E54276 /* NSDecimalNumber+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2596BC5514C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C321151E0EC400E54276 /* NSNumber+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 254F5EBE14C5E78100AC0D86 /* NSNumber+sqlRepresentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA62C322151E0EC400E54276 /* SQLRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 254F5EB614C5E01000AC0D86 /* SQLRepresentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C323151E0EC400E54276 /* NSObject+properties.h in Headers */ = {isa = PBXBuildFile; fileRef = 25998F0114BC2D8500CA2490 /* NSObject+properties.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */ = {isa = PBXBuildFile; fileRef = 25998EE514BC1A1D00CA2490 /* NSString+lowercaseFirst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 254F5EBA14C5E71C00AC0D86 /* NSString+sqlRepresentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -103,10 +102,13 @@
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480E151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
+		CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24816151F383000120198 /* NSData+sqlRepresentation.h */; };
+		CAF24819151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
+		CAF2481A151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
+		CAF2481B151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		254F5EB614C5E01000AC0D86 /* SQLRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLRepresentation.h; sourceTree = "<group>"; };
 		254F5EBA14C5E71C00AC0D86 /* NSString+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+sqlRepresentation.h"; sourceTree = "<group>"; };
 		254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+sqlRepresentation.m"; sourceTree = "<group>"; };
 		254F5EBE14C5E78100AC0D86 /* NSNumber+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -207,6 +209,9 @@
 		CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARWhereStatement.m; sourceTree = "<group>"; };
 		CAF24809151F298B00120198 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
 		CAF2480A151F298B00120198 /* ARError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARError.m; sourceTree = "<group>"; };
+		CAF24816151F383000120198 /* NSData+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+sqlRepresentation.h"; sourceTree = "<group>"; };
+		CAF24817151F383000120198 /* NSData+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+sqlRepresentation.m"; sourceTree = "<group>"; };
+		CAF2481C151F39C600120198 /* ARRepresentationProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARRepresentationProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,14 +249,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		254F5EB514C5DFF300AC0D86 /* Extras */ = {
-			isa = PBXGroup;
-			children = (
-				254F5EB614C5E01000AC0D86 /* SQLRepresentation.h */,
-			);
-			name = Extras;
-			sourceTree = "<group>";
-		};
 		254F5EBD14C5E76700AC0D86 /* NSNumber */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,10 +440,10 @@
 		25998EFE14BC2D4600CA2490 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CAF2480F151F375000120198 /* NSData */,
 				CAAF5D9D151A511C004C4329 /* NSArray */,
 				2596BC5314C7207100C6B5E2 /* NSDecimalNumber */,
 				254F5EBD14C5E76700AC0D86 /* NSNumber */,
-				254F5EB514C5DFF300AC0D86 /* Extras */,
 				25998F0014BC2D6600CA2490 /* NSObject */,
 				25998EFF14BC2D5400CA2490 /* NSString */,
 			);
@@ -482,6 +479,7 @@
 				25A1131F14D9BAAE000720E7 /* ARValidations.h */,
 				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
 				25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */,
+				CAF2481C151F39C600120198 /* ARRepresentationProtocol.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -559,6 +557,15 @@
 			name = Readme;
 			sourceTree = "<group>";
 		};
+		CAF2480F151F375000120198 /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				CAF24816151F383000120198 /* NSData+sqlRepresentation.h */,
+				CAF24817151F383000120198 /* NSData+sqlRepresentation.m */,
+			);
+			name = NSData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -569,7 +576,6 @@
 				CA62C31F151E0EC400E54276 /* NSArray+objectsAccessors.h in Headers */,
 				CA62C320151E0EC400E54276 /* NSDecimalNumber+sqlRepresentation.h in Headers */,
 				CA62C321151E0EC400E54276 /* NSNumber+sqlRepresentation.h in Headers */,
-				CA62C322151E0EC400E54276 /* SQLRepresentation.h in Headers */,
 				CA62C323151E0EC400E54276 /* NSObject+properties.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
@@ -585,6 +591,7 @@
 				CA62C330151E0EC400E54276 /* ARValidatableProtocol.h in Headers */,
 				CA62C331151E0EC400E54276 /* ARMigrationsHelper.h in Headers */,
 				CAF2480B151F298B00120198 /* ARError.h in Headers */,
+				CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +745,7 @@
 				CAAF5DCE151BA40F004C4329 /* UserProjectRelationship.m in Sources */,
 				CAAF5E26151CAC58004C4329 /* ARWhereStatement.m in Sources */,
 				CAF2480D151F298B00120198 /* ARError.m in Sources */,
+				CAF2481A151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +772,7 @@
 				CAAF5DCD151BA40F004C4329 /* UserProjectRelationship.m in Sources */,
 				CAAF5E25151CAC58004C4329 /* ARWhereStatement.m in Sources */,
 				CAF2480C151F298B00120198 /* ARError.m in Sources */,
+				CAF24819151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +792,7 @@
 				CA62C33C151E0F0700E54276 /* ARWhereStatement.m in Sources */,
 				CA62C33D151E0F0700E54276 /* ARDatabaseManager.m in Sources */,
 				CAF2480E151F298B00120198 /* ARError.m in Sources */,
+				CAF2481B151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

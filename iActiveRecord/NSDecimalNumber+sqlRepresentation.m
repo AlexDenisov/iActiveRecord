@@ -15,7 +15,7 @@
 }
 
 + (const char *)sqlType {
-    return "integer";
+    return "real";
 }
 
 + (id)fromSql:(NSString *)sqlData {

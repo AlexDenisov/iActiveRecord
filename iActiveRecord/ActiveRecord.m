@@ -197,7 +197,7 @@ validation_helper
                                   [self tableName]];
     NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" VALUES("];
     
-    int index = 0;    
+    int index = 0;
     property = [existedProperties objectAtIndex:index++];
     id propertyValue = [self valueForKey:property.propertyName];
     [sqlString appendFormat:@"%@", property.propertyName];
@@ -223,12 +223,12 @@ validation_helper
     NSInteger index = 0;
     NSString *propertyName = [updatedValues objectAtIndex:index++];
     id propertyValue = [self valueForKey:propertyName];
-    [sqlString appendFormat:@"%@=%@", propertyName, [propertyValue performSelector:@selector(toSql)]];
+    [sqlString appendFormat:@"%@='%@'", propertyName, [propertyValue performSelector:@selector(toSql)]];
    
     for(;index<[updatedValues count];index++){
         propertyName = [updatedValues objectAtIndex:index++];
         propertyValue = [self valueForKey:propertyName];
-        [sqlString appendFormat:@", %@=%@", propertyName, [propertyValue performSelector:@selector(toSql)]];
+        [sqlString appendFormat:@", %@='%@'", propertyName, [propertyValue performSelector:@selector(toSql)]];
     }
     [sqlString appendFormat:@" WHERE id = %@", self.id];
     return [sqlString UTF8String];

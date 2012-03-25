@@ -1,5 +1,5 @@
 //
-//  ARArray.h
+//  ARLazyFetcher.h
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 21.03.12.

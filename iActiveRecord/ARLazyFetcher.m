@@ -1,5 +1,5 @@
 //
-//  ARArray.m
+//  ARLazyFetcher.m
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 21.03.12.

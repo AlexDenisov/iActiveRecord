@@ -18,6 +18,7 @@
 #import "ARDatabaseManager.h"
 #import "ARErrorHelper.h"
 #import "ARError.h"
+#import "ARRepresentationProtocol.h"
 
 @interface ActiveRecord : NSObject
 {
@@ -30,6 +31,8 @@
 @property (nonatomic, retain) NSNumber *id;
 
 - (void)markAsNew;
+
+//  don't call this, use accessors
 - (id)belongsTo:(NSString *)aClassName;
 - (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName;
 - (void)addRecord:(ActiveRecord *)aRecord;
@@ -45,7 +48,6 @@
 
 - (BOOL)isValid;
 - (NSArray *)errorMessages;
-
 
 + (id)newRecord;
 - (BOOL)save;

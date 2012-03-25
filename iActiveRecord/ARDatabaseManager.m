@@ -9,7 +9,6 @@
 #import "ARDatabaseManager.h"
 #import "ActiveRecord.h"
 #import "class_getSubclasses.h"
-#import "SQLRepresentation.h"
 
 #if UNIT_TEST
 #define DEFAULT_DBNAME @"database"
@@ -117,7 +116,7 @@ static ARDatabaseManager *instance = nil;
 
 - (void)executeSqlQuery:(const char *)anSqlQuery {
     if(SQLITE_OK == sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
-        NSLog(@"Query '%s' executed", anSqlQuery);
+//        NSLog(@"Query '%s' executed", anSqlQuery);
     }else{
         NSLog(@"Couldn't execute query %s : %s", anSqlQuery, sqlite3_errmsg(database));
     }
