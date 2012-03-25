@@ -476,8 +476,14 @@ validation_helper
 #pragma mark HasMany
 
 - (void)addRecord:(ActiveRecord *)aRecord {
-    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[[self class] description] lowercaseFirst]];
+    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self className] lowercaseFirst]];
     [aRecord setValue:self.id forKey:relationIdKey];
+    [aRecord save];
+}
+
+- (void)removeRecord:(ActiveRecord *)aRecord {
+    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self className] lowercaseFirst]];
+    [aRecord setValue:nil forKey:relationIdKey];
     [aRecord save];
 }
 

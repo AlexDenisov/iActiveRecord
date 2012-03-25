@@ -43,6 +43,17 @@ describe(@"HasMany", ^{
         NSInteger count = [users count];
         expect(count).toEqual(2);
     });
+    it(@"When I remove user, user should not have group", ^{
+        Group *group = [Group newRecord];
+        group.name = @"PSV 1-16";
+        [group save];
+        User *user = [User newRecord];
+        user.name = @"Alex";
+        [user save];
+        [user setGroup:group];
+        [group removeUser:user];
+        expect(user.group).toBeNil();
+    });
 });
 
 describe(@"BelongsTo", ^{

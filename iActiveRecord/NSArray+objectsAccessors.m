@@ -11,7 +11,11 @@
 @implementation NSArray (objectsAccessors)
 
 - (id)first {
-    return [self objectAtIndex:0];
+    if(self.count){
+        return [self objectAtIndex:0];        
+    }else{
+        return nil;
+    }
 }
 
 - (id)last {

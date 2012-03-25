@@ -22,9 +22,11 @@
     - (id)accessor;\
     - (void)set##class:(ActiveRecord *)aRecord;
 
+
 #define has_many_dec(relative_class, accessor)\
     - (ARLazyFetcher *)accessor;\
-    - (void)add##relative_class:(ActiveRecord *)aRecord;
+    - (void)add##relative_class:(ActiveRecord *)aRecord;\
+    - (void)remove##relative_class:(ActiveRecord *)aRecord;
 
 #define has_many_imp(relative_class, accessor) \
     - (ARLazyFetcher *)accessor{\
@@ -34,6 +36,9 @@
     - (void)add##relative_class:(ActiveRecord *)aRecord {\
         [self addRecord:aRecord];\
     }\
+    - (void)remove##relative_class:(ActiveRecord *)aRecord {\
+        [self removeRecord:aRecord];\
+    }
 
 #define has_many_through_dec(relative_class, relationship, accessor) \
     - (ARLazyFetcher *)accessor;\
