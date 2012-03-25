@@ -17,6 +17,7 @@
 #import "ARObjectProperty.h"
 #import "ARDatabaseManager.h"
 #import "ARErrorHelper.h"
+#import "ARError.h"
 
 @interface ActiveRecord : NSObject
 {

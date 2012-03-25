@@ -31,8 +31,7 @@
 - (BOOL)isValidPresenceOfField:(NSString *)aField;
 
 - (void)resetErrors;
-- (void)addError:(NSString *)errMessage;
-- (void)logErrors;
+- (void)addError:(ARError *)anError;
 
 #pragma mark - SQLQueries
 
@@ -56,6 +55,9 @@
 + (NSString *)tableName;
 - (NSString *)tableName;
 
++ (NSString *)className;
+- (NSString *)className;
+
 + (NSArray *)tableFields;
 
 @end
@@ -67,15 +69,21 @@ validation_helper
 
 @synthesize id;
 
+#pragma mark - Initialize
+
++ (void)initialize {
+    [super initialize];
+    [self initIgnoredFields];
+    if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
+        [self performSelector:@selector(initValidations)];
+    }
+}
+
 #pragma mark - IgnoreFields
 
 - (id)init {
     self = [super init];
     if(nil != self){
-        if([[self class] conformsToProtocol:@protocol(ARValidatableProtocol)]){
-            [[self class] performSelector:@selector(initValidations)];
-        }
-        [[self class] initIgnoredFields];
     }
     return self;    
 }
@@ -98,7 +106,7 @@ validation_helper
         return;
     }
     if(nil == changedFields){
-        changedFields = [[NSMutableSet alloc] init];
+        changedFields = [NSMutableSet new];
     }
     [changedFields addObject:aField];
 }
@@ -125,19 +133,12 @@ validation_helper
     errorMessages = nil;
 }
 
-- (void)addError:(NSString *)errMessage {
+- (void)addError:(ARError *)anError {
     if(nil == errorMessages){
-        errorMessages = [[NSMutableSet alloc] init];
+        errorMessages = [NSMutableSet new];
     }
-    [errorMessages addObject:errMessage];
+    [errorMessages addObject:anError];
 }
-
-- (void)logErrors {
-    for(NSString *error in errorMessages){
-        NSLog(@"%@", error);
-    }
-}
-
 
 - (void)initialize {
     
@@ -147,21 +148,19 @@ validation_helper
 
 + (const char *)sqlOnCreate {
     [self initIgnoredFields];
-    NSMutableString *sqlString = [NSMutableString stringWithFormat:@"create table %@(id integer primary key ", 
+    NSMutableString *sqlString = [NSMutableString stringWithFormat:
+                                  @"create table %@(id integer primary key unique ", 
                                   [self performSelector:@selector(tableName)]];
     NSArray *properties = [self activeRecordProperties];
     if([properties count] == 0){
         return NULL;
     }
     Class propertyClass = nil;
-    for(ARObjectProperty *property in properties){
-        if(![ignoredFields containsObject:property.propertyName])
-        {
-            if(![property.propertyName isEqualToString:@"id"]){
-                propertyClass = NSClassFromString(property.propertyType);
-                [sqlString appendFormat:@", %@ %s", property.propertyName, 
-                [propertyClass performSelector:@selector(sqlType)]];
-            }
+    for(ARObjectProperty *property in [self tableFields]){
+        if(![property.propertyName isEqualToString:@"id"]){
+            propertyClass = NSClassFromString(property.propertyType);
+            [sqlString appendFormat:@", %@ %s", property.propertyName, 
+            [propertyClass performSelector:@selector(sqlType)]];
         }
     }
     [sqlString appendFormat:@")"];
@@ -177,18 +176,16 @@ validation_helper
 }
 
 - (const char *)sqlOnSave {
-    NSArray *properties = [[self class] activeRecordProperties];
+    NSArray *properties = [[self class] tableFields];
     if([properties count] == 0){
         return NULL;
     }
-    NSMutableArray *existedProperties = [[NSMutableArray alloc] init];
+    NSMutableArray *existedProperties = [NSMutableArray new];
     ARObjectProperty *property = nil;
     for(property in properties){
-        if(![ignoredFields containsObject:property.propertyName]){
-            id value = [self valueForKey:property.propertyName];
-            if(nil != value){
-                [existedProperties addObject:property];
-            }
+        id value = [self valueForKey:property.propertyName];
+        if(nil != value){
+            [existedProperties addObject:property];
         }
     }
     if([existedProperties count] == 0){
@@ -196,11 +193,11 @@ validation_helper
         return NULL;
     }
     
-    NSMutableString *sqlString = [NSMutableString stringWithFormat:@"insert into %@(", 
-                                  [[self class] performSelector:@selector(tableName)]];
-    NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" values("];
+    NSMutableString *sqlString = [NSMutableString stringWithFormat:@"INSERT INTO %@(", 
+                                  [self tableName]];
+    NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" VALUES("];
     
-    int index = 0;
+    int index = 0;    
     property = [existedProperties objectAtIndex:index++];
     id propertyValue = [self valueForKey:property.propertyName];
     [sqlString appendFormat:@"%@", property.propertyName];
@@ -210,7 +207,7 @@ validation_helper
         property = [existedProperties objectAtIndex:index];
         id propertyValue = [self valueForKey:property.propertyName];
         [sqlString appendFormat:@", %@", property.propertyName];
-        [ sqlValues appendFormat:@", %@", [propertyValue performSelector:@selector(toSql)]];
+        [sqlValues appendFormat:@", %@", [propertyValue performSelector:@selector(toSql)]];
     }
     [existedProperties release];
     [sqlValues appendString:@") "];
@@ -238,7 +235,7 @@ validation_helper
 }
 
 + (const char *)sqlOnDeleteAll {
-    NSString *sql = [NSString stringWithFormat:@"delete from %@", [self tableName]];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@", [self tableName]];
     return [sql UTF8String];
 }
 
@@ -250,6 +247,13 @@ validation_helper
 
 - (NSString *)tableName {
     return [[self class] tableName];
+}
+
++ (NSString *)className {
+    return [self description];
+}
+- (NSString *)className {
+    return [[self class] className];
 }
 
 + (id)newRecord {
@@ -293,39 +297,24 @@ validation_helper
 
 + (void)validateField:(NSString *)aField asUnique:(BOOL)aUnique {
     if(nil == uniqueFields){
-        uniqueFields = [[NSMutableSet alloc] init];
+        uniqueFields = [NSMutableSet new];
     }
-    
-    BOOL contains = [uniqueFields containsObject:aField];
     if(aUnique){
-        if(contains){
-            return;
-        }
         [uniqueFields addObject:aField];
-        return;
-    }
-    if(contains){
+    }else{
         [uniqueFields removeObject:aField];
-        return;
-    }    
+    }
 }
 
 + (void)validateField:(NSString *)aField asPresence:(BOOL)aPresence {
     if(nil == presenceFields){
-        presenceFields = [[NSMutableSet alloc] init];
+        presenceFields = [NSMutableSet new];
     }
-    BOOL contains = [presenceFields containsObject:aField];
     if(aPresence){
-        if(contains){
-            return;
-        }
         [presenceFields addObject:aField];
-        return;
-    }
-    if(contains){
+    }else{
         [presenceFields removeObject:aField];
-        return;
-    } 
+    }
 }
 
 - (BOOL)isValid {
@@ -336,17 +325,16 @@ validation_helper
     }else{
         valid = [self validateOnUpdate];
     }
-    [self logErrors];
     return valid;
 }
 
 - (BOOL)isValidPresenceOfField:(NSString *)aField {
     NSString *aValue = [self valueForKey:aField];
     if(aValue == nil || [aValue length] == 0){
-        NSString *errMessage = [NSString stringWithFormat:@"%@ %@", 
-                                aField, 
-                                AR_Error(kARFieldCantBeBlank)];
-        [self addError:errMessage];
+        ARError *error = [[ARError alloc] initWithModel:[self className]
+                                               property:aField
+                                                  error:kARFieldCantBeBlank];
+        [self addError:error];
         return NO;
     }
     return YES;
@@ -362,11 +350,10 @@ validation_helper
     [fetcher release];
 #warning TODO: implement count in ARLazyFetcher
     if([records count]){
-        NSString *errMessage = [NSString stringWithFormat:@"%@ '%@' %@", 
-                                aField, 
-                                aValue,
-                                AR_Error(kARFieldAlreadyExists)];
-        [self addError:errMessage];
+        ARError *error = [[ARError alloc] initWithModel:[self className]
+                                               property:aField
+                                                  error:kARFieldAlreadyExists];
+        [self addError:error];
         return NO;
     }
     return YES;
