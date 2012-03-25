@@ -60,6 +60,13 @@
 
 + (NSArray *)tableFields;
 
+#pragma mark - Relationships
+
+#pragma mark BelongsTo
+
+- (id)belongsTo:(NSString *)aClassName;
+- (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation;
+
 @end
 
 @implementation ActiveRecord

@@ -11,11 +11,11 @@
 #define belonsg_to_imp(class, accessor) \
     - (id)accessor{\
         NSString *class_name = @""#class"";\
-        return [self belongsTo:class_name];\
+        return [self performSelector:@selector(belongsTo:) withObject:class_name];\
     }\
     - (void)set##class:(ActiveRecord *)aRecord {\
         NSString *aClassName = @""#class"";\
-        [self setRecord:aRecord belongsTo:aClassName];\
+        [self performSelector:@selector(setRecord:belongsTo:) withObject:aRecord withObject:aClassName];\
     }
 
 #define belongs_to_dec(class, accessor) \

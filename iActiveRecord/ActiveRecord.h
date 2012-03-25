@@ -33,8 +33,7 @@
 - (void)markAsNew;
 
 //  don't call this, use accessors
-- (id)belongsTo:(NSString *)aClassName;
-- (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation;
+
 
 - (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName;
 - (void)addRecord:(ActiveRecord *)aRecord;
