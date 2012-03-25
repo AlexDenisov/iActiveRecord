@@ -96,8 +96,6 @@
 		CAAF5DCA151BA3F4004C4329 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DC9151BA3F4004C4329 /* Project.m */; };
 		CAAF5DCD151BA40F004C4329 /* UserProjectRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */; };
 		CAAF5DCE151BA40F004C4329 /* UserProjectRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */; };
-		CAAF5DD1151BA693004C4329 /* README in Resources */ = {isa = PBXBuildFile; fileRef = CAAF5DD0151BA693004C4329 /* README */; };
-		CAAF5DD2151BA693004C4329 /* README in Resources */ = {isa = PBXBuildFile; fileRef = CAAF5DD0151BA693004C4329 /* README */; };
 		CAAF5DD3151BB24E004C4329 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DC9151BA3F4004C4329 /* Project.m */; };
 		CAAF5E25151CAC58004C4329 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
 		CAAF5E26151CAC58004C4329 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
@@ -201,7 +199,6 @@
 		CAAF5DC9151BA3F4004C4329 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
 		CAAF5DCB151BA40E004C4329 /* UserProjectRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProjectRelationship.h; sourceTree = "<group>"; };
 		CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProjectRelationship.m; sourceTree = "<group>"; };
-		CAAF5DD0151BA693004C4329 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARWhereStatement.h; sourceTree = "<group>"; };
 		CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARWhereStatement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -549,7 +546,6 @@
 		CAAF5DCF151BA685004C4329 /* Readme */ = {
 			isa = PBXGroup;
 			children = (
-				CAAF5DD0151BA693004C4329 /* README */,
 				CA62C391151E710700E54276 /* README.md */,
 			);
 			name = Readme;
@@ -672,7 +668,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
-				CAAF5DD2151BA693004C4329 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,7 +676,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */,
-				CAAF5DD1151BA693004C4329 /* README in Resources */,
 				CA62C392151E710800E54276 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
