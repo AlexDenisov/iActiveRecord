@@ -11,7 +11,7 @@
 #import <objc/runtime.h>
 
 #define belonsg_to_imp(class, accessor) \
-    - (id)accessor{\
+    - (ActiveRecord *)accessor{\
         NSString *class_name = @""#class"";\
         return [self performSelector:@selector(belongsTo:) withObject:class_name];\
     }\
