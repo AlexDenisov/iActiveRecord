@@ -33,14 +33,6 @@
 
 - (void)markAsNew;
 
-//  don't call this, use accessors
-
-
-+ (void)validateField:(NSString *)aField 
-             asUnique:(BOOL)aUnique;
-+ (void)validateField:(NSString *)aField 
-           asPresence:(BOOL)aPresence;
-
 - (BOOL)isValid;
 - (NSArray *)errorMessages;
 

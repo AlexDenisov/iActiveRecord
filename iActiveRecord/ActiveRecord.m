@@ -23,6 +23,14 @@
 
 #pragma mark - Validations Declaration
 
++ (void)validateField:(NSString *)aField 
+             asUnique:(BOOL)aUnique;
++ (void)validateField:(NSString *)aField 
+           asPresence:(BOOL)aPresence;
+
++ (void)validateUniquenessOfField:(NSString *)aField;
++ (void)validatePresenceOfField:(NSString *)aField;
+
 - (BOOL)validateOnSave;
 - (BOOL)validateOnUpdate;
 - (BOOL)validateUniqueness;
@@ -316,6 +324,14 @@ validation_helper
 
 
 #pragma mark - Validations
+
++ (void)validateUniquenessOfField:(NSString *)aField {
+    [self validateField:aField asUnique:YES];
+}
+
++ (void)validatePresenceOfField:(NSString *)aField {
+    [self validateField:aField asPresence:YES];
+}
 
 + (void)validateField:(NSString *)aField asUnique:(BOOL)aUnique {
     if(nil == uniqueFields){

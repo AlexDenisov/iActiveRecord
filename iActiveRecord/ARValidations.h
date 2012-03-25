@@ -9,12 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #define validate_uniqueness_of(aField)\
-    [ActiveRecord validateField:(@""#aField"")\
-                       asUnique:YES];
+    [self performSelector:@selector(validateUniquenessOfField:) withObject:@""#aField""];
 
 #define validate_presence_of(aField)\
-    [ActiveRecord validateField:(@""#aField"")\
-                     asPresence:YES];
+    [self performSelector:@selector(validatePresenceOfField:) withObject:@""#aField""];\
 
 #define validation_helper \
     static NSMutableSet *uniqueFields = nil;\
