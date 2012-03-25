@@ -34,13 +34,17 @@
 
 //  don't call this, use accessors
 - (id)belongsTo:(NSString *)aClassName;
+- (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation;
+
 - (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName;
 - (void)addRecord:(ActiveRecord *)aRecord;
+
 - (ARLazyFetcher *)hasMany:(NSString *)aClassName 
              through:(NSString *)aRelationsipClassName;
 - (void)addRecord:(ActiveRecord *)aRecord 
           ofClass:(NSString *)aClassname 
           through:(NSString *)aRelationshipClassName;
+
 + (void)validateField:(NSString *)aField 
              asUnique:(BOOL)aUnique;
 + (void)validateField:(NSString *)aField 

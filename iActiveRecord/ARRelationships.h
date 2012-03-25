@@ -12,10 +12,15 @@
     - (id)accessor{\
         NSString *class_name = @""#class"";\
         return [self belongsTo:class_name];\
+    }\
+    - (void)set##class:(ActiveRecord *)aRecord {\
+        NSString *aClassName = @""#class"";\
+        [self setRecord:aRecord belongsTo:aClassName];\
     }
 
 #define belongs_to_dec(class, accessor) \
-    - (id)accessor;
+    - (id)accessor;\
+    - (void)set##class:(ActiveRecord *)aRecord;
 
 #define has_many_dec(relative_class, accessor)\
     - (ARLazyFetcher *)accessor;\

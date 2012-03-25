@@ -63,6 +63,28 @@ describe(@"BelongsTo", ^{
         Group *group = [john group];
         expect([group name]).toEqual([students name]);
     });
+    it(@"when i set belongsTo group, group should contain this user", ^{
+        Group *group = [Group newRecord];
+        group.name = @"PSV 1-16";
+        [group save];
+        User *user = [User newRecord];
+        user.name = @"Alex";
+        [user save];
+        [user setGroup:group];
+        User *foundedUser = [[[group users] fetchRecords] first];
+        expect(foundedUser.name).toEqual(user.name);        
+    });
+    it(@"when i set belongsTo nil, i should remove relation", ^{
+        Group *group = [Group newRecord];
+        group.name = @"PSV 1-16";
+        [group save];
+        User *user = [User newRecord];
+        user.name = @"Alex";
+        [user save];
+        [user setGroup:group];
+        [user setGroup:nil];
+        expect(group.users.count).toEqual(0);
+    });
 });
 
 describe(@"HasManyThrough", ^{

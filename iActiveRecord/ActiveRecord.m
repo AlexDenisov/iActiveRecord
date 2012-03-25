@@ -463,6 +463,16 @@ validation_helper
     return [[fetcher fetchRecords] first];
 }
 
+- (void)setRecord:(ActiveRecord *)aRecord 
+        belongsTo:(NSString *)aRelation
+{
+    NSString *relId = [NSString stringWithFormat:
+                       @"%@Id", 
+                       [aRelation lowercaseFirst]];
+    [self setValue:aRecord.id forKey:relId];
+    [self update];
+}
+
 #pragma mark HasMany
 
 - (void)addRecord:(ActiveRecord *)aRecord {
