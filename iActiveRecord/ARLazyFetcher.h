@@ -86,6 +86,6 @@ typedef enum {
 - (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement;
 
 - (NSArray *)fetchRecords;
-
+- (NSInteger)count;
 
 @end

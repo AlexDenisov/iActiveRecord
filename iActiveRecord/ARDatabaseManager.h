@@ -33,6 +33,7 @@
 - (void)executeSqlQuery:(const char *)anSqlQuery;
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest;
 - (NSInteger)countOfRecordsWithName:(NSString *)aName;
+- (NSInteger)functionResult:(NSString *)anSql;
 
 @end
  

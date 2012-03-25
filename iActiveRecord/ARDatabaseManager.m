@@ -92,28 +92,6 @@ static ARDatabaseManager *instance = nil;
     return [self getLastId:aRecordName];
 }
 
-- (NSNumber *)getLastId:(NSString *)aRecordName {
-    char **results;
-    NSNumber *lastId = nil;
-    NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from %@", aRecordName];
-    const char *pszSql = [aSqlRequest UTF8String];
-    if(SQLITE_OK == sqlite3_get_table(database,
-                                      pszSql,
-                                      &results,
-                                      NULL,
-                                      NULL,
-                                      NULL))
-    {
-        NSInteger intId = [[NSString stringWithUTF8String:results[1]] integerValue];
-        lastId = [NSNumber numberWithInt:intId];
-        sqlite3_free_table(results);
-    }else
-    {
-        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
-    }
-    return lastId;
-}
-
 - (void)executeSqlQuery:(const char *)anSqlQuery {
     if(SQLITE_OK == sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
 //        NSLog(@"Query '%s' executed", anSqlQuery);
@@ -177,10 +155,56 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSInteger)countOfRecordsWithName:(NSString *)aName {
+    NSString *aSqlRequest = [NSString stringWithFormat:
+                             @"SELECT count(id) FROM %@", 
+                             [self tableName:aName]];
+    return [self functionResult:aSqlRequest];
+//    const char *pszSql = [aSqlRequest UTF8String];
+//    if(SQLITE_OK == sqlite3_get_table(database,
+//                                      pszSql,
+//                                      &results,
+//                                      NULL,
+//                                      NULL,
+//                                      NULL))
+//    {
+//        NSString *result = [NSString stringWithUTF8String:results[1]];
+//        sqlite3_free_table(results);
+//        count = [result integerValue];
+//    }else
+//    {
+//        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
+//    }
+//    return count;
+}
+
+- (NSNumber *)getLastId:(NSString *)aRecordName {
+//    char **results;
+    
+    NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from %@", aRecordName];
+    NSInteger res = [self functionResult:aSqlRequest];
+    return [NSNumber numberWithInt:res];
+//    const char *pszSql = [aSqlRequest UTF8String];
+//    if(SQLITE_OK == sqlite3_get_table(database,
+//                                      pszSql,
+//                                      &results,
+//                                      NULL,
+//                                      NULL,
+//                                      NULL))
+//    {
+//        NSInteger intId = [[NSString stringWithUTF8String:results[1]] integerValue];
+//        lastId = [NSNumber numberWithInt:intId];
+//        sqlite3_free_table(results);
+//    }else
+//    {
+//        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
+//    }
+//    return lastId;
+}
+
+- (NSInteger)functionResult:(NSString *)anSql {
     char **results;
-    NSInteger count = 0;
-    NSString *aSqlRequest = [NSString stringWithFormat:@"SELECT count(id) FROM %@", [self tableName:aName]];
-    const char *pszSql = [aSqlRequest UTF8String];
+    NSInteger resId;
+    const char *pszSql = [anSql UTF8String];
     if(SQLITE_OK == sqlite3_get_table(database,
                                       pszSql,
                                       &results,
@@ -188,14 +212,13 @@ static ARDatabaseManager *instance = nil;
                                       NULL,
                                       NULL))
     {
-        NSString *result = [NSString stringWithUTF8String:results[1]];
+        resId = [[NSString stringWithUTF8String:results[1]] integerValue];
         sqlite3_free_table(results);
-        count = [result integerValue];
     }else
     {
         NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
     }
-    return count;
+    return resId;
 }
 
 @end

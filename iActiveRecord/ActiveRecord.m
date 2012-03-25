@@ -346,10 +346,9 @@ validation_helper
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(recordName)];
     [fetcher whereField:aField
            equalToValue:aValue];
-    NSArray *records =  [fetcher fetchRecords];
+    NSInteger count = [fetcher count];
     [fetcher release];
-#warning TODO: implement count in ARLazyFetcher
-    if([records count]){
+    if(count){
         ARError *error = [[ARError alloc] initWithModel:[self className]
                                                property:aField
                                                   error:kARFieldAlreadyExists];
