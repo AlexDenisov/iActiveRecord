@@ -98,14 +98,15 @@
 		CAAF5DD3151BB24E004C4329 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DC9151BA3F4004C4329 /* Project.m */; };
 		CAAF5E25151CAC58004C4329 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
 		CAAF5E26151CAC58004C4329 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
-		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; };
+		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480E151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
-		CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24816151F383000120198 /* NSData+sqlRepresentation.h */; };
+		CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24816151F383000120198 /* NSData+sqlRepresentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF24819151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
 		CAF2481A151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
 		CAF2481B151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
+		CAF24828151F3AA700120198 /* ARRepresentationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF2481C151F39C600120198 /* ARRepresentationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -592,6 +593,7 @@
 				CA62C331151E0EC400E54276 /* ARMigrationsHelper.h in Headers */,
 				CAF2480B151F298B00120198 /* ARError.h in Headers */,
 				CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */,
+				CAF24828151F3AA700120198 /* ARRepresentationProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
