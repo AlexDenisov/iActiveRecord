@@ -19,6 +19,7 @@
 #import "ARErrorHelper.h"
 #import "ARError.h"
 #import "ARRepresentationProtocol.h"
+#import <objc/message.h>
 
 @interface ActiveRecord : NSObject
 {
@@ -33,16 +34,6 @@
 - (void)markAsNew;
 
 //  don't call this, use accessors
-
-
-
-
-- (ARLazyFetcher *)hasMany:(NSString *)aClassName 
-             through:(NSString *)aRelationsipClassName;
-- (void)addRecord:(ActiveRecord *)aRecord 
-          ofClass:(NSString *)aClassname 
-          through:(NSString *)aRelationshipClassName;
-- (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName;
 
 
 + (void)validateField:(NSString *)aField 

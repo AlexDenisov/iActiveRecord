@@ -7,7 +7,9 @@
 //
 
 #import "NSString+lowercaseFirst.h"
- 
+
+#import <objc/runtime.h>
+
 #define belonsg_to_imp(class, accessor) \
     - (id)accessor{\
         NSString *class_name = @""#class"";\
@@ -15,7 +17,7 @@
     }\
     - (void)set##class:(ActiveRecord *)aRecord {\
         NSString *aClassName = @""#class"";\
-        [self performSelector:@selector(setRecord:belongsTo:) withObject:aRecord withObject:aClassName];\
+        objc_msgSend(self, sel_getUid("setRecord:belongsTo:"), aRecord, aClassName);\
     }
 
 #define belongs_to_dec(class, accessor) \
@@ -31,13 +33,13 @@
 #define has_many_imp(relative_class, accessor) \
     - (ARLazyFetcher *)accessor{\
         NSString *class_name = @""#relative_class"";\
-        return [self performSelector:@selector(hasManyRecords:) withObject:class_name];\
+        return objc_msgSend(self, sel_getUid("hasManyRecords:"), class_name);\
     }\
     - (void)add##relative_class:(ActiveRecord *)aRecord {\
-        [self performSelector:@selector(addRecord:) withObject:aRecord];\
+        objc_msgSend(self, sel_getUid("addRecord:"), aRecord);\
     }\
     - (void)remove##relative_class:(ActiveRecord *)aRecord {\
-        [self performSelector:@selector(removeRecord:) withObject:aRecord];\
+        objc_msgSend(self, sel_getUid("removeRecord:"), aRecord);\
     }
 
 #define has_many_through_dec(relative_class, relationship, accessor) \
@@ -50,16 +52,16 @@
     {\
         NSString *className = @""#relative_class"";\
         NSString *relativeClassName = @""#relationship"";\
-        return [self hasMany:className through:relativeClassName];\
+        return objc_msgSend(self, sel_getUid("hasMany:through:"), className, relativeClassName);\
     }\
     - (void)add##relative_class:(ActiveRecord *)aRecord {\
         NSString *className = @""#relative_class"";\
         NSString *relativeClassName = @""#relationship"";\
-        [self addRecord:aRecord ofClass:className through:relativeClassName];\
+        objc_msgSend(self, sel_getUid("addRecord:ofClass:through:"), aRecord, className, relativeClassName);\
     }\
     - (void)remove##relative_class:(ActiveRecord *)aRecord {\
         NSString *className = @""#relationship"";\
-        [self removeRecord:aRecord through:className];\
+        objc_msgSend(self, sel_getUid("removeRecord:through:"), aRecord, className);\
     }
 
 

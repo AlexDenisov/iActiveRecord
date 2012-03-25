@@ -73,6 +73,15 @@
 - (void)addRecord:(ActiveRecord *)aRecord;
 - (void)removeRecord:(ActiveRecord *)aRecord;
 
+#pragma mark HasManyThrough
+
+- (ARLazyFetcher *)hasMany:(NSString *)aClassName 
+                   through:(NSString *)aRelationsipClassName;
+- (void)addRecord:(ActiveRecord *)aRecord 
+          ofClass:(NSString *)aClassname 
+          through:(NSString *)aRelationshipClassName;
+- (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName;
+
 @end
 
 @implementation ActiveRecord
