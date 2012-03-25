@@ -67,6 +67,12 @@
 - (id)belongsTo:(NSString *)aClassName;
 - (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation;
 
+#pragma mark HasMany
+
+- (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName;
+- (void)addRecord:(ActiveRecord *)aRecord;
+- (void)removeRecord:(ActiveRecord *)aRecord;
+
 @end
 
 @implementation ActiveRecord

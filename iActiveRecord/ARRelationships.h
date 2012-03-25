@@ -31,13 +31,13 @@
 #define has_many_imp(relative_class, accessor) \
     - (ARLazyFetcher *)accessor{\
         NSString *class_name = @""#relative_class"";\
-        return [self hasManyRecords:class_name];\
+        return [self performSelector:@selector(hasManyRecords:) withObject:class_name];\
     }\
     - (void)add##relative_class:(ActiveRecord *)aRecord {\
-        [self addRecord:aRecord];\
+        [self performSelector:@selector(addRecord:) withObject:aRecord];\
     }\
     - (void)remove##relative_class:(ActiveRecord *)aRecord {\
-        [self removeRecord:aRecord];\
+        [self performSelector:@selector(removeRecord:) withObject:aRecord];\
     }
 
 #define has_many_through_dec(relative_class, relationship, accessor) \

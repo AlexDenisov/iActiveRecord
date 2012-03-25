@@ -35,9 +35,7 @@
 //  don't call this, use accessors
 
 
-- (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName;
-- (void)addRecord:(ActiveRecord *)aRecord;
-- (void)removeRecord:(ActiveRecord *)aRecord;
+
 
 - (ARLazyFetcher *)hasMany:(NSString *)aClassName 
              through:(NSString *)aRelationsipClassName;
