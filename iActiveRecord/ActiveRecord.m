@@ -527,6 +527,19 @@ validation_helper
     [relationshipRecord release];
 }
 
+- (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName
+{
+    NSString *selfId = [NSString stringWithFormat:@"%@Id", [[self className] lowercaseFirst]];
+    NSString *relId = [NSString stringWithFormat:@"%@Id", [[aRecord className] lowercaseFirst]];
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
+    [fetcher whereField:selfId equalToValue:self.id];
+    [fetcher whereField:relId equalToValue:aRecord.id];
+    ActiveRecord *record = [[fetcher fetchRecords] first];
+    [record dropRecord];
+}
+
+#pragma mark - Description
+
 - (NSString *)description {
     NSMutableString *descr = [NSMutableString stringWithFormat:@"%@\n", [[self class] description]];
     NSArray *properties = [[self class] activeRecordProperties];

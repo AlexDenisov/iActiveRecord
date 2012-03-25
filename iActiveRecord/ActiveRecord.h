@@ -45,6 +45,8 @@
 - (void)addRecord:(ActiveRecord *)aRecord 
           ofClass:(NSString *)aClassname 
           through:(NSString *)aRelationshipClassName;
+- (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName;
+
 
 + (void)validateField:(NSString *)aField 
              asUnique:(BOOL)aUnique;

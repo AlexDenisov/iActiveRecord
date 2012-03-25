@@ -154,6 +154,20 @@ describe(@"HasManyThrough", ^{
         NSArray *users = [[worldConquest users] fetchRecords];
         expect(users.count).toEqual(2);
     });
+    it(@"when I remove user, group should not contain this user", ^{
+        User *alex = [User newRecord];
+        alex.name = @"Alex";
+        [alex save];
+        Project *makeTea = [Project newRecord];
+        makeTea.name = @"Make tea";
+        [makeTea save];
+        
+        [makeTea addUser:alex];
+        NSInteger beforeCount = [[alex projects] count];
+        [alex removeProject:makeTea];
+        NSInteger afterCount = [[alex projects] count];
+        expect(beforeCount).Not.toEqual(afterCount);
+    });
 });
 
 SPEC_END

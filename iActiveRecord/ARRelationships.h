@@ -42,7 +42,8 @@
 
 #define has_many_through_dec(relative_class, relationship, accessor) \
     - (ARLazyFetcher *)accessor;\
-    - (void)add##relative_class:(ActiveRecord *)aRecord;
+    - (void)add##relative_class:(ActiveRecord *)aRecord;\
+    - (void)remove##relative_class:(ActiveRecord *)aRecord;
 
 #define has_many_through_imp(relative_class, relationship, accessor) \
     - (ARLazyFetcher *)accessor\
@@ -56,5 +57,9 @@
         NSString *relativeClassName = @""#relationship"";\
         [self addRecord:aRecord ofClass:className through:relativeClassName];\
     }\
+    - (void)remove##relative_class:(ActiveRecord *)aRecord {\
+        NSString *className = @""#relationship"";\
+        [self removeRecord:aRecord through:className];\
+    }
 
 

@@ -93,9 +93,8 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (void)executeSqlQuery:(const char *)anSqlQuery {
-    if(SQLITE_OK == sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
-//        NSLog(@"Query '%s' executed", anSqlQuery);
-    }else{
+    if(SQLITE_OK != sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
+        NSLog(@"%@", anSqlQuery);
         NSLog(@"Couldn't execute query %s : %s", anSqlQuery, sqlite3_errmsg(database));
     }
 }
@@ -149,7 +148,8 @@ static ARDatabaseManager *instance = nil;
         sqlite3_free_table(results);
     }else
     {
-      NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
+        NSLog(@"%@", aSqlRequest);
+        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
     }
     return resultArray;
 }
@@ -159,46 +159,12 @@ static ARDatabaseManager *instance = nil;
                              @"SELECT count(id) FROM %@", 
                              [self tableName:aName]];
     return [self functionResult:aSqlRequest];
-//    const char *pszSql = [aSqlRequest UTF8String];
-//    if(SQLITE_OK == sqlite3_get_table(database,
-//                                      pszSql,
-//                                      &results,
-//                                      NULL,
-//                                      NULL,
-//                                      NULL))
-//    {
-//        NSString *result = [NSString stringWithUTF8String:results[1]];
-//        sqlite3_free_table(results);
-//        count = [result integerValue];
-//    }else
-//    {
-//        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
-//    }
-//    return count;
 }
 
 - (NSNumber *)getLastId:(NSString *)aRecordName {
-//    char **results;
-    
     NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from %@", aRecordName];
     NSInteger res = [self functionResult:aSqlRequest];
     return [NSNumber numberWithInt:res];
-//    const char *pszSql = [aSqlRequest UTF8String];
-//    if(SQLITE_OK == sqlite3_get_table(database,
-//                                      pszSql,
-//                                      &results,
-//                                      NULL,
-//                                      NULL,
-//                                      NULL))
-//    {
-//        NSInteger intId = [[NSString stringWithUTF8String:results[1]] integerValue];
-//        lastId = [NSNumber numberWithInt:intId];
-//        sqlite3_free_table(results);
-//    }else
-//    {
-//        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
-//    }
-//    return lastId;
 }
 
 - (NSInteger)functionResult:(NSString *)anSql {
@@ -216,6 +182,7 @@ static ARDatabaseManager *instance = nil;
         sqlite3_free_table(results);
     }else
     {
+        NSLog(@"%@", anSql);
         NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
     }
     return resId;
