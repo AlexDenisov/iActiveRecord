@@ -97,8 +97,6 @@ static ARDatabaseManager *instance = nil;
     if(SQLITE_OK != sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
         
         NSLog(@"Couldn't execute query %s : %s", anSqlQuery, sqlite3_errmsg(database));
-    }else{
-        NSLog(@"Query executed: %s", anSqlQuery);
     }
 }
  
@@ -108,7 +106,6 @@ static ARDatabaseManager *instance = nil;
 }
 
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest{
-    NSLog(@"Fetch %@ with : %@", aName, aSqlRequest);
     NSMutableArray *resultArray = nil;
     NSString *propertyName;
     id aValue;
