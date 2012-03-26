@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
+#import "FooSpec.h"
 #import "DatabaseManagerSpecs.h"
 #import "ValidationSpecs.h"
 #import "RelationshipsSpecs.h"
@@ -13,3 +14,4 @@
 #import "CountSpecs.h"
 #import "ARLazyFetcherSpecs.h"
 #import "ARFactorySpecs.h"
+#import "DependencySpecs.h"

@@ -9,6 +9,7 @@
 #import "Cedar-iOS/SpecHelper.h"
 #define EXP_SHORTHAND
 #import "Expecta.h"
+#import "ARDatabaseManager.h"
 
 SPEC_BEGIN(FooSpec)
 

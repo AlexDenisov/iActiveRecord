@@ -1,3 +1,8 @@
-Add dependency on relationships: destroy, nullify
-Add before filters: save, create, update, delete
+Improvements:
+    Add dependency on relationships: destroy, nullify
+    New record with parameters
+    Add before filters: save, create, update, delete
+
+Fixes:
+    Release records from UnitTests
 
