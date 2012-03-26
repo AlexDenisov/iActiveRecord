@@ -21,6 +21,11 @@
 #import "ARRepresentationProtocol.h"
 #import <objc/message.h>
 
+typedef enum {
+    ARStorageCache,
+    ARStorageDocuments
+} ARStorageDirectory;
+
 @interface ActiveRecord : NSObject
 {
 @private
@@ -47,5 +52,8 @@
 
 + (void)dropAllRecords;
 
+//  storage
+
++ (void)registerDatabaseName:(NSString *)aDbName useDirectory:(ARStorageDirectory)aDirectory;
 
 @end

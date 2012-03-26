@@ -616,4 +616,14 @@ validation_helper
     return tableFields;
 }
 
+#pragma mark - Storage
+
++ (void)registerDatabaseName:(NSString *)aDbName useDirectory:(ARStorageDirectory)aDirectory {
+    BOOL isCache = YES;
+    if(aDirectory == ARStorageDocuments){
+        isCache = NO;
+    }
+    [ARDatabaseManager registerDatabase:aDbName  cachesDirectory:isCache];
+}
+
 @end

@@ -11,15 +11,19 @@
 #import "class_getSubclasses.h"
 #import "NSString+quotedString.h"
 
-#if UNIT_TEST
+
 #define DEFAULT_DBNAME @"database"
-#else
-#define DEFAULT_DBNAME @"database-test"
-#endif
 
 @implementation ARDatabaseManager
 
 static ARDatabaseManager *instance = nil;
+static BOOL useCacheDirectory = YES;
+static NSString *databaseName = DEFAULT_DBNAME;
+
++ (void)registerDatabase:(NSString *)aDatabaseName cachesDirectory:(BOOL)isCache {
+    databaseName = [aDatabaseName copy];
+    useCacheDirectory = isCache;
+}
 
 + (id)sharedInstance {
     @synchronized(self){
@@ -33,8 +37,13 @@ static ARDatabaseManager *instance = nil;
 - (id)init {
     self = [super init];
     if(nil != self){
-        dbName = [[NSString alloc] initWithFormat:@"%@.sqlite", DEFAULT_DBNAME];
-        dbPath = [[NSString alloc] initWithFormat:@"%@/%@", [self documentsDirectory], dbName];
+#ifdef UNIT_TEST
+        dbName = [[NSString alloc] initWithFormat:@"%@-test.sqlite", databaseName];
+#else
+        dbName = [[NSString alloc] initWithFormat:@"%@.sqlite", databaseName];
+#endif
+        NSString *storageDirectory = useCacheDirectory ? [self cachesDirectory] : [self documentsDirectory];
+        dbPath = [[NSString alloc] initWithFormat:@"%@/%@", storageDirectory, dbName];
         NSLog(@"%@", dbPath);
         [self createDatabase];
     }
@@ -102,6 +111,11 @@ static ARDatabaseManager *instance = nil;
  
 - (NSString *)documentsDirectory {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+}
+
+- (NSString *)cachesDirectory {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     return ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
 }
 

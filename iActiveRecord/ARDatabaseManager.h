@@ -25,6 +25,7 @@
 
 - (NSString *)tableName:(NSString *)modelName;
 - (NSString *)documentsDirectory;
+- (NSString *)cachesDirectory;
 
 + (id)sharedInstance;
 
@@ -34,6 +35,8 @@
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest;
 - (NSInteger)countOfRecordsWithName:(NSString *)aName;
 - (NSInteger)functionResult:(NSString *)anSql;
+
++ (void)registerDatabase:(NSString *)aDatabaseName cachesDirectory:(BOOL)isCache;
 
 @end
  
