@@ -741,8 +741,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 #pragma mark - Drop records
 
+#warning REFACTOR!!!
+
 + (void)dropAllRecords {
-    [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDeleteAll]];
+    [[self allRecords] makeObjectsPerformSelector:@selector(dropRecord)];
+    //  [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDeleteAll]];
 }
  
 - (void)dropRecord {
