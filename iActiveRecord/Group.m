@@ -12,7 +12,7 @@
 
 @synthesize name;
 
-has_many_imp(User, users)
+has_many_imp(User, users, ARDependencyDestroy)
 
 validation_do(
     validate_uniqueness_of(name)

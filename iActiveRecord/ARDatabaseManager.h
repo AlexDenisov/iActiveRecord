@@ -38,7 +38,7 @@
 
 + (void)registerDatabase:(NSString *)aDatabaseName cachesDirectory:(BOOL)isCache;
 
-- (void)skipBackupAttributeToFile: (NSURL*) url;
+- (void)skipBackupAttributeToFile:(NSURL*) url;
 
 @end
  

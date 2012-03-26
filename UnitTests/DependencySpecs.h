@@ -48,6 +48,25 @@ describe(@"Destroy", ^{
         
         expect([User count]).toEqual(0);
     });
+    it(@"BelongsTo", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+        [john save];
+        User *peter = [User newRecord];
+        peter.name = @"Peter";
+        [peter save];
+        
+        Group *students = [Group newRecord];
+        students.name = @"Students";
+        [students save];
+        
+        [students addUser:john];
+        [students addUser:peter];
+        
+        [john dropRecord];
+        expect([Group count]).toEqual(0);
+        expect([User count]).toEqual(0);
+    });
 });
 
 SPEC_END

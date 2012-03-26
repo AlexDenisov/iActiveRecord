@@ -17,6 +17,6 @@
 
 @property (nonatomic, copy) NSString *name;
 
-has_many_dec(User, users)
+has_many_dec(User, users, ARDependencyDestroy)
 
 @end
