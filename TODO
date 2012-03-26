@@ -1,0 +1,3 @@
+Add dependency on relationships: destroy, nullify
+Add before filters: save, create, update, delete
+
