@@ -62,10 +62,24 @@ describe(@"Destroy", ^{
         
         [students addUser:john];
         [students addUser:peter];
-        
         [john dropRecord];
         expect([Group count]).toEqual(0);
         expect([User count]).toEqual(0);
+    });
+    it(@"HasManyThrough", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+        [john save];
+        
+        Project *makeTea = [Project newRecord];
+        makeTea.name = @"Make tea";
+        [makeTea save];
+        
+        [makeTea addUser:john];
+        [john dropRecord];
+        
+        expect([User count]).toEqual(0);
+        expect([Project count]).toEqual(0);
     });
 });
 

@@ -21,6 +21,7 @@
 
 #import "ARRelationBelongsTo.h"
 #import "ARRelationHasMany.h"
+#import "ARRelationHasManyThrough.h"
 
 
 @interface ActiveRecord (Private)
@@ -99,6 +100,7 @@
 + (void)registerRelationships;
 + (void)registerBelongs:(NSString *)aSelectorName;
 + (void)registerHasMany:(NSString *)aSelectorName;
++ (void)registerHasManyThrough:(NSString *)aSelectorName;
 
 #pragma mark - private before filter
 
@@ -128,9 +130,11 @@ validation_helper
 
 static NSMutableSet *belongsToRelations = nil;
 static NSMutableSet *hasManyRelations = nil;
+static NSMutableSet *hasManyThroughRelations = nil;
 
 static NSString *registerBelongs = @"_ar_registerBelongsTo";
 static NSString *registerHasMany = @"_ar_registerHasMany";
+static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)registerRelationships {
     uint count = 0;
@@ -139,6 +143,10 @@ static NSString *registerHasMany = @"_ar_registerHasMany";
         NSString *selectorName = NSStringFromSelector(method_getName(methods[i]));
         if([selectorName hasPrefix:registerBelongs]){
             [self registerBelongs:selectorName];
+            continue;
+        }
+        if([selectorName hasPrefix:registerHasManyThrough]){
+            [self registerHasManyThrough:selectorName];
             continue;
         }
         if([selectorName hasPrefix:registerHasMany]){
@@ -179,7 +187,28 @@ static NSString *registerHasMany = @"_ar_registerHasMany";
     [relation release];
 }
 
++ (void)registerHasManyThrough:(NSString *)aSelectorName {
+    if(hasManyThroughRelations == nil){
+        hasManyThroughRelations = [NSMutableSet new];
+    }
+    SEL selector = NSSelectorFromString(aSelectorName);
+    NSString *records = [aSelectorName stringByReplacingOccurrencesOfString:registerHasManyThrough
+                                                                 withString:@""];
+    ARDependency dependency = (ARDependency)[self performSelector:selector];
+    NSArray *components = [records componentsSeparatedByString:@"_ar_"];
+    NSString *relationName = [components objectAtIndex:0];
+    NSString *throughRelationname = [components objectAtIndex:1];
+    ARRelationHasManyThrough *relation = [[ARRelationHasManyThrough alloc] initWithRecord:[self className]
+                                                                            throughRecord:throughRelationname
+                                                                                 relation:relationName
+                                                                                dependent:dependency];
+    [hasManyThroughRelations addObject:relation];
+    [relation release];
+}
+
 #pragma mark - private before filter
+
+#warning REFACTOR!!!
 
 - (void)privateAfterDestroy {
     for(ARRelationBelongsTo *relation in belongsToRelations){
@@ -202,6 +231,21 @@ static NSString *registerHasMany = @"_ar_registerHasMany";
                 case ARDependencyDestroy:
                 {
                     NSArray *records = [[self hasManyRecords:relation.relation] fetchRecords];
+                    [records makeObjectsPerformSelector:@selector(dropRecord)];
+                }break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
+    for(ARRelationHasManyThrough *relation in hasManyThroughRelations){
+        if([relation.record isEqualToString:[self className]]){
+            switch (relation.dependency) {
+                case ARDependencyDestroy:
+                {
+                    NSArray *records = [[self hasMany:relation.relation
+                                             through:relation.throughRecord] fetchRecords];
                     [records makeObjectsPerformSelector:@selector(dropRecord)];
                 }break;
                     

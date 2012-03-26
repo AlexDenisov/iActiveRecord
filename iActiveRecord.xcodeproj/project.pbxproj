@@ -111,6 +111,10 @@
 		CABB90A31520E63200E8D082 /* ARRelationHasMany.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90A11520E63200E8D082 /* ARRelationHasMany.m */; };
 		CABB90A41520E63200E8D082 /* ARRelationHasMany.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90A11520E63200E8D082 /* ARRelationHasMany.m */; };
 		CABB90A51520E63200E8D082 /* ARRelationHasMany.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90A11520E63200E8D082 /* ARRelationHasMany.m */; };
+		CABB90B21520F60700E8D082 /* ARRelationHasManyThrough.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90B01520F60700E8D082 /* ARRelationHasManyThrough.h */; };
+		CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
+		CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
+		CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
 		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
@@ -230,6 +234,8 @@
 		CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationBelongsTo.m; sourceTree = "<group>"; };
 		CABB90A01520E63200E8D082 /* ARRelationHasMany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationHasMany.h; sourceTree = "<group>"; };
 		CABB90A11520E63200E8D082 /* ARRelationHasMany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationHasMany.m; sourceTree = "<group>"; };
+		CABB90B01520F60700E8D082 /* ARRelationHasManyThrough.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationHasManyThrough.h; sourceTree = "<group>"; };
+		CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationHasManyThrough.m; sourceTree = "<group>"; };
 		CAF24809151F298B00120198 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
 		CAF2480A151F298B00120198 /* ARError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARError.m; sourceTree = "<group>"; };
 		CAF24816151F383000120198 /* NSData+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -593,6 +599,8 @@
 				CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */,
 				CABB90A01520E63200E8D082 /* ARRelationHasMany.h */,
 				CABB90A11520E63200E8D082 /* ARRelationHasMany.m */,
+				CABB90B01520F60700E8D082 /* ARRelationHasManyThrough.h */,
+				CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */,
 			);
 			name = Relationships;
 			sourceTree = "<group>";
@@ -636,6 +644,7 @@
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
 				CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */,
 				CABB90A21520E63200E8D082 /* ARRelationHasMany.h in Headers */,
+				CABB90B21520F60700E8D082 /* ARRelationHasManyThrough.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,6 +803,7 @@
 				CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
 				CABB909E1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
 				CABB90A41520E63200E8D082 /* ARRelationHasMany.m in Sources */,
+				CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,6 +834,7 @@
 				CA0365C1151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
 				CABB909D1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
 				CABB90A31520E63200E8D082 /* ARRelationHasMany.m in Sources */,
+				CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,6 +858,7 @@
 				CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
 				CABB909F1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
 				CABB90A51520E63200E8D082 /* ARRelationHasMany.m in Sources */,
+				CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

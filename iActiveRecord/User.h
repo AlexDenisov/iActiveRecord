@@ -23,6 +23,6 @@
 @property (nonatomic, retain) NSNumber *groupId;
 
 belongs_to_dec(Group, group, ARDependencyDestroy)
-has_many_through_dec(Project, UserProjectRelationship, projects)
+has_many_through_dec(Project, UserProjectRelationship, projects, ARDependencyDestroy)
 
 @end

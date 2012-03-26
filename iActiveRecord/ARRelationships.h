@@ -48,12 +48,15 @@
         objc_msgSend(self, sel_getUid("removeRecord:"), aRecord);\
     }
 
-#define has_many_through_dec(relative_class, relationship, accessor) \
+#define has_many_through_dec(relative_class, relationship, accessor, dependency) \
     - (ARLazyFetcher *)accessor;\
     - (void)add##relative_class:(ActiveRecord *)aRecord;\
     - (void)remove##relative_class:(ActiveRecord *)aRecord;
 
-#define has_many_through_imp(relative_class, relationship, accessor) \
+#define has_many_through_imp(relative_class, relationship, accessor, dependency) \
+    + (ARDependency)_ar_registerHasManyThrough##relative_class##_ar_##relationship{\
+        return dependency;\
+    }\
     - (ARLazyFetcher *)accessor\
     {\
         NSString *className = @""#relative_class"";\

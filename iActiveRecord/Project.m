@@ -12,7 +12,7 @@
 
 @synthesize name;
 
-has_many_through_imp(User, UserProjectRelationship, users)
+has_many_through_imp(User, UserProjectRelationship, users, ARDependencyDestroy)
 
 validation_do(
     validate_presence_of(name)
