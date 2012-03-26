@@ -26,6 +26,11 @@ typedef enum {
     ARStorageDocuments
 } ARStorageDirectory;
 
+typedef enum {
+    ARDependencyDestroy,
+    ARDependencyNullify
+}ARDependency;
+
 @interface ActiveRecord : NSObject
 {
 @private
