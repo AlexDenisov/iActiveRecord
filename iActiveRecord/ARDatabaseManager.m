@@ -10,7 +10,7 @@
 #import "ActiveRecord.h"
 #import "class_getSubclasses.h"
 #import "NSString+quotedString.h"
-
+#include <sys/xattr.h>
 
 #define DEFAULT_DBNAME @"database"
 
@@ -60,6 +60,9 @@ static NSString *databaseName = DEFAULT_DBNAME;
 - (void)createDatabase {
     if(![[NSFileManager defaultManager] fileExistsAtPath:dbPath]){
         [[NSFileManager defaultManager] createFileAtPath:dbPath contents:nil attributes:nil];
+        if(!useCacheDirectory){
+            [self skipBackupAttributeToFile:[NSURL fileURLWithPath:dbPath]];
+        }
         [self openConnection];
         [self appendMigrations];
         return;
@@ -202,6 +205,11 @@ static NSString *databaseName = DEFAULT_DBNAME;
         NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
     }
     return resId;
+}
+
+- (void)skipBackupAttributeToFile:(NSURL *)url {
+    u_int8_t b = 1;
+    setxattr([[url path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
 }
 
 @end
