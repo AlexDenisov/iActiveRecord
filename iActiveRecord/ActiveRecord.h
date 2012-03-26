@@ -52,8 +52,6 @@ typedef enum {
 
 + (void)dropAllRecords;
 
-//  storage
-
 + (void)registerDatabaseName:(NSString *)aDbName useDirectory:(ARStorageDirectory)aDirectory;
 
 @end

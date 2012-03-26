@@ -66,14 +66,14 @@ typedef enum {
                      ofRecord:(Class)aRecord 
                         notIn:(NSArray *)aValues;
 
-//  select
-
 - (ARLazyFetcher *)only:(NSString *)aFirstParam, ...;
 - (ARLazyFetcher *)except:(NSString *)aFirstParam, ...;
 
 //  by default INNER JOIN on t1.id = t2.t1_id
 - (ARLazyFetcher *)join:(Class)aJoinRecord;
 
+//  supports ON with one field only
+//  ON t1.col = t2.col
 - (ARLazyFetcher *)join:(Class)aJoinRecord 
                 useJoin:(ARJoinType)aJoinType 
                 onField:(NSString *)aFirstField 
