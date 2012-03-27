@@ -120,4 +120,22 @@ describe(@"Destroy/Nulify", ^{
     });
 });
 
+
+describe(@"Nulify", ^{
+    it(@"when i drop project it should not drop group", ^{
+        Group *students = [Group newRecord];
+        students.name = @"Students";
+        [students save];
+
+        Project *project = [Project newRecord];
+        project.name = @"Make tea";
+        [project save];
+        [project addGroup:students];
+        
+        [project dropRecord];
+        expect([Group count]).toEqual(1);
+    });
+});
+
+
 SPEC_END

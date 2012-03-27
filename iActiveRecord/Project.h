@@ -19,6 +19,7 @@
 
 has_many_dec(Issue, issues, ARDependencyDestroy)
 has_many_through_dec(User, UserProjectRelationship, users, ARDependencyDestroy)
+has_many_through_dec(Group, ProjectGroupRelationsShip, groups, ARDependencyNullify)
 
 
 @end

@@ -14,7 +14,7 @@
 
 has_many_through_imp(User, UserProjectRelationship, users, ARDependencyDestroy)
 has_many_imp(Issue, issues, ARDependencyDestroy)
-
+has_many_through_imp(Group, ProjectGroupRelationsShip, groups, ARDependencyNullify)
 
 validation_do(
     validate_presence_of(name)

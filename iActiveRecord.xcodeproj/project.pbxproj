@@ -58,6 +58,10 @@
 		CA0365C1151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
+		CA0DC26615223AC500C8E75D /* ProjectGroupRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = CA0DC26415223AC500C8E75D /* ProjectGroupRelationship.h */; };
+		CA0DC26715223AC500C8E75D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */; };
+		CA0DC26815223AC500C8E75D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */; };
+		CA0DC26915223AC500C8E75D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */; };
 		CA2D85ED1521A4CE004AD192 /* Issue.h in Headers */ = {isa = PBXBuildFile; fileRef = CA2D85EB1521A4CE004AD192 /* Issue.h */; };
 		CA2D85EE1521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
 		CA2D85EF1521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
@@ -203,6 +207,8 @@
 		25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMigrationsHelper.h; sourceTree = "<group>"; };
 		CA0365BE151FCB5F004167F1 /* NSString+quotedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+quotedString.h"; sourceTree = "<group>"; };
 		CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+quotedString.m"; sourceTree = "<group>"; };
+		CA0DC26415223AC500C8E75D /* ProjectGroupRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectGroupRelationship.h; sourceTree = "<group>"; };
+		CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectGroupRelationship.m; sourceTree = "<group>"; };
 		CA2D85EB1521A4CE004AD192 /* Issue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Issue.h; sourceTree = "<group>"; };
 		CA2D85EC1521A4CE004AD192 /* Issue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Issue.m; sourceTree = "<group>"; };
 		CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropRecordSpecs.h; sourceTree = "<group>"; };
@@ -472,6 +478,8 @@
 				CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */,
 				CA2D85EB1521A4CE004AD192 /* Issue.h */,
 				CA2D85EC1521A4CE004AD192 /* Issue.m */,
+				CA0DC26415223AC500C8E75D /* ProjectGroupRelationship.h */,
+				CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */,
 			);
 			name = "Test Entities";
 			sourceTree = "<group>";
@@ -654,6 +662,7 @@
 				CABB90A21520E63200E8D082 /* ARRelationHasMany.h in Headers */,
 				CABB90B21520F60700E8D082 /* ARRelationHasManyThrough.h in Headers */,
 				CA2D85ED1521A4CE004AD192 /* Issue.h in Headers */,
+				CA0DC26615223AC500C8E75D /* ProjectGroupRelationship.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +823,7 @@
 				CABB90A41520E63200E8D082 /* ARRelationHasMany.m in Sources */,
 				CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
 				CA2D85EF1521A4CE004AD192 /* Issue.m in Sources */,
+				CA0DC26815223AC500C8E75D /* ProjectGroupRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,6 +856,7 @@
 				CABB90A31520E63200E8D082 /* ARRelationHasMany.m in Sources */,
 				CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
 				CA2D85EE1521A4CE004AD192 /* Issue.m in Sources */,
+				CA0DC26715223AC500C8E75D /* ProjectGroupRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -871,6 +882,7 @@
 				CABB90A51520E63200E8D082 /* ARRelationHasMany.m in Sources */,
 				CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
 				CA2D85F01521A4CE004AD192 /* Issue.m in Sources */,
+				CA0DC26915223AC500C8E75D /* ProjectGroupRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
