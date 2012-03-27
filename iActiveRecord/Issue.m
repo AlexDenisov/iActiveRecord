@@ -10,4 +10,9 @@
 
 @implementation Issue
 
+@synthesize projectId;
+@synthesize title;
+
+belonsg_to_imp(Project, project, ARDependencyNullify)
+
 @end

@@ -10,6 +10,9 @@
 
 @interface Issue : ActiveRecord
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) NSNumber *projectId;
+@property (nonatomic, copy) NSString *title;
+
+belongs_to_dec(Project, project, ARDependencyNullify)
 
 @end

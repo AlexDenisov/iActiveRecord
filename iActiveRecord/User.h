@@ -7,8 +7,6 @@
 //
 
 #import "ActiveRecord.h"
-#import "Group.h"
-#import "Project.h"
 
 /*
     User belongs to group

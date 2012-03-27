@@ -14,6 +14,7 @@
 #import "User.h"
 #import "Project.h"
 #import "Group.h"
+#import "Issue.h"
 
 SPEC_BEGIN(DependencySpecs)
 
@@ -80,6 +81,42 @@ describe(@"Destroy", ^{
         
         expect([User count]).toEqual(0);
         expect([Project count]).toEqual(0);
+    });
+});
+
+describe(@"Destroy/Nulify", ^{
+    describe(@"HasMany - destroy, BelongsTo - nullify", ^{
+        it(@"when i drop project it should drop all issues", ^{
+            Issue *issue = [Issue newRecord];
+            issue.title = @"new issue";
+            [issue save];
+            Project *project = [Project newRecord];
+            project.name = @"Make tea";
+            [project save];
+            [project addIssue:issue];
+            Issue *emptyIssue = [Issue newRecord];
+            emptyIssue.title = @"empty";
+            [emptyIssue save];
+            [project dropRecord];
+            expect([Issue count]).toEqual(1);
+        });
+        it(@"when i drop issue it should not drop project issues", ^{
+            Issue *issue = [Issue newRecord];
+            issue.title = @"new issue";
+            [issue save];
+            Project *project = [Project newRecord];
+            project.name = @"Make tea";
+            [project save];
+            [project addIssue:issue];
+            Issue *emptyIssue = [Issue newRecord];
+            emptyIssue.title = @"empty";
+            [emptyIssue save];
+            
+            NSInteger count = [Project count];
+            
+            [issue dropRecord];
+            expect([Project count]).toEqual(count);
+        });
     });
 });
 
