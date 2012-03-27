@@ -18,11 +18,12 @@
 #import "NSObject+properties.h"
 #import "NSArray+objectsAccessors.h"
 #import "NSString+quotedString.h"
+#import "ARDatabaseManager.h"
 
 #import "ARRelationBelongsTo.h"
 #import "ARRelationHasMany.h"
 #import "ARRelationHasManyThrough.h"
-
+#import "ARObjectProperty.h"
 
 @interface ActiveRecord (Private)
 

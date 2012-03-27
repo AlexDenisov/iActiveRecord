@@ -14,8 +14,7 @@
 #import "ARLazyFetcher.h"
 #import "NSArray+objectsAccessors.h"
 #import "ARWhereStatement.h"
-#import "ARObjectProperty.h"
-#import "ARDatabaseManager.h"
+
 #import "ARErrorHelper.h"
 #import "ARError.h"
 #import "ARRepresentationProtocol.h"
