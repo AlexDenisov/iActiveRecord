@@ -13,8 +13,8 @@
 @synthesize ignoredProperty;
 @synthesize groupId;
 
-belonsg_to_imp(Group, group)
-has_many_through_imp(Project, UserProjectRelationship, projects)
+belonsg_to_imp(Group, group, ARDependencyDestroy)
+has_many_through_imp(Project, UserProjectRelationship, projects, ARDependencyDestroy)
 
 ignore_fields_do(
     ignore_field(ignoredProperty)

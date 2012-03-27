@@ -17,6 +17,7 @@
 
 @property (nonatomic, copy) NSString *name;
 
-has_many_dec(User, users)
+has_many_dec(User, users, ARDependencyDestroy)
+has_many_through_dec(Project, ProjectGroupRelationship, groups, ARDependencyNullify)
 
 @end

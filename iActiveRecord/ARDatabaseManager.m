@@ -73,8 +73,7 @@ static NSString *databaseName = DEFAULT_DBNAME;
 - (void)clearDatabase {
     NSArray *entities = class_getSubclasses([ActiveRecord class]);
     for(Class Record in entities){
-        const char *sqlQuery = (const char *)[Record performSelector:@selector(sqlOnDeleteAll)];
-        [self executeSqlQuery:sqlQuery];
+        [Record performSelector:@selector(dropAllRecords)];
     }
 }
 

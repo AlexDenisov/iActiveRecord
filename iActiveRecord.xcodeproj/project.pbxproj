@@ -58,6 +58,14 @@
 		CA0365C1151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
+		CA0DC26615223AC500C8E75D /* ProjectGroupRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = CA0DC26415223AC500C8E75D /* ProjectGroupRelationship.h */; };
+		CA0DC26715223AC500C8E75D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */; };
+		CA0DC26815223AC500C8E75D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */; };
+		CA0DC26915223AC500C8E75D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */; };
+		CA2D85ED1521A4CE004AD192 /* Issue.h in Headers */ = {isa = PBXBuildFile; fileRef = CA2D85EB1521A4CE004AD192 /* Issue.h */; };
+		CA2D85EE1521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
+		CA2D85EF1521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
+		CA2D85F01521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
 		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
 		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
@@ -103,6 +111,18 @@
 		CAAF5E25151CAC58004C4329 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
 		CAAF5E26151CAC58004C4329 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
 		CABB90861520B14900E8D082 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = CABB90851520B14900E8D082 /* TODO */; };
+		CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */; };
+		CABB909D1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
+		CABB909E1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
+		CABB909F1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
+		CABB90A21520E63200E8D082 /* ARRelationHasMany.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90A01520E63200E8D082 /* ARRelationHasMany.h */; };
+		CABB90A31520E63200E8D082 /* ARRelationHasMany.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90A11520E63200E8D082 /* ARRelationHasMany.m */; };
+		CABB90A41520E63200E8D082 /* ARRelationHasMany.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90A11520E63200E8D082 /* ARRelationHasMany.m */; };
+		CABB90A51520E63200E8D082 /* ARRelationHasMany.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90A11520E63200E8D082 /* ARRelationHasMany.m */; };
+		CABB90B21520F60700E8D082 /* ARRelationHasManyThrough.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90B01520F60700E8D082 /* ARRelationHasManyThrough.h */; };
+		CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
+		CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
+		CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
 		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
@@ -187,6 +207,10 @@
 		25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMigrationsHelper.h; sourceTree = "<group>"; };
 		CA0365BE151FCB5F004167F1 /* NSString+quotedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+quotedString.h"; sourceTree = "<group>"; };
 		CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+quotedString.m"; sourceTree = "<group>"; };
+		CA0DC26415223AC500C8E75D /* ProjectGroupRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectGroupRelationship.h; sourceTree = "<group>"; };
+		CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectGroupRelationship.m; sourceTree = "<group>"; };
+		CA2D85EB1521A4CE004AD192 /* Issue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Issue.h; sourceTree = "<group>"; };
+		CA2D85EC1521A4CE004AD192 /* Issue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Issue.m; sourceTree = "<group>"; };
 		CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropRecordSpecs.h; sourceTree = "<group>"; };
 		CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "/opt/cedar/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<absolute>"; };
 		CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountSpecs.h; sourceTree = "<group>"; };
@@ -216,6 +240,14 @@
 		CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARWhereStatement.h; sourceTree = "<group>"; };
 		CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARWhereStatement.m; sourceTree = "<group>"; };
 		CABB90851520B14900E8D082 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		CABB90881520C26800E8D082 /* DependencySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DependencySpecs.h; sourceTree = "<group>"; };
+		CABB90971520DA2000E8D082 /* AREnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AREnum.h; sourceTree = "<group>"; };
+		CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationBelongsTo.h; sourceTree = "<group>"; };
+		CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationBelongsTo.m; sourceTree = "<group>"; };
+		CABB90A01520E63200E8D082 /* ARRelationHasMany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationHasMany.h; sourceTree = "<group>"; };
+		CABB90A11520E63200E8D082 /* ARRelationHasMany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationHasMany.m; sourceTree = "<group>"; };
+		CABB90B01520F60700E8D082 /* ARRelationHasManyThrough.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationHasManyThrough.h; sourceTree = "<group>"; };
+		CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationHasManyThrough.m; sourceTree = "<group>"; };
 		CAF24809151F298B00120198 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
 		CAF2480A151F298B00120198 /* ARError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARError.m; sourceTree = "<group>"; };
 		CAF24816151F383000120198 /* NSData+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -300,6 +332,7 @@
 				CA3D18081519D61F00FA3F3C /* ARLazyFetcherSpecs.h */,
 				CA3D18091519D63300FA3F3C /* FooSpec.h */,
 				CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */,
+				CABB90881520C26800E8D082 /* DependencySpecs.h */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -424,6 +457,7 @@
 		25998EDF14BC19F100CA2490 /* ActiveRecord */ = {
 			isa = PBXGroup;
 			children = (
+				CABB90991520DA4300E8D082 /* Relationships */,
 				CA3D18031519D57A00FA3F3C /* Classes */,
 				CA3D18021519D56A00FA3F3C /* Managers */,
 				CA3D18001519D55300FA3F3C /* Helpers */,
@@ -442,6 +476,10 @@
 				CAAF5DC9151BA3F4004C4329 /* Project.m */,
 				CAAF5DCB151BA40E004C4329 /* UserProjectRelationship.h */,
 				CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */,
+				CA2D85EB1521A4CE004AD192 /* Issue.h */,
+				CA2D85EC1521A4CE004AD192 /* Issue.m */,
+				CA0DC26415223AC500C8E75D /* ProjectGroupRelationship.h */,
+				CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */,
 			);
 			name = "Test Entities";
 			sourceTree = "<group>";
@@ -491,6 +529,7 @@
 				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
 				25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */,
 				CAF2481C151F39C600120198 /* ARRepresentationProtocol.h */,
+				CABB90971520DA2000E8D082 /* AREnum.h */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -569,6 +608,19 @@
 			name = Readme;
 			sourceTree = "<group>";
 		};
+		CABB90991520DA4300E8D082 /* Relationships */ = {
+			isa = PBXGroup;
+			children = (
+				CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */,
+				CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */,
+				CABB90A01520E63200E8D082 /* ARRelationHasMany.h */,
+				CABB90A11520E63200E8D082 /* ARRelationHasMany.m */,
+				CABB90B01520F60700E8D082 /* ARRelationHasManyThrough.h */,
+				CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */,
+			);
+			name = Relationships;
+			sourceTree = "<group>";
+		};
 		CAF2480F151F375000120198 /* NSData */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +658,11 @@
 				CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */,
 				CAF24828151F3AA700120198 /* ARRepresentationProtocol.h in Headers */,
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
+				CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */,
+				CABB90A21520E63200E8D082 /* ARRelationHasMany.h in Headers */,
+				CABB90B21520F60700E8D082 /* ARRelationHasManyThrough.h in Headers */,
+				CA2D85ED1521A4CE004AD192 /* Issue.h in Headers */,
+				CA0DC26615223AC500C8E75D /* ProjectGroupRelationship.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,6 +819,11 @@
 				CAF2480D151F298B00120198 /* ARError.m in Sources */,
 				CAF2481A151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
 				CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
+				CABB909E1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
+				CABB90A41520E63200E8D082 /* ARRelationHasMany.m in Sources */,
+				CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
+				CA2D85EF1521A4CE004AD192 /* Issue.m in Sources */,
+				CA0DC26815223AC500C8E75D /* ProjectGroupRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +852,11 @@
 				CAF2480C151F298B00120198 /* ARError.m in Sources */,
 				CAF24819151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
 				CA0365C1151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
+				CABB909D1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
+				CABB90A31520E63200E8D082 /* ARRelationHasMany.m in Sources */,
+				CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
+				CA2D85EE1521A4CE004AD192 /* Issue.m in Sources */,
+				CA0DC26715223AC500C8E75D /* ProjectGroupRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +878,11 @@
 				CAF2480E151F298B00120198 /* ARError.m in Sources */,
 				CAF2481B151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
 				CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
+				CABB909F1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
+				CABB90A51520E63200E8D082 /* ARRelationHasMany.m in Sources */,
+				CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
+				CA2D85F01521A4CE004AD192 /* Issue.m in Sources */,
+				CA0DC26915223AC500C8E75D /* ProjectGroupRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

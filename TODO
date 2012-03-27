@@ -1,3 +1,10 @@
-Add dependency on relationships: destroy, nullify
-Add before filters: save, create, update, delete
+Improvements:
+    Add dependency on relationships: nullify, restrict
+    New record with parameters
+    Add before filters: save, create, update, delete
+    Map
+    ActiveRecord protocol for ActiveRecord and ARLazyFetcher
+    
+Fixes:
+    Release records from UnitTests
 

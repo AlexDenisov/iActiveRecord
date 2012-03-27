@@ -19,6 +19,10 @@
 #import "NSArray+objectsAccessors.h"
 #import "NSString+quotedString.h"
 
+#import "ARRelationBelongsTo.h"
+#import "ARRelationHasMany.h"
+#import "ARRelationHasManyThrough.h"
+
 
 @interface ActiveRecord (Private)
 
@@ -91,6 +95,17 @@
           through:(NSString *)aRelationshipClassName;
 - (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName;
 
+#pragma mark - register relationships
+
++ (void)registerRelationships;
++ (void)registerBelongs:(NSString *)aSelectorName;
++ (void)registerHasMany:(NSString *)aSelectorName;
++ (void)registerHasManyThrough:(NSString *)aSelectorName;
+
+#pragma mark - private before filter
+
+- (void)privateAfterDestroy;
+
 @end
 
 @implementation ActiveRecord
@@ -107,6 +122,137 @@ validation_helper
     [self initIgnoredFields];
     if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
         [self performSelector:@selector(initValidations)];
+    }
+    [self registerRelationships];
+}
+
+#pragma mark - registering relationships
+
+static NSMutableSet *belongsToRelations = nil;
+static NSMutableSet *hasManyRelations = nil;
+static NSMutableSet *hasManyThroughRelations = nil;
+
+static NSString *registerBelongs = @"_ar_registerBelongsTo";
+static NSString *registerHasMany = @"_ar_registerHasMany";
+static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
+
++ (void)registerRelationships {
+    uint count = 0;
+    Method *methods = class_copyMethodList(object_getClass(self), &count);
+    for(int i=0;i<count;i++){
+        NSString *selectorName = NSStringFromSelector(method_getName(methods[i]));
+        if([selectorName hasPrefix:registerBelongs]){
+            [self registerBelongs:selectorName];
+            continue;
+        }
+        if([selectorName hasPrefix:registerHasManyThrough]){
+            [self registerHasManyThrough:selectorName];
+            continue;
+        }
+        if([selectorName hasPrefix:registerHasMany]){
+            [self registerHasMany:selectorName];
+            continue;
+        }
+    }
+    free(methods);
+}
+
++ (void)registerBelongs:(NSString *)aSelectorName {
+    if(belongsToRelations == nil){
+        belongsToRelations = [NSMutableSet new];
+    }
+    SEL selector = NSSelectorFromString(aSelectorName);
+    NSString *relationName = [aSelectorName stringByReplacingOccurrencesOfString:registerBelongs
+                                                                 withString:@""];
+    ARDependency dependency = (ARDependency)[self performSelector:selector];
+    ARRelationBelongsTo *relation = [[ARRelationBelongsTo alloc] initWithRecord:[self className]
+                                                                       relation:relationName
+                                                                      dependent:dependency];
+    [belongsToRelations addObject:relation];
+    [relation release];
+} 
+
++ (void)registerHasMany:(NSString *)aSelectorName {
+    if(hasManyRelations == nil){
+        hasManyRelations = [NSMutableSet new];
+    }
+    SEL selector = NSSelectorFromString(aSelectorName);
+    NSString *relationName = [aSelectorName stringByReplacingOccurrencesOfString:registerHasMany
+                                                                      withString:@""];
+    ARDependency dependency = (ARDependency)[self performSelector:selector];
+    ARRelationHasMany *relation = [[ARRelationHasMany alloc] initWithRecord:[self className]
+                                                                       relation:relationName
+                                                                      dependent:dependency];
+    [hasManyRelations addObject:relation];
+    [relation release];
+}
+
++ (void)registerHasManyThrough:(NSString *)aSelectorName {
+    if(hasManyThroughRelations == nil){
+        hasManyThroughRelations = [NSMutableSet new];
+    }
+    SEL selector = NSSelectorFromString(aSelectorName);
+    NSString *records = [aSelectorName stringByReplacingOccurrencesOfString:registerHasManyThrough
+                                                                 withString:@""];
+    ARDependency dependency = (ARDependency)[self performSelector:selector];
+    NSArray *components = [records componentsSeparatedByString:@"_ar_"];
+    NSString *relationName = [components objectAtIndex:0];
+    NSString *throughRelationname = [components objectAtIndex:1];
+    ARRelationHasManyThrough *relation = [[ARRelationHasManyThrough alloc] initWithRecord:[self className]
+                                                                            throughRecord:throughRelationname
+                                                                                 relation:relationName
+                                                                                dependent:dependency];
+    [hasManyThroughRelations addObject:relation];
+    [relation release];
+}
+
+#pragma mark - private before filter
+
+#warning REFACTOR!!!
+
+- (void)privateAfterDestroy {
+    for(ARRelationBelongsTo *relation in belongsToRelations){
+        if([relation.record isEqualToString:[self className]]){
+            switch (relation.dependency) {
+                case ARDependencyDestroy:
+                {
+                    ActiveRecord *record = [self belongsTo:relation.relation];
+                    [record dropRecord];
+                }break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
+    for(ARRelationHasMany *relation in hasManyRelations){
+        if([relation.record isEqualToString:[self className]]){
+            switch (relation.dependency) {
+                case ARDependencyDestroy:
+                {
+                    NSArray *records = [[self hasManyRecords:relation.relation] fetchRecords];
+                    [records makeObjectsPerformSelector:@selector(dropRecord)];
+                }break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
+    for(ARRelationHasManyThrough *relation in hasManyThroughRelations){
+        if([relation.record isEqualToString:[self className]]){
+            switch (relation.dependency) {
+                case ARDependencyDestroy:
+                {
+                    NSArray *records = [[self hasMany:relation.relation
+                                             through:relation.throughRecord] fetchRecords];
+                    [records makeObjectsPerformSelector:@selector(dropRecord)];
+                }break;
+                    
+                default:
+                    break;
+            }
+        }
     }
 }
 
@@ -595,12 +741,16 @@ validation_helper
 
 #pragma mark - Drop records
 
+#warning REFACTOR!!!
+
 + (void)dropAllRecords {
-    [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDeleteAll]];
+    [[self allRecords] makeObjectsPerformSelector:@selector(dropRecord)];
+    //  [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDeleteAll]];
 }
  
 - (void)dropRecord {
     [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDelete]];
+    [self privateAfterDestroy];
 }
 
 #pragma mark - TableFields

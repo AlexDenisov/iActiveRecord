@@ -12,7 +12,8 @@
 
 @synthesize name;
 
-has_many_imp(User, users)
+has_many_imp(User, users, ARDependencyDestroy)
+has_many_through_imp(Project, ProjectGroupRelationship, groups, ARDependencyNullify)
 
 validation_do(
     validate_uniqueness_of(name)

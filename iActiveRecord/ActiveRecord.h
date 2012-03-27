@@ -20,11 +20,7 @@
 #import "ARError.h"
 #import "ARRepresentationProtocol.h"
 #import <objc/message.h>
-
-typedef enum {
-    ARStorageCache,
-    ARStorageDocuments
-} ARStorageDirectory;
+#import "AREnum.h"
 
 @interface ActiveRecord : NSObject
 {
