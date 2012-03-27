@@ -7,6 +7,7 @@
 //
 
 #import "ActiveRecord.h"
+#import "User.h"
 
 /*
     Group has many users

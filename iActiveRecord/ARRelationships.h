@@ -14,18 +14,18 @@
     + (ARDependency)_ar_registerBelongsTo##class {\
         return dependency;\
     }\
-    - (ActiveRecord *)getter{\
+    - (class *)getter{\
         NSString *class_name = @""#class"";\
         return [self performSelector:@selector(belongsTo:) withObject:class_name];\
     }\
-    - (void)set##class:(ActiveRecord *)aRecord {\
+    - (void)set##class:(class *)aRecord {\
         NSString *aClassName = @""#class"";\
         objc_msgSend(self, sel_getUid("setRecord:belongsTo:"), aRecord, aClassName);\
     }
 
 #define belongs_to_dec(class, getter, dependency) \
-    - (id)getter;\
-    - (void)set##class:(ActiveRecord *)aRecord;
+    - (class *)getter;\
+    - (void)set##class:(class *)aRecord;
 
 
 #define has_many_dec(relative_class, accessor, dependency)\

@@ -58,6 +58,10 @@
 		CA0365C1151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
+		CA2D85ED1521A4CE004AD192 /* Issue.h in Headers */ = {isa = PBXBuildFile; fileRef = CA2D85EB1521A4CE004AD192 /* Issue.h */; };
+		CA2D85EE1521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
+		CA2D85EF1521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
+		CA2D85F01521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
 		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
 		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
@@ -199,6 +203,8 @@
 		25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMigrationsHelper.h; sourceTree = "<group>"; };
 		CA0365BE151FCB5F004167F1 /* NSString+quotedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+quotedString.h"; sourceTree = "<group>"; };
 		CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+quotedString.m"; sourceTree = "<group>"; };
+		CA2D85EB1521A4CE004AD192 /* Issue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Issue.h; sourceTree = "<group>"; };
+		CA2D85EC1521A4CE004AD192 /* Issue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Issue.m; sourceTree = "<group>"; };
 		CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropRecordSpecs.h; sourceTree = "<group>"; };
 		CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "/opt/cedar/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<absolute>"; };
 		CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountSpecs.h; sourceTree = "<group>"; };
@@ -464,6 +470,8 @@
 				CAAF5DC9151BA3F4004C4329 /* Project.m */,
 				CAAF5DCB151BA40E004C4329 /* UserProjectRelationship.h */,
 				CAAF5DCC151BA40F004C4329 /* UserProjectRelationship.m */,
+				CA2D85EB1521A4CE004AD192 /* Issue.h */,
+				CA2D85EC1521A4CE004AD192 /* Issue.m */,
 			);
 			name = "Test Entities";
 			sourceTree = "<group>";
@@ -645,6 +653,7 @@
 				CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */,
 				CABB90A21520E63200E8D082 /* ARRelationHasMany.h in Headers */,
 				CABB90B21520F60700E8D082 /* ARRelationHasManyThrough.h in Headers */,
+				CA2D85ED1521A4CE004AD192 /* Issue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +813,7 @@
 				CABB909E1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
 				CABB90A41520E63200E8D082 /* ARRelationHasMany.m in Sources */,
 				CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
+				CA2D85EF1521A4CE004AD192 /* Issue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,6 +845,7 @@
 				CABB909D1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
 				CABB90A31520E63200E8D082 /* ARRelationHasMany.m in Sources */,
 				CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
+				CA2D85EE1521A4CE004AD192 /* Issue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +870,7 @@
 				CABB909F1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
 				CABB90A51520E63200E8D082 /* ARRelationHasMany.m in Sources */,
 				CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
+				CA2D85F01521A4CE004AD192 /* Issue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "ActiveRecord.h"
+#import "User.h"
 
 /*
     Project has many users
