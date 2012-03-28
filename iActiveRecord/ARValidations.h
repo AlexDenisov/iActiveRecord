@@ -14,16 +14,7 @@
 #define validate_presence_of(aField)\
     [self performSelector:@selector(validatePresenceOfField:) withObject:@""#aField""];\
 
-#define validation_helper \
-    static NSMutableSet *uniqueFields = nil;\
-    static NSMutableSet *presenceFields = nil;
-
 #define validation_do(validations) \
-    validation_helper\
     + (void)initValidations {\
-        if(nil == uniqueFields)\
-            uniqueFields = [[NSMutableSet alloc] init];\
-        if(nil == presenceFields)\
-            presenceFields = [[NSMutableSet alloc] init];\
     validations\
 }

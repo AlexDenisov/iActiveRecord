@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <objc/message.h>
+
 #import "ARRelationships.h"
 #import "ARValidations.h"
 #import "ARValidatableProtocol.h"
@@ -14,11 +16,9 @@
 #import "ARLazyFetcher.h"
 #import "NSArray+objectsAccessors.h"
 #import "ARWhereStatement.h"
-
 #import "ARErrorHelper.h"
 #import "ARError.h"
 #import "ARRepresentationProtocol.h"
-#import <objc/message.h>
 #import "AREnum.h"
 
 @interface ActiveRecord : NSObject
