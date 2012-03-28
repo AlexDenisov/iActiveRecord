@@ -777,4 +777,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [ARDatabaseManager registerDatabase:aDbName  cachesDirectory:isCache];
 }
 
+#pragma mark - Clear database
+
++ (void)clearDatabase {
+    [[ARDatabaseManager sharedInstance] clearDatabase];
+}
+
 @end

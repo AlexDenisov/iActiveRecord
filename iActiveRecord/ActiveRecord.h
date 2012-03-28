@@ -48,5 +48,6 @@
 + (void)dropAllRecords;
 
 + (void)registerDatabaseName:(NSString *)aDbName useDirectory:(ARStorageDirectory)aDirectory;
++ (void)clearDatabase;
 
 @end
