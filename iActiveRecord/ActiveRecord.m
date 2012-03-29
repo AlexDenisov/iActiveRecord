@@ -269,6 +269,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (id)init {
     self = [super init];
     if(nil != self){
+        self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
+        self.createdAt = [NSDate dateWithTimeIntervalSinceNow:0];
     }
     return self;    
 }
@@ -643,6 +645,7 @@ static NSMutableSet *presenceValidations = nil;
     if(![self isValid]){
         return NO;
     }
+    self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
     const char *sql = [self sqlOnSave];
     if(NULL != sql){
         NSNumber *tmpId = [[ARDatabaseManager sharedInstance] 
@@ -662,10 +665,12 @@ static NSMutableSet *presenceValidations = nil;
     if(![changedFields count]){
         return YES;
     }
+    self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
     const char *sql = [self sqlOnUpdate];
     if(NULL != sql){
         [[ARDatabaseManager sharedInstance] executeSqlQuery:sql];
         isNew = NO;
+        [changedFields removeAllObjects];
         return YES;
     }
     return NO;
