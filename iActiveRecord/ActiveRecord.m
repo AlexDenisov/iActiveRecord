@@ -120,6 +120,8 @@
 migration_helper
 
 @synthesize id;
+@synthesize createdAt;
+@synthesize updatedAt;
 
 #pragma mark - Initialize
 

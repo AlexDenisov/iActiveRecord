@@ -11,7 +11,7 @@
 @implementation NSString (quotedString)
 
 - (NSString *)quotedString {
-    return [NSString stringWithFormat:@"'%@'", self];
+    return [NSString stringWithFormat:@"\"%@\"", self];
 }
 
 @end

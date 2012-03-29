@@ -30,6 +30,8 @@
 }
 
 @property (nonatomic, retain) NSNumber *id;
+@property (nonatomic, retain) NSDate *updatedAt;
+@property (nonatomic, retain) NSDate *createdAt;
 
 - (void)markAsNew;
 
