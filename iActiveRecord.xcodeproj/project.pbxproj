@@ -80,8 +80,8 @@
 		CA62C32B151E0EC400E54276 /* ARDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 25998EE214BC1A1D00CA2490 /* ARDatabaseManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA62C32C151E0EC400E54276 /* ARErrorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A1132614D9BCF7000720E7 /* ARErrorHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C32D151E0EC400E54276 /* class_getSubclasses.h in Headers */ = {isa = PBXBuildFile; fileRef = 2598294114BDDB4200207D16 /* class_getSubclasses.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CA62C32E151E0EC400E54276 /* ARRelationships.h in Headers */ = {isa = PBXBuildFile; fileRef = 25998EE414BC1A1D00CA2490 /* ARRelationships.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA62C32F151E0EC400E54276 /* ARValidations.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A1131F14D9BAAE000720E7 /* ARValidations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA62C32E151E0EC400E54276 /* ARRelationshipsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 25998EE414BC1A1D00CA2490 /* ARRelationshipsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA62C32F151E0EC400E54276 /* ARValidationsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A1131F14D9BAAE000720E7 /* ARValidationsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C330151E0EC400E54276 /* ARValidatableProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C331151E0EC400E54276 /* ARMigrationsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C332151E0F0700E54276 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
@@ -213,7 +213,7 @@
 		25998EE114BC1A1D00CA2490 /* ActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveRecord.m; sourceTree = "<group>"; };
 		25998EE214BC1A1D00CA2490 /* ARDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDatabaseManager.h; sourceTree = "<group>"; };
 		25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDatabaseManager.m; sourceTree = "<group>"; };
-		25998EE414BC1A1D00CA2490 /* ARRelationships.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationships.h; sourceTree = "<group>"; };
+		25998EE414BC1A1D00CA2490 /* ARRelationshipsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationshipsHelper.h; sourceTree = "<group>"; };
 		25998EE514BC1A1D00CA2490 /* NSString+lowercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+lowercaseFirst.h"; sourceTree = "<group>"; };
 		25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+lowercaseFirst.m"; sourceTree = "<group>"; };
 		25998EEA14BC1A8300CA2490 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		25998EFC14BC27FD00CA2490 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		25998F0114BC2D8500CA2490 /* NSObject+properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+properties.h"; sourceTree = "<group>"; };
 		25998F0214BC2D8500CA2490 /* NSObject+properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+properties.m"; sourceTree = "<group>"; };
-		25A1131F14D9BAAE000720E7 /* ARValidations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidations.h; sourceTree = "<group>"; };
+		25A1131F14D9BAAE000720E7 /* ARValidationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidationsHelper.h; sourceTree = "<group>"; };
 		25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatableProtocol.h; sourceTree = "<group>"; };
 		25A1132614D9BCF7000720E7 /* ARErrorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrorHelper.h; sourceTree = "<group>"; };
 		25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMigrationsHelper.h; sourceTree = "<group>"; };
@@ -580,8 +580,8 @@
 			children = (
 				25A1132614D9BCF7000720E7 /* ARErrorHelper.h */,
 				2598294114BDDB4200207D16 /* class_getSubclasses.h */,
-				25998EE414BC1A1D00CA2490 /* ARRelationships.h */,
-				25A1131F14D9BAAE000720E7 /* ARValidations.h */,
+				25998EE414BC1A1D00CA2490 /* ARRelationshipsHelper.h */,
+				25A1131F14D9BAAE000720E7 /* ARValidationsHelper.h */,
 				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
 				25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */,
 				CAF2481C151F39C600120198 /* ARRepresentationProtocol.h */,
@@ -729,9 +729,9 @@
 				CA62C331151E0EC400E54276 /* ARMigrationsHelper.h in Headers */,
 				CAF2480B151F298B00120198 /* ARError.h in Headers */,
 				CAF24828151F3AA700120198 /* ARRepresentationProtocol.h in Headers */,
-				CA62C32E151E0EC400E54276 /* ARRelationships.h in Headers */,
+				CA62C32E151E0EC400E54276 /* ARRelationshipsHelper.h in Headers */,
 				CA62C32C151E0EC400E54276 /* ARErrorHelper.h in Headers */,
-				CA62C32F151E0EC400E54276 /* ARValidations.h in Headers */,
+				CA62C32F151E0EC400E54276 /* ARValidationsHelper.h in Headers */,
 				CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */,
 				CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
