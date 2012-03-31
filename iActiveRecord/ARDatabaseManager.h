@@ -19,9 +19,17 @@
 
 - (void)createDatabase;
 - (void)clearDatabase;
+
+- (void)createTables;
+- (void)createTable:(id)aRecord;
 - (void)appendMigrations;
+
 - (void)openConnection;
 - (void)closeConnection;
+
+- (NSArray *)tables;
+- (NSArray *)describedTables;
+- (NSArray *)columnsForTable:(NSString *)aTableName;
 
 - (NSString *)tableName:(NSString *)modelName;
 - (NSString *)documentsDirectory;

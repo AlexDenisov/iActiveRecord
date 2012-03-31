@@ -64,10 +64,11 @@ static NSString *databaseName = DEFAULT_DBNAME;
             [self skipBackupAttributeToFile:[NSURL fileURLWithPath:dbPath]];
         }
         [self openConnection];
-        [self appendMigrations];
+        [self createTables];
         return;
     }
     [self openConnection];
+    [self appendMigrations];
 }
 
 - (void)clearDatabase {
@@ -77,12 +78,95 @@ static NSString *databaseName = DEFAULT_DBNAME;
     }
 }
 
-- (void)appendMigrations {
+- (void)createTables {
     NSArray *entities = class_getSubclasses([ActiveRecord class]);
     for(Class Record in entities){
-        const char *sqlQuery = (const char *)[Record performSelector:@selector(sqlOnCreate)];
-        [self executeSqlQuery:sqlQuery];
+        [self createTable:Record];
     }
+}
+
+- (void)createTable:(id)aRecord {
+    const char *sqlQuery = (const char *)[aRecord performSelector:@selector(sqlOnCreate)];
+    [self executeSqlQuery:sqlQuery];
+}
+
+- (void)appendMigrations {
+    NSLog(@"append migrations");
+    NSArray *existedTables = [self tables];
+    NSArray *describedTables = [self describedTables];
+    for(NSString *table in describedTables){
+        if(![existedTables containsObject:table]){
+#warning IMPLEMENT_MIGRATIONS
+        }
+    }
+}
+
+- (NSArray *)describedTables {
+    NSArray *entities = class_getSubclasses([ActiveRecord class]);
+    NSMutableArray *tables = [NSMutableArray arrayWithCapacity:entities.count];
+    for(Class record in entities){
+        [tables addObject:NSStringFromClass(record)];
+    }
+    return tables;
+}
+
+- (NSArray *)columnsForTable:(NSString *)aTableName {
+    NSString *sql = [NSString stringWithFormat:@"PRAGMA table_info(%@)", [aTableName quotedString]];
+    NSMutableArray *resultArray = nil;
+    char **results;
+    int nRows;
+    int nColumns;
+    const char *pszSql = [sql UTF8String];
+    if(SQLITE_OK == sqlite3_get_table(database,
+                                      pszSql,
+                                      &results,
+                                      &nRows,
+                                      &nColumns,
+                                      NULL))
+    {
+        resultArray = [NSMutableArray arrayWithCapacity:nRows++];
+        for(int i=0;i<nRows-1;i++){
+            int index = (i + 1)*nColumns + 1;
+            const char *pszValue = results[index];
+            if(pszValue){
+                [resultArray addObject:[NSString stringWithUTF8String:pszValue]];
+            }
+        }
+        sqlite3_free_table(results);
+    }else
+    {
+        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
+    }
+    return resultArray;
+}
+
+//  select tbl_name from sqlite_master where type='table' and name not like 'sqlite_%'
+- (NSArray *)tables {
+    NSMutableArray *resultArray = nil;
+    char **results;
+    int nRows;
+    int nColumns;
+    const char *pszSql = [@"select tbl_name from sqlite_master where type='table' and name not like 'sqlite_%'" UTF8String];
+    if(SQLITE_OK == sqlite3_get_table(database,
+                                      pszSql,
+                                      &results,
+                                      &nRows,
+                                      &nColumns,
+                                      NULL))
+    {
+        resultArray = [NSMutableArray arrayWithCapacity:nRows++];
+        for(int i=0;i<nRows-1;i++){
+            for(int j=0;j<nColumns;j++){
+                int index = (i+1)*nColumns + j;
+                [resultArray addObject:[NSString stringWithUTF8String:results[index]]];
+            }
+        }
+        sqlite3_free_table(results);
+    }else
+    {
+        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
+    }
+    return resultArray;
 }
 
 - (void)openConnection {
