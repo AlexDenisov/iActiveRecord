@@ -25,33 +25,19 @@
 #import "ARRelationHasManyThrough.h"
 #import "ARObjectProperty.h"
 
-#import "ARValidationUniqueness.h"
-#import "ARValidationPresence.h"
+#import "ARValidator.h"
+#import "ARValidatorUniqueness.h"
+#import "ARValidatorPresence.h"
 
 @interface ActiveRecord (Private)
 
 #pragma mark - Validations Declaration
 
-+ (void)validateField:(NSString *)aField 
-             asUnique:(BOOL)aUnique;
-+ (void)validateField:(NSString *)aField 
-           asPresence:(BOOL)aPresence;
-
 + (void)validateUniquenessOfField:(NSString *)aField;
 + (void)validatePresenceOfField:(NSString *)aField;
 
-- (BOOL)validateOnSave;
-- (BOOL)validateOnUpdate;
-- (BOOL)validateUniqueness;
-- (BOOL)validatePresence;
-- (BOOL)isValidUniquenessOfField:(NSString *)aField;
-- (BOOL)isValidPresenceOfField:(NSString *)aField;
-
 - (void)resetErrors;
 - (void)addError:(ARError *)anError;
-
-+ (NSArray *)uniqueFields;
-+ (NSArray *)presenceFields;
 
 #pragma mark - SQLQueries
 
@@ -126,7 +112,7 @@ migration_helper
 #pragma mark - Initialize
 
 + (void)initialize {
-    [super initialize];
+    [super initialize];    
     [self initIgnoredFields];
     if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
         [self performSelector:@selector(initValidations)];
@@ -277,7 +263,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (void)dealloc {
     self.id = nil;
-    [errorMessages release];
+    [errors release];
     [changedFields release];
     [super dealloc];
 }
@@ -316,15 +302,15 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark - 
 
 - (void)resetErrors {
-    [errorMessages release];
-    errorMessages = nil;
+    [errors release];
+    errors = nil;
 }
 
 - (void)addError:(ARError *)anError {
-    if(nil == errorMessages){
-        errorMessages = [NSMutableSet new];
+    if(nil == errors){
+        errors = [NSMutableSet new];
     }
-    [errorMessages addObject:anError];
+    [errors addObject:anError];
 }
 
 - (void)initialize {
@@ -492,148 +478,35 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 #pragma mark - Validations
 
-static NSMutableSet *uniqueValidations = nil;
-static NSMutableSet *presenceValidations = nil;
-
 + (void)validateUniquenessOfField:(NSString *)aField {
-    [self validateField:aField asUnique:YES];
+    [ARValidator registerValidator:[ARValidatorUniqueness class]
+                         forRecord:[self className]
+                           onField:aField];
 }
 
 + (void)validatePresenceOfField:(NSString *)aField {
-    [self validateField:aField asPresence:YES];
-}
-
-//  boolean parameter is deprecated, should be removed
-+ (void)validateField:(NSString *)aField asUnique:(BOOL)aUnique {
-    if(nil == uniqueValidations){
-        uniqueValidations = [NSMutableSet new];
-    }
-    ARValidationUniqueness *validation = [[ARValidationUniqueness alloc] initWithRecord:[self className] 
-                                                                                  field:aField];
-    [uniqueValidations addObject:validation];
-    [validation release];
-}
-
-+ (void)validateField:(NSString *)aField asPresence:(BOOL)aPresence {
-    if(nil == presenceValidations){
-        presenceValidations = [NSMutableSet new];
-    }
-    ARValidationPresence *validation = [[ARValidationPresence alloc] initWithRecord:[self className] 
-                                                                              field:aField];
-    [presenceValidations addObject:validation];
-    [validation release];
-}
-
-+ (NSArray *)uniqueFields {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"self.record = %@", 
-                              [self className]];
-    return [[uniqueValidations allObjects] filteredArrayUsingPredicate:predicate];
-
-}
-
-+ (NSArray *)presenceFields {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"self.record = %@", 
-                              [self className]];
-    return [[presenceValidations allObjects] filteredArrayUsingPredicate:predicate];
+    [ARValidator registerValidator:[ARValidatorPresence class]
+                         forRecord:[self className]
+                           onField:aField];
 }
 
 - (BOOL)isValid {
     BOOL valid = YES;
     [self resetErrors];
     if(isNew){
-        valid = [self validateOnSave];              
+        valid = [ARValidator isValidOnSave:self];             
     }else{
-        valid = [self validateOnUpdate];
+        valid = [ARValidator isValidOnUpdate:self];
     }
     return valid;
 }
 
-- (BOOL)isValidPresenceOfField:(NSString *)aField {
-    NSString *aValue = [self valueForKey:aField];
-    if(aValue == nil || [aValue length] == 0){
-        ARError *error = [[ARError alloc] initWithModel:[self className]
-                                               property:aField
-                                                  error:kARFieldCantBeBlank];
-        [self addError:error];
-        return NO;
-    }
-    return YES;
+- (NSArray *)errors {
+    return [errors allObjects];
 }
 
-- (BOOL)isValidUniquenessOfField:(NSString *)aField {
-    NSString *recordName = [[self class] description];
-    id aValue = [self valueForKey:aField];
-    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(recordName)];
-    [fetcher whereField:aField
-           equalToValue:aValue];
-    NSInteger count = [fetcher count];
-    [fetcher release];
-    if(count){
-        ARError *error = [[ARError alloc] initWithModel:[self className]
-                                               property:aField
-                                                  error:kARFieldAlreadyExists];
-        [self addError:error];
-        return NO;
-    }
-    return YES;
-}
-
-- (NSArray *)errorMessages {
-    return [errorMessages allObjects];
-}
-
-- (BOOL)validateOnSave {
-    if(![self conformsToProtocol:@protocol(ARValidatableProtocol)]){
-        return YES;
-    }
-    return ([self validatePresence] && [self validateUniqueness]);
-}
-
-- (BOOL)validateOnUpdate {
-    if(![self conformsToProtocol:@protocol(ARValidatableProtocol)]){
-        return YES;
-    }
-    BOOL valid = YES;
-    for(NSString *aField in changedFields){
-        ARValidationUniqueness *unique = [[ARValidationUniqueness alloc] initWithRecord:[self className]
-                                                                                  field:aField];
-        ARValidationPresence *presence = [[ARValidationPresence alloc] initWithRecord:[self className]
-                                                                                  field:aField];
-        
-        if([[[self class] presenceFields] containsObject:unique]){
-            if(![self isValidPresenceOfField:aField]){
-                valid = NO;
-            }
-        }
-        if([[[self class] presenceFields] containsObject:presence]){
-            if(![self isValidUniquenessOfField:aField]){
-                valid = NO;
-            }
-        }
-    }
-    return valid;
-}
-
-- (BOOL)validateUniqueness {
-    BOOL valid = YES;
-    for(ARValidationUniqueness *unique in [[self class] uniqueFields]){
-        if(![self isValidUniquenessOfField:unique.field]){
-            valid = NO;
-        }
-    }
-    return valid;
-}
-
-- (BOOL)validatePresence {
-    BOOL valid = YES;
-    for(ARValidationPresence *presence in [[self class] presenceFields]){
-        if(![self isValidPresenceOfField:presence.field]){
-            valid = NO;
-        }
-    }
-    return valid;
+- (NSArray *)changedFields {
+    return [changedFields allObjects];
 }
 
 #pragma mark - Save/Update

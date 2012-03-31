@@ -20,12 +20,13 @@
 #import "ARError.h"
 #import "ARRepresentationProtocol.h"
 #import "AREnum.h"
+#import "ARValidatorProtocol.h"
 
 @interface ActiveRecord : NSObject
 {
 @private
     BOOL isNew;
-    NSMutableSet *errorMessages;
+    NSMutableSet *errors;
     NSMutableSet *changedFields;
 }
 
@@ -36,7 +37,8 @@
 - (void)markAsNew;
 
 - (BOOL)isValid;
-- (NSArray *)errorMessages;
+- (NSArray *)errors;
+- (NSArray *)changedFields;
 
 + (id)newRecord;
 - (BOOL)save;

@@ -61,14 +61,6 @@
 		CA0DC26715223AC500C8E75D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */; };
 		CA0DC26815223AC500C8E75D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */; };
 		CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90971520DA2000E8D082 /* AREnum.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA0DC414152389E800C8E75D /* ARValidationUniqueness.h in Headers */ = {isa = PBXBuildFile; fileRef = CA0DC412152389E800C8E75D /* ARValidationUniqueness.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CA0DC415152389E800C8E75D /* ARValidationUniqueness.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC413152389E800C8E75D /* ARValidationUniqueness.m */; };
-		CA0DC416152389E800C8E75D /* ARValidationUniqueness.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC413152389E800C8E75D /* ARValidationUniqueness.m */; };
-		CA0DC417152389E800C8E75D /* ARValidationUniqueness.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC413152389E800C8E75D /* ARValidationUniqueness.m */; };
-		CA0DC41A15238CC100C8E75D /* ARValidationPresence.h in Headers */ = {isa = PBXBuildFile; fileRef = CA0DC41815238CC100C8E75D /* ARValidationPresence.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CA0DC41B15238CC100C8E75D /* ARValidationPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC41915238CC100C8E75D /* ARValidationPresence.m */; };
-		CA0DC41C15238CC100C8E75D /* ARValidationPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC41915238CC100C8E75D /* ARValidationPresence.m */; };
-		CA0DC41D15238CC100C8E75D /* ARValidationPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0DC41915238CC100C8E75D /* ARValidationPresence.m */; };
 		CA2D85EE1521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
 		CA2D85EF1521A4CE004AD192 /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2D85EC1521A4CE004AD192 /* Issue.m */; };
 		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
@@ -105,10 +97,27 @@
 		CA62C33D151E0F0700E54276 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
 		CA62C392151E710800E54276 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA62C391151E710700E54276 /* README.md */; };
 		CAA8DE951515DA02004AB173 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA8DE941515DA02004AB173 /* main.m */; };
-		CAAE32BA15244C330080447D /* NSDate+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */; };
+		CAAE32BA15244C330080447D /* NSDate+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CAAE32BB15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
 		CAAE32BC15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
 		CAAE32BD15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
+		CAAE32EB1525F2480080447D /* ARValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32E91525F2480080447D /* ARValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CAAE32EC1525F2480080447D /* ARValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32EA1525F2480080447D /* ARValidator.m */; };
+		CAAE32ED1525F2480080447D /* ARValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32EA1525F2480080447D /* ARValidator.m */; };
+		CAAE32EE1525F2480080447D /* ARValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32EA1525F2480080447D /* ARValidator.m */; };
+		CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32F11525F4940080447D /* ARValidatorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CAAE32F6152701860080447D /* ARValidatorUniqueness.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32F4152701860080447D /* ARValidatorUniqueness.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CAAE32F7152701860080447D /* ARValidatorUniqueness.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32F5152701860080447D /* ARValidatorUniqueness.m */; };
+		CAAE32F8152701860080447D /* ARValidatorUniqueness.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32F5152701860080447D /* ARValidatorUniqueness.m */; };
+		CAAE32F9152701860080447D /* ARValidatorUniqueness.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32F5152701860080447D /* ARValidatorUniqueness.m */; };
+		CAAE32FC1527079F0080447D /* ARValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32FA1527079F0080447D /* ARValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CAAE32FD1527079F0080447D /* ARValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32FB1527079F0080447D /* ARValidation.m */; };
+		CAAE32FE1527079F0080447D /* ARValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32FB1527079F0080447D /* ARValidation.m */; };
+		CAAE32FF1527079F0080447D /* ARValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32FB1527079F0080447D /* ARValidation.m */; };
+		CAAE3302152715270080447D /* ARValidatorPresence.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE3300152715270080447D /* ARValidatorPresence.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CAAE3303152715270080447D /* ARValidatorPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE3301152715270080447D /* ARValidatorPresence.m */; };
+		CAAE3304152715270080447D /* ARValidatorPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE3301152715270080447D /* ARValidatorPresence.m */; };
+		CAAE3305152715270080447D /* ARValidatorPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE3301152715270080447D /* ARValidatorPresence.m */; };
 		CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
@@ -218,10 +227,6 @@
 		CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+quotedString.m"; sourceTree = "<group>"; };
 		CA0DC26415223AC500C8E75D /* ProjectGroupRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectGroupRelationship.h; sourceTree = "<group>"; };
 		CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectGroupRelationship.m; sourceTree = "<group>"; };
-		CA0DC412152389E800C8E75D /* ARValidationUniqueness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidationUniqueness.h; sourceTree = "<group>"; };
-		CA0DC413152389E800C8E75D /* ARValidationUniqueness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidationUniqueness.m; sourceTree = "<group>"; };
-		CA0DC41815238CC100C8E75D /* ARValidationPresence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidationPresence.h; sourceTree = "<group>"; };
-		CA0DC41915238CC100C8E75D /* ARValidationPresence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidationPresence.m; sourceTree = "<group>"; };
 		CA2D85EB1521A4CE004AD192 /* Issue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Issue.h; sourceTree = "<group>"; };
 		CA2D85EC1521A4CE004AD192 /* Issue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Issue.m; sourceTree = "<group>"; };
 		CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropRecordSpecs.h; sourceTree = "<group>"; };
@@ -243,6 +248,15 @@
 		CAA8DE941515DA02004AB173 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+sqlRepresentation.h"; sourceTree = "<group>"; };
 		CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+sqlRepresentation.m"; sourceTree = "<group>"; };
+		CAAE32E91525F2480080447D /* ARValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidator.h; sourceTree = "<group>"; };
+		CAAE32EA1525F2480080447D /* ARValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidator.m; sourceTree = "<group>"; };
+		CAAE32F11525F4940080447D /* ARValidatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatorProtocol.h; sourceTree = "<group>"; };
+		CAAE32F4152701860080447D /* ARValidatorUniqueness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatorUniqueness.h; sourceTree = "<group>"; };
+		CAAE32F5152701860080447D /* ARValidatorUniqueness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidatorUniqueness.m; sourceTree = "<group>"; };
+		CAAE32FA1527079F0080447D /* ARValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidation.h; sourceTree = "<group>"; };
+		CAAE32FB1527079F0080447D /* ARValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidation.m; sourceTree = "<group>"; };
+		CAAE3300152715270080447D /* ARValidatorPresence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatorPresence.h; sourceTree = "<group>"; };
+		CAAE3301152715270080447D /* ARValidatorPresence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidatorPresence.m; sourceTree = "<group>"; };
 		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
 		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
@@ -452,6 +466,7 @@
 		25998EDC14BC19E200CA2490 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CAAE32F01525F47A0080447D /* Protocols */,
 				25998EFE14BC2D4600CA2490 /* Extra */,
 				25998EED14BC1A9A00CA2490 /* Test Entities */,
 				25998EDF14BC19F100CA2490 /* ActiveRecord */,
@@ -539,10 +554,11 @@
 		CA0DC410152389B300C8E75D /* Validations */ = {
 			isa = PBXGroup;
 			children = (
-				CA0DC412152389E800C8E75D /* ARValidationUniqueness.h */,
-				CA0DC413152389E800C8E75D /* ARValidationUniqueness.m */,
-				CA0DC41815238CC100C8E75D /* ARValidationPresence.h */,
-				CA0DC41915238CC100C8E75D /* ARValidationPresence.m */,
+				CAAE32F31527015D0080447D /* Validators */,
+				CAAE32E91525F2480080447D /* ARValidator.h */,
+				CAAE32EA1525F2480080447D /* ARValidator.m */,
+				CAAE32FA1527079F0080447D /* ARValidation.h */,
+				CAAE32FB1527079F0080447D /* ARValidation.m */,
 			);
 			name = Validations;
 			sourceTree = "<group>";
@@ -627,6 +643,25 @@
 			name = NSDate;
 			sourceTree = "<group>";
 		};
+		CAAE32F01525F47A0080447D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CAAE32F11525F4940080447D /* ARValidatorProtocol.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		CAAE32F31527015D0080447D /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				CAAE32F4152701860080447D /* ARValidatorUniqueness.h */,
+				CAAE32F5152701860080447D /* ARValidatorUniqueness.m */,
+				CAAE3300152715270080447D /* ARValidatorPresence.h */,
+				CAAE3301152715270080447D /* ARValidatorPresence.m */,
+			);
+			name = Validators;
+			sourceTree = "<group>";
+		};
 		CAAF5D9D151A511C004C4329 /* NSArray */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,6 +721,7 @@
 				CA62C32C151E0EC400E54276 /* ARErrorHelper.h in Headers */,
 				CA62C32F151E0EC400E54276 /* ARValidations.h in Headers */,
 				CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */,
+				CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
 				CA62C326151E0EC400E54276 /* ARObjectProperty.h in Headers */,
 				CA62C32D151E0EC400E54276 /* class_getSubclasses.h in Headers */,
@@ -697,11 +733,13 @@
 				CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */,
 				CABB90A21520E63200E8D082 /* ARRelationHasMany.h in Headers */,
 				CABB90B21520F60700E8D082 /* ARRelationHasManyThrough.h in Headers */,
-				CA0DC414152389E800C8E75D /* ARValidationUniqueness.h in Headers */,
-				CA0DC41A15238CC100C8E75D /* ARValidationPresence.h in Headers */,
+				CAAE32BA15244C330080447D /* NSDate+sqlRepresentation.h in Headers */,
+				CAAE32EB1525F2480080447D /* ARValidator.h in Headers */,
+				CAAE3302152715270080447D /* ARValidatorPresence.h in Headers */,
+				CAAE32FC1527079F0080447D /* ARValidation.h in Headers */,
+				CAAE32F6152701860080447D /* ARValidatorUniqueness.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
-				CAAE32BA15244C330080447D /* NSDate+sqlRepresentation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,9 +901,11 @@
 				CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
 				CA2D85EF1521A4CE004AD192 /* Issue.m in Sources */,
 				CA0DC26815223AC500C8E75D /* ProjectGroupRelationship.m in Sources */,
-				CA0DC416152389E800C8E75D /* ARValidationUniqueness.m in Sources */,
-				CA0DC41C15238CC100C8E75D /* ARValidationPresence.m in Sources */,
 				CAAE32BC15244C330080447D /* NSDate+sqlRepresentation.m in Sources */,
+				CAAE32ED1525F2480080447D /* ARValidator.m in Sources */,
+				CAAE32F8152701860080447D /* ARValidatorUniqueness.m in Sources */,
+				CAAE32FE1527079F0080447D /* ARValidation.m in Sources */,
+				CAAE3304152715270080447D /* ARValidatorPresence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,9 +939,11 @@
 				CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
 				CA2D85EE1521A4CE004AD192 /* Issue.m in Sources */,
 				CA0DC26715223AC500C8E75D /* ProjectGroupRelationship.m in Sources */,
-				CA0DC415152389E800C8E75D /* ARValidationUniqueness.m in Sources */,
-				CA0DC41B15238CC100C8E75D /* ARValidationPresence.m in Sources */,
 				CAAE32BB15244C330080447D /* NSDate+sqlRepresentation.m in Sources */,
+				CAAE32EC1525F2480080447D /* ARValidator.m in Sources */,
+				CAAE32F7152701860080447D /* ARValidatorUniqueness.m in Sources */,
+				CAAE32FD1527079F0080447D /* ARValidation.m in Sources */,
+				CAAE3303152715270080447D /* ARValidatorPresence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,9 +968,11 @@
 				CABB909F1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
 				CABB90A51520E63200E8D082 /* ARRelationHasMany.m in Sources */,
 				CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
-				CA0DC417152389E800C8E75D /* ARValidationUniqueness.m in Sources */,
-				CA0DC41D15238CC100C8E75D /* ARValidationPresence.m in Sources */,
 				CAAE32BD15244C330080447D /* NSDate+sqlRepresentation.m in Sources */,
+				CAAE32EE1525F2480080447D /* ARValidator.m in Sources */,
+				CAAE32F9152701860080447D /* ARValidatorUniqueness.m in Sources */,
+				CAAE32FF1527079F0080447D /* ARValidation.m in Sources */,
+				CAAE3305152715270080447D /* ARValidatorPresence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

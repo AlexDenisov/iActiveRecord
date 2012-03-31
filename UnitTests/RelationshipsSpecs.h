@@ -35,7 +35,7 @@ describe(@"HasMany", ^{
         result = [peter save];
         expect(result).toEqual(YES);
         Group *students = [Group newRecord];
-        students.name = @"students";
+        students.title = @"students";
         [students save];
         [students addUser:john];
         [students addUser:peter];
@@ -45,7 +45,7 @@ describe(@"HasMany", ^{
     });
     it(@"When I remove user, user should not have group", ^{
         Group *group = [Group newRecord];
-        group.name = @"PSV 1-16";
+        group.title = @"PSV 1-16";
         [group save];
         User *user = [User newRecord];
         user.name = @"Alex";
@@ -67,16 +67,16 @@ describe(@"BelongsTo", ^{
         result = [peter save];
         expect(result).toEqual(YES);
         Group *students = [Group newRecord];
-        students.name = @"students";
+        students.title = @"students";
         [students save];
         [students addUser:john];
         [students addUser:peter];
         Group *group = [john group];
-        expect([group name]).toEqual([students name]);
+        expect([group title]).toEqual([students title]);
     });
     it(@"when i set belongsTo group, group should contain this user", ^{
         Group *group = [Group newRecord];
-        group.name = @"PSV 1-16";
+        group.title = @"PSV 1-16";
         [group save];
         User *user = [User newRecord];
         user.name = @"Alex";
@@ -87,7 +87,7 @@ describe(@"BelongsTo", ^{
     });
     it(@"when i set belongsTo nil, i should remove relation", ^{
         Group *group = [Group newRecord];
-        group.name = @"PSV 1-16";
+        group.title = @"PSV 1-16";
         [group save];
         User *user = [User newRecord];
         user.name = @"Alex";

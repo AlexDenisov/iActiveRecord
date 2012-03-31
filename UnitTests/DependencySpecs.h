@@ -36,7 +36,7 @@ describe(@"Destroy", ^{
         [alex save];
         
         Group *students = [Group newRecord];
-        students.name = @"Students";
+        students.title = @"Students";
         [students save];
         
         [students addUser:john];
@@ -58,7 +58,7 @@ describe(@"Destroy", ^{
         [peter save];
         
         Group *students = [Group newRecord];
-        students.name = @"Students";
+        students.title = @"Students";
         [students save];
         
         [students addUser:john];
@@ -124,7 +124,7 @@ describe(@"Destroy/Nulify", ^{
 describe(@"Nulify", ^{
     it(@"when i drop project it should not drop group", ^{
         Group *students = [Group newRecord];
-        students.name = @"Students";
+        students.title = @"Students";
         [students save];
 
         Project *project = [Project newRecord];

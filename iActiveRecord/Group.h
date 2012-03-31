@@ -15,7 +15,7 @@
 @interface Group : ActiveRecord
     <ARValidatableProtocol>
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *title;
 
 has_many_dec(User, users, ARDependencyDestroy)
 has_many_through_dec(Project, ProjectGroupRelationship, groups, ARDependencyNullify)
