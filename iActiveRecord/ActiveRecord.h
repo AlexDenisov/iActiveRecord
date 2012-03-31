@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <objc/message.h>
 
-#import "ARRelationships.h"
-#import "ARValidations.h"
+#import "ARRelationshipsHelper.h"
+#import "ARValidationsHelper.h"
 #import "ARValidatableProtocol.h"
 #import "ARMigrationsHelper.h"
 #import "ARLazyFetcher.h"

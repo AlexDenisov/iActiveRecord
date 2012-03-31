@@ -11,7 +11,7 @@
 #import "NSString+lowercaseFirst.h"
 #import <objc/runtime.h>
 #import "ARObjectProperty.h"
-#import "ARValidations.h"
+#import "ARValidationsHelper.h"
 #import "ARValidatableProtocol.h"
 #import "ARErrorHelper.h"
 #import "ARMigrationsHelper.h"
@@ -653,6 +653,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [fetcher whereField:relId equalToValue:aRecord.id];
     ActiveRecord *record = [[fetcher fetchRecords] first];
     [record dropRecord];
+    [fetcher release];
 }
 
 #pragma mark - Description

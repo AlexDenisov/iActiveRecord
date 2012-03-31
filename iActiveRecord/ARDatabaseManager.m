@@ -186,7 +186,7 @@ static NSString *databaseName = DEFAULT_DBNAME;
 
 - (NSInteger)functionResult:(NSString *)anSql {
     char **results;
-    NSInteger resId;
+    NSInteger resId = 0;
     const char *pszSql = [anSql UTF8String];
     if(SQLITE_OK == sqlite3_get_table(database,
                                       pszSql,
