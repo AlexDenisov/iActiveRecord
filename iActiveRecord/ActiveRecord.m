@@ -35,6 +35,7 @@
 
 + (void)validateUniquenessOfField:(NSString *)aField;
 + (void)validatePresenceOfField:(NSString *)aField;
++ (void)validateField:(NSString *)aField withValidator:(NSString *)aValidator;
 
 - (void)resetErrors;
 - (void)addError:(ARError *)anError;
@@ -486,6 +487,12 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)validatePresenceOfField:(NSString *)aField {
     [ARValidator registerValidator:[ARValidatorPresence class]
+                         forRecord:[self className]
+                           onField:aField];
+}
+
++ (void)validateField:(NSString *)aField withValidator:(NSString *)aValidator {
+    [ARValidator registerValidator:NSClassFromString(aValidator)
                          forRecord:[self className]
                            onField:aField];
 }

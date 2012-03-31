@@ -12,6 +12,7 @@
 
 #import "User.h"
 #import "ARDatabaseManager.h"
+#import "Animal.h"
 
 SPEC_BEGIN(ValidationSpecs)
 
@@ -57,6 +58,19 @@ describe(@"Uniqueness", ^{
         peter.name = @"Peter";
         result = [peter save];
         expect(result).toEqual(YES);
+    });
+});
+
+describe(@"Custom validator", ^{
+    it(@"Animal name should be valid", ^{
+        Animal *animal = [Animal newRecord];
+        animal.name = @"animal";
+        expect([animal save]).toEqual(YES);
+    });
+    it(@"Animal name should not be valid", ^{
+        Animal *animal = [Animal newRecord];
+        animal.name = @"bear";
+        expect([animal save]).toEqual(NO);
     });
 });
 

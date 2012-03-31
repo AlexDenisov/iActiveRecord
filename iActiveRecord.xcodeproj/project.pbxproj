@@ -118,6 +118,10 @@
 		CAAE3303152715270080447D /* ARValidatorPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE3301152715270080447D /* ARValidatorPresence.m */; };
 		CAAE3304152715270080447D /* ARValidatorPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE3301152715270080447D /* ARValidatorPresence.m */; };
 		CAAE3305152715270080447D /* ARValidatorPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE3301152715270080447D /* ARValidatorPresence.m */; };
+		CAAE330915271C730080447D /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330715271C720080447D /* Animal.m */; };
+		CAAE330A15271C730080447D /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330715271C720080447D /* Animal.m */; };
+		CAAE330E15271D0E0080447D /* AnimalValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330D15271D0E0080447D /* AnimalValidator.m */; };
+		CAAE330F15271D0E0080447D /* AnimalValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330D15271D0E0080447D /* AnimalValidator.m */; };
 		CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
@@ -257,6 +261,10 @@
 		CAAE32FB1527079F0080447D /* ARValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidation.m; sourceTree = "<group>"; };
 		CAAE3300152715270080447D /* ARValidatorPresence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatorPresence.h; sourceTree = "<group>"; };
 		CAAE3301152715270080447D /* ARValidatorPresence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidatorPresence.m; sourceTree = "<group>"; };
+		CAAE330615271C720080447D /* Animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
+		CAAE330715271C720080447D /* Animal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
+		CAAE330C15271D0E0080447D /* AnimalValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimalValidator.h; sourceTree = "<group>"; };
+		CAAE330D15271D0E0080447D /* AnimalValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimalValidator.m; sourceTree = "<group>"; };
 		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
 		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
@@ -511,6 +519,10 @@
 				CA2D85EC1521A4CE004AD192 /* Issue.m */,
 				CA0DC26415223AC500C8E75D /* ProjectGroupRelationship.h */,
 				CA0DC26515223AC500C8E75D /* ProjectGroupRelationship.m */,
+				CAAE330615271C720080447D /* Animal.h */,
+				CAAE330715271C720080447D /* Animal.m */,
+				CAAE330C15271D0E0080447D /* AnimalValidator.h */,
+				CAAE330D15271D0E0080447D /* AnimalValidator.m */,
 			);
 			name = "Test Entities";
 			sourceTree = "<group>";
@@ -906,6 +918,8 @@
 				CAAE32F8152701860080447D /* ARValidatorUniqueness.m in Sources */,
 				CAAE32FE1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3304152715270080447D /* ARValidatorPresence.m in Sources */,
+				CAAE330A15271C730080447D /* Animal.m in Sources */,
+				CAAE330F15271D0E0080447D /* AnimalValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +958,8 @@
 				CAAE32F7152701860080447D /* ARValidatorUniqueness.m in Sources */,
 				CAAE32FD1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3303152715270080447D /* ARValidatorPresence.m in Sources */,
+				CAAE330915271C730080447D /* Animal.m in Sources */,
+				CAAE330E15271D0E0080447D /* AnimalValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
