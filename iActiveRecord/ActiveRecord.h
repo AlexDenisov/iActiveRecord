@@ -23,12 +23,6 @@
 #import "ARValidatorProtocol.h"
 
 @interface ActiveRecord : NSObject
-{
-@private
-    BOOL isNew;
-    NSMutableSet *errors;
-    NSMutableSet *changedFields;
-}
 
 @property (nonatomic, retain) NSNumber *id;
 @property (nonatomic, retain) NSDate *updatedAt;

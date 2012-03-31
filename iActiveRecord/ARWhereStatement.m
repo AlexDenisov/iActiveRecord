@@ -9,7 +9,11 @@
 #import "ARWhereStatement.h"
 #import "NSString+quotedString.h"
 
-@interface ARWhereStatement (Private)
+@interface ARWhereStatement ()
+{
+    @private
+    NSString *statement;
+}
 
 + (ARWhereStatement *)statement:(NSString *)aStmt;
 + (ARWhereStatement *)statementForField:(NSString *)aField 

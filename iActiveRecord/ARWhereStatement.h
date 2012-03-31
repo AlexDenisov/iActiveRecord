@@ -14,10 +14,6 @@ typedef enum {
 } ARLogicalOperation;
 
 @interface ARWhereStatement : NSObject
-{
-    @private
-    NSString *statement;
-}
 
 - (id)initWithStatement:(NSString *)aStatement;
 - (NSString *)statement;

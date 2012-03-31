@@ -29,7 +29,13 @@
 #import "ARValidatorUniqueness.h"
 #import "ARValidatorPresence.h"
 
-@interface ActiveRecord (Private)
+@interface ActiveRecord ()
+{
+@private
+    BOOL isNew;
+    NSMutableSet *errors;
+    NSMutableSet *changedFields;
+}
 
 #pragma mark - Validations Declaration
 

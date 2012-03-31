@@ -10,9 +10,6 @@
 #import "ARValidatorProtocol.h"
 
 @interface ARValidator : NSObject
-{
-    NSMutableSet *validations;
-}
 
 + (BOOL)isValidOnSave:(id)aRecord;
 + (BOOL)isValidOnUpdate:(id)aRecord;

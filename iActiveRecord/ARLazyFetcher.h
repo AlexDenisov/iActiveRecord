@@ -18,27 +18,6 @@ typedef enum {
 } ARJoinType;
 
 @interface ARLazyFetcher : NSObject
-{
-    @private
-    Class recordClass;
-    NSString *sqlRequest;
-    //  order by
-    NSMutableDictionary *orderByConditions;
-    //  select
-    NSMutableSet *onlyFields;
-    NSMutableSet *exceptFields;
-    //  join    
-    ARJoinType joinType;
-    Class joinClass;
-    NSString *recordField;
-    NSString *joinField;
-    BOOL useJoin;
-    //  where
-    ARWhereStatement *whereStatement;
-    //  limit/offset
-    NSNumber *limit;
-    NSNumber *offset;
-}
 
 - (id)initWithRecord:(Class )aRecord;
 

@@ -10,7 +10,10 @@
 #import "ARValidation.h"
 #import "ActiveRecord.h"
 
-@interface ARValidator (Private)
+@interface ARValidator ()
+{
+    NSMutableSet *validations;
+}
 
 + (id)sharedInstance;
 

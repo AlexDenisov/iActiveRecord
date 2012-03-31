@@ -106,7 +106,6 @@ static NSString *databaseName = DEFAULT_DBNAME;
 
 - (void)executeSqlQuery:(const char *)anSqlQuery {
     if(SQLITE_OK != sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
-        
         NSLog(@"Couldn't execute query %s : %s", anSqlQuery, sqlite3_errmsg(database));
     }
 }
