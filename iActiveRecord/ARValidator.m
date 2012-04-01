@@ -67,10 +67,21 @@
             id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
             BOOL result = [validator validateField:validation.field
                                           ofRecord:aRecord];
-            [validator release];
+            
             if(!result){
+                NSString *errMsg = @"";
+                if([validator respondsToSelector:@selector(errorMessage)]){
+                    errMsg = [validator errorMessage];
+                }
+                ARError *error = [[ARError alloc] initWithModel:validation.record
+                                                       property:validation.field
+                                                          error:errMsg];
+                [aRecord performSelector:@selector(addError:) 
+                              withObject:error];
+                [error release];
                 valid  = NO;
             }
+            [validator release];
         }
     }
     return valid;
@@ -85,10 +96,21 @@
                 id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
                 BOOL result = [validator validateField:validation.field
                                               ofRecord:aRecord];
-                [validator release];
+                
                 if(!result){
+                    NSString *errMsg = @"";
+                    if([validator respondsToSelector:@selector(errorMessage)]){
+                        errMsg = [validator errorMessage];
+                    }
+                    ARError *error = [[ARError alloc] initWithModel:validation.record
+                                                           property:validation.field
+                                                              error:errMsg];
+                    [aRecord performSelector:@selector(addError:) 
+                                  withObject:error];
+                    [error release];
                     valid  = NO;
                 }
+                [validator release];
             }
         }
     }

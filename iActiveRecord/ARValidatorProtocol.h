@@ -10,6 +10,9 @@
 
 @protocol ARValidatorProtocol <NSObject>
 
+@optional
+- (NSString *)errorMessage;
+
 @required
 - (BOOL)validateField:(NSString *)aField ofRecord:(id)aRecord;
 

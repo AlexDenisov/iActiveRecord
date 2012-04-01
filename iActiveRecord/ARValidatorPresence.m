@@ -7,8 +7,13 @@
 //
 
 #import "ARValidatorPresence.h"
+#import "ARErrorHelper.h"
 
 @implementation ARValidatorPresence
+
+- (NSString *)errorMessage {
+    return kARFieldCantBeBlank;
+}
 
 - (BOOL)validateField:(NSString *)aField ofRecord:(id)aRecord {
     NSString *aValue = [aRecord valueForKey:aField];

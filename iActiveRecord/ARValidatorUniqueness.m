@@ -8,10 +8,13 @@
 
 #import "ARValidatorUniqueness.h"
 #import "ARLazyFetcher.h"
-#import "ARError.h"
 #import "ARErrorHelper.h"
 
 @implementation ARValidatorUniqueness
+
+- (NSString *)errorMessage {
+    return kARFieldAlreadyExists;
+}
 
 - (BOOL)validateField:(NSString *)aField ofRecord:(id)aRecord {
     NSString *recordName = [[aRecord class] description];
@@ -22,12 +25,6 @@
     NSInteger count = [fetcher count];
     [fetcher release];
     if(count){
-        ARError *error = [[ARError alloc] initWithModel:[aRecord performSelector:@selector(className)]
-                                               property:aField
-                                                  error:kARFieldAlreadyExists];
-        [aRecord performSelector:@selector(addError:) 
-                      withObject:error];
-        [error release];
         return NO;
     }
     return YES;
