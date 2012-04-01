@@ -69,6 +69,30 @@
     return [ARWhereStatement statement:stmt];
 }
 
++ (ARWhereStatement *)whereField:(NSString *)aField 
+                        ofRecord:(Class)aRecord 
+                            like:(NSString *)aPattern 
+{
+    NSString *stmt = [NSString stringWithFormat:
+                      @" %@.%@ LIKE %@ ",
+                      [[aRecord performSelector:@selector(tableName)] quotedString],
+                      [aField quotedString],
+                      [aPattern quotedString]];
+    return [ARWhereStatement statement:stmt];
+}
+
++ (ARWhereStatement *)whereField:(NSString *)aField 
+                        ofRecord:(Class)aRecord 
+                         notLike:(NSString *)aPattern
+{
+    NSString *stmt = [NSString stringWithFormat:
+                      @" %@.%@ NOT LIKE %@ ",
+                      [[aRecord performSelector:@selector(tableName)] quotedString],
+                      [aField quotedString],
+                      [aPattern quotedString]];
+    return [ARWhereStatement statement:stmt];
+}
+
 + (ARWhereStatement *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
     NSString *stmt = [NSString stringWithFormat:
                       @" %@ <> %@ ",

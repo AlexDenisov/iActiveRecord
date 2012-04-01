@@ -23,6 +23,9 @@ typedef enum {
 + (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord in:(NSArray *)aValues;
 + (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord notIn:(NSArray *)aValues;
 
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord like:(NSString *)aPattern;
++ (ARWhereStatement *)whereField:(NSString *)aField ofRecord:(Class)aRecord notLike:(NSString *)aPattern;
+
 + (ARWhereStatement *)concatenateStatement:(ARWhereStatement *)aFirstStatement 
                                    withStatement:(ARWhereStatement *)aSecondStatement 
                              useLogicalOperation:(ARLogicalOperation)logicalOperation;

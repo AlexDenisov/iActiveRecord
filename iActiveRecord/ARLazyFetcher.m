@@ -234,6 +234,21 @@ static NSString* joinString(ARJoinType type)
     return self;
 }
 
+- (ARLazyFetcher *)whereField:(NSString *)aField like:(NSString *)aPattern {
+    ARWhereStatement *where = [ARWhereStatement whereField:aField 
+                                                  ofRecord:recordClass
+                                                      like:aPattern];
+    [self setWhereStatement:where];
+    return self;
+}
+- (ARLazyFetcher *)whereField:(NSString *)aField notLike:(NSString *)aPattern {
+    ARWhereStatement *where = [ARWhereStatement whereField:aField 
+                                                  ofRecord:recordClass
+                                                   notLike:aPattern];
+    [self setWhereStatement:where];
+    return self;
+}
+
 - (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue {
     ARWhereStatement *where = [ARWhereStatement whereField:aField
                                                   ofRecord:recordClass
@@ -306,6 +321,28 @@ static NSString* joinString(ARJoinType type)
     ARWhereStatement *where = [ARWhereStatement whereField:aField
                                                   ofRecord:aRecord
                                                      notIn:aValues];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                     ofRecord:(Class)aRecord 
+                         like:(NSString *)aPattern
+{
+    ARWhereStatement *where = [ARWhereStatement whereField:aField 
+                                                  ofRecord:aRecord
+                                                      like:aPattern];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                     ofRecord:(Class)aRecord 
+                      notLike:(NSString *)aPattern
+{
+    ARWhereStatement *where = [ARWhereStatement whereField:aField 
+                                                  ofRecord:aRecord
+                                                   notLike:aPattern];
     [self setWhereStatement:where];
     return self;
 }

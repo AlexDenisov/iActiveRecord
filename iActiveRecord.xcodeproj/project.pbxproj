@@ -283,6 +283,7 @@
 		CAAE33461528819C0080447D /* ARException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARException.m; sourceTree = "<group>"; };
 		CAAE33751528A65B0080447D /* sqlite3_unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3_unicode.c; sourceTree = "<group>"; };
 		CAAE33761528A65B0080447D /* sqlite3_unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3_unicode.h; sourceTree = "<group>"; };
+		CAAE337B1528AD5B0080447D /* UnicodeSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnicodeSpecs.h; sourceTree = "<group>"; };
 		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
 		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
@@ -390,6 +391,7 @@
 				CABB90881520C26800E8D082 /* DependencySpecs.h */,
 				CAAE332C152849C80080447D /* MigrationsSpecs.h */,
 				CAAE334415287A590080447D /* TransactionSpecs.h */,
+				CAAE337B1528AD5B0080447D /* UnicodeSpecs.h */,
 			);
 			name = Specs;
 			sourceTree = "<group>";

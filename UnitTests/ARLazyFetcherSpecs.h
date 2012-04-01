@@ -152,6 +152,17 @@ describe(@"LazyFetcher", ^{
                 User *founded = [[fetcher fetchRecords] first];
                 expect(founded.name).Not.toEqual(username);
             });
+            it(@"WhereField LIKE should find record", ^{
+                NSString *username = @"john";
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher whereField:@"name"
+                               like:@"%jo%"];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).toEqual(username);
+            });
         });
         describe(@"Complex where conditions", ^{
             it(@"Two conditions should return actual values", ^{

@@ -28,6 +28,8 @@ typedef enum {
 - (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue; 
 - (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues;
 - (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues;
+- (ARLazyFetcher *)whereField:(NSString *)aField like:(NSString *)aPattern;
+- (ARLazyFetcher *)whereField:(NSString *)aField notLike:(NSString *)aPattern;
 
 - (ARLazyFetcher *)whereField:(NSString *)aField 
                      ofRecord:(Class)aRecord 
@@ -44,6 +46,15 @@ typedef enum {
 - (ARLazyFetcher *)whereField:(NSString *)aField 
                      ofRecord:(Class)aRecord 
                         notIn:(NSArray *)aValues;
+
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                     ofRecord:(Class)aRecord 
+                         like:(NSString *)aPattern; 
+
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                     ofRecord:(Class)aRecord 
+                      notLike:(NSString *)aPattern; 
+
 
 - (ARLazyFetcher *)only:(NSString *)aFirstParam, ...;
 - (ARLazyFetcher *)except:(NSString *)aFirstParam, ...;
