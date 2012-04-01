@@ -16,14 +16,14 @@ You do not need to create tables manually - just describe your ActiveRecord and 
     
 ### Features
 
-    - migrations
-    - validations (with custom validator support)
-    - transactions
-    - support for custom data types
-    - relationships (BelongsTo, HasMany, HasManyThrough)
-    - sorting
-    - filters (where =, !=, IN, NOT IN and else)
-    - joins
-    - NO RAW SQL!!!
+- migrations
+- validations (with custom validator support)
+- transactions
+- support for custom data types
+- relationships (BelongsTo, HasMany, HasManyThrough)
+- sorting
+- filters (where =, !=, IN, NOT IN and else)
+- joins
+- NO RAW SQL!!!
 
 ### Check [Wiki](https://github.com/AlexDenisov/iActiveRecord/wiki) to see details!
