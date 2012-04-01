@@ -122,11 +122,9 @@
 		CAAE330A15271C730080447D /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330715271C720080447D /* Animal.m */; };
 		CAAE330E15271D0E0080447D /* AnimalValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330D15271D0E0080447D /* AnimalValidator.m */; };
 		CAAE330F15271D0E0080447D /* AnimalValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330D15271D0E0080447D /* AnimalValidator.m */; };
-		CAAE332F15285A100080447D /* Entity.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE332D15285A0F0080447D /* Entity.h */; };
 		CAAE333015285A100080447D /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE332E15285A100080447D /* Entity.m */; };
 		CAAE333115285A100080447D /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE332E15285A100080447D /* Entity.m */; };
-		CAAE333215285A100080447D /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE332E15285A100080447D /* Entity.m */; };
-		CAAE33471528819D0080447D /* ARException.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE33451528819C0080447D /* ARException.h */; };
+		CAAE33471528819D0080447D /* ARException.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE33451528819C0080447D /* ARException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAAE33481528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE33491528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE334A1528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
@@ -754,6 +752,7 @@
 				CA62C32F151E0EC400E54276 /* ARValidationsHelper.h in Headers */,
 				CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */,
 				CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */,
+				CAAE33471528819D0080447D /* ARException.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
 				CA62C326151E0EC400E54276 /* ARObjectProperty.h in Headers */,
 				CA62C32D151E0EC400E54276 /* class_getSubclasses.h in Headers */,
@@ -772,8 +771,6 @@
 				CAAE32F6152701860080447D /* ARValidatorUniqueness.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
-				CAAE332F15285A100080447D /* Entity.h in Headers */,
-				CAAE33471528819D0080447D /* ARException.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,7 +1012,6 @@
 				CAAE32F9152701860080447D /* ARValidatorUniqueness.m in Sources */,
 				CAAE32FF1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3305152715270080447D /* ARValidatorPresence.m in Sources */,
-				CAAE333215285A100080447D /* Entity.m in Sources */,
 				CAAE334A1528819D0080447D /* ARException.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
