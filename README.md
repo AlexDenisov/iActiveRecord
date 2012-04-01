@@ -3,16 +3,6 @@
 ### Only HardCore.
 
 ### [Follow](https://twitter.com/#!/iactiverecord) this repo on Twitter.
-
-You do not need to create tables manually - just describe your ActiveRecord and enjoy!!!
-
-    #import <ActiveRecord/ActiveRecord.h>
-
-    @interface User : ActiveRecord
-
-    @property (nonatomic, retain) NSString *name;
-
-    @end
     
 ### Features
 
@@ -26,5 +16,15 @@ You do not need to create tables manually - just describe your ActiveRecord and 
 - filters (where =, !=, IN, NOT IN and else)
 - joins
 - NO RAW SQL!!!
+
+You do not need to create tables manually - just describe your ActiveRecord and enjoy!!!
+
+    #import <ActiveRecord/ActiveRecord.h>
+
+    @interface User : ActiveRecord
+
+    @property (nonatomic, retain) NSString *name;
+
+    @end
 
 ### Check [Wiki](https://github.com/AlexDenisov/iActiveRecord/wiki) to see details!
