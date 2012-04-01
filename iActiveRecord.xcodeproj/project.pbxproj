@@ -488,6 +488,10 @@
 		25998EDC14BC19E200CA2490 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CA3D18021519D56A00FA3F3C /* Managers */,
+				CA3D18001519D55300FA3F3C /* Helpers */,
+				CABB90991520DA4300E8D082 /* Relationships */,
+				CA0DC410152389B300C8E75D /* Validations */,
 				CAAE32F01525F47A0080447D /* Protocols */,
 				25998EFE14BC2D4600CA2490 /* Extra */,
 				25998EED14BC1A9A00CA2490 /* Test Entities */,
@@ -509,11 +513,20 @@
 		25998EDF14BC19F100CA2490 /* ActiveRecord */ = {
 			isa = PBXGroup;
 			children = (
-				CA0DC410152389B300C8E75D /* Validations */,
-				CABB90991520DA4300E8D082 /* Relationships */,
-				CA3D18031519D57A00FA3F3C /* Classes */,
-				CA3D18021519D56A00FA3F3C /* Managers */,
-				CA3D18001519D55300FA3F3C /* Helpers */,
+				2598293D14BD740100207D16 /* ARObjectProperty.h */,
+				2598293E14BD740100207D16 /* ARObjectProperty.m */,
+				25998EE014BC1A1D00CA2490 /* ActiveRecord.h */,
+				25998EE114BC1A1D00CA2490 /* ActiveRecord.m */,
+				CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */,
+				CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */,
+				CAAF5D8E151A1430004C4329 /* ARFactory.h */,
+				CAAF5D8F151A1430004C4329 /* ARFactory.m */,
+				CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */,
+				CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */,
+				CAF24809151F298B00120198 /* ARError.h */,
+				CAF2480A151F298B00120198 /* ARError.m */,
+				CAAE33451528819C0080447D /* ARException.h */,
+				CAAE33461528819C0080447D /* ARException.m */,
 			);
 			name = ActiveRecord;
 			sourceTree = "<group>";
@@ -598,9 +611,7 @@
 				2598294114BDDB4200207D16 /* class_getSubclasses.h */,
 				25998EE414BC1A1D00CA2490 /* ARRelationshipsHelper.h */,
 				25A1131F14D9BAAE000720E7 /* ARValidationsHelper.h */,
-				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
 				25A1132714D9C1CF000720E7 /* ARMigrationsHelper.h */,
-				CAF2481C151F39C600120198 /* ARRepresentationProtocol.h */,
 				CABB90971520DA2000E8D082 /* AREnum.h */,
 			);
 			name = Helpers;
@@ -613,27 +624,6 @@
 				25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */,
 			);
 			name = Managers;
-			sourceTree = "<group>";
-		};
-		CA3D18031519D57A00FA3F3C /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				2598293D14BD740100207D16 /* ARObjectProperty.h */,
-				2598293E14BD740100207D16 /* ARObjectProperty.m */,
-				25998EE014BC1A1D00CA2490 /* ActiveRecord.h */,
-				25998EE114BC1A1D00CA2490 /* ActiveRecord.m */,
-				CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */,
-				CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */,
-				CAAF5D8E151A1430004C4329 /* ARFactory.h */,
-				CAAF5D8F151A1430004C4329 /* ARFactory.m */,
-				CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */,
-				CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */,
-				CAF24809151F298B00120198 /* ARError.h */,
-				CAF2480A151F298B00120198 /* ARError.m */,
-				CAAE33451528819C0080447D /* ARException.h */,
-				CAAE33461528819C0080447D /* ARException.m */,
-			);
-			name = Classes;
 			sourceTree = "<group>";
 		};
 		CA62C30A151E0AB800E54276 /* Other Frameworks */ = {
@@ -676,6 +666,8 @@
 		CAAE32F01525F47A0080447D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				CAF2481C151F39C600120198 /* ARRepresentationProtocol.h */,
+				25A1132514D9BC10000720E7 /* ARValidatableProtocol.h */,
 				CAAE32F11525F4940080447D /* ARValidatorProtocol.h */,
 			);
 			name = Protocols;
