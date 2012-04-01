@@ -22,6 +22,7 @@
 
 - (void)createTables;
 - (void)createTable:(id)aRecord;
+- (void)addColumn:(NSString *)aColumn onTable:(NSString *)aTable;
 - (void)appendMigrations;
 
 - (void)openConnection;

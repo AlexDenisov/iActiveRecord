@@ -11,6 +11,7 @@
 #import "class_getSubclasses.h"
 #import "NSString+quotedString.h"
 #include <sys/xattr.h>
+#import "ARObjectProperty.h"
 
 #define DEFAULT_DBNAME @"database"
 
@@ -96,9 +97,29 @@ static NSString *databaseName = DEFAULT_DBNAME;
     NSArray *describedTables = [self describedTables];
     for(NSString *table in describedTables){
         if(![existedTables containsObject:table]){
-#warning IMPLEMENT_MIGRATIONS
+            [self createTable:NSClassFromString(table)];
+        }else{
+            Class Record = NSClassFromString(table);
+            NSArray *existedColumns = [self columnsForTable:table];
+            
+            NSArray *describedProperties = [Record performSelector:@selector(tableFields)];
+            NSMutableArray *describedColumns = [NSMutableArray array];
+            for(ARObjectProperty *property in describedProperties){
+                [describedColumns addObject:property.propertyName];
+            }
+            for(NSString *column in describedColumns){
+                if(![existedColumns containsObject:column]){
+                    const char *sql = (const char *)[Record performSelector:@selector(sqlOnAddColumn:) 
+                                                                 withObject:column];
+                    [self executeSqlQuery:sql];
+                }
+            }
         }
     }
+}
+
+- (void)addColumn:(NSString *)aColumn onTable:(NSString *)aTable {
+    
 }
 
 - (NSArray *)describedTables {

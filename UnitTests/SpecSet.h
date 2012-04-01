@@ -15,4 +15,5 @@
 #import "CountSpecs.h"
 #import "ARLazyFetcherSpecs.h"
 #import "ARFactorySpecs.h"
+#import "MigrationsSpecs.h"
 

@@ -50,9 +50,11 @@
 
 + (const char *)sqlOnCreate;
 + (const char *)sqlOnDeleteAll;
++ (const char *)sqlOnAddColumn:(NSString *)aColumn;
 - (const char *)sqlOnDelete;
 - (const char *)sqlOnSave;
 - (const char *)sqlOnUpdate;
+
 
 #pragma mark - ObserveChanges
 
@@ -325,6 +327,19 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 #pragma mark - SQLQueries
+
++ (const char *)sqlOnAddColumn:(NSString *)aColumn {
+    NSMutableString *sqlString = [NSMutableString stringWithFormat:
+                                  @"ALTER TABLE %@ ADD COLUMN ", 
+                                  [[self tableName] quotedString]];
+    NSString *propertyClassName = [self propertyClassNameWithPropertyName:aColumn];
+    Class PropertyClass = NSClassFromString(propertyClassName);
+    [sqlString appendFormat:
+     @"%@ %s", 
+     [aColumn quotedString],
+     [PropertyClass performSelector:@selector(sqlType)]];
+    return [sqlString UTF8String];
+}
 
 + (const char *)sqlOnCreate {
     [self initIgnoredFields];

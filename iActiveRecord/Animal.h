@@ -11,6 +11,7 @@
 @interface Animal : ActiveRecord
     <ARValidatableProtocol>
 
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *state;
 
 @end

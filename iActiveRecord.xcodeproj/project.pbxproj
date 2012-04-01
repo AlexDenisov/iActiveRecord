@@ -122,6 +122,10 @@
 		CAAE330A15271C730080447D /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330715271C720080447D /* Animal.m */; };
 		CAAE330E15271D0E0080447D /* AnimalValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330D15271D0E0080447D /* AnimalValidator.m */; };
 		CAAE330F15271D0E0080447D /* AnimalValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE330D15271D0E0080447D /* AnimalValidator.m */; };
+		CAAE332F15285A100080447D /* Entity.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE332D15285A0F0080447D /* Entity.h */; };
+		CAAE333015285A100080447D /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE332E15285A100080447D /* Entity.m */; };
+		CAAE333115285A100080447D /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE332E15285A100080447D /* Entity.m */; };
+		CAAE333215285A100080447D /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE332E15285A100080447D /* Entity.m */; };
 		CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
@@ -265,6 +269,9 @@
 		CAAE330715271C720080447D /* Animal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
 		CAAE330C15271D0E0080447D /* AnimalValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimalValidator.h; sourceTree = "<group>"; };
 		CAAE330D15271D0E0080447D /* AnimalValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimalValidator.m; sourceTree = "<group>"; };
+		CAAE332C152849C80080447D /* MigrationsSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MigrationsSpecs.h; sourceTree = "<group>"; };
+		CAAE332D15285A0F0080447D /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		CAAE332E15285A100080447D /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
 		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
@@ -370,6 +377,7 @@
 				CA3D18091519D63300FA3F3C /* FooSpec.h */,
 				CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */,
 				CABB90881520C26800E8D082 /* DependencySpecs.h */,
+				CAAE332C152849C80080447D /* MigrationsSpecs.h */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -523,6 +531,8 @@
 				CAAE330715271C720080447D /* Animal.m */,
 				CAAE330C15271D0E0080447D /* AnimalValidator.h */,
 				CAAE330D15271D0E0080447D /* AnimalValidator.m */,
+				CAAE332D15285A0F0080447D /* Entity.h */,
+				CAAE332E15285A100080447D /* Entity.m */,
 			);
 			name = "Test Entities";
 			sourceTree = "<group>";
@@ -752,6 +762,7 @@
 				CAAE32F6152701860080447D /* ARValidatorUniqueness.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
+				CAAE332F15285A100080447D /* Entity.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,6 +931,7 @@
 				CAAE3304152715270080447D /* ARValidatorPresence.m in Sources */,
 				CAAE330A15271C730080447D /* Animal.m in Sources */,
 				CAAE330F15271D0E0080447D /* AnimalValidator.m in Sources */,
+				CAAE333115285A100080447D /* Entity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,6 +972,7 @@
 				CAAE3303152715270080447D /* ARValidatorPresence.m in Sources */,
 				CAAE330915271C730080447D /* Animal.m in Sources */,
 				CAAE330E15271D0E0080447D /* AnimalValidator.m in Sources */,
+				CAAE333015285A100080447D /* Entity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,6 +1002,7 @@
 				CAAE32F9152701860080447D /* ARValidatorUniqueness.m in Sources */,
 				CAAE32FF1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3305152715270080447D /* ARValidatorPresence.m in Sources */,
+				CAAE333215285A100080447D /* Entity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
