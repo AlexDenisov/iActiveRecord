@@ -2,6 +2,8 @@
 ### Only SQLite.
 ### Only HardCore.
 
+[Follow](https://twitter.com/#!/iactiverecord) this repo on Twitter.
+
 You do not need to create tables manually - just describe your ActiveRecord and enjoy!!!
 
     #import <ActiveRecord/ActiveRecord.h>
