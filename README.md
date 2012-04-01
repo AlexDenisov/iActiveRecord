@@ -16,6 +16,7 @@ You do not need to create tables manually - just describe your ActiveRecord and 
     
 ### Features
 
+- unicode support
 - migrations
 - validations (with custom validator support)
 - transactions

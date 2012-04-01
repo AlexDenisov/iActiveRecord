@@ -1,5 +1,4 @@
 Improvements:
-    Add dependency on relationships: nullify, restrict
     New record with parameters
     Add before filters: save, create, update, delete
     Map
