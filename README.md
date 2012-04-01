@@ -15,7 +15,8 @@
 - sorting
 - filters (where =, !=, IN, NOT IN and else)
 - joins
-- NO RAW SQL!!!
+- [CocoaPods](http://cocoapods.org/) support
+- no more raw sql!!!
 
 You do not need to create tables manually - just describe your ActiveRecord and enjoy!!!
 
