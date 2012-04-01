@@ -12,6 +12,7 @@
 #import "NSString+quotedString.h"
 #include <sys/xattr.h>
 #import "ARObjectProperty.h"
+#import "sqlite3_unicode.h"
 
 #define DEFAULT_DBNAME @"database"
 
@@ -194,6 +195,7 @@ static NSString *databaseName = DEFAULT_DBNAME;
 }
 
 - (void)openConnection {
+    sqlite3_unicode_load();
     if(SQLITE_OK != sqlite3_open([dbPath UTF8String], &database)){
         NSLog(@"Couldn't open database connection: %s", sqlite3_errmsg(database));
     }
@@ -205,6 +207,7 @@ static NSString *databaseName = DEFAULT_DBNAME;
 
 - (void)closeConnection {
     sqlite3_close(database);
+    sqlite3_unicode_free();
 }
 
 - (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery {

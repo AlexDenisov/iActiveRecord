@@ -128,6 +128,10 @@
 		CAAE33481528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE33491528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE334A1528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
+		CAAE33771528A65B0080447D /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33751528A65B0080447D /* sqlite3_unicode.c */; };
+		CAAE33781528A65B0080447D /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33751528A65B0080447D /* sqlite3_unicode.c */; };
+		CAAE33791528A65B0080447D /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33751528A65B0080447D /* sqlite3_unicode.c */; };
+		CAAE337A1528A65B0080447D /* sqlite3_unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE33761528A65B0080447D /* sqlite3_unicode.h */; };
 		CAAF5D90151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5D91151A1430004C4329 /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5D8F151A1430004C4329 /* ARFactory.m */; };
 		CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
@@ -277,6 +281,8 @@
 		CAAE334415287A590080447D /* TransactionSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionSpecs.h; sourceTree = "<group>"; };
 		CAAE33451528819C0080447D /* ARException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARException.h; sourceTree = "<group>"; };
 		CAAE33461528819C0080447D /* ARException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARException.m; sourceTree = "<group>"; };
+		CAAE33751528A65B0080447D /* sqlite3_unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3_unicode.c; sourceTree = "<group>"; };
+		CAAE33761528A65B0080447D /* sqlite3_unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3_unicode.h; sourceTree = "<group>"; };
 		CAAF5D8E151A1430004C4329 /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAAF5D8F151A1430004C4329 /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
 		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
@@ -488,6 +494,7 @@
 		25998EDC14BC19E200CA2490 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CAAE33731528A6350080447D /* UnicodeSupport */,
 				CA3D18021519D56A00FA3F3C /* Managers */,
 				CA3D18001519D55300FA3F3C /* Helpers */,
 				CABB90991520DA4300E8D082 /* Relationships */,
@@ -684,6 +691,15 @@
 			name = Validators;
 			sourceTree = "<group>";
 		};
+		CAAE33731528A6350080447D /* UnicodeSupport */ = {
+			isa = PBXGroup;
+			children = (
+				CAAE33761528A65B0080447D /* sqlite3_unicode.h */,
+				CAAE33751528A65B0080447D /* sqlite3_unicode.c */,
+			);
+			name = UnicodeSupport;
+			sourceTree = "<group>";
+		};
 		CAAF5D9D151A511C004C4329 /* NSArray */ = {
 			isa = PBXGroup;
 			children = (
@@ -763,6 +779,7 @@
 				CAAE32F6152701860080447D /* ARValidatorUniqueness.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
+				CAAE337A1528A65B0080447D /* sqlite3_unicode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,6 +950,7 @@
 				CAAE330F15271D0E0080447D /* AnimalValidator.m in Sources */,
 				CAAE333115285A100080447D /* Entity.m in Sources */,
 				CAAE33491528819D0080447D /* ARException.m in Sources */,
+				CAAE33781528A65B0080447D /* sqlite3_unicode.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,6 +993,7 @@
 				CAAE330E15271D0E0080447D /* AnimalValidator.m in Sources */,
 				CAAE333015285A100080447D /* Entity.m in Sources */,
 				CAAE33481528819D0080447D /* ARException.m in Sources */,
+				CAAE33771528A65B0080447D /* sqlite3_unicode.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,6 +1024,7 @@
 				CAAE32FF1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3305152715270080447D /* ARValidatorPresence.m in Sources */,
 				CAAE334A1528819D0080447D /* ARException.m in Sources */,
+				CAAE33791528A65B0080447D /* sqlite3_unicode.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1055,7 +1075,6 @@
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"UNIT_TEST=1",
-					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
@@ -1088,6 +1107,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					SQLITE_CORE,
+					SQLITE_ENABLE_UNICODE,
+				);
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1116,6 +1139,8 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					SQLITE_CORE,
+					SQLITE_ENABLE_UNICODE,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1135,6 +1160,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					SQLITE_CORE,
+					SQLITE_ENABLE_UNICODE,
+				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1151,6 +1180,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iActiveRecord/iActiveRecord-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					SQLITE_CORE,
+					SQLITE_ENABLE_UNICODE,
+				);
 				INFOPLIST_FILE = "iActiveRecord/iActiveRecord-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1162,6 +1197,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iActiveRecord/iActiveRecord-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					SQLITE_CORE,
+					SQLITE_ENABLE_UNICODE,
+				);
 				INFOPLIST_FILE = "iActiveRecord/iActiveRecord-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
