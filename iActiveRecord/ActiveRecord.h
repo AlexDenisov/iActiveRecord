@@ -21,6 +21,13 @@
 #import "ARRepresentationProtocol.h"
 #import "AREnum.h"
 #import "ARValidatorProtocol.h"
+#import "ARException.h"
+
+typedef void (^ARTransactionBlock)();
+
+
+#define rollback \
+    [ARException raise];
 
 @interface ActiveRecord : NSObject
 
@@ -48,5 +55,6 @@
 + (void)registerDatabaseName:(NSString *)aDbName useDirectory:(ARStorageDirectory)aDirectory;
 + (void)clearDatabase;
 + (void)disableMigrations;
++ (void)transaction:(ARTransactionBlock)aTransactionBlock;
 
 @end

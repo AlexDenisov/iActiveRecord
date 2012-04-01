@@ -28,6 +28,7 @@
 #import "ARValidator.h"
 #import "ARValidatorUniqueness.h"
 #import "ARValidatorPresence.h"
+#import "ARException.h"
 
 @interface ActiveRecord ()
 {
@@ -729,6 +730,20 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)disableMigrations {
     [[ARDatabaseManager sharedInstance] disableMigrations];
+}
+
+#pragma mark - Transactions
+
++ (void)transaction:(ARTransactionBlock)aTransactionBlock {
+    @synchronized(self){
+        [[ARDatabaseManager sharedInstance] executeSqlQuery:"SAVEPOINT point"];
+        @try {
+            aTransactionBlock();
+        }
+        @catch (ARException *exception) {
+            [[ARDatabaseManager sharedInstance] executeSqlQuery:"ROLLBACK TO point"];
+        }
+    }
 }
 
 @end
