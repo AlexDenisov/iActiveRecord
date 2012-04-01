@@ -27,10 +27,8 @@ describe(@"Unicode search", ^{
         User *alex = [User newRecord];
         alex.name = @"Алексей";
         [alex save];
-        
         ARLazyFetcher *fetcher = [[User lazyFetcher] whereField:@"name"
-                                                           like:@"Алексей"];
-
+                                                           like:@"%ксей%"];
         expect(fetcher.count).Not.toEqual(0);
     });
 });
