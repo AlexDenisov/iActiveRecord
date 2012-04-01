@@ -47,5 +47,6 @@
 
 + (void)registerDatabaseName:(NSString *)aDbName useDirectory:(ARStorageDirectory)aDirectory;
 + (void)clearDatabase;
++ (void)disableMigrations;
 
 @end

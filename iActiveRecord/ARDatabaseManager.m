@@ -46,6 +46,7 @@ static NSString *databaseName = DEFAULT_DBNAME;
         NSString *storageDirectory = useCacheDirectory ? [self cachesDirectory] : [self documentsDirectory];
         dbPath = [[NSString alloc] initWithFormat:@"%@/%@", storageDirectory, dbName];
         NSLog(@"%@", dbPath);
+        migrationsEnabled = YES;
         [self createDatabase];
     }
     return self;
@@ -92,7 +93,9 @@ static NSString *databaseName = DEFAULT_DBNAME;
 }
 
 - (void)appendMigrations {
-    NSLog(@"append migrations");
+    if(!migrationsEnabled){
+        return;
+    }
     NSArray *existedTables = [self tables];
     NSArray *describedTables = [self describedTables];
     for(NSString *table in describedTables){
@@ -313,6 +316,10 @@ static NSString *databaseName = DEFAULT_DBNAME;
 - (void)skipBackupAttributeToFile:(NSURL *)url {
     u_int8_t b = 1;
     setxattr([[url path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
+}
+
+- (void)disableMigrations {
+    migrationsEnabled = NO;
 }
 
 @end

@@ -727,4 +727,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [[ARDatabaseManager sharedInstance] clearDatabase];
 }
 
++ (void)disableMigrations {
+    [[ARDatabaseManager sharedInstance] disableMigrations];
+}
+
 @end
