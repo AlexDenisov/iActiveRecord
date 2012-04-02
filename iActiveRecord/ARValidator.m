@@ -42,10 +42,12 @@
 }
 
 + (id)sharedInstance {
-    if(_instance == nil){
-        _instance = [[ARValidator alloc] init];
+    @synchronized(self){
+        if(_instance == nil){
+            _instance = [[ARValidator alloc] init];
+        }
+        return _instance;
     }
-    return _instance;
 }
 
 - (void)registerValidator:(Class)aValidator 
@@ -62,7 +64,9 @@
 - (BOOL)isValidOnSave:(id)aRecord {
     BOOL valid = YES;
     NSString *className = [aRecord performSelector:@selector(className)];
-    for(ARValidation *validation in validations){
+    for(int i=0;i<validations.count;i++){
+        ARValidation *validation = [[validations allObjects] objectAtIndex:i];
+        NSLog(@"%d", validations.count);
         if([validation.record isEqualToString:className]){
             id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
             BOOL result = [validator validateField:validation.field

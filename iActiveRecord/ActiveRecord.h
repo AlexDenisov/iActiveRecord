@@ -26,7 +26,7 @@
 typedef void (^ARTransactionBlock)();
 
 
-#define rollback \
+#define ar_rollback \
     [ARException raise];
 
 @interface ActiveRecord : NSObject
