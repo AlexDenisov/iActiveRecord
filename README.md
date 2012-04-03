@@ -6,6 +6,7 @@
     
 ### Features
 
+- ARC support
 - unicode support
 - migrations
 - validations (with custom validator support)
