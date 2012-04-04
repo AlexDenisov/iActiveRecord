@@ -66,7 +66,6 @@
     NSString *className = [aRecord performSelector:@selector(className)];
     for(int i=0;i<validations.count;i++){
         ARValidation *validation = [[validations allObjects] objectAtIndex:i];
-        NSLog(@"%d", validations.count);
         if([validation.record isEqualToString:className]){
             id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
             BOOL result = [validator validateField:validation.field
