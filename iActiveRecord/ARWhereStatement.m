@@ -8,6 +8,7 @@
 
 #import "ARWhereStatement.h"
 #import "NSString+quotedString.h"
+#import "NSString+stringWithEscapedQuote.h"
 
 @interface ARWhereStatement ()
 {
@@ -36,7 +37,9 @@
 {
     NSMutableArray *sqlValues = [NSMutableArray arrayWithCapacity:aValues.count];
     for(id value in aValues){
-        [sqlValues addObject:[[value performSelector:@selector(toSql)] quotedString]];
+        [sqlValues addObject:[[[value performSelector:@selector(toSql)] 
+                               stringWithEscapedQuote] 
+                              quotedString]];
     }
     NSString *values = [sqlValues componentsJoinedByString:@" , "];
     NSString *stmt = [NSString stringWithFormat:@" %@ %@ (%@)", 
@@ -65,7 +68,9 @@
     NSString *stmt = [NSString stringWithFormat:
                       @" %@ = %@ ",
                       [aField quotedString],
-                      [[aValue performSelector:@selector(toSql)] quotedString]];
+                      [[[aValue performSelector:@selector(toSql)] 
+                        stringWithEscapedQuote] 
+                       quotedString]];
     return [ARWhereStatement statement:stmt];
 }
 
@@ -97,7 +102,9 @@
     NSString *stmt = [NSString stringWithFormat:
                       @" %@ <> %@ ",
                       [aField quotedString],
-                      [[aValue performSelector:@selector(toSql)] quotedString]];
+                      [[[aValue performSelector:@selector(toSql)] 
+                        stringWithEscapedQuote]
+                       quotedString]];
     return [ARWhereStatement statement:stmt];
 }
 
@@ -119,7 +126,9 @@
                       @" %@.%@ = %@ ",
                       [[aRecord performSelector:@selector(tableName)] quotedString],
                       [aField quotedString],
-                      [[aValue performSelector:@selector(toSql)] quotedString]];
+                      [[[aValue performSelector:@selector(toSql)] 
+                        stringWithEscapedQuote] 
+                       quotedString]];
     return [ARWhereStatement statement:stmt];
 }
 
@@ -129,7 +138,9 @@
                       @" %@.%@ <> %@ ",
                       [[aRecord performSelector:@selector(tableName)] quotedString],
                       [aField quotedString],
-                      [[aValue performSelector:@selector(toSql)] quotedString]];
+                      [[[aValue performSelector:@selector(toSql)] 
+                        stringWithEscapedQuote] 
+                       quotedString]];
     return [ARWhereStatement statement:stmt];
 }
 

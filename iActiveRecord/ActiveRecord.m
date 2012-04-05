@@ -30,6 +30,8 @@
 #import "ARValidatorPresence.h"
 #import "ARException.h"
 
+#import "NSString+stringWithEscapedQuote.h"
+
 @interface ActiveRecord ()
 {
 @private
@@ -402,7 +404,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         propertyValue = @"";
     }
     [sqlString appendFormat:@"%@", [property.propertyName quotedString]];
-    [sqlValues appendFormat:@"%@", [[propertyValue performSelector:@selector(toSql)] quotedString]];
+    [sqlValues appendFormat:@"%@", [[[propertyValue performSelector:@selector(toSql)] 
+                                     stringWithEscapedQuote] 
+                                    quotedString]];
     
     for(;index < [existedProperties count];index++){
         property = [existedProperties objectAtIndex:index];
@@ -411,7 +415,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
             propertyValue = @"";
         }
         [sqlString appendFormat:@", %@", [property.propertyName quotedString]];
-        [sqlValues appendFormat:@", %@", [[propertyValue performSelector:@selector(toSql)] quotedString]];
+        [sqlValues appendFormat:@", %@", [[[propertyValue performSelector:@selector(toSql)] 
+                                           stringWithEscapedQuote] 
+                                          quotedString]];
     }
     [existedProperties release];
     [sqlValues appendString:@") "];
@@ -428,13 +434,17 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSString *propertyName = [updatedValues objectAtIndex:index++];
     id propertyValue = [self valueForKey:propertyName];
     [sqlString appendFormat:@"%@=%@", [propertyName quotedString], 
-     [[propertyValue performSelector:@selector(toSql)] quotedString]];
+     [[[propertyValue performSelector:@selector(toSql)] 
+       stringWithEscapedQuote] 
+      quotedString]];
    
     for(;index<[updatedValues count];index++){
         propertyName = [updatedValues objectAtIndex:index++];
         propertyValue = [self valueForKey:propertyName];
         [sqlString appendFormat:@", %@=%@", [propertyName quotedString], 
-         [[propertyValue performSelector:@selector(toSql)] quotedString]];
+         [[[propertyValue performSelector:@selector(toSql)] 
+           stringWithEscapedQuote] 
+          quotedString]];
     }
     [sqlString appendFormat:@" WHERE id = %@", self.id];
     return [sqlString UTF8String];

@@ -37,7 +37,7 @@ describe(@"Transaction", ^{
             User *alex = [User newRecord];
             alex.name = @"Alex";
             [alex save];
-            rollback
+            ar_rollback
         }];
         NSInteger afterCount = [User count];
         expect(beforeCount).toEqual(afterCount);
