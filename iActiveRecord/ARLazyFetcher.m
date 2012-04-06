@@ -474,6 +474,10 @@ static NSString* joinString(ARJoinType type)
 }
 
 - (NSArray *)fetchJoinedRecords {
+    if(!useJoin){
+        [NSException raise:@"InvalidCall"
+                    format:@"Call this method only with JOIN"];
+    }
     NSMutableString *sql = [NSMutableString string];
     
     NSString *select = [self createJoinedSelectStatement];

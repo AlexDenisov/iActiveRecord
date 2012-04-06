@@ -281,6 +281,8 @@ static NSString *databaseName = DEFAULT_DBNAME;
     return resultArray;
 }
 
+#warning refactor this!
+
 - (NSArray *)joinedRecordsWithSql:(NSString *)aSqlRequest {
     NSMutableArray *resultArray = nil;
     NSString *propertyName;

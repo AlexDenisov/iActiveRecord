@@ -87,6 +87,7 @@
 		CA62C33C151E0F0700E54276 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
 		CA62C33D151E0F0700E54276 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
 		CA62C392151E710800E54276 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA62C391151E710700E54276 /* README.md */; };
+		CA8CB48D152F740F00510A14 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CA8CB48C152F740F00510A14 /* LICENSE */; };
 		CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */ = {isa = PBXBuildFile; fileRef = CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */; };
 		CA8D9EB0152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
@@ -254,6 +255,7 @@
 		CA62C312151E0AB800E54276 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA62C314151E0AB800E54276 /* ARBundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARBundle-Prefix.pch"; sourceTree = "<group>"; };
 		CA62C391151E710700E54276 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		CA8CB48C152F740F00510A14 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+stringWithEscapedQuote.h"; sourceTree = "<group>"; };
 		CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+stringWithEscapedQuote.m"; sourceTree = "<group>"; };
 		CA8D9EDF152EC5EB005F9073 /* ARJoinSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARJoinSpecs.h; sourceTree = "<group>"; };
@@ -727,6 +729,7 @@
 			children = (
 				CA62C391151E710700E54276 /* README.md */,
 				CABB90851520B14900E8D082 /* TODO */,
+				CA8CB48C152F740F00510A14 /* LICENSE */,
 			);
 			name = Readme;
 			sourceTree = "<group>";
@@ -896,6 +899,7 @@
 				25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */,
 				CA62C392151E710800E54276 /* README.md in Resources */,
 				CABB90861520B14900E8D082 /* TODO in Resources */,
+				CA8CB48D152F740F00510A14 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
