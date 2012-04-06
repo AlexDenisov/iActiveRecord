@@ -250,7 +250,7 @@ static NSString *databaseName = DEFAULT_DBNAME;
         resultArray = [NSMutableArray arrayWithCapacity:nRows++];
         Record = NSClassFromString(aName);
         for(int i=0;i<nRows-1;i++){
-            id record = [Record newRecord];
+            id record = [Record new];
             for(int j=0;j<nColumns;j++){
                 propertyName = [NSString stringWithUTF8String:results[j]];
                 int index = (i+1)*nColumns + j;
@@ -271,6 +271,69 @@ static NSString *databaseName = DEFAULT_DBNAME;
             }
             [resultArray addObject:record];
             [record release];
+        }
+        sqlite3_free_table(results);
+    }else
+    {
+        NSLog(@"%@", aSqlRequest);
+        NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
+    }
+    return resultArray;
+}
+
+- (NSArray *)joinedRecordsWithSql:(NSString *)aSqlRequest {
+    NSMutableArray *resultArray = nil;
+    NSString *propertyName;
+    NSString *header;
+    id aValue;
+    char **results;
+    int nRows;
+    int nColumns;
+    const char *pszSql = [aSqlRequest UTF8String];
+    if(SQLITE_OK == sqlite3_get_table(database,
+                                      pszSql,
+                                      &results,
+                                      &nRows,
+                                      &nColumns,
+                                      NULL))
+    {
+        resultArray = [NSMutableArray arrayWithCapacity:nRows++];
+        for(int i=0;i<nRows-1;i++){
+            NSMutableDictionary *dictionary = [NSMutableDictionary new];
+            NSString *recordName = nil;
+            for(int j=0;j<nColumns;j++){
+                header = [NSString stringWithUTF8String:results[j]];
+                
+                recordName = [[header componentsSeparatedByString:@"#"] objectAtIndex:0];
+                propertyName = [[header componentsSeparatedByString:@"#"] objectAtIndex:1];
+                
+                Class Record = NSClassFromString(recordName);
+                
+                int index = (i+1)*nColumns + j;
+                const char *pszValue = results[index];
+                if(pszValue){
+                    NSString *propertyClassName = [Record 
+                                                   performSelector:@selector(propertyClassNameWithPropertyName:) 
+                                                        withObject:propertyName];
+                    Class propertyClass = NSClassFromString(propertyClassName);
+                    NSString *sqlData = [NSString stringWithUTF8String:pszValue];
+                    aValue = [propertyClass performSelector:@selector(fromSql:) 
+                                                 withObject:sqlData];
+                }else{
+                    aValue = @"";
+                }
+                id currentRecord = [dictionary valueForKey:recordName];
+                if(currentRecord == nil){
+                    currentRecord = [Record new];
+                    [dictionary setValue:currentRecord
+                                  forKey:recordName];
+                }
+                [currentRecord setValue:aValue
+                                 forKey:propertyName];
+//                [dictionary setValue:aValue forKey:propertyName];
+            }
+            [resultArray addObject:dictionary];
+            [dictionary release];
         }
         sqlite3_free_table(results);
     }else

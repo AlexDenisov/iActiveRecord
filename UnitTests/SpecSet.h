@@ -18,4 +18,4 @@
 #import "MigrationsSpecs.h"
 #import "TransactionSpecs.h"
 #import "UnicodeSpecs.h"
-
+#import "ARJoinSpecs.h"

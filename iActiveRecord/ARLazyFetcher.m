@@ -50,7 +50,10 @@ static NSString* joinString(ARJoinType type)
 - (NSString *)createWhereStatement;
 - (NSString *)createLimitOffsetStatement;
 - (NSString *)createSelectStatement;
+- (NSString *)createJoinedSelectStatement;
 - (NSString *)createJoinStatement;
+
+- (NSSet *)fieldsOfRecord:(id)aRecord;
 
 @end
 
@@ -98,12 +101,12 @@ static NSString* joinString(ARJoinType type)
 
 #pragma mark - Building SQL request
 
-- (NSSet *)recordFields {
+- (NSSet *)fieldsOfRecord:(id)aRecord {
     NSMutableSet *fields = [NSMutableSet set];
     if(onlyFields){
         [fields addObjectsFromArray:[onlyFields allObjects]];
     }else {
-        NSArray *properties = [recordClass performSelector:@selector(tableFields)];
+        NSArray *properties = [aRecord performSelector:@selector(tableFields)];
         for(ARObjectProperty *property in properties){
             [fields addObject:property.propertyName];
         }
@@ -114,6 +117,10 @@ static NSString* joinString(ARJoinType type)
         }
     }
     return fields;
+}
+
+- (NSSet *)recordFields {
+    return [self fieldsOfRecord:recordClass];
 }
 
 - (void)buildSql {
@@ -168,6 +175,37 @@ static NSString* joinString(ARJoinType type)
     if(offset){
         [statement appendFormat:@" OFFSET %d ", offset.integerValue];
     }
+    return statement;
+}
+
+- (NSString *)createJoinedSelectStatement {
+    NSMutableString *statement = [NSMutableString stringWithString:@"SELECT "];
+    NSMutableArray *fields = [NSMutableArray array];
+    NSString *fieldname = nil;
+    for(NSString *field in [self fieldsOfRecord:recordClass]){
+        fieldname = [NSString stringWithFormat:
+                     @"%@.%@ AS '%@#%@'", 
+                     [[recordClass performSelector:@selector(tableName)] quotedString],
+                     [field quotedString],
+                     [recordClass performSelector:@selector(tableName)],
+                     field];
+        [fields addObject:fieldname];
+    }
+    
+    for(NSString *field in [self fieldsOfRecord:joinClass]){
+        fieldname = [NSString stringWithFormat:
+                     @"%@.%@ AS '%@#%@'", 
+                     [[joinClass performSelector:@selector(tableName)] quotedString],
+                     [field quotedString],
+                     [joinClass performSelector:@selector(tableName)],
+                     field];
+        [fields addObject:fieldname];
+    }
+    
+    [statement appendFormat:
+     @"%@ FROM %@ ", 
+     [fields componentsJoinedByString:@","], 
+     [[recordClass performSelector:@selector(tableName)] quotedString]];
     return statement;
 }
 
@@ -433,6 +471,23 @@ static NSString* joinString(ARJoinType type)
     [self buildSql];
     return [[ARDatabaseManager sharedInstance] allRecordsWithName:[recordClass description]
                                                           withSql:sqlRequest];
+}
+
+- (NSArray *)fetchJoinedRecords {
+    NSMutableString *sql = [NSMutableString string];
+    
+    NSString *select = [self createJoinedSelectStatement];
+    NSString *limitOffset = [self createLimitOffsetStatement];
+    NSString *orderBy = [self createOrderbyStatement];
+    NSString *where = [self createWhereStatement];
+    NSString *join = [self createJoinStatement];
+    
+    [sql appendString:select];
+    [sql appendString:join];
+    [sql appendString:where];
+    [sql appendString:orderBy];
+    [sql appendString:limitOffset];
+    return [[ARDatabaseManager sharedInstance] joinedRecordsWithSql:sql];
 }
 
 - (NSInteger)count {

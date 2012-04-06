@@ -45,6 +45,7 @@
 - (NSNumber *)getLastId:(NSString *)aRecordName;
 - (void)executeSqlQuery:(const char *)anSqlQuery;
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest;
+- (NSArray *)joinedRecordsWithSql:(NSString *)aSqlRequest;
 - (NSInteger)countOfRecordsWithName:(NSString *)aName;
 - (NSInteger)functionResult:(NSString *)anSql;
 
