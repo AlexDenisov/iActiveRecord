@@ -58,22 +58,23 @@
 		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA523D401535F50500565E02 /* NSDate+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D3F1535F50500565E02 /* NSDate+isPresented.m */; };
-		CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D421535F56100565E02 /* NSData+isPresented.h */; };
+		CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D421535F56100565E02 /* NSData+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA523D451535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
 		CA523D461535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
 		CA523D471535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
-		CA523D4A1535F5AA00565E02 /* NSDecimalNumber+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D481535F5AA00565E02 /* NSDecimalNumber+isPresented.h */; };
+		CA523D4A1535F5AA00565E02 /* NSDecimalNumber+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D481535F5AA00565E02 /* NSDecimalNumber+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA523D4B1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */; };
 		CA523D4C1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */; };
 		CA523D4D1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */; };
-		CA523D501535F5F100565E02 /* NSNumber+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D4E1535F5F100565E02 /* NSNumber+isPresented.h */; };
+		CA523D501535F5F100565E02 /* NSNumber+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D4E1535F5F100565E02 /* NSNumber+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA523D511535F5F100565E02 /* NSNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */; };
 		CA523D521535F5F100565E02 /* NSNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */; };
 		CA523D531535F5F100565E02 /* NSNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */; };
-		CA523D561535F61400565E02 /* NSString+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D541535F61400565E02 /* NSString+isPresented.h */; };
+		CA523D561535F61400565E02 /* NSString+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D541535F61400565E02 /* NSString+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA523D571535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
 		CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
 		CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
+		CA523D7B1535FAEE00565E02 /* NSDate+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D3E1535F50500565E02 /* NSDate+isPresented.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA62C313151E0AB800E54276 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA62C311151E0AB800E54276 /* InfoPlist.strings */; };
 		CA62C31F151E0EC400E54276 /* NSArray+objectsAccessors.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C320151E0EC400E54276 /* NSDecimalNumber+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2596BC5514C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -105,7 +106,7 @@
 		CA62C33D151E0F0700E54276 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
 		CA62C392151E710800E54276 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA62C391151E710700E54276 /* README.md */; };
 		CA8CB48D152F740F00510A14 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CA8CB48C152F740F00510A14 /* LICENSE */; };
-		CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */ = {isa = PBXBuildFile; fileRef = CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */; };
+		CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */ = {isa = PBXBuildFile; fileRef = CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA8D9EB0152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB2152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
@@ -137,7 +138,7 @@
 		CAAE33771528A65B0080447D /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33751528A65B0080447D /* sqlite3_unicode.c */; };
 		CAAE33781528A65B0080447D /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33751528A65B0080447D /* sqlite3_unicode.c */; };
 		CAAE33791528A65B0080447D /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33751528A65B0080447D /* sqlite3_unicode.c */; };
-		CAAE337A1528A65B0080447D /* sqlite3_unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE33761528A65B0080447D /* sqlite3_unicode.h */; };
+		CAAE337A1528A65B0080447D /* sqlite3_unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE33761528A65B0080447D /* sqlite3_unicode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAAE33931528C41B0080447D /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33921528C41B0080447D /* ARFactory.m */; };
 		CAAE33941528C41B0080447D /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33921528C41B0080447D /* ARFactory.m */; };
 		CAAE33A81528C4500080447D /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33971528C4500080447D /* Animal.m */; };
@@ -811,6 +812,12 @@
 				CA62C32E151E0EC400E54276 /* ARRelationshipsHelper.h in Headers */,
 				CA62C32C151E0EC400E54276 /* ARErrorHelper.h in Headers */,
 				CA62C32F151E0EC400E54276 /* ARValidationsHelper.h in Headers */,
+				CAAE337A1528A65B0080447D /* sqlite3_unicode.h in Headers */,
+				CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */,
+				CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */,
+				CA523D4A1535F5AA00565E02 /* NSDecimalNumber+isPresented.h in Headers */,
+				CA523D501535F5F100565E02 /* NSNumber+isPresented.h in Headers */,
+				CA523D561535F61400565E02 /* NSString+isPresented.h in Headers */,
 				CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */,
 				CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */,
 				CAAE33471528819D0080447D /* ARException.h in Headers */,
@@ -830,14 +837,9 @@
 				CAAE3302152715270080447D /* ARValidatorPresence.h in Headers */,
 				CAAE32FC1527079F0080447D /* ARValidation.h in Headers */,
 				CAAE32F6152701860080447D /* ARValidatorUniqueness.h in Headers */,
+				CA523D7B1535FAEE00565E02 /* NSDate+isPresented.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
-				CAAE337A1528A65B0080447D /* sqlite3_unicode.h in Headers */,
-				CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */,
-				CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */,
-				CA523D4A1535F5AA00565E02 /* NSDecimalNumber+isPresented.h in Headers */,
-				CA523D501535F5F100565E02 /* NSNumber+isPresented.h in Headers */,
-				CA523D561535F61400565E02 /* NSString+isPresented.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
