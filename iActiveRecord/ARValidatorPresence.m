@@ -16,9 +16,8 @@
 }
 
 - (BOOL)validateField:(NSString *)aField ofRecord:(id)aRecord {
-    NSString *aValue = [aRecord valueForKey:aField];
-    BOOL presence = (aValue != nil) && ([aValue length]);
-    return presence;
+    id aValue = [aRecord valueForKey:aField];
+    return (BOOL)[aValue performSelector:@selector(isPresented)];
 }
 
 @end

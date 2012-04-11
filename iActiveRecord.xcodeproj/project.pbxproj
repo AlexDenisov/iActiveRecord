@@ -57,6 +57,23 @@
 		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
 		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
+		CA523D401535F50500565E02 /* NSDate+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D3F1535F50500565E02 /* NSDate+isPresented.m */; };
+		CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D421535F56100565E02 /* NSData+isPresented.h */; };
+		CA523D451535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
+		CA523D461535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
+		CA523D471535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
+		CA523D4A1535F5AA00565E02 /* NSDecimalNumber+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D481535F5AA00565E02 /* NSDecimalNumber+isPresented.h */; };
+		CA523D4B1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */; };
+		CA523D4C1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */; };
+		CA523D4D1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */; };
+		CA523D501535F5F100565E02 /* NSNumber+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D4E1535F5F100565E02 /* NSNumber+isPresented.h */; };
+		CA523D511535F5F100565E02 /* NSNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */; };
+		CA523D521535F5F100565E02 /* NSNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */; };
+		CA523D531535F5F100565E02 /* NSNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */; };
+		CA523D561535F61400565E02 /* NSString+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D541535F61400565E02 /* NSString+isPresented.h */; };
+		CA523D571535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
+		CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
+		CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
 		CA62C313151E0AB800E54276 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA62C311151E0AB800E54276 /* InfoPlist.strings */; };
 		CA62C31F151E0EC400E54276 /* NSArray+objectsAccessors.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C320151E0EC400E54276 /* NSDecimalNumber+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2596BC5514C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -246,6 +263,16 @@
 		CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLazyFetcher.m; sourceTree = "<group>"; };
 		CA3D18081519D61F00FA3F3C /* ARLazyFetcherSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcherSpecs.h; sourceTree = "<group>"; };
 		CA3D18091519D63300FA3F3C /* FooSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FooSpec.h; sourceTree = "<group>"; };
+		CA523D3E1535F50500565E02 /* NSDate+isPresented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+isPresented.h"; sourceTree = "<group>"; };
+		CA523D3F1535F50500565E02 /* NSDate+isPresented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+isPresented.m"; sourceTree = "<group>"; };
+		CA523D421535F56100565E02 /* NSData+isPresented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+isPresented.h"; sourceTree = "<group>"; };
+		CA523D431535F56100565E02 /* NSData+isPresented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+isPresented.m"; sourceTree = "<group>"; };
+		CA523D481535F5AA00565E02 /* NSDecimalNumber+isPresented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+isPresented.h"; sourceTree = "<group>"; };
+		CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+isPresented.m"; sourceTree = "<group>"; };
+		CA523D4E1535F5F100565E02 /* NSNumber+isPresented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+isPresented.h"; sourceTree = "<group>"; };
+		CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+isPresented.m"; sourceTree = "<group>"; };
+		CA523D541535F61400565E02 /* NSString+isPresented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+isPresented.h"; sourceTree = "<group>"; };
+		CA523D551535F61400565E02 /* NSString+isPresented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+isPresented.m"; sourceTree = "<group>"; };
 		CA62C2E9151E039900E54276 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		CA62C307151E0AB800E54276 /* ActiveRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA62C30B151E0AB800E54276 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -361,6 +388,8 @@
 			children = (
 				254F5EBE14C5E78100AC0D86 /* NSNumber+sqlRepresentation.h */,
 				254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */,
+				CA523D4E1535F5F100565E02 /* NSNumber+isPresented.h */,
+				CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */,
 			);
 			name = NSNumber;
 			sourceTree = "<group>";
@@ -444,6 +473,8 @@
 			children = (
 				2596BC5514C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.h */,
 				2596BC5614C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m */,
+				CA523D481535F5AA00565E02 /* NSDecimalNumber+isPresented.h */,
+				CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */,
 			);
 			name = NSDecimalNumber;
 			sourceTree = "<group>";
@@ -601,6 +632,8 @@
 				CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */,
 				CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */,
 				CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */,
+				CA523D541535F61400565E02 /* NSString+isPresented.h */,
+				CA523D551535F61400565E02 /* NSString+isPresented.m */,
 			);
 			name = NSString;
 			sourceTree = "<group>";
@@ -681,6 +714,8 @@
 			children = (
 				CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */,
 				CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */,
+				CA523D3E1535F50500565E02 /* NSDate+isPresented.h */,
+				CA523D3F1535F50500565E02 /* NSDate+isPresented.m */,
 			);
 			name = NSDate;
 			sourceTree = "<group>";
@@ -752,6 +787,8 @@
 			children = (
 				CAF24816151F383000120198 /* NSData+sqlRepresentation.h */,
 				CAF24817151F383000120198 /* NSData+sqlRepresentation.m */,
+				CA523D421535F56100565E02 /* NSData+isPresented.h */,
+				CA523D431535F56100565E02 /* NSData+isPresented.m */,
 			);
 			name = NSData;
 			sourceTree = "<group>";
@@ -797,6 +834,10 @@
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
 				CAAE337A1528A65B0080447D /* sqlite3_unicode.h in Headers */,
 				CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */,
+				CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */,
+				CA523D4A1535F5AA00565E02 /* NSDecimalNumber+isPresented.h in Headers */,
+				CA523D501535F5F100565E02 /* NSNumber+isPresented.h in Headers */,
+				CA523D561535F61400565E02 /* NSString+isPresented.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,6 +1012,10 @@
 				CAAE33B91528C4500080447D /* UserProjectRelationship.m in Sources */,
 				CAAE33BD1528C4710080447D /* AppDelegate.m in Sources */,
 				CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */,
+				CA523D461535F56100565E02 /* NSData+isPresented.m in Sources */,
+				CA523D4C1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */,
+				CA523D521535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
+				CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,6 +1060,11 @@
 				CAAE33BC1528C4710080447D /* AppDelegate.m in Sources */,
 				CAAE33BF1528C47E0080447D /* main.m in Sources */,
 				CA8D9EB0152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */,
+				CA523D401535F50500565E02 /* NSDate+isPresented.m in Sources */,
+				CA523D451535F56100565E02 /* NSData+isPresented.m in Sources */,
+				CA523D4B1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */,
+				CA523D511535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
+				CA523D571535F61400565E02 /* NSString+isPresented.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,6 +1097,10 @@
 				CAAE334A1528819D0080447D /* ARException.m in Sources */,
 				CAAE33791528A65B0080447D /* sqlite3_unicode.c in Sources */,
 				CA8D9EB2152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */,
+				CA523D471535F56100565E02 /* NSData+isPresented.m in Sources */,
+				CA523D4D1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */,
+				CA523D531535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
+				CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

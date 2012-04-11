@@ -53,8 +53,7 @@ describe(@"Join", ^{
         NSArray *records = [fetcher fetchJoinedRecords];
         NSDictionary *first = [records first];
         NSArray *keys = [first allKeys];
-        BOOL result = [keys containsObject:@"title"] && [keys containsObject:@"name"];
-        NSLog(@"%@", keys);
+        BOOL result = [keys containsObject:@"User"] && [keys containsObject:@"Group"];
         expect(result).toEqual(YES);
     });
 });
