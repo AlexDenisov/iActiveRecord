@@ -75,6 +75,10 @@
 		CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
 		CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
 		CA523D7B1535FAEE00565E02 /* NSDate+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D3E1535F50500565E02 /* NSDate+isPresented.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CA523E0715373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; };
+		CA523E0815373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; };
+		CA523E0915373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; };
+		CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523E0615373A5500565E02 /* sqlite3_unicode.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA62C313151E0AB800E54276 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA62C311151E0AB800E54276 /* InfoPlist.strings */; };
 		CA62C31F151E0EC400E54276 /* NSArray+objectsAccessors.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C320151E0EC400E54276 /* NSDecimalNumber+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2596BC5514C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -135,10 +139,6 @@
 		CAAE33481528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE33491528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE334A1528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
-		CAAE33771528A65B0080447D /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33751528A65B0080447D /* sqlite3_unicode.c */; };
-		CAAE33781528A65B0080447D /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33751528A65B0080447D /* sqlite3_unicode.c */; };
-		CAAE33791528A65B0080447D /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33751528A65B0080447D /* sqlite3_unicode.c */; };
-		CAAE337A1528A65B0080447D /* sqlite3_unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE33761528A65B0080447D /* sqlite3_unicode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAAE33931528C41B0080447D /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33921528C41B0080447D /* ARFactory.m */; };
 		CAAE33941528C41B0080447D /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33921528C41B0080447D /* ARFactory.m */; };
 		CAAE33A81528C4500080447D /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33971528C4500080447D /* Animal.m */; };
@@ -274,6 +274,8 @@
 		CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+isPresented.m"; sourceTree = "<group>"; };
 		CA523D541535F61400565E02 /* NSString+isPresented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+isPresented.h"; sourceTree = "<group>"; };
 		CA523D551535F61400565E02 /* NSString+isPresented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+isPresented.m"; sourceTree = "<group>"; };
+		CA523E0515373A5500565E02 /* sqlite3_unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3_unicode.c; path = deps/sqlite3_unicode.c; sourceTree = "<group>"; };
+		CA523E0615373A5500565E02 /* sqlite3_unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3_unicode.h; path = deps/sqlite3_unicode.h; sourceTree = "<group>"; };
 		CA62C2E9151E039900E54276 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		CA62C307151E0AB800E54276 /* ActiveRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA62C30B151E0AB800E54276 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -302,8 +304,6 @@
 		CAAE334415287A590080447D /* TransactionSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionSpecs.h; sourceTree = "<group>"; };
 		CAAE33451528819C0080447D /* ARException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARException.h; sourceTree = "<group>"; };
 		CAAE33461528819C0080447D /* ARException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARException.m; sourceTree = "<group>"; };
-		CAAE33751528A65B0080447D /* sqlite3_unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3_unicode.c; sourceTree = "<group>"; };
-		CAAE33761528A65B0080447D /* sqlite3_unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3_unicode.h; sourceTree = "<group>"; };
 		CAAE337B1528AD5B0080447D /* UnicodeSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnicodeSpecs.h; sourceTree = "<group>"; };
 		CAAE33911528C41B0080447D /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARFactory.h; path = TestSources/ARFactory.h; sourceTree = "<group>"; };
 		CAAE33921528C41B0080447D /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARFactory.m; path = TestSources/ARFactory.m; sourceTree = "<group>"; };
@@ -745,8 +745,8 @@
 		CAAE33731528A6350080447D /* UnicodeSupport */ = {
 			isa = PBXGroup;
 			children = (
-				CAAE33761528A65B0080447D /* sqlite3_unicode.h */,
-				CAAE33751528A65B0080447D /* sqlite3_unicode.c */,
+				CA523E0515373A5500565E02 /* sqlite3_unicode.c */,
+				CA523E0615373A5500565E02 /* sqlite3_unicode.h */,
 			);
 			name = UnicodeSupport;
 			sourceTree = "<group>";
@@ -812,7 +812,6 @@
 				CA62C32E151E0EC400E54276 /* ARRelationshipsHelper.h in Headers */,
 				CA62C32C151E0EC400E54276 /* ARErrorHelper.h in Headers */,
 				CA62C32F151E0EC400E54276 /* ARValidationsHelper.h in Headers */,
-				CAAE337A1528A65B0080447D /* sqlite3_unicode.h in Headers */,
 				CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */,
 				CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */,
 				CA523D4A1535F5AA00565E02 /* NSDecimalNumber+isPresented.h in Headers */,
@@ -822,6 +821,7 @@
 				CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */,
 				CAAE33471528819D0080447D /* ARException.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
+				CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */,
 				CA62C326151E0EC400E54276 /* ARObjectProperty.h in Headers */,
 				CA62C32D151E0EC400E54276 /* class_getSubclasses.h in Headers */,
 				CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */,
@@ -1001,7 +1001,6 @@
 				CAAE32FE1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3304152715270080447D /* ARValidatorPresence.m in Sources */,
 				CAAE33491528819D0080447D /* ARException.m in Sources */,
-				CAAE33781528A65B0080447D /* sqlite3_unicode.c in Sources */,
 				CAAE33941528C41B0080447D /* ARFactory.m in Sources */,
 				CAAE33A91528C4500080447D /* Animal.m in Sources */,
 				CAAE33AB1528C4500080447D /* AnimalValidator.m in Sources */,
@@ -1018,6 +1017,7 @@
 				CA523D4C1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */,
 				CA523D521535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */,
+				CA523E0815373A5500565E02 /* sqlite3_unicode.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,7 +1048,6 @@
 				CAAE32FD1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3303152715270080447D /* ARValidatorPresence.m in Sources */,
 				CAAE33481528819D0080447D /* ARException.m in Sources */,
-				CAAE33771528A65B0080447D /* sqlite3_unicode.c in Sources */,
 				CAAE33931528C41B0080447D /* ARFactory.m in Sources */,
 				CAAE33A81528C4500080447D /* Animal.m in Sources */,
 				CAAE33AA1528C4500080447D /* AnimalValidator.m in Sources */,
@@ -1067,6 +1066,7 @@
 				CA523D4B1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */,
 				CA523D511535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D571535F61400565E02 /* NSString+isPresented.m in Sources */,
+				CA523E0715373A5500565E02 /* sqlite3_unicode.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,12 +1097,12 @@
 				CAAE32FF1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3305152715270080447D /* ARValidatorPresence.m in Sources */,
 				CAAE334A1528819D0080447D /* ARException.m in Sources */,
-				CAAE33791528A65B0080447D /* sqlite3_unicode.c in Sources */,
 				CA8D9EB2152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */,
 				CA523D471535F56100565E02 /* NSData+isPresented.m in Sources */,
 				CA523D4D1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */,
 				CA523D531535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */,
+				CA523E0915373A5500565E02 /* sqlite3_unicode.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
