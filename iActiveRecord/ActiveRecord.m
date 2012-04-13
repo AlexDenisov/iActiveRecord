@@ -47,7 +47,6 @@
 + (void)validateField:(NSString *)aField withValidator:(NSString *)aValidator;
 
 - (void)resetErrors;
-- (void)addError:(ARError *)anError;
 
 #pragma mark - SQLQueries
 

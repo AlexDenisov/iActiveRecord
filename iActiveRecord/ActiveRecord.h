@@ -39,6 +39,7 @@ typedef void (^ARTransactionBlock)();
 
 - (BOOL)isValid;
 - (NSArray *)errors;
+- (void)addError:(ARError *)anError;
 - (NSArray *)changedFields;
 
 + (id)newRecord;
