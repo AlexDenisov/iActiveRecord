@@ -13,6 +13,8 @@
 @synthesize ignoredProperty;
 @synthesize groupId;
 
+@synthesize imageData;
+
 belonsg_to_imp(Group, group, ARDependencyDestroy)
 has_many_through_imp(Project, UserProjectRelationship, projects, ARDependencyDestroy)
 

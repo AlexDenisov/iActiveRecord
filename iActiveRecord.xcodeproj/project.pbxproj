@@ -166,6 +166,12 @@
 		CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
 		CAAF5E25151CAC58004C4329 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
 		CAAF5E26151CAC58004C4329 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
+		CAB56AEB153E6C7F0062DC9E /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB56AEA153E6C7F0062DC9E /* octocat.png */; };
+		CAB56AEC153E6C7F0062DC9E /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB56AEA153E6C7F0062DC9E /* octocat.png */; };
+		CAB56AEF153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
+		CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
+		CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
+		CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CABB90861520B14900E8D082 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = CABB90851520B14900E8D082 /* TODO */; };
 		CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CABB909D1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
@@ -333,6 +339,10 @@
 		CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+objectsAccessors.m"; sourceTree = "<group>"; };
 		CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARWhereStatement.h; sourceTree = "<group>"; };
 		CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARWhereStatement.m; sourceTree = "<group>"; };
+		CAB56AE8153E69B20062DC9E /* NSDataSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDataSpecs.h; sourceTree = "<group>"; };
+		CAB56AEA153E6C7F0062DC9E /* octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat.png; sourceTree = "<group>"; };
+		CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		CABB90851520B14900E8D082 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		CABB90881520C26800E8D082 /* DependencySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DependencySpecs.h; sourceTree = "<group>"; };
 		CABB90971520DA2000E8D082 /* AREnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AREnum.h; sourceTree = "<group>"; };
@@ -433,6 +443,7 @@
 				CAAE334415287A590080447D /* TransactionSpecs.h */,
 				CAAE337B1528AD5B0080447D /* UnicodeSpecs.h */,
 				CA8D9EDF152EC5EB005F9073 /* ARJoinSpecs.h */,
+				CAB56AE8153E69B20062DC9E /* NSDataSpecs.h */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -586,6 +597,7 @@
 		25998EED14BC1A9A00CA2490 /* Test Entities */ = {
 			isa = PBXGroup;
 			children = (
+				CAB56AEA153E6C7F0062DC9E /* octocat.png */,
 				CAAE33961528C4500080447D /* Animal.h */,
 				CAAE33971528C4500080447D /* Animal.m */,
 				CAAE33981528C4500080447D /* AnimalValidator.h */,
@@ -786,6 +798,8 @@
 		CAF2480F151F375000120198 /* NSData */ = {
 			isa = PBXGroup;
 			children = (
+				CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */,
+				CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */,
 				CAF24816151F383000120198 /* NSData+sqlRepresentation.h */,
 				CAF24817151F383000120198 /* NSData+sqlRepresentation.m */,
 				CA523D421535F56100565E02 /* NSData+isPresented.h */,
@@ -820,6 +834,7 @@
 				CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */,
 				CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */,
 				CAAE33471528819D0080447D /* ARException.h in Headers */,
+				CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
 				CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */,
 				CA62C326151E0EC400E54276 /* ARObjectProperty.h in Headers */,
@@ -932,6 +947,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
+				CAB56AEC153E6C7F0062DC9E /* octocat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,6 +959,7 @@
 				CA62C392151E710800E54276 /* README.md in Resources */,
 				CABB90861520B14900E8D082 /* TODO in Resources */,
 				CA8CB48D152F740F00510A14 /* LICENSE in Resources */,
+				CAB56AEB153E6C7F0062DC9E /* octocat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,6 +1035,7 @@
 				CA523D521535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0815373A5500565E02 /* sqlite3_unicode.c in Sources */,
+				CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,6 +1085,7 @@
 				CA523D511535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D571535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0715373A5500565E02 /* sqlite3_unicode.c in Sources */,
+				CAB56AEF153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1103,6 +1122,7 @@
 				CA523D531535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0915373A5500565E02 /* sqlite3_unicode.c in Sources */,
+				CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
