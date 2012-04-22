@@ -745,12 +745,13 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)transaction:(ARTransactionBlock)aTransactionBlock {
     @synchronized(self){
-        [[ARDatabaseManager sharedInstance] executeSqlQuery:"SAVEPOINT point"];
+        [[ARDatabaseManager sharedInstance] executeSqlQuery:"BEGIN"];
         @try {
             aTransactionBlock();
+            [[ARDatabaseManager sharedInstance] executeSqlQuery:"COMMIT"];
         }
         @catch (ARException *exception) {
-            [[ARDatabaseManager sharedInstance] executeSqlQuery:"ROLLBACK TO point"];
+            [[ARDatabaseManager sharedInstance] executeSqlQuery:"ROLLBACK"];
         }
     }
 }
