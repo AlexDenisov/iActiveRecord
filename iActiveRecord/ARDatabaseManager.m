@@ -22,6 +22,8 @@ static ARDatabaseManager *instance = nil;
 static BOOL useCacheDirectory = YES;
 static NSString *databaseName = DEFAULT_DBNAME;
 
+static BOOL migrationsEnabled = YES;
+
 + (void)registerDatabase:(NSString *)aDatabaseName cachesDirectory:(BOOL)isCache {
     databaseName = [aDatabaseName copy];
     useCacheDirectory = isCache;
@@ -47,7 +49,6 @@ static NSString *databaseName = DEFAULT_DBNAME;
         NSString *storageDirectory = useCacheDirectory ? [self cachesDirectory] : [self documentsDirectory];
         dbPath = [[NSString alloc] initWithFormat:@"%@/%@", storageDirectory, dbName];
         NSLog(@"%@", dbPath);
-        migrationsEnabled = YES;
         [self createDatabase];
     }
     return self;
@@ -386,7 +387,7 @@ static NSString *databaseName = DEFAULT_DBNAME;
     setxattr([[url path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
 }
 
-- (void)disableMigrations {
++ (void)disableMigrations {
     migrationsEnabled = NO;
 }
 

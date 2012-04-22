@@ -7,16 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AREnum.h"
+#import "ARBaseRelationship.h"
 
-@interface ARRelationBelongsTo : NSObject
-
-@property (nonatomic, copy) NSString *record;
-@property (nonatomic, copy) NSString *relation;
-@property (nonatomic, readwrite) ARDependency dependency;
-
-- (id)initWithRecord:(NSString *)aRecordName 
-            relation:(NSString *)aRelation 
-           dependent:(ARDependency)aDependency;
+@interface ARRelationBelongsTo : ARBaseRelationship
 
 @end

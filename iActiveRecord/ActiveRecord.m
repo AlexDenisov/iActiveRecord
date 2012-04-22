@@ -23,6 +23,7 @@
 #import "ARRelationBelongsTo.h"
 #import "ARRelationHasMany.h"
 #import "ARRelationHasManyThrough.h"
+
 #import "ARObjectProperty.h"
 
 #import "ARValidator.h"
@@ -31,6 +32,9 @@
 #import "ARException.h"
 
 #import "NSString+stringWithEscapedQuote.h"
+#import "NSMutableDictionary+valueToArray.h"
+
+static NSMutableDictionary *relationshipsDictionary = nil;
 
 @interface ActiveRecord ()
 {
@@ -39,6 +43,8 @@
     NSMutableSet *errors;
     NSMutableSet *changedFields;
 }
+
+#pragma mark - Static Fields
 
 #pragma mark - Validations Declaration
 
@@ -106,6 +112,9 @@
 + (void)registerHasMany:(NSString *)aSelectorName;
 + (void)registerHasManyThrough:(NSString *)aSelectorName;
 
++ (NSArray *)relationships;
+- (NSArray *)relationships;
+
 #pragma mark - private before filter
 
 - (void)privateAfterDestroy;
@@ -142,6 +151,9 @@ static NSString *registerHasMany = @"_ar_registerHasMany";
 static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)registerRelationships {
+    if(relationshipsDictionary == nil){
+        relationshipsDictionary = [NSMutableDictionary new];
+    }
     uint count = 0;
     Method *methods = class_copyMethodList(object_getClass(self), &count);
     for(int i=0;i<count;i++){
@@ -173,7 +185,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     ARRelationBelongsTo *relation = [[ARRelationBelongsTo alloc] initWithRecord:[self className]
                                                                        relation:relationName
                                                                       dependent:dependency];
-    [belongsToRelations addObject:relation];
+    [relationshipsDictionary addValue:relation
+                         toArrayNamed:[self tableName]];
     [relation release];
 } 
 
@@ -188,7 +201,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     ARRelationHasMany *relation = [[ARRelationHasMany alloc] initWithRecord:[self className]
                                                                        relation:relationName
                                                                       dependent:dependency];
-    [hasManyRelations addObject:relation];
+    [relationshipsDictionary addValue:relation
+                         toArrayNamed:[self tableName]];
     [relation release];
 }
 
@@ -207,53 +221,34 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
                                                                             throughRecord:throughRelationname
                                                                                  relation:relationName
                                                                                 dependent:dependency];
-    [hasManyThroughRelations addObject:relation];
+    [relationshipsDictionary addValue:relation
+                         toArrayNamed:[self tableName]];
     [relation release];
 }
 
 #pragma mark - private before filter
 
-#warning REFACTOR!!!
-
 - (void)privateAfterDestroy {
-    for(ARRelationBelongsTo *relation in belongsToRelations){
-        if([relation.record isEqualToString:[self className]]){
-            switch (relation.dependency) {
-                case ARDependencyDestroy:
+    for(ARBaseRelationship *relation in [self relationships]){
+        if(relation.dependency == ARDependencyDestroy){
+            switch ([relation type]) {
+                case ARRelationTypeBelongsTo:
                 {
-                    ActiveRecord *record = [self belongsTo:relation.relation];
-                    [record dropRecord];
+                    [[self belongsTo:relation.relation] dropRecord];
                 }break;
-                    
-                default:
-                    break;
-            }
-        }
-    }
-    for(ARRelationHasMany *relation in hasManyRelations){
-        if([relation.record isEqualToString:[self className]]){
-            switch (relation.dependency) {
-                case ARDependencyDestroy:
+                case ARRelationTypeHasManyThrough:
                 {
-                    NSArray *records = [[self hasManyRecords:relation.relation] fetchRecords];
-                    [records makeObjectsPerformSelector:@selector(dropRecord)];
+                    [[[self hasMany:relation.relation
+                            through:relation.throughRecord] 
+                      fetchRecords] 
+                     makeObjectsPerformSelector:@selector(dropRecord)];
                 }break;
-                    
-                default:
-                    break;
-            }
-        }
-    }
-    for(ARRelationHasManyThrough *relation in hasManyThroughRelations){
-        if([relation.record isEqualToString:[self className]]){
-            switch (relation.dependency) {
-                case ARDependencyDestroy:
+                case ARRelationTypeHasMany:
                 {
-                    NSArray *records = [[self hasMany:relation.relation
-                                             through:relation.throughRecord] fetchRecords];
-                    [records makeObjectsPerformSelector:@selector(dropRecord)];
+                    [[[self hasManyRecords:relation.relation] 
+                      fetchRecords] 
+                     makeObjectsPerformSelector:@selector(dropRecord)];
                 }break;
-                    
                 default:
                     break;
             }
@@ -456,8 +451,16 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 #pragma mark - 
 
++ (NSArray *)relationships {
+    return [relationshipsDictionary objectForKey:[self tableName]];
+}
+
+- (NSArray *)relationships {
+    return [[self class] relationships];
+}
+
 + (NSString *)tableName {
-    return [self className];//[NSString stringWithFormat:@"ar%@", [[self class] description]];
+    return [self className];
 }
 
 - (NSString *)tableName {
@@ -696,11 +699,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 #pragma mark - Drop records
 
-#warning REFACTOR!!!
-
 + (void)dropAllRecords {
     [[self allRecords] makeObjectsPerformSelector:@selector(dropRecord)];
-    //  [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDeleteAll]];
 }
  
 - (void)dropRecord {
@@ -738,7 +738,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 + (void)disableMigrations {
-    [[ARDatabaseManager sharedInstance] disableMigrations];
+    [ARDatabaseManager disableMigrations];
 }
 
 #pragma mark - Transactions

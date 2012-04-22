@@ -10,9 +10,6 @@
 
 @implementation ARRelationHasManyThrough
 
-@synthesize relation;
-@synthesize dependency;
-@synthesize record;
 @synthesize throughRecord;
 
 - (id)initWithRecord:(NSString *)aRecordName 
@@ -20,21 +17,21 @@
             relation:(NSString *)aRelation 
            dependent:(ARDependency)aDependency
 {
-    self = [super init];
+    self = [super initWithRecord:aRecordName
+                        relation:aRelation
+                       dependent:aDependency];
     if(self != nil){
         self.throughRecord = aThroughRecord;
-        self.record = aRecordName;
-        self.relation = aRelation;
-        self.dependency = aDependency;
     }
     return self;
 }
 
 - (void)dealloc {
-    self.record = nil;
-    self.relation = nil;
-    self.throughRecord = nil;
     [super dealloc];
+}
+
+- (ARRelationType)type {
+    return ARRelationTypeHasManyThrough;
 }
 
 @end

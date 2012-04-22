@@ -7,17 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ARBaseRelationship.h"
 
-#import "AREnum.h"
-
-@interface ARRelationHasMany : NSObject
-
-@property (nonatomic, copy) NSString *record;
-@property (nonatomic, copy) NSString *relation;
-@property (nonatomic, readwrite) ARDependency dependency;
-
-- (id)initWithRecord:(NSString *)aRecordName 
-            relation:(NSString *)aRelation 
-           dependent:(ARDependency)aDependency;
+@interface ARRelationHasMany : ARBaseRelationship
 
 @end

@@ -10,27 +10,8 @@
 
 @implementation ARRelationHasMany
 
-@synthesize relation;
-@synthesize dependency;
-@synthesize record;
-
-- (id)initWithRecord:(NSString *)aRecordName 
-            relation:(NSString *)aRelation 
-           dependent:(ARDependency)aDependency
-{
-    self = [super init];
-    if(self != nil){
-        self.record = aRecordName;
-        self.relation = aRelation;
-        self.dependency = aDependency;
-    }
-    return self;
-}
-
-- (void)dealloc {
-    self.record = nil;
-    self.relation = nil;
-    [super dealloc];
+- (ARRelationType)type {
+    return ARRelationTypeHasMany;
 }
 
 @end

@@ -15,3 +15,10 @@ typedef enum {
     ARDependencyNullify,
     ARDependencyDestroy
 } ARDependency;
+
+typedef enum {
+    ARRelationTypeNone,
+    ARRelationTypeBelongsTo,
+    ARRelationTypeHasMany,
+    ARRelationTypeHasManyThrough
+} ARRelationType;

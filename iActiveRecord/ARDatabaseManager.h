@@ -15,10 +15,9 @@
     sqlite3 *database;
     NSString *dbPath;
     NSString *dbName;
-    BOOL migrationsEnabled;
 }
 
-- (void)disableMigrations;
++ (void)disableMigrations;
 
 - (void)createDatabase;
 - (void)clearDatabase;

@@ -185,6 +185,14 @@
 		CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
 		CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
 		CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
+		CADA6AEF154472D800CCE41D /* NSMutableDictionary+valueToArray.h in Headers */ = {isa = PBXBuildFile; fileRef = CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */; };
+		CADA6AF0154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
+		CADA6AF1154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
+		CADA6AF2154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
+		CADA6AF7154473E600CCE41D /* ARBaseRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */; };
+		CADA6AF8154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
+		CADA6AF9154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
+		CADA6AFA154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
 		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
@@ -352,6 +360,10 @@
 		CABB90A11520E63200E8D082 /* ARRelationHasMany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationHasMany.m; sourceTree = "<group>"; };
 		CABB90B01520F60700E8D082 /* ARRelationHasManyThrough.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationHasManyThrough.h; sourceTree = "<group>"; };
 		CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationHasManyThrough.m; sourceTree = "<group>"; };
+		CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+valueToArray.h"; sourceTree = "<group>"; };
+		CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+valueToArray.m"; sourceTree = "<group>"; };
+		CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBaseRelationship.h; sourceTree = "<group>"; };
+		CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBaseRelationship.m; sourceTree = "<group>"; };
 		CAF24809151F298B00120198 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
 		CAF2480A151F298B00120198 /* ARError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARError.m; sourceTree = "<group>"; };
 		CAF24816151F383000120198 /* NSData+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -623,6 +635,7 @@
 		25998EFE14BC2D4600CA2490 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CADA6AF4154472DE00CCE41D /* NSMutableDictionary */,
 				CAAE32B515244BEB0080447D /* NSDate */,
 				CAF2480F151F375000120198 /* NSData */,
 				CAAF5D9D151A511C004C4329 /* NSArray */,
@@ -785,6 +798,8 @@
 		CABB90991520DA4300E8D082 /* Relationships */ = {
 			isa = PBXGroup;
 			children = (
+				CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */,
+				CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */,
 				CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */,
 				CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */,
 				CABB90A01520E63200E8D082 /* ARRelationHasMany.h */,
@@ -793,6 +808,15 @@
 				CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */,
 			);
 			name = Relationships;
+			sourceTree = "<group>";
+		};
+		CADA6AF4154472DE00CCE41D /* NSMutableDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */,
+				CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */,
+			);
+			name = NSMutableDictionary;
 			sourceTree = "<group>";
 		};
 		CAF2480F151F375000120198 /* NSData */ = {
@@ -855,6 +879,8 @@
 				CA523D7B1535FAEE00565E02 /* NSDate+isPresented.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
+				CADA6AEF154472D800CCE41D /* NSMutableDictionary+valueToArray.h in Headers */,
+				CADA6AF7154473E600CCE41D /* ARBaseRelationship.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1036,6 +1062,8 @@
 				CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0815373A5500565E02 /* sqlite3_unicode.c in Sources */,
 				CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
+				CADA6AF1154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */,
+				CADA6AF9154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,6 +1114,8 @@
 				CA523D571535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0715373A5500565E02 /* sqlite3_unicode.c in Sources */,
 				CAB56AEF153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
+				CADA6AF0154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */,
+				CADA6AF8154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1123,6 +1153,8 @@
 				CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0915373A5500565E02 /* sqlite3_unicode.c in Sources */,
 				CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
+				CADA6AF2154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */,
+				CADA6AFA154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
