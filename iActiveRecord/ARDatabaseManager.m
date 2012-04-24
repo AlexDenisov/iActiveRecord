@@ -241,6 +241,7 @@ static BOOL migrationsEnabled = YES;
     int nRows;
     int nColumns;
     const char *pszSql = [aSqlRequest UTF8String];
+//    NSLog(@"%@", aSqlRequest);
     if(SQLITE_OK == sqlite3_get_table(database,
                                       pszSql,
                                       &results,

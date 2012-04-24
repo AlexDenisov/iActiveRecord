@@ -643,7 +643,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (ARLazyFetcher *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
     
-    NSString *relId = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
+    NSString *relId = [NSString stringWithFormat:@"%@Id", [[self className] lowercaseFirst]];
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     [fetcher join:NSClassFromString(aRelationsipClassName)];
     [fetcher whereField:relId
