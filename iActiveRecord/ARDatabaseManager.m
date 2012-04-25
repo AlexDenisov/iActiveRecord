@@ -241,7 +241,6 @@ static BOOL migrationsEnabled = YES;
     int nRows;
     int nColumns;
     const char *pszSql = [aSqlRequest UTF8String];
-//    NSLog(@"%@", aSqlRequest);
     if(SQLITE_OK == sqlite3_get_table(database,
                                       pszSql,
                                       &results,
@@ -282,8 +281,6 @@ static BOOL migrationsEnabled = YES;
     }
     return resultArray;
 }
-
-#warning refactor this!
 
 - (NSArray *)joinedRecordsWithSql:(NSString *)aSqlRequest {
     NSMutableArray *resultArray = nil;
@@ -365,15 +362,22 @@ static BOOL migrationsEnabled = YES;
 - (NSInteger)functionResult:(NSString *)anSql {
     char **results;
     NSInteger resId = 0;
+    int nRows;
+    int nColumns;
     const char *pszSql = [anSql UTF8String];
     if(SQLITE_OK == sqlite3_get_table(database,
                                       pszSql,
                                       &results,
-                                      NULL,
-                                      NULL,
+                                      &nRows,
+                                      &nColumns,
                                       NULL))
     {
-        resId = [[NSString stringWithUTF8String:results[1]] integerValue];
+        if(nRows == 0 || nColumns == 0){
+            resId = -1;
+        }else{
+            resId = [[NSString stringWithUTF8String:results[1]] integerValue];
+        }
+
         sqlite3_free_table(results);
     }else
     {
