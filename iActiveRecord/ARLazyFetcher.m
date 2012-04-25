@@ -500,17 +500,11 @@ static NSString* joinString(ARJoinType type)
     NSString *select = [NSString stringWithFormat:
                         @"SELECT count(*) FROM %@ ", 
                         [[recordClass performSelector:@selector(tableName)] quotedString]];
-    
-    NSString *limitOffset = [self createLimitOffsetStatement];
-    NSString *orderBy = [self createOrderbyStatement];
     NSString *where = [self createWhereStatement];
     NSString *join = [self createJoinStatement];
-    
     [sql appendString:select];
     [sql appendString:join];
     [sql appendString:where];
-    [sql appendString:orderBy];
-    [sql appendString:limitOffset];
     return [[ARDatabaseManager sharedInstance] functionResult:sql];
 }
 
