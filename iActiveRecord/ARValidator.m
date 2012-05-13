@@ -63,10 +63,10 @@
 
 - (BOOL)isValidOnSave:(id)aRecord {
     BOOL valid = YES;
-    NSString *className = [aRecord performSelector:@selector(className)];
+    NSString *recordName = [aRecord performSelector:@selector(recordName)];
     for(int i=0;i<validations.count;i++){
         ARValidation *validation = [[validations allObjects] objectAtIndex:i];
-        if([validation.record isEqualToString:className]){
+        if([validation.record isEqualToString:recordName]){
             id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
             BOOL result = [validator validateField:validation.field
                                           ofRecord:aRecord];
@@ -92,9 +92,9 @@
 
 - (BOOL)isValidOnUpdate:(id)aRecord {
     BOOL valid = YES;
-    NSString *className = [aRecord performSelector:@selector(className)];
+    NSString *recordName = [aRecord performSelector:@selector(recordName)];
     for(ARValidation *validation in validations){
-        if([validation.record isEqualToString:className]){
+        if([validation.record isEqualToString:recordName]){
             if([[aRecord changedFields] containsObject:validation.field]){
                 id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
                 BOOL result = [validator validateField:validation.field

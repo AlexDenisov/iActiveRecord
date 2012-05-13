@@ -11,8 +11,8 @@
 #import "class_getSubclasses.h"
 #import "NSString+quotedString.h"
 #include <sys/xattr.h>
-#import "ARObjectProperty.h"
 #import "sqlite3_unicode.h"
+#import "ARColumn.h"
 
 #define DEFAULT_DBNAME @"database"
 
@@ -107,10 +107,10 @@ static BOOL migrationsEnabled = YES;
             Class Record = NSClassFromString(table);
             NSArray *existedColumns = [self columnsForTable:table];
             
-            NSArray *describedProperties = [Record performSelector:@selector(tableFields)];
+            NSArray *describedProperties = [Record performSelector:@selector(columns)];
             NSMutableArray *describedColumns = [NSMutableArray array];
-            for(ARObjectProperty *property in describedProperties){
-                [describedColumns addObject:property.propertyName];
+            for(ARColumn *column in describedProperties){
+                [describedColumns addObject:column.columnName];
             }
             for(NSString *column in describedColumns){
                 if(![existedColumns containsObject:column]){
@@ -258,12 +258,10 @@ static BOOL migrationsEnabled = YES;
                 const char *pszValue = results[index];
                 
                 if(pszValue){
-                    NSString *propertyClassName = [Record 
-                                                   performSelector:@selector(propertyClassNameWithPropertyName:) 
-                                                   withObject:propertyName];
-                    Class propertyClass = NSClassFromString(propertyClassName);
+                    ARColumn *column = [Record performSelector:@selector(columnNamed:) 
+                                                    withObject:propertyName];
                     NSString *sqlData = [NSString stringWithUTF8String:pszValue];
-                    aValue = [propertyClass performSelector:@selector(fromSql:) 
+                    aValue = [column.columnClass performSelector:@selector(fromSql:) 
                                                  withObject:sqlData];
                 }else{
                     aValue = @"";
@@ -313,12 +311,11 @@ static BOOL migrationsEnabled = YES;
                 int index = (i+1)*nColumns + j;
                 const char *pszValue = results[index];
                 if(pszValue){
-                    NSString *propertyClassName = [Record 
-                                                   performSelector:@selector(propertyClassNameWithPropertyName:) 
+                    ARColumn *column = [Record 
+                                                   performSelector:@selector(columnNamed:) 
                                                         withObject:propertyName];
-                    Class propertyClass = NSClassFromString(propertyClassName);
                     NSString *sqlData = [NSString stringWithUTF8String:pszValue];
-                    aValue = [propertyClass performSelector:@selector(fromSql:) 
+                    aValue = [column.columnClass performSelector:@selector(fromSql:) 
                                                  withObject:sqlData];
                 }else{
                     aValue = @"";

@@ -10,12 +10,10 @@
 #import "ARDatabaseManager.h"
 #import "NSString+lowercaseFirst.h"
 #import <objc/runtime.h>
-#import "ARObjectProperty.h"
 #import "ARValidationsHelper.h"
 #import "ARValidatableProtocol.h"
 #import "ARErrorHelper.h"
 #import "ARMigrationsHelper.h"
-#import "NSObject+properties.h"
 #import "NSArray+objectsAccessors.h"
 #import "NSString+quotedString.h"
 #import "ARDatabaseManager.h"
@@ -24,7 +22,6 @@
 #import "ARRelationHasMany.h"
 #import "ARRelationHasManyThrough.h"
 
-#import "ARObjectProperty.h"
 
 #import "ARValidator.h"
 #import "ARValidatorUniqueness.h"
@@ -34,92 +31,11 @@
 #import "NSString+stringWithEscapedQuote.h"
 #import "NSMutableDictionary+valueToArray.h"
 
+#import "ActiveRecord_Private.h"
+#import "ARSchemaManager.h"
+#import "ARColumn.h"
+
 static NSMutableDictionary *relationshipsDictionary = nil;
-
-@interface ActiveRecord ()
-{
-@private
-    BOOL isNew;
-    NSMutableSet *errors;
-    NSMutableSet *changedFields;
-}
-
-#pragma mark - Static Fields
-
-#pragma mark - Validations Declaration
-
-+ (void)validateUniquenessOfField:(NSString *)aField;
-+ (void)validatePresenceOfField:(NSString *)aField;
-+ (void)validateField:(NSString *)aField withValidator:(NSString *)aValidator;
-
-- (void)resetErrors;
-
-#pragma mark - SQLQueries
-
-+ (const char *)sqlOnCreate;
-+ (const char *)sqlOnDeleteAll;
-+ (const char *)sqlOnAddColumn:(NSString *)aColumn;
-- (const char *)sqlOnDelete;
-- (const char *)sqlOnSave;
-- (const char *)sqlOnUpdate;
-
-
-#pragma mark - ObserveChanges
-
-- (void)didChangeField:(NSString *)aField;
-
-#pragma mark - IgnoreFields
-
-+ (void)initIgnoredFields;
-+ (void)ignoreField:(NSString *)aField;
-
-#pragma mark - TableName
-
-+ (NSString *)tableName;
-- (NSString *)tableName;
-
-+ (NSString *)className;
-- (NSString *)className;
-
-+ (NSArray *)tableFields;
-
-#pragma mark - Relationships
-
-#pragma mark BelongsTo
-
-- (id)belongsTo:(NSString *)aClassName;
-- (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation;
-
-#pragma mark HasMany
-
-- (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName;
-- (void)addRecord:(ActiveRecord *)aRecord;
-- (void)removeRecord:(ActiveRecord *)aRecord;
-
-#pragma mark HasManyThrough
-
-- (ARLazyFetcher *)hasMany:(NSString *)aClassName 
-                   through:(NSString *)aRelationsipClassName;
-- (void)addRecord:(ActiveRecord *)aRecord 
-          ofClass:(NSString *)aClassname 
-          through:(NSString *)aRelationshipClassName;
-- (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName;
-
-#pragma mark - register relationships
-
-+ (void)registerRelationships;
-+ (void)registerBelongs:(NSString *)aSelectorName;
-+ (void)registerHasMany:(NSString *)aSelectorName;
-+ (void)registerHasManyThrough:(NSString *)aSelectorName;
-
-+ (NSArray *)relationships;
-- (NSArray *)relationships;
-
-#pragma mark - private before filter
-
-- (void)privateAfterDestroy;
-
-@end
 
 @implementation ActiveRecord
 
@@ -137,6 +53,7 @@ migration_helper
     if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
         [self performSelector:@selector(initValidations)];
     }
+    [[ARSchemaManager sharedInstance] registerSchemeForRecord:self];
     [self registerRelationships];
 }
 
@@ -182,11 +99,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSString *relationName = [aSelectorName stringByReplacingOccurrencesOfString:registerBelongs
                                                                  withString:@""];
     ARDependency dependency = (ARDependency)[self performSelector:selector];
-    ARRelationBelongsTo *relation = [[ARRelationBelongsTo alloc] initWithRecord:[self className]
+    ARRelationBelongsTo *relation = [[ARRelationBelongsTo alloc] initWithRecord:[self recordName]
                                                                        relation:relationName
                                                                       dependent:dependency];
     [relationshipsDictionary addValue:relation
-                         toArrayNamed:[self tableName]];
+                         toArrayNamed:[self recordName]];
     [relation release];
 } 
 
@@ -198,11 +115,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSString *relationName = [aSelectorName stringByReplacingOccurrencesOfString:registerHasMany
                                                                       withString:@""];
     ARDependency dependency = (ARDependency)[self performSelector:selector];
-    ARRelationHasMany *relation = [[ARRelationHasMany alloc] initWithRecord:[self className]
+    ARRelationHasMany *relation = [[ARRelationHasMany alloc] initWithRecord:[self recordName]
                                                                        relation:relationName
                                                                       dependent:dependency];
     [relationshipsDictionary addValue:relation
-                         toArrayNamed:[self tableName]];
+                         toArrayNamed:[self recordName]];
     [relation release];
 }
 
@@ -217,12 +134,12 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSArray *components = [records componentsSeparatedByString:@"_ar_"];
     NSString *relationName = [components objectAtIndex:0];
     NSString *throughRelationname = [components objectAtIndex:1];
-    ARRelationHasManyThrough *relation = [[ARRelationHasManyThrough alloc] initWithRecord:[self className]
+    ARRelationHasManyThrough *relation = [[ARRelationHasManyThrough alloc] initWithRecord:[self recordName]
                                                                             throughRecord:throughRelationname
                                                                                  relation:relationName
                                                                                 dependent:dependency];
     [relationshipsDictionary addValue:relation
-                         toArrayNamed:[self tableName]];
+                         toArrayNamed:[self recordName]];
     [relation release];
 }
 
@@ -328,13 +245,12 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 + (const char *)sqlOnAddColumn:(NSString *)aColumn {
     NSMutableString *sqlString = [NSMutableString stringWithFormat:
                                   @"ALTER TABLE %@ ADD COLUMN ", 
-                                  [[self tableName] quotedString]];
-    NSString *propertyClassName = [self propertyClassNameWithPropertyName:aColumn];
-    Class PropertyClass = NSClassFromString(propertyClassName);
+                                  [[self recordName] quotedString]];
+    ARColumn *column = [self columnNamed:aColumn];
     [sqlString appendFormat:
      @"%@ %s", 
      [aColumn quotedString],
-     [PropertyClass performSelector:@selector(sqlType)]];
+     [column.columnClass performSelector:@selector(sqlType)]];
     return [sqlString UTF8String];
 }
 
@@ -342,18 +258,16 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [self initIgnoredFields];
     NSMutableString *sqlString = [NSMutableString stringWithFormat:
                                   @"create table %@(id integer primary key unique ", 
-                                  [[self tableName] quotedString]];
-    NSArray *properties = [self activeRecordProperties];
-    if([properties count] == 0){
+                                  [[self recordName] quotedString]];
+    NSArray *columns = [self columns];
+    if([columns count] == 0){
         return NULL;
     }
-    Class propertyClass = nil;
-    for(ARObjectProperty *property in [self tableFields]){
-        if(![property.propertyName isEqualToString:@"id"]){
-            propertyClass = NSClassFromString(property.propertyType);
+    for(ARColumn *column in columns){
+        if(![column.columnName isEqualToString:@"id"]){
             [sqlString appendFormat:@", %@ %s", 
-             [property.propertyName quotedString], 
-            [propertyClass performSelector:@selector(sqlType)]];
+             [column.columnName quotedString], 
+            [column.columnClass performSelector:@selector(sqlType)]];
         }
     }
     [sqlString appendFormat:@")"];
@@ -363,23 +277,23 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (const char *)sqlOnDelete {
     NSString *sqlString = [NSString stringWithFormat:
                            @"delete from %@ where id = %@", 
-                           [[self tableName] quotedString], 
+                           [[self recordName] quotedString], 
                            self.id];
     return [sqlString UTF8String];
 }
 
 - (const char *)sqlOnSave {
-    NSArray *properties = [[self class] tableFields];
-    if([properties count] == 0){
+    NSArray *columns = [[self class] columns];
+    if([columns count] == 0){
         return NULL;
     }
     
-    ARObjectProperty *property = nil;
+    ARColumn *column = nil;
     NSMutableArray *existedProperties = [NSMutableArray new];
-    for(property in properties){
-        id value = [self valueForKey:property.propertyName];
+    for(column in columns){
+        id value = [self valueForKey:column.columnName];
         if(nil != value){
-            [existedProperties addObject:property];
+            [existedProperties addObject:column];
         }
     }
     if([existedProperties count] == 0){
@@ -388,27 +302,27 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
     
     NSMutableString *sqlString = [NSMutableString stringWithFormat:@"INSERT INTO %@(", 
-                                  [[self tableName] quotedString]];
+                                  [[self recordName] quotedString]];
     NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" VALUES("];
     
     int index = 0;
-    property = [existedProperties objectAtIndex:index++];
-    id propertyValue = [self valueForKey:property.propertyName];
+    column = [existedProperties objectAtIndex:index++];
+    id propertyValue = [self valueForKey:column.columnName];
     if(propertyValue == nil){
         propertyValue = @"";
     }
-    [sqlString appendFormat:@"%@", [property.propertyName quotedString]];
+    [sqlString appendFormat:@"%@", [column.columnName quotedString]];
     [sqlValues appendFormat:@"%@", [[[propertyValue performSelector:@selector(toSql)] 
                                      stringWithEscapedQuote] 
                                     quotedString]];
     
     for(;index < [existedProperties count];index++){
-        property = [existedProperties objectAtIndex:index];
-        id propertyValue = [self valueForKey:property.propertyName];
+        column = [existedProperties objectAtIndex:index];
+        id propertyValue = [self valueForKey:column.columnName];
         if(propertyValue == nil){
             propertyValue = @"";
         }
-        [sqlString appendFormat:@", %@", [property.propertyName quotedString]];
+        [sqlString appendFormat:@", %@", [column.columnName quotedString]];
         [sqlValues appendFormat:@", %@", [[[propertyValue performSelector:@selector(toSql)] 
                                            stringWithEscapedQuote] 
                                           quotedString]];
@@ -422,7 +336,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (const char *)sqlOnUpdate {
     NSMutableString *sqlString = [NSMutableString stringWithFormat:@"UPDATE %@ SET ", 
-                                  [[self tableName] quotedString]];
+                                  [[self recordName] quotedString]];
     NSArray *updatedValues = [changedFields allObjects];
     NSInteger index = 0;
     NSString *propertyName = [updatedValues objectAtIndex:index++];
@@ -445,33 +359,25 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 + (const char *)sqlOnDeleteAll {
-    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@", [[self tableName] quotedString]];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@", [[self recordName] quotedString]];
     return [sql UTF8String];
 }
 
 #pragma mark - 
 
 + (NSArray *)relationships {
-    return [relationshipsDictionary objectForKey:[self tableName]];
+    return [relationshipsDictionary objectForKey:[self recordName]];
 }
 
 - (NSArray *)relationships {
     return [[self class] relationships];
 }
 
-+ (NSString *)tableName {
-    return [self className];
-}
-
-- (NSString *)tableName {
-    return [[self class] tableName];
-}
-
-+ (NSString *)className {
++ (NSString *)recordName {
     return [self description];
 }
-- (NSString *)className {
-    return [[self class] className];
+- (NSString *)recordName {
+    return [[self class] recordName];
 }
 
 + (id)newRecord {
@@ -493,41 +399,23 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return [fetcher autorelease];
 }
 
-#pragma mark - Equal
-
-- (BOOL)isEqualToRecord:(ActiveRecord *)anOtherRecord {
-    if(nil == anOtherRecord){
-        return NO;
-    }
-    NSArray *properties = [[self class] activeRecordProperties];
-    for(ARObjectProperty *property in properties){
-        id lValue = [self valueForKey:property.propertyName];
-        id rValue = [anOtherRecord valueForKey:property.propertyName];
-        if( ![lValue isEqual:rValue] ){
-            return NO;
-        }
-    }
-    return YES;
-}
-
-
 #pragma mark - Validations
 
 + (void)validateUniquenessOfField:(NSString *)aField {
     [ARValidator registerValidator:[ARValidatorUniqueness class]
-                         forRecord:[self className]
+                         forRecord:[self recordName]
                            onField:aField];
 }
 
 + (void)validatePresenceOfField:(NSString *)aField {
     [ARValidator registerValidator:[ARValidatorPresence class]
-                         forRecord:[self className]
+                         forRecord:[self recordName]
                            onField:aField];
 }
 
 + (void)validateField:(NSString *)aField withValidator:(NSString *)aValidator {
     [ARValidator registerValidator:NSClassFromString(aValidator)
-                         forRecord:[self className]
+                         forRecord:[self recordName]
                            onField:aField];
 }
 
@@ -563,7 +451,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     const char *sql = [self sqlOnSave];
     if(NULL != sql){
         NSNumber *tmpId = [[ARDatabaseManager sharedInstance] 
-                          insertRecord:[[self class] tableName] 
+                          insertRecord:[[self class] recordName] 
                            withSqlQuery:sql];
         self.id = self.id == nil ? tmpId : self.id;
         isNew = NO;
@@ -621,13 +509,13 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark HasMany
 
 - (void)addRecord:(ActiveRecord *)aRecord {
-    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self className] lowercaseFirst]];
+    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
     [aRecord setValue:self.id forKey:relationIdKey];
     [aRecord save];
 }
 
 - (void)removeRecord:(ActiveRecord *)aRecord {
-    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self className] lowercaseFirst]];
+    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
     [aRecord setValue:nil forKey:relationIdKey];
     [aRecord save];
 }
@@ -643,7 +531,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (ARLazyFetcher *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
     
-    NSString *relId = [NSString stringWithFormat:@"%@Id", [[self className] lowercaseFirst]];
+    NSString *relId = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     [fetcher join:NSClassFromString(aRelationsipClassName)];
     [fetcher whereField:relId
@@ -674,8 +562,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName
 {
-    NSString *selfId = [NSString stringWithFormat:@"%@Id", [[self className] lowercaseFirst]];
-    NSString *relId = [NSString stringWithFormat:@"%@Id", [[aRecord className] lowercaseFirst]];
+    NSString *selfId = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
+    NSString *relId = [NSString stringWithFormat:@"%@Id", [[aRecord recordName] lowercaseFirst]];
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     [fetcher whereField:selfId equalToValue:self.id];
     [fetcher whereField:relId equalToValue:aRecord.id];
@@ -688,11 +576,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (NSString *)description {
     NSMutableString *descr = [NSMutableString stringWithFormat:@"%@\n", [[self class] description]];
-    NSArray *properties = [[self class] activeRecordProperties];
-    for(ARObjectProperty *property in properties){
-        [descr appendFormat:@"%@ => %@\n", 
-        property.propertyName, 
-        [self valueForKey:property.propertyName]];
+    NSArray *columns = [[self class] columns];
+    for(ARColumn *column in columns){
+        [descr appendFormat:@"%@ => %@;", 
+        column.columnName, 
+        [self valueForKey:column.columnName]];
     }
     return descr;
 }
@@ -706,19 +594,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (void)dropRecord {
     [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDelete]];
     [self privateAfterDestroy];
-}
-
-#pragma mark - TableFields
-
-+ (NSArray *)tableFields {
-    NSArray *properties = [self activeRecordProperties];
-    NSMutableArray *tableFields = [NSMutableArray arrayWithCapacity:[properties count]];
-    for(ARObjectProperty *property in properties){
-        if(![ignoredFields containsObject:property.propertyName]){
-            [tableFields addObject:property];
-        }
-    }
-    return tableFields;
 }
 
 #pragma mark - Storage
@@ -754,6 +629,30 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
             [[ARDatabaseManager sharedInstance] executeSqlQuery:"ROLLBACK"];
         }
     }
+}
+
+#pragma mark - Record Columns
+
+- (NSArray *)columns {
+    return [[self class] columns];
+}
+
++ (NSArray *)columns {
+    return [[ARSchemaManager sharedInstance] columnsForRecord:self];
+}
+
+- (ARColumn *)columnNamed:(NSString *)aColumnName {
+    return [[self class] columnNamed:aColumnName];
+}
+
++ (ARColumn *)columnNamed:(NSString *)aColumnName {
+    NSArray *columns = [self columns];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"columnName = %@", aColumnName];
+    return [[columns filteredArrayUsingPredicate:predicate] first];
+}
+
++ (NSArray *)ignoredFields {
+    return [ignoredFields allObjects];
 }
 
 @end
