@@ -6,3 +6,4 @@ a.out
 iActiveRecord.xcodeproj/project.xcworkspace/xcuserdata/*
 iActiveRecord.xcodeproj/xcuserdata/*
 DerivedData/*
+build
