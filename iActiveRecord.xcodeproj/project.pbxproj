@@ -302,6 +302,7 @@
 		CA62C312151E0AB800E54276 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA62C314151E0AB800E54276 /* ARBundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARBundle-Prefix.pch"; sourceTree = "<group>"; };
 		CA62C391151E710700E54276 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		CA7DC75815639E3000B22EBF /* ARWhereStatement_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARWhereStatement_Private.h; sourceTree = "<group>"; };
 		CA8CB48C152F740F00510A14 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+stringWithEscapedQuote.h"; sourceTree = "<group>"; };
 		CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+stringWithEscapedQuote.m"; sourceTree = "<group>"; };
@@ -565,6 +566,7 @@
 		25998EDC14BC19E200CA2490 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CA7DC75615639DF800B22EBF /* ARWhereStatement */,
 				CA1AF758155FEA4400D0B17E /* ARSchemaManager */,
 				CA1AF74F155FEA1D00D0B17E /* ARColumn */,
 				CA1AF74C155FE96C00D0B17E /* Classes */,
@@ -677,8 +679,6 @@
 				CAAE33921528C41B0080447D /* ARFactory.m */,
 				CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */,
 				CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */,
-				CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */,
-				CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */,
 				CAF24809151F298B00120198 /* ARError.h */,
 				CAF2480A151F298B00120198 /* ARError.m */,
 				CAAE33451528819C0080447D /* ARException.h */,
@@ -754,6 +754,16 @@
 				CA62C314151E0AB800E54276 /* ARBundle-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CA7DC75615639DF800B22EBF /* ARWhereStatement */ = {
+			isa = PBXGroup;
+			children = (
+				CA7DC75815639E3000B22EBF /* ARWhereStatement_Private.h */,
+				CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */,
+				CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */,
+			);
+			name = ARWhereStatement;
 			sourceTree = "<group>";
 		};
 		CAAE32B515244BEB0080447D /* NSDate */ = {
@@ -1033,7 +1043,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\n# Thank for tutorial\n# http://db-in.com/blog/2011/07/universal-framework-iphone-ios-2-0/\n#\n# Sets the target folders and the final framework product.\nFMK_NAME=ActiveRecord\nFMK_VERSION=A\n \n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=/opt/Products/${FMK_NAME}.framework\n \n# Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n \n# Building both architectures.\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator\n \n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n \n# Creates and renews the final product folder.\nmkdir -p \"${INSTALL_DIR}\"\nmkdir -p \"${INSTALL_DIR}/Versions\"\nmkdir -p \"${INSTALL_DIR}/Versions/${FMK_VERSION}\"\nmkdir -p \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources\"\nmkdir -p \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Headers\"\n \n# Creates the internal links.\n# It MUST uses relative path, otherwise will not work when the folder is copied/moved.\nln -s \"${FMK_VERSION}\" \"${INSTALL_DIR}/Versions/Current\"\nln -s \"Versions/Current/Headers\" \"${INSTALL_DIR}/Headers\"\nln -s \"Versions/Current/Resources\" \"${INSTALL_DIR}/Resources\"\nln -s \"Versions/Current/${FMK_NAME}\" \"${INSTALL_DIR}/${FMK_NAME}\"\n \n# Copies the headers and resources files to the final product folder.\ncp -R \"${DEVICE_DIR}/Headers/\" \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Headers/\"\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources/\"\n \n# Removes the binary and header from the resources folder.\nrm -r \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources/Headers\" \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources/${FMK_NAME}\"\n \n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/Versions/${FMK_VERSION}/${FMK_NAME}\"\n \nrm -r \"${WRK_DIR}\"";
+			shellScript = "#\n# Thank for tutorial\n# http://db-in.com/blog/2011/07/universal-framework-iphone-ios-2-0/\n#\n# Sets the target folders and the final framework product.\nFMK_NAME=ActiveRecord\nFMK_VERSION=A\n \n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=~/Products/${FMK_NAME}.framework\n \n# Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n \n# Building both architectures.\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator\n \n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n \n# Creates and renews the final product folder.\nmkdir -p \"${INSTALL_DIR}\"\nmkdir -p \"${INSTALL_DIR}/Versions\"\nmkdir -p \"${INSTALL_DIR}/Versions/${FMK_VERSION}\"\nmkdir -p \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources\"\nmkdir -p \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Headers\"\n \n# Creates the internal links.\n# It MUST uses relative path, otherwise will not work when the folder is copied/moved.\nln -s \"${FMK_VERSION}\" \"${INSTALL_DIR}/Versions/Current\"\nln -s \"Versions/Current/Headers\" \"${INSTALL_DIR}/Headers\"\nln -s \"Versions/Current/Resources\" \"${INSTALL_DIR}/Resources\"\nln -s \"Versions/Current/${FMK_NAME}\" \"${INSTALL_DIR}/${FMK_NAME}\"\n \n# Copies the headers and resources files to the final product folder.\ncp -R \"${DEVICE_DIR}/Headers/\" \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Headers/\"\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources/\"\n \n# Removes the binary and header from the resources folder.\nrm -r \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources/Headers\" \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources/${FMK_NAME}\"\n \n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/Versions/${FMK_VERSION}/${FMK_NAME}\"\n \nrm -r \"${WRK_DIR}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

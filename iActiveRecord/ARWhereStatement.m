@@ -7,21 +7,9 @@
 //
 
 #import "ARWhereStatement.h"
+#import "ARWhereStatement_Private.h"
 #import "NSString+quotedString.h"
 #import "NSString+stringWithEscapedQuote.h"
-
-@interface ARWhereStatement ()
-{
-    @private
-    NSString *statement;
-}
-
-+ (ARWhereStatement *)statement:(NSString *)aStmt;
-+ (ARWhereStatement *)statementForField:(NSString *)aField 
-                              fromArray:(NSArray *)aValues 
-                          withOperation:(NSString *)anOperation;
-
-@end
 
 @implementation ARWhereStatement
 
@@ -78,11 +66,12 @@
                         ofRecord:(Class)aRecord 
                             like:(NSString *)aPattern 
 {
+    NSString *pattern = [[NSString stringWithFormat:@"%%%@%%", aPattern] quotedString];
     NSString *stmt = [NSString stringWithFormat:
                       @" %@.%@ LIKE %@ ",
                       [[aRecord performSelector:@selector(recordName)] quotedString],
                       [aField quotedString],
-                      [aPattern quotedString]];
+                      pattern];
     return [ARWhereStatement statement:stmt];
 }
 
@@ -90,11 +79,12 @@
                         ofRecord:(Class)aRecord 
                          notLike:(NSString *)aPattern
 {
+    NSString *pattern = [[NSString stringWithFormat:@"%%%@%%", aPattern] quotedString];
     NSString *stmt = [NSString stringWithFormat:
                       @" %@.%@ NOT LIKE %@ ",
                       [[aRecord performSelector:@selector(recordName)] quotedString],
                       [aField quotedString],
-                      [aPattern quotedString]];
+                      pattern];
     return [ARWhereStatement statement:stmt];
 }
 
