@@ -15,6 +15,9 @@
 #import "ARFactory.h"
 #import "ARWhereStatement.h"
 
+#define DAY (24*60*60)
+#define MONTH (30*DAY)
+
 SPEC_BEGIN(ARLazyFetcherSpecs)
 
 beforeEach(^{
@@ -31,6 +34,32 @@ describe(@"LazyFetcher", ^{
         NSArray *records = [[User lazyFetcher] fetchRecords];
         expect([records count]).toEqual(10);
     });    
+    
+    describe(@"where between", ^{
+        it(@"should fetch only records between two dates", ^{
+            [ActiveRecord clearDatabase];
+            NSDate *startDate = [NSDate dateWithTimeIntervalSinceNow:-MONTH];
+            NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:DAY];
+            User *john = [User newRecord];
+            john.name = @"John";
+            john.createdAt = [NSDate dateWithTimeIntervalSinceNow:-MONTH * 2];
+            expect([john save]).toEqual(YES);
+            User *alex = [User newRecord];
+            alex.name = @"Alex";
+            alex.createdAt = [NSDate dateWithTimeIntervalSinceNow:-DAY];
+            expect([alex save]).toEqual(YES);
+            ARLazyFetcher *fetcher = [User lazyFetcher];
+            [fetcher whereField:@"createdAt" 
+                        between:startDate
+                            and:endDate];
+            NSArray *users = [fetcher fetchRecords];
+            expect(users.count).toEqual(1);
+            [alex release];
+            [john release];
+            
+        });
+    });
+    
     describe(@"Limit/Offset", ^{
         it(@"LIMIT should return limited count of records", ^{
             NSInteger limit = 5;

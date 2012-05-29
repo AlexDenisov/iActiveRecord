@@ -274,6 +274,18 @@ static NSString* joinString(ARJoinType type)
     return self;
 }
 
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                      between:(id)startValue 
+                          and:(id)endValue
+{
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                  ofRecord:recordClass
+                                                   between:startValue
+                                                       and:endValue];
+    [self setWhereStatement:where];
+    return self;
+}
+
 - (ARLazyFetcher *)whereField:(NSString *)aField like:(NSString *)aPattern {
     ARWhereStatement *where = [ARWhereStatement whereField:aField 
                                                   ofRecord:recordClass
@@ -383,6 +395,19 @@ static NSString* joinString(ARJoinType type)
     ARWhereStatement *where = [ARWhereStatement whereField:aField 
                                                   ofRecord:aRecord
                                                    notLike:aPattern];
+    [self setWhereStatement:where];
+    return self;
+}
+
+- (ARLazyFetcher *)whereField:(NSString *)aField 
+                     ofRecord:(Class)aRecord 
+                      between:(id)startValue 
+                          and:(id)endValue
+{
+    ARWhereStatement *where = [ARWhereStatement whereField:aField
+                                                  ofRecord:aRecord
+                                                   between:startValue
+                                                       and:endValue];
     [self setWhereStatement:where];
     return self;
 }

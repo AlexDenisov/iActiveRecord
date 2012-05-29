@@ -64,6 +64,20 @@
 
 + (ARWhereStatement *)whereField:(NSString *)aField 
                         ofRecord:(Class)aRecord 
+                         between:(id)startValue 
+                             and:(id)endValue
+{
+    NSString *stmt = [NSString stringWithFormat:
+                      @" %@.%@ BETWEEN %@ AND %@", 
+                      [[aRecord performSelector:@selector(recordName)] quotedString],
+                      [aField quotedString],
+                      [[startValue performSelector:@selector(toSql)] quotedString],
+                      [[endValue performSelector:@selector(toSql)] quotedString]];
+    return [ARWhereStatement statement:stmt];
+}
+
++ (ARWhereStatement *)whereField:(NSString *)aField 
+                        ofRecord:(Class)aRecord 
                             like:(NSString *)aPattern 
 {
     NSString *pattern = [[NSString stringWithFormat:@"%%%@%%", aPattern] quotedString];

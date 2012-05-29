@@ -566,6 +566,7 @@
 		25998EDC14BC19E200CA2490 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CAE051701574BFE100010AAE /* ARLazyFetcher */,
 				CA7DC75615639DF800B22EBF /* ARWhereStatement */,
 				CA1AF758155FEA4400D0B17E /* ARSchemaManager */,
 				CA1AF74F155FEA1D00D0B17E /* ARColumn */,
@@ -677,8 +678,6 @@
 			children = (
 				CAAE33911528C41B0080447D /* ARFactory.h */,
 				CAAE33921528C41B0080447D /* ARFactory.m */,
-				CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */,
-				CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */,
 				CAF24809151F298B00120198 /* ARError.h */,
 				CAF2480A151F298B00120198 /* ARError.m */,
 				CAAE33451528819C0080447D /* ARException.h */,
@@ -848,6 +847,15 @@
 				CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */,
 			);
 			name = NSMutableDictionary;
+			sourceTree = "<group>";
+		};
+		CAE051701574BFE100010AAE /* ARLazyFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */,
+				CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */,
+			);
+			name = ARLazyFetcher;
 			sourceTree = "<group>";
 		};
 		CAF2480F151F375000120198 /* NSData */ = {
