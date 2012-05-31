@@ -347,7 +347,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
       quotedString]];
    
     for(;index<[updatedValues count];index++){
-        propertyName = [updatedValues objectAtIndex:index++];
+        propertyName = [updatedValues objectAtIndex:index];
         propertyValue = [self valueForKey:propertyName];
         [sqlString appendFormat:@", %@=%@", [propertyName quotedString], 
          [[[propertyValue performSelector:@selector(toSql)] 
