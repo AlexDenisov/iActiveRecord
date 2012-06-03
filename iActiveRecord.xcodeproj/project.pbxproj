@@ -173,7 +173,6 @@
 		CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
 		CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
 		CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CABB90861520B14900E8D082 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = CABB90851520B14900E8D082 /* TODO */; };
 		CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CABB909D1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
 		CABB909E1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
@@ -188,6 +187,8 @@
 		CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
 		CAC022EB157B76C300208445 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
 		CAC022EC157B76C300208445 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
+		CAC02305157B855500208445 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
+		CAC02306157B855500208445 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
 		CADA6AEF154472D800CCE41D /* NSMutableDictionary+valueToArray.h in Headers */ = {isa = PBXBuildFile; fileRef = CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */; };
 		CADA6AF0154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
 		CADA6AF1154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
@@ -357,7 +358,6 @@
 		CAB56AEA153E6C7F0062DC9E /* octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat.png; sourceTree = "<group>"; };
 		CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		CABB90851520B14900E8D082 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		CABB90881520C26800E8D082 /* DependencySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DependencySpecs.h; sourceTree = "<group>"; };
 		CABB90971520DA2000E8D082 /* AREnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AREnum.h; sourceTree = "<group>"; };
 		CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationBelongsTo.h; sourceTree = "<group>"; };
@@ -369,6 +369,8 @@
 		CAC022DD1579477000208445 /* ARLazyFetcher_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcher_Private.h; sourceTree = "<group>"; };
 		CAC022E9157B76C300208445 /* NSArray+toSql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+toSql.h"; sourceTree = "<group>"; };
 		CAC022EA157B76C300208445 /* NSArray+toSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+toSql.m"; sourceTree = "<group>"; };
+		CAC02303157B855500208445 /* NSSet+toSql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+toSql.h"; sourceTree = "<group>"; };
+		CAC02304157B855500208445 /* NSSet+toSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+toSql.m"; sourceTree = "<group>"; };
 		CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+valueToArray.h"; sourceTree = "<group>"; };
 		CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+valueToArray.m"; sourceTree = "<group>"; };
 		CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBaseRelationship.h; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 		25998EFE14BC2D4600CA2490 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CAC02302157B853A00208445 /* NSSet */,
 				CAC022E4157B767C00208445 /* NSArray */,
 				CADA6AF4154472DE00CCE41D /* NSMutableDictionary */,
 				CAAE32B515244BEB0080447D /* NSDate */,
@@ -825,7 +828,6 @@
 			isa = PBXGroup;
 			children = (
 				CA62C391151E710700E54276 /* README.md */,
-				CABB90851520B14900E8D082 /* TODO */,
 				CA8CB48C152F740F00510A14 /* LICENSE */,
 			);
 			name = Readme;
@@ -853,6 +855,15 @@
 				CAC022EA157B76C300208445 /* NSArray+toSql.m */,
 			);
 			name = NSArray;
+			sourceTree = "<group>";
+		};
+		CAC02302157B853A00208445 /* NSSet */ = {
+			isa = PBXGroup;
+			children = (
+				CAC02303157B855500208445 /* NSSet+toSql.h */,
+				CAC02304157B855500208445 /* NSSet+toSql.m */,
+			);
+			name = NSSet;
 			sourceTree = "<group>";
 		};
 		CADA6AF4154472DE00CCE41D /* NSMutableDictionary */ = {
@@ -1039,7 +1050,6 @@
 			files = (
 				25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */,
 				CA62C392151E710800E54276 /* README.md in Resources */,
-				CABB90861520B14900E8D082 /* TODO in Resources */,
 				CA8CB48D152F740F00510A14 /* LICENSE in Resources */,
 				CAB56AEB153E6C7F0062DC9E /* octocat.png in Resources */,
 			);
@@ -1121,6 +1131,7 @@
 				CA1AF756155FEA3A00D0B17E /* ARColumn.m in Sources */,
 				CA1AF75D155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
 				CAC022EC157B76C300208445 /* NSArray+toSql.m in Sources */,
+				CAC02306157B855500208445 /* NSSet+toSql.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,6 +1185,7 @@
 				CA1AF755155FEA3A00D0B17E /* ARColumn.m in Sources */,
 				CA1AF75C155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
 				CAC022EB157B76C300208445 /* NSArray+toSql.m in Sources */,
+				CAC02305157B855500208445 /* NSSet+toSql.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
