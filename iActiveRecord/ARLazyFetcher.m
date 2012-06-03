@@ -14,50 +14,8 @@
 #import "ARColumn.h"
 #import "ActiveRecord.h"
 #import "ActiveRecord_Private.h"
-
-static const char *joins[] = {"LEFT", "RIGHT", "INNER", "OUTER"};
-
-static NSString* joinString(ARJoinType type) 
-{
-    return [NSString stringWithUTF8String:joins[type]];
-}
-
-@interface ARLazyFetcher ()
-{
-@private
-    Class recordClass;
-    NSString *sqlRequest;
-    //  order by
-    NSMutableDictionary *orderByConditions;
-    //  select
-    NSMutableSet *onlyFields;
-    NSMutableSet *exceptFields;
-    //  join    
-    ARJoinType joinType;
-    Class joinClass;
-    NSString *recordField;
-    NSString *joinField;
-    BOOL useJoin;
-    //  where
-    ARWhereStatement *whereStatement;
-    //  limit/offset
-    NSNumber *limit;
-    NSNumber *offset;
-}
-
-- (NSSet *)recordFields;
-
-- (void)buildSql;
-- (NSString *)createOrderbyStatement;
-- (NSString *)createWhereStatement;
-- (NSString *)createLimitOffsetStatement;
-- (NSString *)createSelectStatement;
-- (NSString *)createJoinedSelectStatement;
-- (NSString *)createJoinStatement;
-
-- (NSSet *)fieldsOfRecord:(id)aRecord;
-
-@end
+#import "ARLazyFetcher_Private.h"
+#import "ARWhereStatement_Private.h"
 
 @implementation ARLazyFetcher
 
@@ -533,6 +491,41 @@ static NSString* joinString(ARJoinType type)
     [sql appendString:join];
     [sql appendString:where];
     return [[ARDatabaseManager sharedInstance] functionResult:sql];
+}
+
+- (ARLazyFetcher *)where:(NSString *)aCondition, ... {
+    va_list args;
+    NSMutableArray *sqlArguments = [NSMutableArray array];
+    NSString *argument = nil;
+    va_start(args, aCondition);
+    id value = nil;
+    while ((value = va_arg(args, id))) {
+        if([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSSet class]]){
+            argument = [value performSelector:@selector(toSql)];
+        }else{
+            argument = [[value performSelector:@selector(toSql)] quotedString];
+        }
+        [sqlArguments addObject:argument]; 
+    }
+    va_end(args);
+
+    char *argList = (char *)malloc(sizeof(NSString *) * [sqlArguments count]);
+    [sqlArguments getObjects:(id *)argList];
+    NSString* result = [[[NSString alloc] initWithFormat:aCondition
+                                               arguments:argList] autorelease];
+    free(argList);
+    
+    ARWhereStatement *where = [ARWhereStatement statement:result];
+    
+    if(self.whereStatement){
+        ARWhereStatement *currentWhere = self.whereStatement;
+        self.whereStatement = [ARWhereStatement concatenateStatement:currentWhere
+                                                       withStatement:where
+                                                 useLogicalOperation:ARLogicalAnd];
+    }else {
+        self.whereStatement = where;
+    }
+    return self;
 }
 
 @end

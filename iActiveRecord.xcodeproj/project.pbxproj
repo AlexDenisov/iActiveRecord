@@ -186,6 +186,8 @@
 		CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
 		CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
 		CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
+		CAC022EB157B76C300208445 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
+		CAC022EC157B76C300208445 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
 		CADA6AEF154472D800CCE41D /* NSMutableDictionary+valueToArray.h in Headers */ = {isa = PBXBuildFile; fileRef = CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */; };
 		CADA6AF0154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
 		CADA6AF1154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
@@ -364,6 +366,9 @@
 		CABB90A11520E63200E8D082 /* ARRelationHasMany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationHasMany.m; sourceTree = "<group>"; };
 		CABB90B01520F60700E8D082 /* ARRelationHasManyThrough.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationHasManyThrough.h; sourceTree = "<group>"; };
 		CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationHasManyThrough.m; sourceTree = "<group>"; };
+		CAC022DD1579477000208445 /* ARLazyFetcher_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcher_Private.h; sourceTree = "<group>"; };
+		CAC022E9157B76C300208445 /* NSArray+toSql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+toSql.h"; sourceTree = "<group>"; };
+		CAC022EA157B76C300208445 /* NSArray+toSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+toSql.m"; sourceTree = "<group>"; };
 		CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+valueToArray.h"; sourceTree = "<group>"; };
 		CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+valueToArray.m"; sourceTree = "<group>"; };
 		CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBaseRelationship.h; sourceTree = "<group>"; };
@@ -633,6 +638,7 @@
 		25998EFE14BC2D4600CA2490 /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				CAC022E4157B767C00208445 /* NSArray */,
 				CADA6AF4154472DE00CCE41D /* NSMutableDictionary */,
 				CAAE32B515244BEB0080447D /* NSDate */,
 				CAF2480F151F375000120198 /* NSData */,
@@ -840,6 +846,15 @@
 			name = Relationships;
 			sourceTree = "<group>";
 		};
+		CAC022E4157B767C00208445 /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				CAC022E9157B76C300208445 /* NSArray+toSql.h */,
+				CAC022EA157B76C300208445 /* NSArray+toSql.m */,
+			);
+			name = NSArray;
+			sourceTree = "<group>";
+		};
 		CADA6AF4154472DE00CCE41D /* NSMutableDictionary */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,6 +867,7 @@
 		CAE051701574BFE100010AAE /* ARLazyFetcher */ = {
 			isa = PBXGroup;
 			children = (
+				CAC022DD1579477000208445 /* ARLazyFetcher_Private.h */,
 				CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */,
 				CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */,
 			);
@@ -1104,6 +1120,7 @@
 				CADA6AF9154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 				CA1AF756155FEA3A00D0B17E /* ARColumn.m in Sources */,
 				CA1AF75D155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
+				CAC022EC157B76C300208445 /* NSArray+toSql.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,6 +1173,7 @@
 				CADA6AF8154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 				CA1AF755155FEA3A00D0B17E /* ARColumn.m in Sources */,
 				CA1AF75C155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
+				CAC022EB157B76C300208445 /* NSArray+toSql.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

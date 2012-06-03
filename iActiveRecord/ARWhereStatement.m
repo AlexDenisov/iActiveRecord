@@ -80,7 +80,7 @@
                         ofRecord:(Class)aRecord 
                             like:(NSString *)aPattern 
 {
-    NSString *pattern = [[NSString stringWithFormat:@"%%%@%%", aPattern] quotedString];
+    NSString *pattern = [[NSString stringWithFormat:@"%@", aPattern] quotedString];
     NSString *stmt = [NSString stringWithFormat:
                       @" %@.%@ LIKE %@ ",
                       [[aRecord performSelector:@selector(recordName)] quotedString],
@@ -93,7 +93,7 @@
                         ofRecord:(Class)aRecord 
                          notLike:(NSString *)aPattern
 {
-    NSString *pattern = [[NSString stringWithFormat:@"%%%@%%", aPattern] quotedString];
+    NSString *pattern = [[NSString stringWithFormat:@"%@", aPattern] quotedString];
     NSString *stmt = [NSString stringWithFormat:
                       @" %@.%@ NOT LIKE %@ ",
                       [[aRecord performSelector:@selector(recordName)] quotedString],
@@ -186,7 +186,6 @@
 - (NSString *)statement {
     return statement;
 }
-
 
 @end
 

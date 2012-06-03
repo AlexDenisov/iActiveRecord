@@ -35,31 +35,7 @@ describe(@"LazyFetcher", ^{
         expect([records count]).toEqual(10);
     });    
     
-    describe(@"where between", ^{
-        it(@"should fetch only records between two dates", ^{
-            [ActiveRecord clearDatabase];
-            NSDate *startDate = [NSDate dateWithTimeIntervalSinceNow:-MONTH];
-            NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:DAY];
-            User *john = [User newRecord];
-            john.name = @"John";
-            john.createdAt = [NSDate dateWithTimeIntervalSinceNow:-MONTH * 2];
-            expect([john save]).toEqual(YES);
-            User *alex = [User newRecord];
-            alex.name = @"Alex";
-            alex.createdAt = [NSDate dateWithTimeIntervalSinceNow:-DAY];
-            expect([alex save]).toEqual(YES);
-            ARLazyFetcher *fetcher = [User lazyFetcher];
-            [fetcher whereField:@"createdAt" 
-                        between:startDate
-                            and:endDate];
-            NSArray *users = [fetcher fetchRecords];
-            expect(users.count).toEqual(1);
-            [alex release];
-            [john release];
-            
-        });
-    });
-    
+        
     describe(@"Limit/Offset", ^{
         it(@"LIMIT should return limited count of records", ^{
             NSInteger limit = 5;
@@ -137,7 +113,143 @@ describe(@"LazyFetcher", ^{
         });
     });
     
+    describe(@"New Where syntax", ^{
+       describe(@"where between", ^{
+            it(@"should fetch only records between two dates", ^{
+                [ActiveRecord clearDatabase];
+                NSDate *startDate = [NSDate dateWithTimeIntervalSinceNow:-MONTH];
+                NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:DAY];
+                User *john = [User newRecord];
+                john.name = @"John";
+                john.createdAt = [NSDate dateWithTimeIntervalSinceNow:-MONTH * 2];
+                expect([john save]).toEqual(YES);
+                User *alex = [User newRecord];
+                alex.name = @"Alex";
+                alex.createdAt = [NSDate dateWithTimeIntervalSinceNow:-DAY];
+                expect([alex save]).toEqual(YES);
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher where:
+                 @"createdAt BETWEEN %@ AND %@", 
+                 startDate, 
+                 endDate, nil];
+                NSArray *users = [fetcher fetchRecords];
+                expect(users.count).toEqual(1);
+                [alex release];
+                [john release];
+                
+            });
+        }); 
+        describe(@"Simple where conditions", ^{
+            it(@"whereField equalToValue should find record", ^{
+                NSString *username = @"john";
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher where:@"name == %@", username, nil];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).toEqual(username);
+            });
+            it(@"whereField notEqualToValue should not find record", ^{
+                NSString *username = @"john";
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher where:@"name <> %@", username, nil];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).Not.toEqual(username);
+            });
+            it(@"WhereField in should find record", ^{
+                NSString *username = @"john";
+                NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher where:@"name in %@", names, nil];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).toEqual(username);
+            });
+            it(@"WhereField notIn should not find record", ^{
+                NSString *username = @"john";
+                NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher where:@"name not in %@", names, nil];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).Not.toEqual(username);
+            });
+            it(@"WhereField LIKE should find record", ^{
+                NSString *username = @"john";
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher where:@"name like %@", @"%jo%", nil];
+                User *founded = [[fetcher fetchRecords] first];
+                expect(founded.name).toEqual(username);
+            });
+        });
+        describe(@"Complex where conditions", ^{
+            it(@"Two conditions should return actual values", ^{
+                NSArray *ids = [NSArray arrayWithObjects:
+                                [NSNumber numberWithInt:1],
+                                [NSNumber numberWithInt:15], 
+                                nil];
+                NSString *username = @"john";
+                User *john = [User newRecord];
+                john.name = username;
+                [john save];
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher where:
+                 @"'user'.'name' = %@ or 'user'.'id' in %@", 
+                 username, ids, nil];
+                [fetcher orderBy:@"id"];
+                NSArray *records = [fetcher fetchRecords];
+                BOOL idStatementSuccess = NO;
+                BOOL nameStatementSuccess = NO;
+                for(User *user in records){
+                    if([ids containsObject:user.id]){
+                        idStatementSuccess = YES;
+                    }
+                    if([user.name isEqualToString:username]){
+                        nameStatementSuccess = YES;
+                    }
+                }
+                expect(idStatementSuccess).toEqual(YES);
+                expect(nameStatementSuccess).toEqual(YES); 
+            });
+        });
+    });
+    
     describe(@"Where conditions", ^{
+        describe(@"where between", ^{
+            it(@"should fetch only records between two dates", ^{
+                [ActiveRecord clearDatabase];
+                NSDate *startDate = [NSDate dateWithTimeIntervalSinceNow:-MONTH];
+                NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:DAY];
+                User *john = [User newRecord];
+                john.name = @"John";
+                john.createdAt = [NSDate dateWithTimeIntervalSinceNow:-MONTH * 2];
+                expect([john save]).toEqual(YES);
+                User *alex = [User newRecord];
+                alex.name = @"Alex";
+                alex.createdAt = [NSDate dateWithTimeIntervalSinceNow:-DAY];
+                expect([alex save]).toEqual(YES);
+                ARLazyFetcher *fetcher = [User lazyFetcher];
+                [fetcher whereField:@"createdAt" 
+                            between:startDate
+                                and:endDate];
+                NSArray *users = [fetcher fetchRecords];
+                expect(users.count).toEqual(1);
+                [alex release];
+                [john release];
+                
+            });
+        });
         describe(@"Simple where conditions", ^{
             it(@"whereField equalToValue should find record", ^{
                 NSString *username = @"john";
