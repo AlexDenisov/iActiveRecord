@@ -180,14 +180,24 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if(nil != self){
         self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
         self.createdAt = [NSDate dateWithTimeIntervalSinceNow:0];
+		for (ARColumn* column in self.columns) {
+			[self addObserver:self forKeyPath:column.columnName options:0 context:nil];
+		}
     }
     return self;    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+	[self didChangeField:keyPath];
 }
 
 - (void)dealloc {
     self.id = nil;
     [errors release];
     [changedFields release];
+	for (ARColumn* column in self.columns) {
+		[self removeObserver:self forKeyPath:column.columnName];
+	}
     [super dealloc];
 }
 
@@ -207,10 +217,12 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [changedFields addObject:aField];
 }
 
+/*
 - (void)setValue:(id)value forKey:(NSString *)key {
     [self didChangeField:key];
     [super setValue:value forKey:key];
 }
+*/
 
 + (void)initIgnoredFields {
 }
