@@ -10,6 +10,6 @@
 
 @implementation Entity
 
-@synthesize property;
+@dynamic property;
 
 @end

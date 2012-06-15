@@ -18,6 +18,7 @@
     BOOL isNew;
     NSMutableSet *errors;
     NSMutableSet *changedFields;
+    NSMutableDictionary *dynamicProperties;
 }
 
 #pragma mark - Static Fields
@@ -96,5 +97,9 @@
 
 + (ARColumn *)columnNamed:(NSString *)aColumnName;
 - (ARColumn *)columnNamed:(NSString *)aColumnName;
+
+#pragma mark - Dynamic Properties
+
++ (void)initializeDynamicAccessors;
 
 @end

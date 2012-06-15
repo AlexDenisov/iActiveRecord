@@ -123,6 +123,10 @@
 		CA8D9EB0152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB2152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
+		CAA26C70158A7A6700DE9490 /* DynamicRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C6F158A7A6600DE9490 /* DynamicRecord.m */; };
+		CAA26C71158A7A6700DE9490 /* DynamicRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C6F158A7A6600DE9490 /* DynamicRecord.m */; };
+		CAA26C8F158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
+		CAA26C90158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
 		CAAE32BA15244C330080447D /* NSDate+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CAAE32BB15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
 		CAAE32BC15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
@@ -318,6 +322,11 @@
 		CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+stringWithEscapedQuote.h"; sourceTree = "<group>"; };
 		CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+stringWithEscapedQuote.m"; sourceTree = "<group>"; };
 		CA8D9EDF152EC5EB005F9073 /* ARJoinSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARJoinSpecs.h; sourceTree = "<group>"; };
+		CAA26C6E158A7A6600DE9490 /* DynamicRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicRecord.h; sourceTree = "<group>"; };
+		CAA26C6F158A7A6600DE9490 /* DynamicRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicRecord.m; sourceTree = "<group>"; };
+		CAA26C84158B61A400DE9490 /* ARColumnSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARColumnSpecs.h; sourceTree = "<group>"; };
+		CAA26C8D158BA35100DE9490 /* NSString+uppercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+uppercaseFirst.h"; sourceTree = "<group>"; };
+		CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+uppercaseFirst.m"; sourceTree = "<group>"; };
 		CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+sqlRepresentation.h"; sourceTree = "<group>"; };
 		CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+sqlRepresentation.m"; sourceTree = "<group>"; };
 		CAAE32E91525F2480080447D /* ARValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidator.h; sourceTree = "<group>"; };
@@ -475,6 +484,7 @@
 				CAAE337B1528AD5B0080447D /* UnicodeSpecs.h */,
 				CA8D9EDF152EC5EB005F9073 /* ARJoinSpecs.h */,
 				CAB56AE8153E69B20062DC9E /* NSDataSpecs.h */,
+				CAA26C84158B61A400DE9490 /* ARColumnSpecs.h */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -641,6 +651,8 @@
 				CAAE33A51528C4500080447D /* User.m */,
 				CAAE33A61528C4500080447D /* UserProjectRelationship.h */,
 				CAAE33A71528C4500080447D /* UserProjectRelationship.m */,
+				CAA26C6E158A7A6600DE9490 /* DynamicRecord.h */,
+				CAA26C6F158A7A6600DE9490 /* DynamicRecord.m */,
 			);
 			name = "Test Entities";
 			sourceTree = "<group>";
@@ -673,6 +685,8 @@
 				CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */,
 				CA523D541535F61400565E02 /* NSString+isPresented.h */,
 				CA523D551535F61400565E02 /* NSString+isPresented.m */,
+				CAA26C8D158BA35100DE9490 /* NSString+uppercaseFirst.h */,
+				CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */,
 			);
 			name = NSString;
 			sourceTree = "<group>";
@@ -1137,6 +1151,8 @@
 				CA1AF75D155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
 				CAC022EC157B76C300208445 /* NSArray+toSql.m in Sources */,
 				CAC02306157B855500208445 /* NSSet+toSql.m in Sources */,
+				CAA26C71158A7A6700DE9490 /* DynamicRecord.m in Sources */,
+				CAA26C90158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1191,6 +1207,8 @@
 				CA1AF75C155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
 				CAC022EB157B76C300208445 /* NSArray+toSql.m in Sources */,
 				CAC02305157B855500208445 /* NSSet+toSql.m in Sources */,
+				CAA26C70158A7A6700DE9490 /* DynamicRecord.m in Sources */,
+				CAA26C8F158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

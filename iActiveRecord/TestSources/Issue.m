@@ -10,8 +10,8 @@
 
 @implementation Issue
 
-@synthesize projectId;
-@synthesize title;
+@dynamic projectId;
+@dynamic title;
 
 belonsg_to_imp(Project, project, ARDependencyNullify)
 

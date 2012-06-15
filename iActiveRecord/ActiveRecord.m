@@ -37,23 +37,33 @@
 
 static NSMutableDictionary *relationshipsDictionary = nil;
 
+static void dynamicSetter(id object, SEL _cmd, ...){
+    NSLog(@"%@ %@", object, NSStringFromSelector(_cmd));
+}
+
+static id dynamicGetter(id object, SEL _cmd, ...){
+    NSLog(@"%@ %@", object, NSStringFromSelector(_cmd));
+    return nil;
+}
+
 @implementation ActiveRecord
 
 migration_helper
 
-@synthesize id;
-@synthesize createdAt;
-@synthesize updatedAt;
+@dynamic id;
+@dynamic createdAt;
+@dynamic updatedAt;
 
 #pragma mark - Initialize
 
 + (void)initialize {
-    [super initialize];    
+    [super initialize];
     [self initIgnoredFields];
     if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
         [self performSelector:@selector(initValidations)];
     }
     [[ARSchemaManager sharedInstance] registerSchemeForRecord:self];
+    [self initializeDynamicAccessors];
     [self registerRelationships];
 }
 
@@ -178,6 +188,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (id)init {
     self = [super init];
     if(nil != self){
+        dynamicProperties = [NSMutableDictionary new];
         self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
         self.createdAt = [NSDate dateWithTimeIntervalSinceNow:0];
     }
@@ -185,6 +196,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 - (void)dealloc {
+    [dynamicProperties release];
     self.id = nil;
     [errors release];
     [changedFields release];
@@ -653,6 +665,15 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (NSArray *)ignoredFields {
     return [ignoredFields allObjects];
+}
+
+#pragma mark - Dynamic Properties
+
++ (void)initializeDynamicAccessors {
+    for(ARColumn *column in [self columns]){
+        class_addMethod(self, NSSelectorFromString(column.setter), (IMP)dynamicSetter, NULL);
+        class_addMethod(self, NSSelectorFromString(column.getter), (IMP)dynamicGetter, NULL);
+    }
 }
 
 @end

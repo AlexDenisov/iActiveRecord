@@ -11,8 +11,8 @@
 
 @implementation Animal
 
-@synthesize name;
-@synthesize state;
+@dynamic name;
+@dynamic state;
 
 validation_do(
     validate_field_with_validator(name, AnimalValidator)

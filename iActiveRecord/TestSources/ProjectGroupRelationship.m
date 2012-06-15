@@ -10,7 +10,7 @@
 
 @implementation ProjectGroupRelationship
 
-@synthesize projectId;
-@synthesize groupId;
+@dynamic projectId;
+@dynamic groupId;
 
 @end

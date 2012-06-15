@@ -10,7 +10,9 @@
 
 @interface ARColumn : NSObject
 
-@property (nonatomic, readonly, copy) NSString *columnName;
+@property (nonatomic, copy, readonly) NSString *columnName;
 @property (nonatomic, copy, readonly) Class columnClass;
+@property (nonatomic, copy, readonly) NSString *getter;
+@property (nonatomic, copy, readonly) NSString *setter;
 
 @end

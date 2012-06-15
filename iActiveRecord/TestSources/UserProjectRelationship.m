@@ -10,7 +10,7 @@
 
 @implementation UserProjectRelationship
 
-@synthesize userId;
-@synthesize projectId;
+@dynamic userId;
+@dynamic projectId;
 
 @end

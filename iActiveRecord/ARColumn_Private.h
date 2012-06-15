@@ -10,8 +10,16 @@
 #import <objc/runtime.h>
 
 @interface ARColumn ()
+
 @property (nonatomic, copy, readwrite) NSString *columnName;
 @property (nonatomic, copy, readwrite) Class columnClass;
+@property (nonatomic, copy, readwrite) NSString *setter;
+@property (nonatomic, copy, readwrite) NSString *getter;
 
 - (id)initWithProperty:(objc_property_t)property;
+
+- (void)setPropertyTypeFromAttribute:(const char *)anAttribute;
+- (void)setSetterFromAttribute:(const char *)anAttribute;
+- (void)setGetterFromAttribute:(const char *)anAttribute;
+
 @end

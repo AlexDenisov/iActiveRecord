@@ -9,11 +9,11 @@
 
 @implementation User
 
-@synthesize name;
+@dynamic name;
 @synthesize ignoredProperty;
-@synthesize groupId;
+@dynamic groupId;
 
-@synthesize imageData;
+@dynamic imageData;
 
 belonsg_to_imp(Group, group, ARDependencyDestroy)
 has_many_through_imp(Project, UserProjectRelationship, projects, ARDependencyDestroy)

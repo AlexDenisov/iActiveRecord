@@ -10,7 +10,7 @@
 
 @implementation Group
 
-@synthesize title;
+@dynamic title;
 
 has_many_imp(User, users, ARDependencyDestroy)
 has_many_through_imp(Project, ProjectGroupRelationship, groups, ARDependencyNullify)

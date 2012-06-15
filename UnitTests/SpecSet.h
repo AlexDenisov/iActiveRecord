@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
+#import "ARColumnSpecs.h"
 #import "DependencySpecs.h"
 #import "FooSpec.h"
 #import "DatabaseManagerSpecs.h"
