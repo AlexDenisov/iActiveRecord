@@ -13,7 +13,6 @@
 #import "ARValidationsHelper.h"
 #import "ARValidatableProtocol.h"
 #import "ARErrorHelper.h"
-#import "ARMigrationsHelper.h"
 #import "NSArray+objectsAccessors.h"
 #import "NSString+quotedString.h"
 #import "ARDatabaseManager.h"
@@ -53,8 +52,6 @@ static id dynamicGetter(ActiveRecord *record, SEL getter, ...){
 
 @implementation ActiveRecord
 
-migration_helper
-
 @dynamic id;
 @dynamic createdAt;
 @dynamic updatedAt;
@@ -63,7 +60,6 @@ migration_helper
 
 + (void)initialize {
     [super initialize];
-//    [self initIgnoredFields];
     if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
         [self performSelector:@selector(initValidations)];
     }
@@ -188,8 +184,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
 }
 
-#pragma mark - IgnoreFields
-
 - (id)init {
     self = [super init];
     if(nil != self){
@@ -215,9 +209,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark - ObserveChanges
 
 - (void)didChangeField:(NSString *)aField {
-    if([ignoredFields containsObject:aField]){
-        return;
-    }
     if(nil == changedFields){
         changedFields = [NSMutableSet new];
     }
@@ -227,16 +218,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (void)setValue:(id)value forKey:(NSString *)key {
     [self didChangeField:key];
     [super setValue:value forKey:key];
-}
-
-+ (void)initIgnoredFields {
-}
-
-+ (void)ignoreField:(NSString *)aField {
-    if(nil == ignoredFields){
-        ignoredFields = [[NSMutableSet alloc] init];
-    }
-    [ignoredFields addObject:aField];
 }
 
 #pragma mark - 
@@ -272,7 +253,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 + (const char *)sqlOnCreate {
-    [self initIgnoredFields];
     NSMutableString *sqlString = [NSMutableString stringWithFormat:
                                   @"create table %@(id integer primary key unique ", 
                                   [[self recordName] quotedString]];
@@ -686,10 +666,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 - (ARColumn *)columnWithGetterNamed:(NSString *)aGetterName {
     return [[self class] columnWithGetterNamed:aGetterName];
-}
-
-+ (NSArray *)ignoredFields {
-    return [ignoredFields allObjects];
 }
 
 #pragma mark - Dynamic Properties

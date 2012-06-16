@@ -12,7 +12,6 @@
 #import "ARRelationshipsHelper.h"
 #import "ARValidationsHelper.h"
 #import "ARValidatableProtocol.h"
-#import "ARMigrationsHelper.h"
 #import "ARLazyFetcher.h"
 #import "NSArray+objectsAccessors.h"
 #import "ARWhereStatement.h"

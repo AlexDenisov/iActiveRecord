@@ -45,12 +45,6 @@
 
 - (void)didChangeField:(NSString *)aField;
 
-#pragma mark - IgnoreFields
-
-+ (void)initIgnoredFields;
-+ (void)ignoreField:(NSString *)aField;
-+ (NSArray *)ignoredFields;
-
 #pragma mark - TableName
 
 + (NSString *)recordName;

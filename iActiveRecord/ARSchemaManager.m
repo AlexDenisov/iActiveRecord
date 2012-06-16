@@ -38,7 +38,6 @@ static ARSchemaManager *_instance = nil;
 
 - (void)registerSchemeForRecord:(Class)aRecordClass {
     Class ActiveRecordClass = NSClassFromString(@"NSObject");
-//    NSArray *ignoredFields = [aRecordClass performSelector:@selector(ignoredFields)];
     id CurrentClass = aRecordClass;
     while(nil != CurrentClass && CurrentClass != ActiveRecordClass){
         unsigned int outCount, i;
@@ -48,11 +47,9 @@ static ARSchemaManager *_instance = nil;
             if(column == nil){
                 continue;
             }
-//            if(![ignoredFields containsObject:column.columnName]){
             [self.schemes addValue:column
                       toArrayNamed:[aRecordClass 
                                     performSelector:@selector(recordName)]];
-//            }
             [column release];
         }
         free(properties);
