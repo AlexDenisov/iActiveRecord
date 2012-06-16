@@ -686,4 +686,23 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return [dynamicProperties valueForKey:aColumn.columnName];
 }
 
+- (id)valueForUndefinedKey:(NSString *)aKey {
+    ARColumn *column = [self columnNamed:aKey];
+    if(column == nil){
+        return [super valueForUndefinedKey:aKey];
+    }else {
+        return [self valueForColumn:column];
+    }
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)aKey {
+    ARColumn *column = [self columnNamed:aKey];
+    if(column == nil){
+        [super setValue:value forUndefinedKey:aKey];
+    }else {
+        [self setValue:value
+             forColumn:column];
+    }
+}
+
 @end
