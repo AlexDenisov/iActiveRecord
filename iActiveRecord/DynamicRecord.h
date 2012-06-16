@@ -15,6 +15,5 @@
            getter = customGetter, 
            setter = customSetter:) NSString *customProperty;
 @property (nonatomic, copy) NSString *defaultProperty;
-@property (nonatomic, readwrite) NSInteger intPro;
 
 @end

@@ -38,20 +38,24 @@ static ARSchemaManager *_instance = nil;
 
 - (void)registerSchemeForRecord:(Class)aRecordClass {
     Class ActiveRecordClass = NSClassFromString(@"NSObject");
-    NSArray *ignoredFields = [aRecordClass performSelector:@selector(ignoredFields)];
+//    NSArray *ignoredFields = [aRecordClass performSelector:@selector(ignoredFields)];
     id CurrentClass = aRecordClass;
     while(nil != CurrentClass && CurrentClass != ActiveRecordClass){
         unsigned int outCount, i;
         objc_property_t *properties = class_copyPropertyList(CurrentClass, &outCount);
         for (i = 0; i < outCount; i++) {
             ARColumn *column = [[ARColumn alloc] initWithProperty:properties[i]];
-            if(![ignoredFields containsObject:column.columnName]){
-                [self.schemes addValue:column
-                          toArrayNamed:[aRecordClass 
-                                        performSelector:@selector(recordName)]];
+            if(column == nil){
+                continue;
             }
+//            if(![ignoredFields containsObject:column.columnName]){
+            [self.schemes addValue:column
+                      toArrayNamed:[aRecordClass 
+                                    performSelector:@selector(recordName)]];
+//            }
             [column release];
         }
+        free(properties);
         CurrentClass = class_getSuperclass(CurrentClass);
     }  
 }

@@ -98,8 +98,17 @@
 + (ARColumn *)columnNamed:(NSString *)aColumnName;
 - (ARColumn *)columnNamed:(NSString *)aColumnName;
 
++ (ARColumn *)columnWithSetterNamed:(NSString *)aSetterName;
+- (ARColumn *)columnWithSetterNamed:(NSString *)aSetterName;
+
++ (ARColumn *)columnWithGetterNamed:(NSString *)aGetterName;
+- (ARColumn *)columnWithGetterNamed:(NSString *)aGetterName;
+
+
 #pragma mark - Dynamic Properties
 
 + (void)initializeDynamicAccessors;
+- (void)setValue:(id)aValue forColumn:(ARColumn *)aColumn;
+- (id)valueForColumn:(ARColumn *)aColumn;
 
 @end

@@ -20,6 +20,7 @@
 - (id)initWithProperty:(objc_property_t)property {
     self = [super init];
     if(nil != self){
+        BOOL dynamic = NO;
         self.columnName = [NSString stringWithUTF8String:property_getName(property)];
         //  set default setter/getter
         [self setSetterFromAttribute:NULL];
@@ -27,7 +28,6 @@
         uint attributesCount = 0;
         objc_property_attribute_t *attributes = property_copyAttributeList(property, &attributesCount);
         for(int i=0;i<attributesCount;i++){
-            NSLog(@"%s %s", attributes[i].name, attributes[i].value);
             switch (attributes[i].name[0]) {
                 case 'T': // type
                     [self setPropertyTypeFromAttribute:attributes[i].value];
@@ -46,13 +46,17 @@
                 case 'S': // custom setter
                     [self setSetterFromAttribute:attributes[i].value];
                     break;
-                case 'D': // dynamic 
+                case 'D':
+                    dynamic = YES;
                     break;
                 default: 
                 break;
             }
         }
         free(attributes);
+        if(!dynamic){
+            return nil;
+        }
     }
     return self;
 }
@@ -90,8 +94,11 @@
     char *type = NULL;
     //  classes described as @"ClassName"
     if (anAttribute[0] == '@') {
-        unsigned long length = strlen(anAttribute);
-
+        unsigned long length = strlen(anAttribute)-3;
+        type = calloc(length, sizeof(char));
+        strncpy(type, anAttribute+2, length);
+        self.columnClass = [objc_getClass(type) class];
+        free(type);
     }
 }
 

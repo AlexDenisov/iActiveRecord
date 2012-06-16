@@ -34,6 +34,12 @@ describe(@"Parse property", ^{
         expect(column.setter).toEqual(@"setDefaultProperty:");
         expect(column.getter).toEqual(@"defaultProperty");
     });
+    it(@"should parse custom accessors", ^{
+        [[ARSchemaManager sharedInstance] registerSchemeForRecord:[DynamicRecord class]];
+        ARColumn *column = [DynamicRecord columnNamed:@"customProperty"];
+        expect(column.setter).toEqual(@"customSetter:");
+        expect(column.getter).toEqual(@"customGetter");
+    });
 });
 
 SPEC_END

@@ -37,13 +37,18 @@
 
 static NSMutableDictionary *relationshipsDictionary = nil;
 
-static void dynamicSetter(id object, SEL _cmd, ...){
-    NSLog(@"%@ %@", object, NSStringFromSelector(_cmd));
+static void dynamicSetter(ActiveRecord *record, SEL setter, ...){
+    ARColumn *column = [record columnWithSetterNamed:NSStringFromSelector(setter)];
+    va_list arguments = NULL; 
+    va_start(arguments, setter);
+    id value = va_arg(arguments, id);
+    va_end(arguments);
+    [record setValue:value forColumn:column];
 }
 
-static id dynamicGetter(id object, SEL _cmd, ...){
-    NSLog(@"%@ %@", object, NSStringFromSelector(_cmd));
-    return nil;
+static id dynamicGetter(ActiveRecord *record, SEL getter, ...){
+    ARColumn *column = [record columnWithGetterNamed:NSStringFromSelector(getter)];
+    return [record valueForColumn:column];
 }
 
 @implementation ActiveRecord
@@ -58,7 +63,7 @@ migration_helper
 
 + (void)initialize {
     [super initialize];
-    [self initIgnoredFields];
+//    [self initIgnoredFields];
     if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
         [self performSelector:@selector(initValidations)];
     }
@@ -196,8 +201,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 - (void)dealloc {
-    [dynamicProperties release];
     self.id = nil;
+    [dynamicProperties release];
     [errors release];
     [changedFields release];
     [super dealloc];
@@ -657,10 +662,30 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return [[self class] columnNamed:aColumnName];
 }
 
+#warning refactor
+
 + (ARColumn *)columnNamed:(NSString *)aColumnName {
     NSArray *columns = [self columns];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"columnName = %@", aColumnName];
     return [[columns filteredArrayUsingPredicate:predicate] first];
+}
+
++ (ARColumn *)columnWithSetterNamed:(NSString *)aSetterName {
+    NSArray *columns = [self columns];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"setter = %@", aSetterName];
+    return [[columns filteredArrayUsingPredicate:predicate] first]; 
+}
+- (ARColumn *)columnWithSetterNamed:(NSString *)aSetterName {
+    return [[self class] columnWithSetterNamed:aSetterName];
+}
+
++ (ARColumn *)columnWithGetterNamed:(NSString *)aGetterName {
+    NSArray *columns = [self columns];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"getter = %@", aGetterName];
+    return [[columns filteredArrayUsingPredicate:predicate] first];  
+}
+- (ARColumn *)columnWithGetterNamed:(NSString *)aGetterName {
+    return [[self class] columnWithGetterNamed:aGetterName];
 }
 
 + (NSArray *)ignoredFields {
@@ -674,6 +699,15 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         class_addMethod(self, NSSelectorFromString(column.setter), (IMP)dynamicSetter, NULL);
         class_addMethod(self, NSSelectorFromString(column.getter), (IMP)dynamicGetter, NULL);
     }
+}
+
+- (void)setValue:(id)aValue forColumn:(ARColumn *)aColumn {
+    [dynamicProperties setValue:aValue
+                         forKey:aColumn.columnName];
+}
+
+- (id)valueForColumn:(ARColumn *)aColumn {
+    return [dynamicProperties valueForKey:aColumn.columnName];
 }
 
 @end

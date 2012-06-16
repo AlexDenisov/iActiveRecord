@@ -327,6 +327,7 @@
 		CAA26C84158B61A400DE9490 /* ARColumnSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARColumnSpecs.h; sourceTree = "<group>"; };
 		CAA26C8D158BA35100DE9490 /* NSString+uppercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+uppercaseFirst.h"; sourceTree = "<group>"; };
 		CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+uppercaseFirst.m"; sourceTree = "<group>"; };
+		CAA26CA7158C8D5900DE9490 /* ARDynamicAccessorsSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARDynamicAccessorsSpecs.h; sourceTree = "<group>"; };
 		CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+sqlRepresentation.h"; sourceTree = "<group>"; };
 		CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+sqlRepresentation.m"; sourceTree = "<group>"; };
 		CAAE32E91525F2480080447D /* ARValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidator.h; sourceTree = "<group>"; };
@@ -485,6 +486,7 @@
 				CA8D9EDF152EC5EB005F9073 /* ARJoinSpecs.h */,
 				CAB56AE8153E69B20062DC9E /* NSDataSpecs.h */,
 				CAA26C84158B61A400DE9490 /* ARColumnSpecs.h */,
+				CAA26CA7158C8D5900DE9490 /* ARDynamicAccessorsSpecs.h */,
 			);
 			name = Specs;
 			sourceTree = "<group>";

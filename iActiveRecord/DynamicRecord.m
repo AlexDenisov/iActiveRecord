@@ -11,7 +11,6 @@
 @implementation DynamicRecord
 
 @dynamic customProperty;
-@dynamic intPro;
 @dynamic defaultProperty;
 
 @end

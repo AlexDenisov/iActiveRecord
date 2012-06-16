@@ -21,3 +21,4 @@
 #import "UnicodeSpecs.h"
 #import "ARJoinSpecs.h"
 #import "NSDataSpecs.h"
+#import "ARDynamicAccessorsSpecs.h"
