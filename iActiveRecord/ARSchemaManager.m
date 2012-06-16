@@ -27,7 +27,7 @@ static ARSchemaManager *_instance = nil;
 
 - (id)init {
     self = [super init];
-    self.schemes = [NSMutableDictionary new];
+    self.schemes = [[NSMutableDictionary new] autorelease];
     return self;
 }
 

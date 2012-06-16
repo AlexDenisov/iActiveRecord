@@ -322,7 +322,7 @@ static BOOL migrationsEnabled = YES;
                 }
                 id currentRecord = [dictionary valueForKey:recordName];
                 if(currentRecord == nil){
-                    currentRecord = [Record new];
+                    currentRecord = [[Record new] autorelease];
                     [dictionary setValue:currentRecord
                                   forKey:recordName];
                 }
