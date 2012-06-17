@@ -7,12 +7,13 @@
 //
 
 #import "ARDatabaseManager.h"
-#import "ActiveRecord.h"
+#import "ActiveRecord_Private.h"
 #import "class_getSubclasses.h"
 #import "NSString+quotedString.h"
 #include <sys/xattr.h>
 #import "sqlite3_unicode.h"
 #import "ARColumn.h"
+#import "ARSQLBuilder.h"
 
 #define DEFAULT_DBNAME @"database"
 
@@ -216,10 +217,12 @@ static BOOL migrationsEnabled = YES;
     return [self getLastId:aRecordName];
 }
 
-- (void)executeSqlQuery:(const char *)anSqlQuery {
+- (BOOL)executeSqlQuery:(const char *)anSqlQuery {
     if(SQLITE_OK != sqlite3_exec(database, anSqlQuery, NULL, NULL, NULL)){
         NSLog(@"Couldn't execute query %s : %s", anSqlQuery, sqlite3_errmsg(database));
+        return NO;
     }
+    return YES;
 }
  
 - (NSString *)documentsDirectory {
@@ -256,17 +259,16 @@ static BOOL migrationsEnabled = YES;
                 propertyName = [NSString stringWithUTF8String:results[j]];
                 int index = (i+1)*nColumns + j;
                 const char *pszValue = results[index];
-                
+                ARColumn *column = [Record performSelector:@selector(columnNamed:) 
+                                                withObject:propertyName];
                 if(pszValue){
-                    ARColumn *column = [Record performSelector:@selector(columnNamed:) 
-                                                    withObject:propertyName];
                     NSString *sqlData = [NSString stringWithUTF8String:pszValue];
                     aValue = [column.columnClass performSelector:@selector(fromSql:) 
                                                  withObject:sqlData];
                 }else{
                     aValue = @"";
                 }
-                [record setValue:aValue forKey:propertyName];
+                [record setValue:aValue forColumn:column];
             }
             [resultArray addObject:record];
             [record release];
@@ -310,10 +312,9 @@ static BOOL migrationsEnabled = YES;
                 
                 int index = (i+1)*nColumns + j;
                 const char *pszValue = results[index];
+                ARColumn *column = [Record performSelector:@selector(columnNamed:) 
+                                                withObject:propertyName];
                 if(pszValue){
-                    ARColumn *column = [Record 
-                                                   performSelector:@selector(columnNamed:) 
-                                                        withObject:propertyName];
                     NSString *sqlData = [NSString stringWithUTF8String:pszValue];
                     aValue = [column.columnClass performSelector:@selector(fromSql:) 
                                                  withObject:sqlData];
@@ -327,8 +328,7 @@ static BOOL migrationsEnabled = YES;
                                   forKey:recordName];
                 }
                 [currentRecord setValue:aValue
-                                 forKey:propertyName];
-//                [dictionary setValue:aValue forKey:propertyName];
+                              forColumn:column];
             }
             [resultArray addObject:dictionary];
             [dictionary release];
@@ -343,6 +343,7 @@ static BOOL migrationsEnabled = YES;
 }
 
 - (NSInteger)countOfRecordsWithName:(NSString *)aName {
+#warning remove
     NSString *aSqlRequest = [NSString stringWithFormat:
                              @"SELECT count(id) FROM %@", 
                              [self tableName:aName]];
@@ -350,6 +351,7 @@ static BOOL migrationsEnabled = YES;
 }
 
 - (NSNumber *)getLastId:(NSString *)aRecordName {
+#warning remove
     NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from %@", 
                              [aRecordName quotedString]];
     NSInteger res = [self functionResult:aSqlRequest];
@@ -357,6 +359,7 @@ static BOOL migrationsEnabled = YES;
 }
 
 - (NSInteger)functionResult:(NSString *)anSql {
+#warning remove
     char **results;
     NSInteger resId = 0;
     int nRows;
@@ -391,6 +394,33 @@ static BOOL migrationsEnabled = YES;
 
 + (void)disableMigrations {
     migrationsEnabled = NO;
+}
+
+- (NSInteger)saveRecord:(ActiveRecord *)aRecord {
+    aRecord.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
+    const char *sqlQuery = [ARSQLBuilder sqlOnSaveRecord:aRecord];
+    if(sqlQuery){
+        if([self executeSqlQuery:sqlQuery]){
+            return sqlite3_last_insert_rowid(database);
+        }
+    }
+    return 0;
+}
+
+- (NSInteger)updateRecord:(ActiveRecord *)aRecord {
+    aRecord.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
+    const char *sqlQuery = [ARSQLBuilder sqlOnUpdateRecord:aRecord];
+    if(sqlQuery){
+        if([self executeSqlQuery:sqlQuery]){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+- (NSInteger)executeFunction:(const char *)anSqlQuery {
+#warning implement
+    return 0;
 }
 
 @end

@@ -8,7 +8,8 @@
 
 #import "ARValidator.h"
 #import "ARValidation.h"
-#import "ActiveRecord.h"
+#import "ActiveRecord_Private.h"
+#import "ARColumn_Private.h"
 
 @interface ARValidator ()
 {
@@ -61,7 +62,7 @@
     [validation release];
 }
 
-- (BOOL)isValidOnSave:(id)aRecord {
+- (BOOL)isValidOnSave:(ActiveRecord *)aRecord {
     BOOL valid = YES;
     NSString *recordName = [aRecord performSelector:@selector(recordName)];
     for(int i=0;i<validations.count;i++){
@@ -90,12 +91,13 @@
     return valid;
 }
 
-- (BOOL)isValidOnUpdate:(id)aRecord {
+- (BOOL)isValidOnUpdate:(ActiveRecord *)aRecord {
     BOOL valid = YES;
     NSString *recordName = [aRecord performSelector:@selector(recordName)];
     for(ARValidation *validation in validations){
         if([validation.record isEqualToString:recordName]){
-            if([[aRecord changedFields] containsObject:validation.field]){
+            ARColumn *column = [aRecord columnNamed:validation.field];
+            if([[aRecord changedColumns] containsObject:column]){
                 id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
                 BOOL result = [validator validateField:validation.field
                                               ofRecord:aRecord];

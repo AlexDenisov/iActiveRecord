@@ -13,6 +13,7 @@
 
 @dynamic name;
 @dynamic state;
+@dynamic title;
 
 validation_do(
     validate_field_with_validator(name, AnimalValidator)

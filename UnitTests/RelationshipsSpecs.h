@@ -36,11 +36,10 @@ describe(@"HasMany", ^{
         expect(result).toEqual(YES);
         Group *students = [Group newRecord];
         students.title = @"students";
-        [students save];
+        expect([students save]).toBeTruthy();
         [students addUser:john];
         [students addUser:peter];
-        NSArray *users = [[students users] fetchRecords];
-        NSInteger count = [users count];
+        NSInteger count = [[students users] count]; 
         expect(count).toEqual(2);
     });
     it(@"When I remove user, user should not have group", ^{

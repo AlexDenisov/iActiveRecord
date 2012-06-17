@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 
+@class ActiveRecord;
+
 @interface ARDatabaseManager : NSObject
 {
     @private
@@ -42,15 +44,23 @@
 
 - (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery;
 - (NSNumber *)getLastId:(NSString *)aRecordName;
-- (void)executeSqlQuery:(const char *)anSqlQuery;
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest;
 - (NSArray *)joinedRecordsWithSql:(NSString *)aSqlRequest;
 - (NSInteger)countOfRecordsWithName:(NSString *)aName;
 - (NSInteger)functionResult:(NSString *)anSql;
 
+- (NSInteger)executeFunction:(const char *)anSqlQuery;
+
 + (void)registerDatabase:(NSString *)aDatabaseName cachesDirectory:(BOOL)isCache;
 
 - (void)skipBackupAttributeToFile:(NSURL*) url;
+
+//  return new recordId or zero
+- (NSInteger)saveRecord:(ActiveRecord *)aRecord;
+//  return zero if failure
+- (NSInteger)updateRecord:(ActiveRecord *)aRecord;
+//  return false if failure
+- (BOOL)executeSqlQuery:(const char *)anSqlQuery;
 
 @end
  

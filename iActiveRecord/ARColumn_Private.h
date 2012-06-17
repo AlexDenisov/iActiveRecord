@@ -9,6 +9,8 @@
 #import "ARColumn.h"
 #import <objc/runtime.h>
 
+@class ActiveRecord;
+
 @interface ARColumn ()
 
 @property (nonatomic, copy, readwrite) NSString *columnName;
@@ -21,5 +23,7 @@
 - (void)setPropertyTypeFromAttribute:(const char *)anAttribute;
 - (void)setSetterFromAttribute:(const char *)anAttribute;
 - (void)setGetterFromAttribute:(const char *)anAttribute;
+
+- (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord;
 
 @end

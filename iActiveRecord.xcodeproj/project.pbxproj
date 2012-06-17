@@ -126,6 +126,8 @@
 		CAA26C71158A7A6700DE9490 /* DynamicRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C6F158A7A6600DE9490 /* DynamicRecord.m */; };
 		CAA26C8F158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
 		CAA26C90158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
+		CAA26CD9158DE30600DE9490 /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
+		CAA26CDA158DE30600DE9490 /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
 		CAAE32BA15244C330080447D /* NSDate+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CAAE32BB15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
 		CAAE32BC15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
@@ -326,6 +328,10 @@
 		CAA26C8D158BA35100DE9490 /* NSString+uppercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+uppercaseFirst.h"; sourceTree = "<group>"; };
 		CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+uppercaseFirst.m"; sourceTree = "<group>"; };
 		CAA26CA7158C8D5900DE9490 /* ARDynamicAccessorsSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARDynamicAccessorsSpecs.h; sourceTree = "<group>"; };
+		CAA26CD3158DDC3700DE9490 /* SaveUpdateSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveUpdateSpecs.h; sourceTree = "<group>"; };
+		CAA26CD5158DDFD500DE9490 /* ARSchemaManagerSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARSchemaManagerSpecs.h; sourceTree = "<group>"; };
+		CAA26CD7158DE30600DE9490 /* ARSQLBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSQLBuilder.h; sourceTree = "<group>"; };
+		CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARSQLBuilder.m; sourceTree = "<group>"; };
 		CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+sqlRepresentation.h"; sourceTree = "<group>"; };
 		CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+sqlRepresentation.m"; sourceTree = "<group>"; };
 		CAAE32E91525F2480080447D /* ARValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidator.h; sourceTree = "<group>"; };
@@ -485,6 +491,8 @@
 				CAB56AE8153E69B20062DC9E /* NSDataSpecs.h */,
 				CAA26C84158B61A400DE9490 /* ARColumnSpecs.h */,
 				CAA26CA7158C8D5900DE9490 /* ARDynamicAccessorsSpecs.h */,
+				CAA26CD3158DDC3700DE9490 /* SaveUpdateSpecs.h */,
+				CAA26CD5158DDFD500DE9490 /* ARSchemaManagerSpecs.h */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -591,13 +599,14 @@
 		25998EDC14BC19E200CA2490 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CAA26CDB158DE3C800DE9490 /* ARDatabaseManager */,
+				CAA26CD6158DE2EA00DE9490 /* ARSQLBuilder */,
 				CAE051701574BFE100010AAE /* ARLazyFetcher */,
 				CA7DC75615639DF800B22EBF /* ARWhereStatement */,
 				CA1AF758155FEA4400D0B17E /* ARSchemaManager */,
 				CA1AF74F155FEA1D00D0B17E /* ARColumn */,
 				CA1AF74C155FE96C00D0B17E /* Classes */,
 				CAAE33731528A6350080447D /* UnicodeSupport */,
-				CA3D18021519D56A00FA3F3C /* Managers */,
 				CA3D18001519D55300FA3F3C /* Helpers */,
 				CABB90991520DA4300E8D082 /* Relationships */,
 				CA0DC410152389B300C8E75D /* Validations */,
@@ -747,15 +756,6 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		CA3D18021519D56A00FA3F3C /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				25998EE214BC1A1D00CA2490 /* ARDatabaseManager.h */,
-				25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */,
-			);
-			name = Managers;
-			sourceTree = "<group>";
-		};
 		CA62C30A151E0AB800E54276 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -792,6 +792,24 @@
 				CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */,
 			);
 			name = ARWhereStatement;
+			sourceTree = "<group>";
+		};
+		CAA26CD6158DE2EA00DE9490 /* ARSQLBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				CAA26CD7158DE30600DE9490 /* ARSQLBuilder.h */,
+				CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */,
+			);
+			name = ARSQLBuilder;
+			sourceTree = "<group>";
+		};
+		CAA26CDB158DE3C800DE9490 /* ARDatabaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				25998EE214BC1A1D00CA2490 /* ARDatabaseManager.h */,
+				25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */,
+			);
+			name = ARDatabaseManager;
 			sourceTree = "<group>";
 		};
 		CAAE32B515244BEB0080447D /* NSDate */ = {
@@ -1151,6 +1169,7 @@
 				CAC02306157B855500208445 /* NSSet+toSql.m in Sources */,
 				CAA26C71158A7A6700DE9490 /* DynamicRecord.m in Sources */,
 				CAA26C90158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */,
+				CAA26CDA158DE30600DE9490 /* ARSQLBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1207,6 +1226,7 @@
 				CAC02305157B855500208445 /* NSSet+toSql.m in Sources */,
 				CAA26C70158A7A6700DE9490 /* DynamicRecord.m in Sources */,
 				CAA26C8F158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */,
+				CAA26CD9158DE30600DE9490 /* ARSQLBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

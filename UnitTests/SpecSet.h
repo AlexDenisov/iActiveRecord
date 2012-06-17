@@ -22,3 +22,5 @@
 #import "ARJoinSpecs.h"
 #import "NSDataSpecs.h"
 #import "ARDynamicAccessorsSpecs.h"
+#import "SaveUpdateSpecs.h"
+#import "ARSchemaManagerSpecs.h"

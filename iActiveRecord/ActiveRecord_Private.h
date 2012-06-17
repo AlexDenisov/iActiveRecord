@@ -17,8 +17,9 @@
 @private
     BOOL isNew;
     NSMutableSet *errors;
-    NSMutableSet *changedFields;
+//    NSMutableSet *changedFields;
     NSMutableDictionary *dynamicProperties;
+    NSMutableSet *changedColumns;
 }
 
 #pragma mark - Static Fields
@@ -37,13 +38,13 @@
 + (const char *)sqlOnDeleteAll;
 + (const char *)sqlOnAddColumn:(NSString *)aColumn;
 - (const char *)sqlOnDelete;
-- (const char *)sqlOnSave;
-- (const char *)sqlOnUpdate;
-
-
-#pragma mark - ObserveChanges
-
-- (void)didChangeField:(NSString *)aField;
+//- (const char *)sqlOnSave;
+//- (const char *)sqlOnUpdate;
+//
+//
+//#pragma mark - ObserveChanges
+//
+//- (void)didChangeField:(NSString *)aField;
 
 #pragma mark - TableName
 
@@ -89,6 +90,8 @@
 
 - (void)privateAfterDestroy;
 
+#pragma mark - Column getters
+
 + (ARColumn *)columnNamed:(NSString *)aColumnName;
 - (ARColumn *)columnNamed:(NSString *)aColumnName;
 
@@ -98,6 +101,7 @@
 + (ARColumn *)columnWithGetterNamed:(NSString *)aGetterName;
 - (ARColumn *)columnWithGetterNamed:(NSString *)aGetterName;
 
+- (NSSet *)changedColumns;
 
 #pragma mark - Dynamic Properties
 

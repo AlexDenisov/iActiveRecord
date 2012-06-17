@@ -9,6 +9,7 @@
 #import "ARColumn.h"
 #import "ARColumn_Private.h"
 #import "NSString+uppercaseFirst.h"
+#import "ActiveRecord_Private.h"
 
 @implementation ARColumn
 
@@ -102,7 +103,7 @@
     }
 }
 
-//  use custom setter if anAttribute == nil
+//  use custom setter if anAttribute == nil/NULL
 - (void)setSetterFromAttribute:(const char *)anAttribute {
     if(anAttribute){
         self.setter = [NSString stringWithUTF8String:anAttribute];
@@ -111,13 +112,18 @@
     }
 }
 
-//  use custom getter if anAttribute == nil
+//  use custom getter if anAttribute == nil/NULL
 - (void)setGetterFromAttribute:(const char *)anAttribute {
    if(anAttribute){
         self.getter = [NSString stringWithUTF8String:anAttribute];
     }else {
         self.getter = [NSString stringWithFormat:self.columnName];
     } 
+}
+
+- (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord {
+    id value = [aRecord valueForColumn:self];
+    return [value performSelector:@selector(toSql)];
 }
 
 @end

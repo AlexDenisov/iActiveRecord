@@ -119,11 +119,11 @@ describe(@"LazyFetcher", ^{
                 [ActiveRecord clearDatabase];
                 NSDate *startDate = [NSDate dateWithTimeIntervalSinceNow:-MONTH];
                 NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:DAY];
-                User *john = [User newRecord];
+                User *john = [[User newRecord] autorelease];
                 john.name = @"John";
                 john.createdAt = [NSDate dateWithTimeIntervalSinceNow:-MONTH * 2];
                 expect([john save]).toEqual(YES);
-                User *alex = [User newRecord];
+                User *alex = [[User newRecord] autorelease];
                 alex.name = @"Alex";
                 alex.createdAt = [NSDate dateWithTimeIntervalSinceNow:-DAY];
                 expect([alex save]).toEqual(YES);
@@ -134,9 +134,6 @@ describe(@"LazyFetcher", ^{
                  endDate, nil];
                 NSArray *users = [fetcher fetchRecords];
                 expect(users.count).toEqual(1);
-                [alex release];
-                [john release];
-                
             });
         }); 
         describe(@"Simple where conditions", ^{
