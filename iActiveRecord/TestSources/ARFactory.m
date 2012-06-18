@@ -7,7 +7,7 @@
 //
 
 #import "ARFactory.h"
-#import "ActiveRecord.h"
+#import "ActiveRecord_Private.h"
 #import "ARColumn.h"
 
 @implementation ARFactory
@@ -50,7 +50,7 @@
             [aRecord setValue:value forKey:column.columnName];
         }else if([[column.columnClass description] isEqualToString:@"NSNumber"]){
             NSNumber *value = [NSNumber numberWithInt:time(0) + arc4random()%(aSeed + 1)];
-            [aRecord setValue:value forKey:column.columnName];
+            [aRecord setValue:value forColumn:column];
         }
     }
     return aRecord;

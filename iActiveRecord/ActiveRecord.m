@@ -427,30 +427,42 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 {
     Class RelationshipClass = NSClassFromString(aRelationshipClassName);
     
+    NSString *currentId = [NSString stringWithFormat:@"%@ID", [self recordName]];
+    NSString *relId = [NSString stringWithFormat:@"%@ID", [aRecord recordName]];
+    ARLazyFetcher *fetcher = [RelationshipClass lazyFetcher];
+    [fetcher where:
+     @"%@ = %@ AND %@ = %@", 
+     currentId, self.id,
+     relId, aRecord.id,
+     nil];
+    if([fetcher count] != 0){
+        return;
+    }
     NSString *currentIdSelectorString = [NSString stringWithFormat:@"set%@Id:", [[self class] description]];
     NSString *relativeIdSlectorString = [NSString stringWithFormat:@"set%@Id:", aClassname];
     
     SEL currentIdSelector = NSSelectorFromString(currentIdSelectorString);
     SEL relativeIdSelector = NSSelectorFromString(relativeIdSlectorString);
-    
-    NSNumber *relativeRecordId = aRecord.id;
     ActiveRecord *relationshipRecord = [RelationshipClass newRecord];
     [relationshipRecord performSelector:currentIdSelector withObject:self.id];
-    [relationshipRecord performSelector:relativeIdSelector withObject:relativeRecordId];
+    [relationshipRecord performSelector:relativeIdSelector withObject:aRecord.id];
     [relationshipRecord save];
     [relationshipRecord release];
 }
 
 - (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName
 {
-    NSString *selfId = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
-    NSString *relId = [NSString stringWithFormat:@"%@Id", [[aRecord recordName] lowercaseFirst]];
-    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
-    [fetcher whereField:selfId equalToValue:self.id];
-    [fetcher whereField:relId equalToValue:aRecord.id];
+    Class relationsClass = NSClassFromString(aClassName);
+    ARLazyFetcher *fetcher = [relationsClass lazyFetcher];
+    NSString *currentId = [NSString stringWithFormat:@"%@ID", [self recordName]];
+    NSString *relId = [NSString stringWithFormat:@"%@ID", [aRecord recordName]];
+    [fetcher where:
+     @"%@ = %@ AND %@ = %@", 
+     currentId, self.id, 
+     relId, aRecord.id,
+     nil];
     ActiveRecord *record = [[fetcher fetchRecords] first];
     [record dropRecord];
-    [fetcher release];
 }
 
 #pragma mark - Description

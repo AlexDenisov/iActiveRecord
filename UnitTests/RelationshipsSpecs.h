@@ -14,6 +14,7 @@
 #import "Group.h"
 #import "Project.h"
 #import "ARDatabaseManager.h"
+#import "UserProjectRelationship.h"
 
 SPEC_BEGIN(RelationshipsSpecs)
 
@@ -41,6 +42,31 @@ describe(@"HasMany", ^{
         [students addUser:peter];
         NSInteger count = [[students users] count]; 
         expect(count).toEqual(2);
+    });
+    it(@"Group should not add two equal users", ^{
+        User *alex = [[User newRecord] autorelease];
+        alex.name = @"Alex";
+        expect([alex save]).toBeTruthy();
+        Project *project = [Project newRecord];
+        project.name = @"students";
+        expect(project.save).toBeTruthy();
+        [project addUser:alex];
+        [project addUser:alex];
+        NSInteger count = project.users.count;
+        expect(count).toEqual(1);
+    });
+    it(@"Should remove relationship record", ^{
+        [[ARDatabaseManager sharedInstance] clearDatabase];
+        User *alex = [[User newRecord] autorelease];
+        alex.name = @"Alex";
+        expect([alex save]).toBeTruthy();
+        Project *project = [Project newRecord];
+        project.name = @"students";
+        expect(project.save).toBeTruthy();
+        [project addUser:alex];
+        [project removeUser:alex];
+        NSInteger count = [UserProjectRelationship count];
+        expect(count).toEqual(0);
     });
     it(@"When I remove user, user should not have group", ^{
         Group *group = [Group newRecord];
