@@ -418,6 +418,13 @@ static BOOL migrationsEnabled = YES;
     return 0;
 }
 
+- (void)dropRecord:(ActiveRecord *)aRecord {
+    const char *sqlQuery = [ARSQLBuilder sqlOnDropRecord:aRecord];
+    if(sqlQuery){
+        [self executeSqlQuery:sqlQuery];
+    }
+}
+
 - (NSInteger)executeFunction:(const char *)anSqlQuery {
 #warning implement
     return 0;

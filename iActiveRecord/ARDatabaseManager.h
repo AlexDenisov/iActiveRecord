@@ -60,6 +60,7 @@
 //  return zero if failure
 - (NSInteger)updateRecord:(ActiveRecord *)aRecord;
 //  return false if failure
+- (void)dropRecord:(ActiveRecord *)aRecord;
 - (BOOL)executeSqlQuery:(const char *)anSqlQuery;
 
 @end

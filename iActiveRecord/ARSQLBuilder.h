@@ -14,5 +14,6 @@
 
 + (const char *)sqlOnSaveRecord:(ActiveRecord *)aRecord;
 + (const char *)sqlOnUpdateRecord:(ActiveRecord *)aRecord;
++ (const char *)sqlOnDropRecord:(ActiveRecord *)aRecord;
 
 @end

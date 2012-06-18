@@ -17,7 +17,6 @@
 @private
     BOOL isNew;
     NSMutableSet *errors;
-//    NSMutableSet *changedFields;
     NSMutableDictionary *dynamicProperties;
     NSMutableSet *changedColumns;
 }
@@ -35,16 +34,7 @@
 #pragma mark - SQLQueries
 
 + (const char *)sqlOnCreate;
-+ (const char *)sqlOnDeleteAll;
 + (const char *)sqlOnAddColumn:(NSString *)aColumn;
-- (const char *)sqlOnDelete;
-//- (const char *)sqlOnSave;
-//- (const char *)sqlOnUpdate;
-//
-//
-//#pragma mark - ObserveChanges
-//
-//- (void)didChangeField:(NSString *)aField;
 
 #pragma mark - TableName
 

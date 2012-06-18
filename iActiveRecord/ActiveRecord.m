@@ -205,15 +205,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     isNew = YES;
 }
 
-//#pragma mark - ObserveChanges
-//
-////- (void)didChangeField:(NSString *)aField {
-//    if(nil == changedFields){
-//        changedFields = [NSMutableSet new];
-//    }
-//    [changedFields addObject:aField];
-//}
-
 #pragma mark - 
 
 - (void)resetErrors {
@@ -227,10 +218,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
     [errors addObject:anError];
 }
-
-//- (void)initialize {
-//    
-//}
 
 #pragma mark - SQLQueries
 
@@ -263,91 +250,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
     [sqlString appendFormat:@")"];
     return [sqlString UTF8String];
-}
-
-- (const char *)sqlOnDelete {
-    NSString *sqlString = [NSString stringWithFormat:
-                           @"delete from %@ where id = %@", 
-                           [[self recordName] quotedString], 
-                           self.id];
-    return [sqlString UTF8String];
-}
-
-//- (const char *)sqlOnSave {
-//    NSArray *columns = [self columns];
-//    ARColumn *column = nil;
-//    NSMutableArray *existedProperties = [NSMutableArray new];
-//    for(column in columns){
-//        id value = [self valueForKey:column.columnName];
-//        if(nil != value){
-//            [existedProperties addObject:column];
-//        }
-//    }
-//    if([existedProperties count] == 0){
-//        [existedProperties release];
-//        return NULL;
-//    }
-//    
-//    NSMutableString *sqlString = [NSMutableString stringWithFormat:@"INSERT INTO %@(", 
-//                                  [[self recordName] quotedString]];
-//    NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" VALUES("];
-//    
-//    int index = 0;
-//    column = [existedProperties objectAtIndex:index++];
-//    id propertyValue = [self valueForKey:column.columnName];
-//    if(propertyValue == nil){
-//        propertyValue = @"";
-//    }
-//    [sqlString appendFormat:@"%@", [column.columnName quotedString]];
-//    [sqlValues appendFormat:@"%@", [[[propertyValue performSelector:@selector(toSql)] 
-//                                     stringWithEscapedQuote] 
-//                                    quotedString]];
-//    
-//    for(;index < [existedProperties count];index++){
-//        column = [existedProperties objectAtIndex:index];
-//        id propertyValue = [self valueForKey:column.columnName];
-//        if(propertyValue == nil){
-//            propertyValue = @"";
-//        }
-//        [sqlString appendFormat:@", %@", [column.columnName quotedString]];
-//        [sqlValues appendFormat:@", %@", [[[propertyValue performSelector:@selector(toSql)] 
-//                                           stringWithEscapedQuote] 
-//                                          quotedString]];
-//    }
-//    [existedProperties release];
-//    [sqlValues appendString:@") "];
-//    [sqlString appendString:@") "];
-//    [sqlString appendString:sqlValues];
-//    return [sqlString UTF8String];
-//}
-//
-//- (const char *)sqlOnUpdate {
-//    NSMutableString *sqlString = [NSMutableString stringWithFormat:@"UPDATE %@ SET ", 
-//                                  [[self recordName] quotedString]];
-//    NSArray *updatedValues = [changedFields allObjects];
-//    NSInteger index = 0;
-//    NSString *propertyName = [updatedValues objectAtIndex:index++];
-//    id propertyValue = [self valueForKey:propertyName];
-//    [sqlString appendFormat:@"%@=%@", [propertyName quotedString], 
-//     [[[propertyValue performSelector:@selector(toSql)] 
-//       stringWithEscapedQuote] 
-//      quotedString]];
-//   
-//    for(;index<[updatedValues count];index++){
-//        propertyName = [updatedValues objectAtIndex:index];
-//        propertyValue = [self valueForKey:propertyName];
-//        [sqlString appendFormat:@", %@=%@", [propertyName quotedString], 
-//         [[[propertyValue performSelector:@selector(toSql)] 
-//           stringWithEscapedQuote] 
-//          quotedString]];
-//    }
-//    [sqlString appendFormat:@" WHERE id = %@", self.id];
-//    return [sqlString UTF8String];
-//}
-
-+ (const char *)sqlOnDeleteAll {
-    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@", [[self recordName] quotedString]];
-    return [sql UTF8String];
 }
 
 #pragma mark - 
@@ -421,10 +323,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return [errors allObjects];
 }
 
-//- (NSArray *)changedFields {
-//    return [changedFields allObjects];
-//}
-
 #pragma mark - Save/Update
 
 - (BOOL)save {
@@ -434,10 +332,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if(![self isValid]){
         return NO;
     }
-//    if(!changedColumns.count){
-//        return YES;
-//    }
-//    self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
     NSInteger newRecordId = [[ARDatabaseManager sharedInstance] saveRecord:self];
     if(newRecordId){
         self.id = [NSNumber numberWithInteger:newRecordId];
@@ -446,16 +340,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         return YES;
     }
     return NO;
-//    const char *sql = [self sqlOnSave];
-//    if(NULL != sql){
-//        NSNumber *tmpId = [[ARDatabaseManager sharedInstance] 
-//                          insertRecord:[[self class] recordName] 
-//                           withSqlQuery:sql];
-//        self.id = self.id == nil ? tmpId : self.id;
-//        isNew = NO;
-//        return YES;
-//    }
-//    return NO;
 }
 
 - (BOOL)update {
@@ -465,27 +349,12 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if(isNew){
         return [self save];
     }
-//    if(!changedColumns.count){
-//        return YES;
-//    }
-//    if(![changedFields count]){
-//        return YES;
-//    }
-//    self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
     NSInteger result = [[ARDatabaseManager sharedInstance] updateRecord:self];
     if(result){
         [changedColumns removeAllObjects];
         return YES;
     }
     return NO;
-//    const char *sql = [self sqlOnUpdate];
-//    if(NULL != sql){
-//        [[ARDatabaseManager sharedInstance] executeSqlQuery:sql];
-//        isNew = NO;
-//        [changedFields removeAllObjects];
-//        return YES;
-//    }
-//    return NO;
 }
 
 + (NSInteger)count {
@@ -604,7 +473,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
  
 - (void)dropRecord {
-    [[ARDatabaseManager sharedInstance] executeSqlQuery:[self sqlOnDelete]];
+    [[ARDatabaseManager sharedInstance] dropRecord:self];
     [self privateAfterDestroy];
 }
 

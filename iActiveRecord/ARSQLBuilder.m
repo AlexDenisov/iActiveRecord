@@ -60,4 +60,12 @@
     return [sqlString UTF8String];
 }
 
++ (const char *)sqlOnDropRecord:(ActiveRecord *)aRecord {
+    NSString *sqlString = [NSString stringWithFormat:
+                           @"DELETE FROM %@ WHERE id = %@", 
+                           [[aRecord recordName] quotedString],
+                           aRecord.id];
+    return [sqlString UTF8String];
+}
+
 @end
