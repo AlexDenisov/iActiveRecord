@@ -13,4 +13,8 @@
 @dynamic customProperty;
 @dynamic defaultProperty;
 
+@dynamic assignedString;
+@dynamic retainedString;
+@dynamic copiedString;
+
 @end

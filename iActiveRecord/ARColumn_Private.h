@@ -8,6 +8,7 @@
 
 #import "ARColumn.h"
 #import <objc/runtime.h>
+#import "ARPropertyType.h"
 
 @class ActiveRecord;
 
@@ -17,6 +18,7 @@
 @property (nonatomic, copy, readwrite) Class columnClass;
 @property (nonatomic, copy, readwrite) NSString *setter;
 @property (nonatomic, copy, readwrite) NSString *getter;
+@property (nonatomic, readwrite) ARPropertyType propertyType; 
 
 - (id)initWithProperty:(objc_property_t)property;
 

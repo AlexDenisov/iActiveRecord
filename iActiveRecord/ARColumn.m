@@ -10,6 +10,7 @@
 #import "ARColumn_Private.h"
 #import "NSString+uppercaseFirst.h"
 #import "ActiveRecord_Private.h"
+#import "ARPropertyType.h"
 
 @implementation ARColumn
 
@@ -17,11 +18,13 @@
 @synthesize columnClass;
 @synthesize getter;
 @synthesize setter;
+@synthesize propertyType;
 
 - (id)initWithProperty:(objc_property_t)property {
     self = [super init];
     if(nil != self){
         BOOL dynamic = NO;
+        self.propertyType = ARPropertyTypeAssign;
         self.columnName = [NSString stringWithUTF8String:property_getName(property)];
         //  set default setter/getter
         [self setSetterFromAttribute:NULL];
@@ -30,21 +33,19 @@
         objc_property_attribute_t *attributes = property_copyAttributeList(property, &attributesCount);
         for(int i=0;i<attributesCount;i++){
             switch (attributes[i].name[0]) {
-                case 'T': // type
+                case 'T': 
                     [self setPropertyTypeFromAttribute:attributes[i].value];
                     break;
-                case 'R': // readonly
+                case 'C': 
+                    self.propertyType = ARPropertyTypeCopy;
                     break;
-                case 'C': // copy 
+                case '&': 
+                    self.propertyType = ARPropertyTypeRetain;
                     break;
-                case '&': // retain
-                    break;
-                case 'N': // nonatomic 
-                    break;
-                case 'G': // custom getter
+                case 'G': 
                     [self setGetterFromAttribute:attributes[i].value];
                     break;
-                case 'S': // custom setter
+                case 'S': 
                     [self setSetterFromAttribute:attributes[i].value];
                     break;
                 case 'D':

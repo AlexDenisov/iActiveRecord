@@ -41,6 +41,26 @@ describe(@"Dynamic properties", ^{
         [record customSetter:defValue];
         expect(record.customGetter).toEqual(defValue);
     });
+    it(@"should have right retainCount", ^{
+        //  this manipulations used to prevent 
+        //  from compiler optimizations and have an actual retainCount
+        NSLog(@"FUUUUBAR");
+        NSMutableString *copy = [NSMutableString string];
+        [copy appendFormat:@"%d", [NSDate timeIntervalSinceReferenceDate]];
+        NSMutableString *retain = [NSMutableString string];
+        [retain appendFormat:@"%d", [NSDate timeIntervalSinceReferenceDate]];
+        NSMutableString *assign = [NSMutableString string];
+        [assign appendFormat:@"%d", [NSDate timeIntervalSinceReferenceDate]];
+        DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
+        record.copiedString = copy;
+        NSLog(@"WTF!!! : %d", copy.retainCount);
+        expect(copy.retainCount).toEqual(2);
+        record.retainedString = retain;
+        expect([retain retainCount]).toEqual(2);
+        record.assignedString = assign;
+        expect([assign retainCount]).toEqual(2);
+        NSLog(@"BAAAARFUUUU");
+    });
 });
 
 SPEC_END

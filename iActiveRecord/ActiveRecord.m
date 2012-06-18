@@ -32,7 +32,7 @@
 
 #import "ActiveRecord_Private.h"
 #import "ARSchemaManager.h"
-#import "ARColumn.h"
+#import "ARColumn_Private.h"
 
 static NSMutableDictionary *relationshipsDictionary = nil;
 
@@ -583,12 +583,21 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         changedColumns = [NSMutableSet new];
     }
     [changedColumns addObject:aColumn];
+    if(aValue == nil){
+        [dynamicProperties setValue:@"" forKey:aColumn.columnName];
+        return;
+    }
+    if(aColumn.propertyType == ARPropertyTypeCopy){
+        [dynamicProperties setValue:[aValue copy]
+                              forKey:aColumn.columnName];
+        return;
+    }
     [dynamicProperties setValue:aValue
-                         forKey:aColumn.columnName];
+                          forKey:aColumn.columnName];
 }
 
 - (id)valueForColumn:(ARColumn *)aColumn {
-    return [dynamicProperties valueForKey:aColumn.columnName];
+    return [dynamicProperties objectForKey:aColumn.columnName];
 }
 
 - (id)valueForUndefinedKey:(NSString *)aKey {

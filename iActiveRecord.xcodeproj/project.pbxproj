@@ -397,6 +397,7 @@
 		CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+valueToArray.m"; sourceTree = "<group>"; };
 		CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBaseRelationship.h; sourceTree = "<group>"; };
 		CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBaseRelationship.m; sourceTree = "<group>"; };
+		CAE86582158FB3F700B3BBFE /* ARPropertyType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARPropertyType.h; sourceTree = "<group>"; };
 		CAF24809151F298B00120198 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
 		CAF2480A151F298B00120198 /* ARError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARError.m; sourceTree = "<group>"; };
 		CAF24816151F383000120198 /* NSData+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -599,6 +600,7 @@
 		25998EDC14BC19E200CA2490 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CAE86584158FB40000B3BBFE /* Enums */,
 				CAA26CDB158DE3C800DE9490 /* ARDatabaseManager */,
 				CAA26CD6158DE2EA00DE9490 /* ARSQLBuilder */,
 				CAE051701574BFE100010AAE /* ARLazyFetcher */,
@@ -914,6 +916,14 @@
 				CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */,
 			);
 			name = ARLazyFetcher;
+			sourceTree = "<group>";
+		};
+		CAE86584158FB40000B3BBFE /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				CAE86582158FB3F700B3BBFE /* ARPropertyType.h */,
+			);
+			name = Enums;
 			sourceTree = "<group>";
 		};
 		CAF2480F151F375000120198 /* NSData */ = {

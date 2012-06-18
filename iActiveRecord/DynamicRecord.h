@@ -16,4 +16,8 @@
            setter = customSetter:) NSString *customProperty;
 @property (nonatomic, copy) NSString *defaultProperty;
 
+@property (nonatomic, copy) NSString *copiedString;
+@property (nonatomic, retain) NSString *retainedString;
+@property (nonatomic, assign) NSString *assignedString;
+
 @end
