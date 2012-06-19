@@ -210,6 +210,10 @@
 		CADA6AF8154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
 		CADA6AF9154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
 		CADA6AFA154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
+		CAE865D1159068FF00B3BBFE /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
+		CAE865D2159068FF00B3BBFE /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
+		CAE865D41590691600B3BBFE /* ARPropertyType.h in Headers */ = {isa = PBXBuildFile; fileRef = CAE86582158FB3F700B3BBFE /* ARPropertyType.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CAE865D51590691600B3BBFE /* ARSQLBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = CAA26CD7158DE30600DE9490 /* ARSQLBuilder.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
@@ -990,6 +994,8 @@
 				CA2E5D451581E75F0053D511 /* ARWhereStatement_Private.h in Headers */,
 				CA2E5D461581E75F0053D511 /* NSSet+toSql.h in Headers */,
 				CA2E5D471581E75F0053D511 /* NSArray+toSql.h in Headers */,
+				CAE865D41590691600B3BBFE /* ARPropertyType.h in Headers */,
+				CAE865D51590691600B3BBFE /* ARSQLBuilder.h in Headers */,
 				CA2E5D481581E75F0053D511 /* ActiveRecord_Private.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
@@ -1244,6 +1250,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE865D1159068FF00B3BBFE /* ARSQLBuilder.m in Sources */,
+				CAE865D2159068FF00B3BBFE /* NSString+uppercaseFirst.m in Sources */,
 				CA2E5D491581EE130053D511 /* NSSet+toSql.m in Sources */,
 				CA2E5D4A1581EE130053D511 /* NSDate+isPresented.m in Sources */,
 				CA2E5D4B1581EE130053D511 /* NSArray+toSql.m in Sources */,
