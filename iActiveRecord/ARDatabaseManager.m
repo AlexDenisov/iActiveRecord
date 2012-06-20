@@ -270,6 +270,7 @@ static BOOL migrationsEnabled = YES;
                 }
                 [record setValue:aValue forColumn:column];
             }
+            [record resetChanges];
             [resultArray addObject:record];
             [record release];
         }

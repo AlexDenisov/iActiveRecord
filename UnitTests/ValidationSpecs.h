@@ -59,6 +59,15 @@ describe(@"Uniqueness", ^{
         result = [peter save];
         expect(result).toEqual(YES);
     });
+    it(@"Should update fetched User", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+        BOOL result = [john save];
+        expect(result).toEqual(YES);
+        User *user = [[[[User lazyFetcher] limit:1] fetchRecords] first];
+        user.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
+        expect(user.save).toBeTruthy();
+    });
 });
 
 describe(@"Custom validator", ^{

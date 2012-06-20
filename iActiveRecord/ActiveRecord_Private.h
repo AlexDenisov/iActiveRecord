@@ -29,7 +29,10 @@
 + (void)validatePresenceOfField:(NSString *)aField;
 + (void)validateField:(NSString *)aField withValidator:(NSString *)aValidator;
 
+#pragma mark - Resetting
+
 - (void)resetErrors;
+- (void)resetChanges;
 
 #pragma mark - SQLQueries
 

@@ -207,6 +207,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 #pragma mark - 
 
+- (void)resetChanges {
+    [changedColumns removeAllObjects];
+}
+
 - (void)resetErrors {
     [errors release];
     errors = nil;
