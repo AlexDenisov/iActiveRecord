@@ -39,6 +39,14 @@ describe(@"Update", ^{
         expect(racoon.title).toEqual(@"Enot");
         expect(racoon.state).toEqual(@"FuuBar");
     });
+    it(@"should not validate properies that don't changed", ^{
+        User *user = [[User newRecord] autorelease];
+        user.name = @"Alex";
+        expect(user.save).toBeTruthy();
+        user.name = @"Alex";
+        expect(user.save).toBeTruthy();
+        expect(user.save).toBeTruthy();
+    });
 });
 
 SPEC_END

@@ -582,6 +582,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if(changedColumns == nil){
         changedColumns = [NSMutableSet new];
     }
+    id oldValue = [self valueForColumn:aColumn];
+    if([oldValue isEqual:aValue]){
+        return;
+    }
     [changedColumns addObject:aColumn];
     if(aValue == nil){
         [dynamicProperties setValue:@"" forKey:aColumn.columnName];
