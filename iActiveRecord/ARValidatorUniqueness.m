@@ -9,6 +9,7 @@
 #import "ARValidatorUniqueness.h"
 #import "ARLazyFetcher.h"
 #import "ARErrorHelper.h"
+#import "ActiveRecord.h"
 
 @implementation ARValidatorUniqueness
 
@@ -20,8 +21,23 @@
     NSString *recordName = [[aRecord class] description];
     id aValue = [aRecord valueForKey:aField];
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(recordName)];
-    [fetcher whereField:aField
-           equalToValue:aValue];
+
+    // Do not include records whose id matches aRecord id, if aRecord is not new.
+    if ([aRecord isKindOfClass:[ActiveRecord class]]) {
+        ActiveRecord *record = (ActiveRecord *)aRecord;
+        if (record.id != nil && [record.id intValue] > 0) {
+            ARWhereStatement *fieldWhere = [ARWhereStatement whereField:aField ofRecord:NSClassFromString(recordName) equalToValue:aValue];
+            ARWhereStatement *idWhere = [ARWhereStatement whereField:@"id" ofRecord:NSClassFromString(recordName) equalToValue:aValue];
+            ARWhereStatement *finalWhere = [ARWhereStatement concatenateStatement:fieldWhere withStatement:idWhere useLogicalOperation:ARLogicalAnd];
+            [fetcher setWhereStatement:finalWhere];
+        }
+    }
+
+    // Fallback to previous check statement.
+    if (![fetcher whereStatement]) {
+        [fetcher whereField:aField equalToValue:aValue];
+    }
+    
     NSInteger count = [fetcher count];
     [fetcher release];
     if(count){
