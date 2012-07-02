@@ -8,8 +8,6 @@
 
 #import "ARLazyFetcher.h"
 
-@class ARWhereStatement;
-
 static const char *joins[] = {"LEFT", "RIGHT", "INNER", "OUTER"};
 
 static NSString* joinString(ARJoinType type) 
@@ -33,8 +31,6 @@ static NSString* joinString(ARJoinType type)
     NSString *recordField;
     NSString *joinField;
     BOOL useJoin;
-    //  where
-//    ARWhereStatement *whereStatement;
     //  limit/offset
     NSNumber *limit;
     NSNumber *offset;
