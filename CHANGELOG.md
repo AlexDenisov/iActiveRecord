@@ -1,4 +1,4 @@
-2.0.0
+TODO: add changelog
 
 @dynamic instead @synthesize
 Assign properties work as retain
