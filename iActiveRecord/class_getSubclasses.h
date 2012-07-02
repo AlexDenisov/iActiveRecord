@@ -12,10 +12,7 @@
 static NSArray *class_getSubclasses(Class parentClass) {
     int numClasses = objc_getClassList(NULL, 0);
     Class classes[sizeof(Class) * numClasses];
-    
-//    classes = malloc(sizeof(Class) * numClasses);
     numClasses = objc_getClassList(classes, numClasses);
-    
     NSMutableArray *result = [NSMutableArray array];
     for (NSInteger i = 0; i < numClasses; i++) {
         Class superClass = classes[i];
@@ -28,6 +25,5 @@ static NSArray *class_getSubclasses(Class parentClass) {
         }
         [result addObject:classes[i]];
     }
-//    free(classes);
     return result;
 }

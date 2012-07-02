@@ -225,39 +225,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [errors addObject:anError];
 }
 
-#pragma mark - SQLQueries
-
-//+ (const char *)sqlOnAddColumn:(NSString *)aColumn {
-//    NSMutableString *sqlString = [NSMutableString stringWithFormat:
-//                                  @"ALTER TABLE %@ ADD COLUMN ", 
-//                                  [[self recordName] quotedString]];
-//    ARColumn *column = [self columnNamed:aColumn];
-//    [sqlString appendFormat:
-//     @"%@ %s", 
-//     [aColumn quotedString],
-//     [column.columnClass performSelector:@selector(sqlType)]];
-//    return [sqlString UTF8String];
-//}
-
-//+ (const char *)sqlOnCreate {
-//    NSMutableString *sqlString = [NSMutableString stringWithFormat:
-//                                  @"create table %@(id integer primary key unique ", 
-//                                  [[self recordName] quotedString]];
-//    NSArray *columns = [self columns];
-//    if([columns count] == 0){
-//        return NULL;
-//    }
-//    for(ARColumn *column in columns){
-//        if(![column.columnName isEqualToString:@"id"]){
-//            [sqlString appendFormat:@", %@ %s", 
-//             [column.columnName quotedString], 
-//            [column.columnClass performSelector:@selector(sqlType)]];
-//        }
-//    }
-//    [sqlString appendFormat:@")"];
-//    return [sqlString UTF8String];
-//}
-
 #pragma mark - 
 
 + (NSArray *)relationships {
@@ -297,7 +264,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark - Validations
 
 + (void)initializeValidators {
-    //  nothing there
+    //  nothing goes there
 }
 
 + (void)validateUniquenessOfField:(NSString *)aField {

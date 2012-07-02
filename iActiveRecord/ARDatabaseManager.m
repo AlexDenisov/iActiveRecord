@@ -80,7 +80,6 @@ static NSArray *records = nil;
 
 - (void)clearDatabase {
     NSArray *entities =  [self records];
-//    class_getSubclasses([ActiveRecord class]);
     for(Class Record in entities){
         [Record performSelector:@selector(dropAllRecords)];
     }
@@ -88,7 +87,6 @@ static NSArray *records = nil;
 
 - (void)createTables {
     NSArray *entities = [self records];
-//    class_getSubclasses([ActiveRecord class]);
     for(Class Record in entities){
         [self createTable:Record];
     }
@@ -97,7 +95,6 @@ static NSArray *records = nil;
 
 - (void)createTable:(Class)aRecord {
     const char *sqlQuery = [ARSQLBuilder sqlOnCreateTableForRecord:aRecord];
-//    const char *sqlQuery = (const char *)[aRecord performSelector:@selector(sqlOnCreate)];
     [self executeSqlQuery:sqlQuery];
 }
 
@@ -137,7 +134,6 @@ static NSArray *records = nil;
 
 - (NSArray *)describedTables {
     NSArray *entities = [self records];
-//    class_getSubclasses([ActiveRecord class]);
     NSMutableArray *tables = [NSMutableArray arrayWithCapacity:entities.count];
     for(Class record in entities){
         [tables addObject:NSStringFromClass(record)];
@@ -442,11 +438,9 @@ static NSArray *records = nil;
 - (void)createIndices {
     for(Class record in [self records]){
         NSArray *indices = [[ARSchemaManager sharedInstance] indicesForRecord:record];
-        NSLog(@"%@ %@", indices, NSStringFromClass(record));
         for(NSString *indexColumn in indices){
             const char *sqlQuery = [ARSQLBuilder sqlOnCreateIndex:indexColumn
                                                         forRecord:record];
-            NSLog(@"%s exceuted", sqlQuery);
             [self executeSqlQuery:sqlQuery];
         }
     }

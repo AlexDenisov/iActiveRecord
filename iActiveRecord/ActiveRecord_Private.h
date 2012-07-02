@@ -33,11 +33,6 @@
 - (void)resetErrors;
 - (void)resetChanges;
 
-#pragma mark - SQLQueries
-
-//+ (const char *)sqlOnCreate;
-//+ (const char *)sqlOnAddColumn:(NSString *)aColumn;
-
 #pragma mark - TableName
 
 + (NSString *)recordName;
