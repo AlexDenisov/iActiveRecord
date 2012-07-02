@@ -21,10 +21,9 @@
     NSMutableSet *changedColumns;
 }
 
-#pragma mark - Static Fields
-
 #pragma mark - Validations Declaration
 
++ (void)initializeValidators;
 + (void)validateUniquenessOfField:(NSString *)aField;
 + (void)validatePresenceOfField:(NSString *)aField;
 + (void)validateField:(NSString *)aField withValidator:(NSString *)aValidator;
@@ -36,8 +35,8 @@
 
 #pragma mark - SQLQueries
 
-+ (const char *)sqlOnCreate;
-+ (const char *)sqlOnAddColumn:(NSString *)aColumn;
+//+ (const char *)sqlOnCreate;
+//+ (const char *)sqlOnAddColumn:(NSString *)aColumn;
 
 #pragma mark - TableName
 
@@ -101,5 +100,10 @@
 + (void)initializeDynamicAccessors;
 - (void)setValue:(id)aValue forColumn:(ARColumn *)aColumn;
 - (id)valueForColumn:(ARColumn *)aColumn;
+
+#pragma mark - Indices support
+
++ (void)initializeIndices;
++ (void)addIndexOn:(NSString *)aField;
 
 @end

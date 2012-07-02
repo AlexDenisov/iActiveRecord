@@ -14,6 +14,7 @@
 #import "sqlite3_unicode.h"
 #import "ARColumn.h"
 #import "ARSQLBuilder.h"
+#import "ARSchemaManager.h"
 
 #define DEFAULT_DBNAME @"database"
 
@@ -22,8 +23,9 @@
 static ARDatabaseManager *instance = nil;
 static BOOL useCacheDirectory = YES;
 static NSString *databaseName = DEFAULT_DBNAME;
-
 static BOOL migrationsEnabled = YES;
+
+static NSArray *records = nil;
 
 + (void)registerDatabase:(NSString *)aDatabaseName cachesDirectory:(BOOL)isCache {
     databaseName = [aDatabaseName copy];
@@ -77,21 +79,25 @@ static BOOL migrationsEnabled = YES;
 }
 
 - (void)clearDatabase {
-    NSArray *entities = class_getSubclasses([ActiveRecord class]);
+    NSArray *entities =  [self records];
+//    class_getSubclasses([ActiveRecord class]);
     for(Class Record in entities){
         [Record performSelector:@selector(dropAllRecords)];
     }
 }
 
 - (void)createTables {
-    NSArray *entities = class_getSubclasses([ActiveRecord class]);
+    NSArray *entities = [self records];
+//    class_getSubclasses([ActiveRecord class]);
     for(Class Record in entities){
         [self createTable:Record];
     }
+    [self createIndices];
 }
 
-- (void)createTable:(id)aRecord {
-    const char *sqlQuery = (const char *)[aRecord performSelector:@selector(sqlOnCreate)];
+- (void)createTable:(Class)aRecord {
+    const char *sqlQuery = [ARSQLBuilder sqlOnCreateTableForRecord:aRecord];
+//    const char *sqlQuery = (const char *)[aRecord performSelector:@selector(sqlOnCreate)];
     [self executeSqlQuery:sqlQuery];
 }
 
@@ -122,6 +128,7 @@ static BOOL migrationsEnabled = YES;
             }
         }
     }
+    [self createIndices];
 }
 
 - (void)addColumn:(NSString *)aColumn onTable:(NSString *)aTable {
@@ -129,7 +136,8 @@ static BOOL migrationsEnabled = YES;
 }
 
 - (NSArray *)describedTables {
-    NSArray *entities = class_getSubclasses([ActiveRecord class]);
+    NSArray *entities = [self records];
+//    class_getSubclasses([ActiveRecord class]);
     NSMutableArray *tables = [NSMutableArray arrayWithCapacity:entities.count];
     for(Class record in entities){
         [tables addObject:NSStringFromClass(record)];
@@ -429,6 +437,26 @@ static BOOL migrationsEnabled = YES;
 - (NSInteger)executeFunction:(const char *)anSqlQuery {
 #warning implement
     return 0;
+}
+
+- (void)createIndices {
+    for(Class record in [self records]){
+        NSArray *indices = [[ARSchemaManager sharedInstance] indicesForRecord:record];
+        NSLog(@"%@ %@", indices, NSStringFromClass(record));
+        for(NSString *indexColumn in indices){
+            const char *sqlQuery = [ARSQLBuilder sqlOnCreateIndex:indexColumn
+                                                        forRecord:record];
+            NSLog(@"%s exceuted", sqlQuery);
+            [self executeSqlQuery:sqlQuery];
+        }
+    }
+}
+
+- (NSArray *)records {
+    if(records == nil){
+        records = [class_getSubclasses([ActiveRecord class]) retain];
+    }
+    return records;
 }
 
 @end

@@ -13,6 +13,7 @@
 @implementation ARSchemaManager
 
 @synthesize schemes;
+@synthesize indices;
 
 static ARSchemaManager *_instance = nil;
 
@@ -28,11 +29,13 @@ static ARSchemaManager *_instance = nil;
 - (id)init {
     self = [super init];
     self.schemes = [[NSMutableDictionary new] autorelease];
+    self.indices = [[NSMutableDictionary new] autorelease];
     return self;
 }
 
 - (void)dealloc {
     self.schemes = nil;
+    self.indices = nil;
     [super dealloc];
 }
 
@@ -59,6 +62,15 @@ static ARSchemaManager *_instance = nil;
 
 - (NSArray *)columnsForRecord:(Class)aRecordClass {
     return [[self.schemes valueForKey:[aRecordClass performSelector:@selector(recordName)]] allObjects];
+}
+
+- (void)addIndexOnColumn:(NSString *)aColumn ofRecord:(Class)aRecordClass {
+    [self.indices addValue:aColumn
+              toArrayNamed:[aRecordClass performSelector:@selector(recordName)]];
+}
+
+- (NSArray *)indicesForRecord:(Class)aRecordClass {
+    return [self.indices valueForKey:[aRecordClass performSelector:@selector(recordName)]];
 }
 
 @end

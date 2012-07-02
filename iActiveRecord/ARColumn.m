@@ -127,4 +127,8 @@
     return [value performSelector:@selector(toSql)];
 }
 
+- (const char *)sqlType {
+    return (const char*)[self.columnClass performSelector:@selector(sqlType)];
+}
+
 @end

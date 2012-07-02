@@ -11,7 +11,6 @@
 
 #import "ARRelationshipsHelper.h"
 #import "ARValidationsHelper.h"
-#import "ARValidatableProtocol.h"
 #import "ARLazyFetcher.h"
 #import "NSArray+objectsAccessors.h"
 #import "ARWhereStatement.h"
@@ -21,9 +20,9 @@
 #import "AREnum.h"
 #import "ARValidatorProtocol.h"
 #import "ARException.h"
+#import "ARIndicesMacroHelper.h"
 
 typedef void (^ARTransactionBlock)();
-
 
 #define ar_rollback \
     [ARException raise];

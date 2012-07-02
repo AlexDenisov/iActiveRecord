@@ -21,6 +21,6 @@
 
 
 #define validation_do(validations) \
-    + (void)initValidations {\
+    + (void)initializeValidators {\
         validations\
     }

@@ -27,5 +27,6 @@
 - (void)setGetterFromAttribute:(const char *)anAttribute;
 
 - (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord;
+- (const char *)sqlType;
 
 @end

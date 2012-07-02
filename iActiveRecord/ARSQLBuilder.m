@@ -68,4 +68,40 @@
     return [sqlString UTF8String];
 }
 
++ (const char *)sqlOnCreateTableForRecord:(Class)aRecord {
+    NSMutableString *sqlString = [NSMutableString stringWithFormat:
+                                  @"CREATE TABLE %@(id integer primary key unique", 
+                                  [[aRecord recordName] quotedString]];
+    for(ARColumn *column in [aRecord columns]){
+        if(![column.columnName isEqualToString:@"id"]){
+            [sqlString appendFormat:@",%@ %s", 
+             [column.columnName quotedString], 
+             [column sqlType]];
+        }
+    }
+    [sqlString appendFormat:@")"];
+    return [sqlString UTF8String];
+}
+
++ (const char *)sqlOnAddColumn:(NSString *)aColumnName toRecord:(Class)aRecord {
+    NSMutableString *sqlString = [NSMutableString stringWithFormat:
+                                  @"ALTER TABLE %@ ADD COLUMN ", 
+                                  [[aRecord recordName] quotedString]];
+    ARColumn *column = [aRecord columnNamed:aColumnName];
+    [sqlString appendFormat:
+     @"%@ %s", 
+     [aColumnName quotedString],
+     [column sqlType]];
+    return [sqlString UTF8String];
+}
+
++ (const char *)sqlOnCreateIndex:(NSString *)aColumnName forRecord:(ActiveRecord *)aRecord {
+    NSString *sqlString = [NSString stringWithFormat:
+                           @"CREATE UNIQUE INDEX IF NOT EXISTS index_%@ ON %@ (%@)", 
+                           aColumnName,
+                           [[aRecord recordName] quotedString], 
+                           [aColumnName quotedString]];
+    return [sqlString UTF8String];
+}
+
 @end

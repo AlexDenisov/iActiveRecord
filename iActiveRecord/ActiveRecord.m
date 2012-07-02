@@ -11,7 +11,6 @@
 #import "NSString+lowercaseFirst.h"
 #import <objc/runtime.h>
 #import "ARValidationsHelper.h"
-#import "ARValidatableProtocol.h"
 #import "ARErrorHelper.h"
 #import "NSArray+objectsAccessors.h"
 #import "NSString+quotedString.h"
@@ -43,6 +42,7 @@ static void dynamicSetter(ActiveRecord *record, SEL setter, ...){
     id value = va_arg(arguments, id);
     va_end(arguments);
     [record setValue:value forColumn:column];
+//    [[ARSchemaManager sharedInstance] addIndexOnColumn:<#(NSString *)#> ofRecord:<#(Class)#>]
 }
 
 static id dynamicGetter(ActiveRecord *record, SEL getter, ...){
@@ -60,10 +60,12 @@ static id dynamicGetter(ActiveRecord *record, SEL getter, ...){
 
 + (void)initialize {
     [super initialize];
-    if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
-        [self performSelector:@selector(initValidations)];
-    }
+//    if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
+//        [self performSelector:@selector(initValidations)];
+//    }
+    [self initializeIndices];
     [[ARSchemaManager sharedInstance] registerSchemeForRecord:self];
+    [self initializeValidators];
     [self initializeDynamicAccessors];
     [self registerRelationships];
 }
@@ -225,36 +227,36 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 #pragma mark - SQLQueries
 
-+ (const char *)sqlOnAddColumn:(NSString *)aColumn {
-    NSMutableString *sqlString = [NSMutableString stringWithFormat:
-                                  @"ALTER TABLE %@ ADD COLUMN ", 
-                                  [[self recordName] quotedString]];
-    ARColumn *column = [self columnNamed:aColumn];
-    [sqlString appendFormat:
-     @"%@ %s", 
-     [aColumn quotedString],
-     [column.columnClass performSelector:@selector(sqlType)]];
-    return [sqlString UTF8String];
-}
+//+ (const char *)sqlOnAddColumn:(NSString *)aColumn {
+//    NSMutableString *sqlString = [NSMutableString stringWithFormat:
+//                                  @"ALTER TABLE %@ ADD COLUMN ", 
+//                                  [[self recordName] quotedString]];
+//    ARColumn *column = [self columnNamed:aColumn];
+//    [sqlString appendFormat:
+//     @"%@ %s", 
+//     [aColumn quotedString],
+//     [column.columnClass performSelector:@selector(sqlType)]];
+//    return [sqlString UTF8String];
+//}
 
-+ (const char *)sqlOnCreate {
-    NSMutableString *sqlString = [NSMutableString stringWithFormat:
-                                  @"create table %@(id integer primary key unique ", 
-                                  [[self recordName] quotedString]];
-    NSArray *columns = [self columns];
-    if([columns count] == 0){
-        return NULL;
-    }
-    for(ARColumn *column in columns){
-        if(![column.columnName isEqualToString:@"id"]){
-            [sqlString appendFormat:@", %@ %s", 
-             [column.columnName quotedString], 
-            [column.columnClass performSelector:@selector(sqlType)]];
-        }
-    }
-    [sqlString appendFormat:@")"];
-    return [sqlString UTF8String];
-}
+//+ (const char *)sqlOnCreate {
+//    NSMutableString *sqlString = [NSMutableString stringWithFormat:
+//                                  @"create table %@(id integer primary key unique ", 
+//                                  [[self recordName] quotedString]];
+//    NSArray *columns = [self columns];
+//    if([columns count] == 0){
+//        return NULL;
+//    }
+//    for(ARColumn *column in columns){
+//        if(![column.columnName isEqualToString:@"id"]){
+//            [sqlString appendFormat:@", %@ %s", 
+//             [column.columnName quotedString], 
+//            [column.columnClass performSelector:@selector(sqlType)]];
+//        }
+//    }
+//    [sqlString appendFormat:@")"];
+//    return [sqlString UTF8String];
+//}
 
 #pragma mark - 
 
@@ -293,6 +295,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 #pragma mark - Validations
+
++ (void)initializeValidators {
+    //  nothing there
+}
 
 + (void)validateUniquenessOfField:(NSString *)aField {
     [ARValidator registerValidator:[ARValidatorUniqueness class]
@@ -625,6 +631,17 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         [self setValue:value
              forColumn:column];
     }
+}
+
+#pragma mark - Indices
+
++ (void)initializeIndices {
+    //  nothing goes there
+}
+
++ (void)addIndexOn:(NSString *)aField {
+    [[ARSchemaManager sharedInstance] addIndexOnColumn:aField
+                                              ofRecord:self];
 }
 
 @end

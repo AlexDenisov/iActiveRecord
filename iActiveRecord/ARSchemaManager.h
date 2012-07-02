@@ -11,10 +11,14 @@
 @interface ARSchemaManager : NSObject
 
 @property (nonatomic, retain) NSMutableDictionary *schemes;
+@property (nonatomic, retain) NSMutableDictionary *indices;
 
 + (id)sharedInstance;
 
 - (void)registerSchemeForRecord:(Class)aRecordClass;
 - (NSArray *)columnsForRecord:(Class)aRecordClass;
+
+- (void)addIndexOnColumn:(NSString *)aColumn ofRecord:(Class)aRecordClass;
+- (NSArray *)indicesForRecord:(Class)aRecordClass;
 
 @end

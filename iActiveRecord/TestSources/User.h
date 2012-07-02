@@ -14,7 +14,6 @@
  */
 
 @interface User : ActiveRecord
-    <ARValidatableProtocol>
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, retain) NSArray *ignoredProperty;

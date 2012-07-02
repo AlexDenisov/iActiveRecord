@@ -13,7 +13,6 @@
  */
 
 @interface Group : ActiveRecord
-    <ARValidatableProtocol>
 
 @property (nonatomic, copy) NSString *title;
 

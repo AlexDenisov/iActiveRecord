@@ -24,3 +24,4 @@
 #import "ARDynamicAccessorsSpecs.h"
 #import "SaveUpdateSpecs.h"
 #import "ARSchemaManagerSpecs.h"
+#import "ARIndicesSpecs.h"

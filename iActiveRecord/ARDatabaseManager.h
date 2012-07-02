@@ -63,5 +63,8 @@
 - (void)dropRecord:(ActiveRecord *)aRecord;
 - (BOOL)executeSqlQuery:(const char *)anSqlQuery;
 
+- (void)createIndices;
+- (NSArray *)records;
+
 @end
  

@@ -9,7 +9,6 @@
 #import "ActiveRecord.h"
 
 @interface Animal : ActiveRecord
-    <ARValidatableProtocol>
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *state;

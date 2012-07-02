@@ -23,4 +23,8 @@ validation_do(
     validate_presence_of(name)
 )
 
+indices_do(
+    add_index_on(name)
+)
+
 @end
