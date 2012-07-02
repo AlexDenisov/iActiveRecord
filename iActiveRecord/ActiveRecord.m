@@ -368,13 +368,15 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (void)addRecord:(ActiveRecord *)aRecord {
     NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
-    [aRecord setValue:self.id forKey:relationIdKey];
+    ARColumn *column = [aRecord columnNamed:relationIdKey];
+    [aRecord setValue:self.id forColumn:column];
     [aRecord save];
 }
 
 - (void)removeRecord:(ActiveRecord *)aRecord {
     NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
-    [aRecord setValue:nil forKey:relationIdKey];
+    ARColumn *column = [aRecord columnNamed:relationIdKey];
+    [aRecord setValue:nil forColumn:column];
     [aRecord save];
 }
 
@@ -556,6 +558,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 //  KVO-bycycle/Observer
 - (void)setValue:(id)aValue forColumn:(ARColumn *)aColumn {
+    if(aColumn == nil){
+        return;
+    }
     if(changedColumns == nil){
         changedColumns = [NSMutableSet new];
     }
