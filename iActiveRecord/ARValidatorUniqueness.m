@@ -20,8 +20,9 @@
     NSString *recordName = [[aRecord class] description];
     id aValue = [aRecord valueForKey:aField];
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(recordName)];
-    [fetcher whereField:aField
-           equalToValue:aValue];
+    [fetcher where:@"%@ = %@", aField, aValue, nil];
+//    [fetcher whereField:aField
+//           equalToValue:aValue];
     NSInteger count = [fetcher count];
     [fetcher release];
     if(count){

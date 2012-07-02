@@ -13,7 +13,6 @@
 #import "User.h"
 #import "ARDatabaseManager.h"
 #import "ARFactory.h"
-#import "ARWhereStatement.h"
 
 #define DAY (24*60*60)
 #define MONTH (30*DAY)
@@ -204,128 +203,6 @@ describe(@"LazyFetcher", ^{
                 [fetcher where:
                  @"'user'.'name' = %@ or 'user'.'id' in %@", 
                  username, ids, nil];
-                [fetcher orderBy:@"id"];
-                NSArray *records = [fetcher fetchRecords];
-                BOOL idStatementSuccess = NO;
-                BOOL nameStatementSuccess = NO;
-                for(User *user in records){
-                    if([ids containsObject:user.id]){
-                        idStatementSuccess = YES;
-                    }
-                    if([user.name isEqualToString:username]){
-                        nameStatementSuccess = YES;
-                    }
-                }
-                expect(idStatementSuccess).toEqual(YES);
-                expect(nameStatementSuccess).toEqual(YES); 
-            });
-        });
-    });
-    
-    describe(@"Where conditions", ^{
-        describe(@"where between", ^{
-            it(@"should fetch only records between two dates", ^{
-                [ActiveRecord clearDatabase];
-                NSDate *startDate = [NSDate dateWithTimeIntervalSinceNow:-MONTH];
-                NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:DAY];
-                User *john = [User newRecord];
-                john.name = @"John";
-                john.createdAt = [NSDate dateWithTimeIntervalSinceNow:-MONTH * 2];
-                expect([john save]).toEqual(YES);
-                User *alex = [User newRecord];
-                alex.name = @"Alex";
-                alex.createdAt = [NSDate dateWithTimeIntervalSinceNow:-DAY];
-                expect([alex save]).toEqual(YES);
-                ARLazyFetcher *fetcher = [User lazyFetcher];
-                [fetcher whereField:@"createdAt" 
-                            between:startDate
-                                and:endDate];
-                NSArray *users = [fetcher fetchRecords];
-                expect(users.count).toEqual(1);
-                [alex release];
-                [john release];
-                
-            });
-        });
-        describe(@"Simple where conditions", ^{
-            it(@"whereField equalToValue should find record", ^{
-                NSString *username = @"john";
-                User *john = [User newRecord];
-                john.name = username;
-                [john save];
-                ARLazyFetcher *fetcher = [User lazyFetcher];
-                [fetcher whereField:@"name" equalToValue:username];
-                User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).toEqual(username);
-            });
-            it(@"whereField notEqualToValue should not find record", ^{
-                NSString *username = @"john";
-                User *john = [User newRecord];
-                john.name = username;
-                [john save];
-                ARLazyFetcher *fetcher = [User lazyFetcher];
-                [fetcher whereField:@"name" notEqualToValue:username];
-                User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).Not.toEqual(username);
-            });
-            it(@"WhereField in should find record", ^{
-                NSString *username = @"john";
-                NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
-                User *john = [User newRecord];
-                john.name = username;
-                [john save];
-                ARLazyFetcher *fetcher = [User lazyFetcher];
-                [fetcher whereField:@"name" in:names];
-                User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).toEqual(username);
-            });
-            it(@"WhereField notIn should not find record", ^{
-                NSString *username = @"john";
-                NSArray *names = [NSArray arrayWithObjects:@"alex", username, @"peter", nil];
-                User *john = [User newRecord];
-                john.name = username;
-                [john save];
-                ARLazyFetcher *fetcher = [User lazyFetcher];
-                [fetcher whereField:@"name" notIn:names];
-                User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).Not.toEqual(username);
-            });
-            it(@"WhereField LIKE should find record", ^{
-                NSString *username = @"john";
-                User *john = [User newRecord];
-                john.name = username;
-                [john save];
-                ARLazyFetcher *fetcher = [User lazyFetcher];
-                [fetcher whereField:@"name"
-                               like:@"%jo%"];
-                User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).toEqual(username);
-            });
-        });
-        describe(@"Complex where conditions", ^{
-            it(@"Two conditions should return actual values", ^{
-                NSArray *ids = [NSArray arrayWithObjects:
-                                [NSNumber numberWithInt:1],
-                                [NSNumber numberWithInt:15], 
-                                nil];
-                NSString *username = @"john";
-                User *john = [User newRecord];
-                john.name = username;
-                [john save];
-                
-                ARWhereStatement *nameStatement = [ARWhereStatement whereField:@"name"
-                                                                      ofRecord:NSClassFromString(@"User")
-                                                                              equalToValue:username];
-                ARWhereStatement *idStatement = [ARWhereStatement whereField:@"id" 
-                                                                            ofRecord:NSClassFromString(@"User")
-                                                                                      in:ids];
-                
-                ARWhereStatement *finalStatement = [ARWhereStatement concatenateStatement:nameStatement 
-                                                                                        withStatement:idStatement 
-                                                                                  useLogicalOperation:ARLogicalOr];
-                
-                ARLazyFetcher *fetcher = [User lazyFetcher];
-                [fetcher setWhereStatement:finalStatement];
                 [fetcher orderBy:@"id"];
                 NSArray *records = [fetcher fetchRecords];
                 BOOL idStatementSuccess = NO;

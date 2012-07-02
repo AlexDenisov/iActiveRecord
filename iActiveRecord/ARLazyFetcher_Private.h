@@ -34,11 +34,13 @@ static NSString* joinString(ARJoinType type)
     NSString *joinField;
     BOOL useJoin;
     //  where
-    ARWhereStatement *whereStatement;
+//    ARWhereStatement *whereStatement;
     //  limit/offset
     NSNumber *limit;
     NSNumber *offset;
 }
+
+@property (nonatomic, copy) NSMutableString *whereStatement;
 
 - (NSSet *)recordFields;
 

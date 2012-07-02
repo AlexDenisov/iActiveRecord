@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class ARWhereStatement;
-
 typedef enum {
     ARJoinLeft,
     ARJoinRight,
@@ -23,44 +21,6 @@ typedef enum {
 
 - (ARLazyFetcher *)limit:(NSInteger)aLimit;
 - (ARLazyFetcher *)offset:(NSInteger)anOffset;
-
-- (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue; 
-- (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue; 
-- (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues;
-- (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues;
-- (ARLazyFetcher *)whereField:(NSString *)aField like:(NSString *)aPattern;
-- (ARLazyFetcher *)whereField:(NSString *)aField notLike:(NSString *)aPattern;
-- (ARLazyFetcher *)whereField:(NSString *)aField between:(id)startValue and:(id)endValue;
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                      between:(id)startValue 
-                          and:(id)endValue;
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                 equalToValue:(id)aValue; 
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-              notEqualToValue:(id)aValue; 
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                           in:(NSArray *)aValues;
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                        notIn:(NSArray *)aValues;
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                         like:(NSString *)aPattern; 
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                      notLike:(NSString *)aPattern; 
-
 
 - (ARLazyFetcher *)only:(NSString *)aFirstParam, ...;
 - (ARLazyFetcher *)except:(NSString *)aFirstParam, ...;
@@ -79,9 +39,6 @@ typedef enum {
 - (ARLazyFetcher *)orderBy:(NSString *)aField;// ASC by default
 
 - (ARLazyFetcher *)where:(NSString *)aCondition, ... NS_REQUIRES_NIL_TERMINATION;
-
-- (ARWhereStatement *)whereStatement;
-- (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement;
 
 - (NSArray *)fetchRecords;
 - (NSArray *)fetchJoinedRecords;

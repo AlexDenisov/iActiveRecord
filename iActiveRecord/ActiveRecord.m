@@ -60,9 +60,6 @@ static id dynamicGetter(ActiveRecord *record, SEL getter, ...){
 
 + (void)initialize {
     [super initialize];
-//    if([self conformsToProtocol:@protocol(ARValidatableProtocol)]){
-//        [self performSelector:@selector(initValidations)];
-//    }
     [self initializeIndices];
     [[ARSchemaManager sharedInstance] registerSchemeForRecord:self];
     [self initializeValidators];
@@ -346,9 +343,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSString *selectorString = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
     SEL selector = NSSelectorFromString(selectorString);
     NSNumber *rec_id = [self performSelector:selector];
+    if(rec_id == nil){
+        return nil;
+    }
     ARLazyFetcher *fetcher = [[[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)] autorelease];
-    [fetcher whereField:@"id"
-           equalToValue:rec_id];
+    [fetcher where:@"id = %@", rec_id, nil];
     return [[fetcher fetchRecords] first];
 }
 
@@ -383,7 +382,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName {
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     NSString *selfId = [NSString stringWithFormat:@"%@Id", [[self class] description]];
-    [fetcher whereField:selfId equalToValue:self.id];
+    [fetcher where:@"%@ = %@", selfId, self.id, nil];
     return [fetcher autorelease];
 }
 
@@ -394,9 +393,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSString *relId = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     [fetcher join:NSClassFromString(aRelationsipClassName)];
-    [fetcher whereField:relId
-               ofRecord:NSClassFromString(aRelationsipClassName)
-           equalToValue:self.id];
+    [fetcher where:@"%@.%@ = %@", aRelationsipClassName, relId, self.id, nil];
     return [fetcher autorelease];
 }
 
@@ -447,9 +444,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark - Description
 
 - (NSString *)description {
-    NSMutableString *descr = [NSMutableString stringWithFormat:@"%@\n", [[self class] description]];
-    NSArray *columns = [self columns];
-    for(ARColumn *column in columns){
+    NSMutableString *descr = [NSMutableString stringWithFormat:@"%@\n", [self recordName]];
+    for(ARColumn *column in [self columns]){
         [descr appendFormat:@"%@ => %@;", 
         column.columnName, 
         [self valueForColumn:column]];

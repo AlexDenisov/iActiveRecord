@@ -8,16 +8,16 @@
 
 #import "ARLazyFetcher.h"
 #import "ARDatabaseManager.h"
-#import "ARWhereStatement.h"
 #import "NSString+lowercaseFirst.h"
 #import "NSString+quotedString.h"
 #import "ARColumn.h"
 #import "ActiveRecord.h"
 #import "ActiveRecord_Private.h"
 #import "ARLazyFetcher_Private.h"
-#import "ARWhereStatement_Private.h"
 
 @implementation ARLazyFetcher
+
+@synthesize whereStatement;
 
 - (id)init {
     self = [super init];
@@ -103,7 +103,7 @@
 - (NSString *)createWhereStatement {
     NSMutableString *statement = [NSMutableString string];
     if(whereStatement){
-        [statement appendFormat:@" WHERE (%@) ", [whereStatement statement]];
+        [statement appendFormat:@" WHERE (%@) ", self.whereStatement];
     }
     return statement;
 }
@@ -214,159 +214,6 @@
 - (ARLazyFetcher *)limit:(NSInteger)aLimit {
     [limit release];
     limit = [[NSNumber alloc] initWithInteger:aLimit];
-    return self;
-}
-
-#pragma mark - Where Conditions
-
-- (ARWhereStatement *)whereStatement {
-    return whereStatement;
-}
-
-- (ARLazyFetcher *)setWhereStatement:(ARWhereStatement *)aStatement {
-    if([whereStatement isEqual:aStatement]){
-        return self;
-    }
-    [whereStatement release];
-    whereStatement = [aStatement retain];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                      between:(id)startValue 
-                          and:(id)endValue
-{
-    ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                  ofRecord:recordClass
-                                                   between:startValue
-                                                       and:endValue];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField like:(NSString *)aPattern {
-    ARWhereStatement *where = [ARWhereStatement whereField:aField 
-                                                  ofRecord:recordClass
-                                                      like:aPattern];
-    [self setWhereStatement:where];
-    return self;
-}
-- (ARLazyFetcher *)whereField:(NSString *)aField notLike:(NSString *)aPattern {
-    ARWhereStatement *where = [ARWhereStatement whereField:aField 
-                                                  ofRecord:recordClass
-                                                   notLike:aPattern];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField equalToValue:(id)aValue {
-    ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                  ofRecord:recordClass
-                                              equalToValue:aValue];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField notEqualToValue:(id)aValue {
-    ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                  ofRecord:recordClass
-                                           notEqualToValue:aValue];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField in:(NSArray *)aValues {
-    ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                  ofRecord:recordClass
-                                                        in:aValues];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField notIn:(NSArray *)aValues {
-    ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                  ofRecord:recordClass
-                                                     notIn:aValues];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                 equalToValue:(id)aValue 
-{
-    ARWhereStatement *where = [ARWhereStatement whereField:aField 
-                                                  ofRecord:aRecord
-                                              equalToValue:aValue];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-              notEqualToValue:(id)aValue 
-{
-    ARWhereStatement *where = [ARWhereStatement whereField:aField 
-                                                  ofRecord:aRecord
-                                           notEqualToValue:aValue];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                           in:(NSArray *)aValues 
-{
-    ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                  ofRecord:aRecord
-                                                        in:aValues];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                        notIn:(NSArray *)aValues
-{
-    ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                  ofRecord:aRecord
-                                                     notIn:aValues];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                         like:(NSString *)aPattern
-{
-    ARWhereStatement *where = [ARWhereStatement whereField:aField 
-                                                  ofRecord:aRecord
-                                                      like:aPattern];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                      notLike:(NSString *)aPattern
-{
-    ARWhereStatement *where = [ARWhereStatement whereField:aField 
-                                                  ofRecord:aRecord
-                                                   notLike:aPattern];
-    [self setWhereStatement:where];
-    return self;
-}
-
-- (ARLazyFetcher *)whereField:(NSString *)aField 
-                     ofRecord:(Class)aRecord 
-                      between:(id)startValue 
-                          and:(id)endValue
-{
-    ARWhereStatement *where = [ARWhereStatement whereField:aField
-                                                  ofRecord:aRecord
-                                                   between:startValue
-                                                       and:endValue];
-    [self setWhereStatement:where];
     return self;
 }
 
@@ -503,7 +350,10 @@
         if([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSSet class]]){
             argument = [value performSelector:@selector(toSql)];
         }else{
-            argument = [[value performSelector:@selector(toSql)] quotedString];
+            if([value respondsToSelector:@selector(toSql)]){
+                value = [value performSelector:@selector(toSql)];
+            }
+            argument = [value quotedString];
         }
         [sqlArguments addObject:argument]; 
     }
@@ -515,15 +365,10 @@
                                                arguments:argList] autorelease];
     free(argList);
     
-    ARWhereStatement *where = [ARWhereStatement statement:result];
-    
-    if(self.whereStatement){
-        ARWhereStatement *currentWhere = self.whereStatement;
-        self.whereStatement = [ARWhereStatement concatenateStatement:currentWhere
-                                                       withStatement:where
-                                                 useLogicalOperation:ARLogicalAnd];
+    if(self.whereStatement == nil){
+        self.whereStatement = [NSMutableString stringWithString:result];
     }else {
-        self.whereStatement = where;
+        [self.whereStatement appendFormat:@"AND %@", result];
     }
     return self;
 }
