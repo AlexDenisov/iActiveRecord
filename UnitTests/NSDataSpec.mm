@@ -1,14 +1,7 @@
-//
-//  NSDataSpecs.h
-//  iActiveRecord
-//
-//  Created by Alex Denisov on 18.04.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
-//
-
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
+
+using namespace Cedar::Matchers;
+
 #import "ARDatabaseManager.h"
 #import "User.h"
 
@@ -30,7 +23,7 @@ describe(@"NSData", ^{
                                       length:5];
         alex.imageData = data;
         BOOL result = [alex save];
-        expect(result).toEqual(YES);
+        result should BeTruthy();
     });
     it(@"Should be read successfully from database", ^{
         User *alex = [User newRecord];
@@ -40,10 +33,9 @@ describe(@"NSData", ^{
         NSData *data = [NSData dataWithContentsOfFile:octocat];
         alex.imageData = data;
         BOOL result = [alex save];
-        expect(result).toEqual(YES);
-        
+        result should BeTruthy();
         User *fetchedUser = [[User allRecords] first];
-        expect(alex.imageData).toEqual(fetchedUser.imageData);
+        alex.imageData should equal(fetchedUser.imageData);
     });
 });
 

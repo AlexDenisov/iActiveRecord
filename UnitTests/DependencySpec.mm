@@ -1,16 +1,8 @@
-//
-//  DependencySpecs.h
-//  iActiveRecord
-//
-//  Created by Alex Denisov on 26.03.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
-//
-
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
-#import "ARDatabaseManager.h"
 
+using namespace Cedar::Matchers;
+
+#import "ARDatabaseManager.h"
 #import "User.h"
 #import "Project.h"
 #import "Group.h"
@@ -46,8 +38,7 @@ describe(@"Destroy", ^{
         [alex release];
         [john release];
         [students release];
-        
-        expect([User count]).toEqual(0);
+        [User count] should equal(0);
     });
     it(@"BelongsTo", ^{
         User *john = [User newRecord];
@@ -64,8 +55,8 @@ describe(@"Destroy", ^{
         [students addUser:john];
         [students addUser:peter];
         [john dropRecord];
-        expect([Group count]).toEqual(0);
-        expect([User count]).toEqual(0);
+        [Group count] should equal(0);
+        [User count] should equal(0);
     });
     it(@"HasManyThrough", ^{
         User *john = [User newRecord];
@@ -78,9 +69,8 @@ describe(@"Destroy", ^{
         
         [makeTea addUser:john];
         [john dropRecord];
-        
-        expect([User count]).toEqual(0);
-        expect([Project count]).toEqual(0);
+        [User count] should equal(0);
+        [Project count] should equal(0);
     });
 });
 
@@ -98,7 +88,7 @@ describe(@"Destroy/Nulify", ^{
             emptyIssue.title = @"empty";
             [emptyIssue save];
             [project dropRecord];
-            expect([Issue count]).toEqual(1);
+            [Issue count] should equal(1);
         });
         it(@"when i drop issue it should not drop project issues", ^{
             Issue *issue = [Issue newRecord];
@@ -115,7 +105,7 @@ describe(@"Destroy/Nulify", ^{
             NSInteger count = [Project count];
             
             [issue dropRecord];
-            expect([Project count]).toEqual(count);
+            [Project count] should equal(count);
         });
     });
 });
@@ -126,14 +116,14 @@ describe(@"Nulify", ^{
         Group *students = [Group newRecord];
         students.title = @"Students";
         [students save];
-
+        
         Project *project = [Project newRecord];
         project.name = @"Make tea";
         [project save];
         [project addGroup:students];
         
         [project dropRecord];
-        expect([Group count]).toEqual(1);
+        [Group count] should equal(1);
     });
 });
 

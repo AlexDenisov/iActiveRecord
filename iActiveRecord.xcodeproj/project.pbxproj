@@ -23,12 +23,10 @@
 /* Begin PBXBuildFile section */
 		254F5EBC14C5E71C00AC0D86 /* NSString+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */; };
 		254F5EC014C5E78100AC0D86 /* NSNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */; };
-		25922AFD14EC286000CBB58A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
 		25922AFE14EC286000CBB58A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC314BC199C00CA2490 /* Foundation.framework */; };
 		25922AFF14EC286000CBB58A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC514BC199C00CA2490 /* CoreGraphics.framework */; };
 		25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25922B0314EC286000CBB58A /* InfoPlist.strings */; };
 		25922B0714EC286000CBB58A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25922B0614EC286000CBB58A /* main.m */; };
-		25922B4C14EC297F00CBB58A /* libExpecta-ios-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25922B4514EC297F00CBB58A /* libExpecta-ios-universal.a */; };
 		25922B5614EC2BB600CBB58A /* ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE114BC1A1D00CA2490 /* ActiveRecord.m */; };
 		25922B5814EC2BB600CBB58A /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
 		25922B6114EC2BC600CBB58A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */; };
@@ -67,7 +65,6 @@
 		CA2E5D491581EE130053D511 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
 		CA2E5D4A1581EE130053D511 /* NSDate+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D3F1535F50500565E02 /* NSDate+isPresented.m */; };
 		CA2E5D4B1581EE130053D511 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
-		CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */; };
 		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA523D401535F50500565E02 /* NSDate+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D3F1535F50500565E02 /* NSDate+isPresented.m */; };
@@ -205,6 +202,21 @@
 		CADA6AF8154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
 		CADA6AF9154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
 		CADA6AFA154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
+		CAE7577615C86123007A633C /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE7577515C86123007A633C /* Cedar-iOS.framework */; };
+		CAE7577715C86150007A633C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
+		CAE7577915C861BE007A633C /* ValidationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7577815C861BE007A633C /* ValidationSpec.mm */; };
+		CAE7577B15C8644F007A633C /* DatabaseManagerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7577A15C8644F007A633C /* DatabaseManagerSpec.mm */; };
+		CAE7577D15C864B1007A633C /* RelationshipSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7577C15C864B1007A633C /* RelationshipSpec.mm */; };
+		CAE7578015C8663D007A633C /* DropRecordSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7577F15C8663D007A633C /* DropRecordSpec.mm */; };
+		CAE7578215C866AA007A633C /* CountSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7578115C866AA007A633C /* CountSpec.mm */; };
+		CAE7578415C86715007A633C /* LazyFetcherSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7578315C86715007A633C /* LazyFetcherSpec.mm */; };
+		CAE7578615C86AEC007A633C /* FactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7578515C86AEC007A633C /* FactorySpec.mm */; };
+		CAE7578815C86B70007A633C /* DependencySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7578715C86B70007A633C /* DependencySpec.mm */; };
+		CAE7578A15C86C48007A633C /* MigrationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7578915C86C48007A633C /* MigrationSpec.mm */; };
+		CAE7578C15C86CBE007A633C /* TransactionSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7578B15C86CBE007A633C /* TransactionSpec.mm */; };
+		CAE7578E15C86D71007A633C /* UnicodeSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7578D15C86D71007A633C /* UnicodeSpec.mm */; };
+		CAE7579015C86DDE007A633C /* JoinSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7578F15C86DDE007A633C /* JoinSpec.mm */; };
+		CAE7579215C86E6E007A633C /* NSDataSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CAE7579115C86E6E007A633C /* NSDataSpec.mm */; };
 		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
@@ -226,35 +238,6 @@
 		25922B0414EC286000CBB58A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		25922B0614EC286000CBB58A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		25922B0814EC286000CBB58A /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
-		25922B2F14EC297F00CBB58A /* EXPDoubleTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPDoubleTuple.h; sourceTree = "<group>"; };
-		25922B3014EC297F00CBB58A /* Expecta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expecta.h; sourceTree = "<group>"; };
-		25922B3114EC297F00CBB58A /* ExpectaSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpectaSupport.h; sourceTree = "<group>"; };
-		25922B3214EC297F00CBB58A /* EXPExpect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPExpect.h; sourceTree = "<group>"; };
-		25922B3314EC297F00CBB58A /* EXPFloatTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPFloatTuple.h; sourceTree = "<group>"; };
-		25922B3414EC297F00CBB58A /* EXPMatcherHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPMatcherHelpers.h; sourceTree = "<group>"; };
-		25922B3514EC297F00CBB58A /* EXPMatchers+toBeFalsy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeFalsy.h"; sourceTree = "<group>"; };
-		25922B3614EC297F00CBB58A /* EXPMatchers+toBeGreaterThan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeGreaterThan.h"; sourceTree = "<group>"; };
-		25922B3714EC297F00CBB58A /* EXPMatchers+toBeGreaterThanOrEqualTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeGreaterThanOrEqualTo.h"; sourceTree = "<group>"; };
-		25922B3814EC297F00CBB58A /* EXPMatchers+toBeIdenticalTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeIdenticalTo.h"; sourceTree = "<group>"; };
-		25922B3914EC297F00CBB58A /* EXPMatchers+toBeInstanceOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeInstanceOf.h"; sourceTree = "<group>"; };
-		25922B3A14EC297F00CBB58A /* EXPMatchers+toBeInTheRangeOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeInTheRangeOf.h"; sourceTree = "<group>"; };
-		25922B3B14EC297F00CBB58A /* EXPMatchers+toBeKindOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeKindOf.h"; sourceTree = "<group>"; };
-		25922B3C14EC297F00CBB58A /* EXPMatchers+toBeLessThan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeLessThan.h"; sourceTree = "<group>"; };
-		25922B3D14EC297F00CBB58A /* EXPMatchers+toBeLessThanOrEqualTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeLessThanOrEqualTo.h"; sourceTree = "<group>"; };
-		25922B3E14EC297F00CBB58A /* EXPMatchers+toBeNil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeNil.h"; sourceTree = "<group>"; };
-		25922B3F14EC297F00CBB58A /* EXPMatchers+toBeSubclassOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeSubclassOf.h"; sourceTree = "<group>"; };
-		25922B4014EC297F00CBB58A /* EXPMatchers+toBeTruthy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toBeTruthy.h"; sourceTree = "<group>"; };
-		25922B4114EC297F00CBB58A /* EXPMatchers+toContain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toContain.h"; sourceTree = "<group>"; };
-		25922B4214EC297F00CBB58A /* EXPMatchers+toEqual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+toEqual.h"; sourceTree = "<group>"; };
-		25922B4314EC297F00CBB58A /* EXPMatchers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPMatchers.h; sourceTree = "<group>"; };
-		25922B4414EC297F00CBB58A /* EXPUnsupportedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXPUnsupportedObject.h; sourceTree = "<group>"; };
-		25922B4514EC297F00CBB58A /* libExpecta-ios-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libExpecta-ios-universal.a"; sourceTree = "<group>"; };
-		25922B4814EC297F00CBB58A /* NSObject+Expecta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Expecta.h"; sourceTree = "<group>"; };
-		25922B4914EC297F00CBB58A /* NSValue+Expecta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+Expecta.h"; sourceTree = "<group>"; };
-		25922B5114EC29D100CBB58A /* SpecSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecSet.h; sourceTree = "<group>"; };
-		25922B5214EC2A7A00CBB58A /* ValidationSpecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationSpecs.h; sourceTree = "<group>"; };
-		25922B6814EC2D1600CBB58A /* DatabaseManagerSpecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManagerSpecs.h; sourceTree = "<group>"; };
-		25922B6914EC310100CBB58A /* RelationshipsSpecs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelationshipsSpecs.h; sourceTree = "<group>"; };
 		2596BC5514C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+sqlRepresentation.h"; sourceTree = "<group>"; };
 		2596BC5614C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+sqlRepresentation.m"; sourceTree = "<group>"; };
 		2598294114BDDB4200207D16 /* class_getSubclasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = class_getSubclasses.h; sourceTree = "<group>"; };
@@ -285,13 +268,8 @@
 		CA1AF752155FEA3A00D0B17E /* ARColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARColumn.m; sourceTree = "<group>"; };
 		CA1AF759155FEA5600D0B17E /* ARSchemaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSchemaManager.h; sourceTree = "<group>"; };
 		CA1AF75A155FEA5600D0B17E /* ARSchemaManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARSchemaManager.m; sourceTree = "<group>"; };
-		CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropRecordSpecs.h; sourceTree = "<group>"; };
-		CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "/opt/cedar/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<absolute>"; };
-		CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountSpecs.h; sourceTree = "<group>"; };
 		CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcher.h; sourceTree = "<group>"; };
 		CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLazyFetcher.m; sourceTree = "<group>"; };
-		CA3D18081519D61F00FA3F3C /* ARLazyFetcherSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcherSpecs.h; sourceTree = "<group>"; };
-		CA3D18091519D63300FA3F3C /* FooSpec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FooSpec.h; sourceTree = "<group>"; };
 		CA523D3E1535F50500565E02 /* NSDate+isPresented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+isPresented.h"; sourceTree = "<group>"; };
 		CA523D3F1535F50500565E02 /* NSDate+isPresented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+isPresented.m"; sourceTree = "<group>"; };
 		CA523D421535F56100565E02 /* NSData+isPresented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+isPresented.h"; sourceTree = "<group>"; };
@@ -306,9 +284,6 @@
 		CA523E0615373A5500565E02 /* sqlite3_unicode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3_unicode.h; path = deps/sqlite3_unicode.h; sourceTree = "<group>"; };
 		CA62C2E9151E039900E54276 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		CA62C307151E0AB800E54276 /* ActiveRecord.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActiveRecord.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA62C30B151E0AB800E54276 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		CA62C30C151E0AB800E54276 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		CA62C30D151E0AB800E54276 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CA62C310151E0AB800E54276 /* ARBundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARBundle-Info.plist"; sourceTree = "<group>"; };
 		CA62C312151E0AB800E54276 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA62C314151E0AB800E54276 /* ARBundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARBundle-Prefix.pch"; sourceTree = "<group>"; };
@@ -317,7 +292,6 @@
 		CA8CB48C152F740F00510A14 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+stringWithEscapedQuote.h"; sourceTree = "<group>"; };
 		CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+stringWithEscapedQuote.m"; sourceTree = "<group>"; };
-		CA8D9EDF152EC5EB005F9073 /* ARJoinSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARJoinSpecs.h; sourceTree = "<group>"; };
 		CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+sqlRepresentation.h"; sourceTree = "<group>"; };
 		CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+sqlRepresentation.m"; sourceTree = "<group>"; };
 		CAAE32E91525F2480080447D /* ARValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidator.h; sourceTree = "<group>"; };
@@ -329,11 +303,8 @@
 		CAAE32FB1527079F0080447D /* ARValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidation.m; sourceTree = "<group>"; };
 		CAAE3300152715270080447D /* ARValidatorPresence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidatorPresence.h; sourceTree = "<group>"; };
 		CAAE3301152715270080447D /* ARValidatorPresence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidatorPresence.m; sourceTree = "<group>"; };
-		CAAE332C152849C80080447D /* MigrationsSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MigrationsSpecs.h; sourceTree = "<group>"; };
-		CAAE334415287A590080447D /* TransactionSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransactionSpecs.h; sourceTree = "<group>"; };
 		CAAE33451528819C0080447D /* ARException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARException.h; sourceTree = "<group>"; };
 		CAAE33461528819C0080447D /* ARException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARException.m; sourceTree = "<group>"; };
-		CAAE337B1528AD5B0080447D /* UnicodeSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnicodeSpecs.h; sourceTree = "<group>"; };
 		CAAE33911528C41B0080447D /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARFactory.h; path = TestSources/ARFactory.h; sourceTree = "<group>"; };
 		CAAE33921528C41B0080447D /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARFactory.m; path = TestSources/ARFactory.m; sourceTree = "<group>"; };
 		CAAE33961528C4500080447D /* Animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animal.h; path = TestSources/Animal.h; sourceTree = "<group>"; };
@@ -357,16 +328,13 @@
 		CAAE33BA1528C4710080447D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = TestSources/AppDelegate.h; sourceTree = "<group>"; };
 		CAAE33BB1528C4710080447D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = TestSources/AppDelegate.m; sourceTree = "<group>"; };
 		CAAE33BE1528C47E0080447D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TestSources/main.m; sourceTree = "<group>"; };
-		CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARFactorySpecs.h; sourceTree = "<group>"; };
 		CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+objectsAccessors.h"; sourceTree = "<group>"; };
 		CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+objectsAccessors.m"; sourceTree = "<group>"; };
 		CAAF5E23151CAC58004C4329 /* ARWhereStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARWhereStatement.h; sourceTree = "<group>"; };
 		CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARWhereStatement.m; sourceTree = "<group>"; };
-		CAB56AE8153E69B20062DC9E /* NSDataSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDataSpecs.h; sourceTree = "<group>"; };
 		CAB56AEA153E6C7F0062DC9E /* octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat.png; sourceTree = "<group>"; };
 		CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		CABB90881520C26800E8D082 /* DependencySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DependencySpecs.h; sourceTree = "<group>"; };
 		CABB90971520DA2000E8D082 /* AREnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AREnum.h; sourceTree = "<group>"; };
 		CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationBelongsTo.h; sourceTree = "<group>"; };
 		CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationBelongsTo.m; sourceTree = "<group>"; };
@@ -383,6 +351,20 @@
 		CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+valueToArray.m"; sourceTree = "<group>"; };
 		CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBaseRelationship.h; sourceTree = "<group>"; };
 		CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBaseRelationship.m; sourceTree = "<group>"; };
+		CAE7577515C86123007A633C /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "/opt/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<absolute>"; };
+		CAE7577815C861BE007A633C /* ValidationSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ValidationSpec.mm; sourceTree = "<group>"; };
+		CAE7577A15C8644F007A633C /* DatabaseManagerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DatabaseManagerSpec.mm; sourceTree = "<group>"; };
+		CAE7577C15C864B1007A633C /* RelationshipSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RelationshipSpec.mm; sourceTree = "<group>"; };
+		CAE7577F15C8663D007A633C /* DropRecordSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DropRecordSpec.mm; sourceTree = "<group>"; };
+		CAE7578115C866AA007A633C /* CountSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CountSpec.mm; sourceTree = "<group>"; };
+		CAE7578315C86715007A633C /* LazyFetcherSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LazyFetcherSpec.mm; sourceTree = "<group>"; };
+		CAE7578515C86AEC007A633C /* FactorySpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FactorySpec.mm; sourceTree = "<group>"; };
+		CAE7578715C86B70007A633C /* DependencySpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DependencySpec.mm; sourceTree = "<group>"; };
+		CAE7578915C86C48007A633C /* MigrationSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MigrationSpec.mm; sourceTree = "<group>"; };
+		CAE7578B15C86CBE007A633C /* TransactionSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TransactionSpec.mm; sourceTree = "<group>"; };
+		CAE7578D15C86D71007A633C /* UnicodeSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnicodeSpec.mm; sourceTree = "<group>"; };
+		CAE7578F15C86DDE007A633C /* JoinSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JoinSpec.mm; sourceTree = "<group>"; };
+		CAE7579115C86E6E007A633C /* NSDataSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSDataSpec.mm; sourceTree = "<group>"; };
 		CAF24809151F298B00120198 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
 		CAF2480A151F298B00120198 /* ARError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARError.m; sourceTree = "<group>"; };
 		CAF24816151F383000120198 /* NSData+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -395,12 +377,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA3D17BA151926B700FA3F3C /* Cedar-iOS.framework in Frameworks */,
+				CAE7577715C86150007A633C /* UIKit.framework in Frameworks */,
+				CAE7577615C86123007A633C /* Cedar-iOS.framework in Frameworks */,
 				25922B6114EC2BC600CBB58A /* libsqlite3.0.dylib in Frameworks */,
-				25922AFD14EC286000CBB58A /* UIKit.framework in Frameworks */,
 				25922AFE14EC286000CBB58A /* Foundation.framework in Frameworks */,
 				25922AFF14EC286000CBB58A /* CoreGraphics.framework in Frameworks */,
-				25922B4C14EC297F00CBB58A /* libExpecta-ios-universal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +420,6 @@
 		25922B0014EC286000CBB58A /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				25922B2D14EC297F00CBB58A /* Expecta */,
 				25922B1314EC28D000CBB58A /* Specs */,
 				25922B0114EC286000CBB58A /* Supporting Files */,
 			);
@@ -460,55 +440,21 @@
 		25922B1314EC28D000CBB58A /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				25922B5114EC29D100CBB58A /* SpecSet.h */,
-				25922B5214EC2A7A00CBB58A /* ValidationSpecs.h */,
-				25922B6814EC2D1600CBB58A /* DatabaseManagerSpecs.h */,
-				25922B6914EC310100CBB58A /* RelationshipsSpecs.h */,
-				CA3D17B61519257F00FA3F3C /* DropRecordSpecs.h */,
-				CA3D17BC15192A1B00FA3F3C /* CountSpecs.h */,
-				CA3D18081519D61F00FA3F3C /* ARLazyFetcherSpecs.h */,
-				CA3D18091519D63300FA3F3C /* FooSpec.h */,
-				CAAF5D92151A15EB004C4329 /* ARFactorySpecs.h */,
-				CABB90881520C26800E8D082 /* DependencySpecs.h */,
-				CAAE332C152849C80080447D /* MigrationsSpecs.h */,
-				CAAE334415287A590080447D /* TransactionSpecs.h */,
-				CAAE337B1528AD5B0080447D /* UnicodeSpecs.h */,
-				CA8D9EDF152EC5EB005F9073 /* ARJoinSpecs.h */,
-				CAB56AE8153E69B20062DC9E /* NSDataSpecs.h */,
+				CAE7577815C861BE007A633C /* ValidationSpec.mm */,
+				CAE7577A15C8644F007A633C /* DatabaseManagerSpec.mm */,
+				CAE7577C15C864B1007A633C /* RelationshipSpec.mm */,
+				CAE7577F15C8663D007A633C /* DropRecordSpec.mm */,
+				CAE7578115C866AA007A633C /* CountSpec.mm */,
+				CAE7578315C86715007A633C /* LazyFetcherSpec.mm */,
+				CAE7578515C86AEC007A633C /* FactorySpec.mm */,
+				CAE7578715C86B70007A633C /* DependencySpec.mm */,
+				CAE7578915C86C48007A633C /* MigrationSpec.mm */,
+				CAE7578B15C86CBE007A633C /* TransactionSpec.mm */,
+				CAE7578D15C86D71007A633C /* UnicodeSpec.mm */,
+				CAE7578F15C86DDE007A633C /* JoinSpec.mm */,
+				CAE7579115C86E6E007A633C /* NSDataSpec.mm */,
 			);
 			name = Specs;
-			sourceTree = "<group>";
-		};
-		25922B2D14EC297F00CBB58A /* Expecta */ = {
-			isa = PBXGroup;
-			children = (
-				25922B2F14EC297F00CBB58A /* EXPDoubleTuple.h */,
-				25922B3014EC297F00CBB58A /* Expecta.h */,
-				25922B3114EC297F00CBB58A /* ExpectaSupport.h */,
-				25922B3214EC297F00CBB58A /* EXPExpect.h */,
-				25922B3314EC297F00CBB58A /* EXPFloatTuple.h */,
-				25922B3414EC297F00CBB58A /* EXPMatcherHelpers.h */,
-				25922B3514EC297F00CBB58A /* EXPMatchers+toBeFalsy.h */,
-				25922B3614EC297F00CBB58A /* EXPMatchers+toBeGreaterThan.h */,
-				25922B3714EC297F00CBB58A /* EXPMatchers+toBeGreaterThanOrEqualTo.h */,
-				25922B3814EC297F00CBB58A /* EXPMatchers+toBeIdenticalTo.h */,
-				25922B3914EC297F00CBB58A /* EXPMatchers+toBeInstanceOf.h */,
-				25922B3A14EC297F00CBB58A /* EXPMatchers+toBeInTheRangeOf.h */,
-				25922B3B14EC297F00CBB58A /* EXPMatchers+toBeKindOf.h */,
-				25922B3C14EC297F00CBB58A /* EXPMatchers+toBeLessThan.h */,
-				25922B3D14EC297F00CBB58A /* EXPMatchers+toBeLessThanOrEqualTo.h */,
-				25922B3E14EC297F00CBB58A /* EXPMatchers+toBeNil.h */,
-				25922B3F14EC297F00CBB58A /* EXPMatchers+toBeSubclassOf.h */,
-				25922B4014EC297F00CBB58A /* EXPMatchers+toBeTruthy.h */,
-				25922B4114EC297F00CBB58A /* EXPMatchers+toContain.h */,
-				25922B4214EC297F00CBB58A /* EXPMatchers+toEqual.h */,
-				25922B4314EC297F00CBB58A /* EXPMatchers.h */,
-				25922B4414EC297F00CBB58A /* EXPUnsupportedObject.h */,
-				25922B4514EC297F00CBB58A /* libExpecta-ios-universal.a */,
-				25922B4814EC297F00CBB58A /* NSObject+Expecta.h */,
-				25922B4914EC297F00CBB58A /* NSValue+Expecta.h */,
-			);
-			path = Expecta;
 			sourceTree = "<group>";
 		};
 		2596BC5314C7207100C6B5E2 /* NSDecimalNumber */ = {
@@ -547,7 +493,7 @@
 		25998EC014BC199C00CA2490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CA3D17B8151926B700FA3F3C /* Cedar-iOS.framework */,
+				CAE7577515C86123007A633C /* Cedar-iOS.framework */,
 				25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */,
 				25998EC114BC199C00CA2490 /* UIKit.framework */,
 				25998EC314BC199C00CA2490 /* Foundation.framework */,
@@ -746,9 +692,6 @@
 		CA62C30A151E0AB800E54276 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CA62C30B151E0AB800E54276 /* AppKit.framework */,
-				CA62C30C151E0AB800E54276 /* CoreData.framework */,
-				CA62C30D151E0AB800E54276 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -1137,6 +1080,19 @@
 				CA1AF75D155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
 				CAC022EC157B76C300208445 /* NSArray+toSql.m in Sources */,
 				CAC02306157B855500208445 /* NSSet+toSql.m in Sources */,
+				CAE7577915C861BE007A633C /* ValidationSpec.mm in Sources */,
+				CAE7577B15C8644F007A633C /* DatabaseManagerSpec.mm in Sources */,
+				CAE7577D15C864B1007A633C /* RelationshipSpec.mm in Sources */,
+				CAE7578015C8663D007A633C /* DropRecordSpec.mm in Sources */,
+				CAE7578215C866AA007A633C /* CountSpec.mm in Sources */,
+				CAE7578415C86715007A633C /* LazyFetcherSpec.mm in Sources */,
+				CAE7578615C86AEC007A633C /* FactorySpec.mm in Sources */,
+				CAE7578815C86B70007A633C /* DependencySpec.mm in Sources */,
+				CAE7578A15C86C48007A633C /* MigrationSpec.mm in Sources */,
+				CAE7578C15C86CBE007A633C /* TransactionSpec.mm in Sources */,
+				CAE7578E15C86D71007A633C /* UnicodeSpec.mm in Sources */,
+				CAE7579015C86DDE007A633C /* JoinSpec.mm in Sources */,
+				CAE7579215C86E6E007A633C /* NSDataSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1278,6 +1234,7 @@
 					"\"/tmp/cedar-installer/cedar/build/Release-iphoneuniversal\"",
 					"\"/opt/cedar/cedar/build/Release-iphoneuniversal\"",
 					/opt/cedar/cedar/Externals/OCMock/Source/build/Release,
+					"\"/opt/cedar/build/Release-iphoneuniversal\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
@@ -1312,6 +1269,7 @@
 					"\"/tmp/cedar-installer/cedar/build/Release-iphoneuniversal\"",
 					"\"/opt/cedar/cedar/build/Release-iphoneuniversal\"",
 					/opt/cedar/cedar/Externals/OCMock/Source/build/Release,
+					"\"/opt/cedar/build/Release-iphoneuniversal\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";

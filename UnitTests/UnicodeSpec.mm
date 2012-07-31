@@ -1,16 +1,8 @@
-//
-//  UnicodeSpecs.h
-//  iActiveRecord
-//
-//  Created by Alex Denisov on 01.04.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
-//
-
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
-#import "ARDatabaseManager.h"
 
+using namespace Cedar::Matchers;
+
+#import "ARDatabaseManager.h"
 #import "User.h"
 
 SPEC_BEGIN(UnicodeSpecs)
@@ -29,7 +21,7 @@ describe(@"Unicode search", ^{
         [alex save];
         ARLazyFetcher *fetcher = [[User lazyFetcher] whereField:@"name"
                                                            like:@"%ксей%"];
-        expect(fetcher.count).Not.toEqual(0);
+        fetcher.count should_not equal(0);
     });
 });
 
