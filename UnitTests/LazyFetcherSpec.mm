@@ -1,18 +1,17 @@
 //
-//  ARArraySpecs.h
+//  LazyFetcherSpec.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 21.03.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
-
 #import "User.h"
 #import "ARDatabaseManager.h"
 #import "ARFactory.h"
+
+using namespace Cedar::Matchers;
 
 #define DAY (24*60*60)
 #define MONTH (30*DAY)
@@ -31,7 +30,7 @@ afterEach(^{
 describe(@"LazyFetcher", ^{
     it(@"without parameters should return all records ", ^{
         NSArray *records = [[User lazyFetcher] fetchRecords];
-        expect([records count]).toEqual(10);
+        [records count] should equal(10);
     });    
     
         
@@ -39,21 +38,21 @@ describe(@"LazyFetcher", ^{
         it(@"LIMIT should return limited count of records", ^{
             NSInteger limit = 5;
             NSArray *records = [[[User lazyFetcher] limit:limit] fetchRecords];
-            expect([records count]).toEqual(limit);
+            [records count] should equal(limit);
         });
         it(@"OFFSET should return records from third record", ^{
             NSInteger offset = 3;
             NSArray *records = [[[User lazyFetcher] offset:offset] fetchRecords];
             User *first = [records first];
-            expect(first.id.integerValue).toEqual(offset + 1);
+            first.id.integerValue should equal(offset + 1);
         });
         it(@"LIMIT/OFFSET should return 5 records starts from 3-d", ^{
             NSInteger limit = 5;
             NSInteger offset = 3;
             NSArray *records = [[[[User lazyFetcher] limit:limit] offset:offset] fetchRecords];
             User *first = [records first];
-            expect(first.id.integerValue).toEqual(offset + 1);
-            expect(records.count).toEqual(limit);
+            first.id.integerValue should equal(offset + 1);
+            records.count should equal(limit);
         });
 
     });
@@ -69,7 +68,7 @@ describe(@"LazyFetcher", ^{
                     sortCorrect = NO;
                 }
             }
-            expect(sortCorrect).toEqual(YES);
+            sortCorrect should equal(YES);
         });
         it(@"ASC with LIMIT should sort limited records in ascending order", ^{
             NSInteger limit = 5;
@@ -82,7 +81,7 @@ describe(@"LazyFetcher", ^{
                     sortCorrect = NO;
                 }
             }
-            expect(sortCorrect).toEqual(YES);
+            sortCorrect should equal(YES);
         });
         it(@"ASC with LIMIT/OFFSET should sort limited records in ascending order", ^{
             NSInteger limit = 5;
@@ -96,7 +95,7 @@ describe(@"LazyFetcher", ^{
                     sortCorrect = NO;
                 }
             }
-            expect(sortCorrect).toEqual(YES);
+            sortCorrect should equal(YES);
         });
         it(@"DESC should sort records in descending order", ^{
             NSArray *records = [[[User lazyFetcher] orderBy:@"id"
@@ -108,7 +107,7 @@ describe(@"LazyFetcher", ^{
                     sortCorrect = NO;
                 }
             }
-            expect(sortCorrect).toEqual(YES);
+            sortCorrect should equal(YES);
         });
     });
     
@@ -121,18 +120,18 @@ describe(@"LazyFetcher", ^{
                 User *john = [[User newRecord] autorelease];
                 john.name = @"John";
                 john.createdAt = [NSDate dateWithTimeIntervalSinceNow:-MONTH * 2];
-                expect([john save]).toEqual(YES);
+                [john save] should equal(YES);
                 User *alex = [[User newRecord] autorelease];
                 alex.name = @"Alex";
                 alex.createdAt = [NSDate dateWithTimeIntervalSinceNow:-DAY];
-                expect([alex save]).toEqual(YES);
+                [alex save] should equal(YES);
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:
                  @"createdAt BETWEEN %@ AND %@", 
                  startDate, 
                  endDate, nil];
                 NSArray *users = [fetcher fetchRecords];
-                expect(users.count).toEqual(1);
+                users.count should equal(1);
             });
         }); 
         describe(@"Simple where conditions", ^{
@@ -144,7 +143,7 @@ describe(@"LazyFetcher", ^{
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name == %@", username, nil];
                 User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).toEqual(username);
+                founded.name should equal(username);
             });
             it(@"whereField notEqualToValue should not find record", ^{
                 NSString *username = @"john";
@@ -154,7 +153,7 @@ describe(@"LazyFetcher", ^{
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name <> %@", username, nil];
                 User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).Not.toEqual(username);
+                founded.name should_not equal(username);
             });
             it(@"WhereField in should find record", ^{
                 NSString *username = @"john";
@@ -165,7 +164,7 @@ describe(@"LazyFetcher", ^{
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name in %@", names, nil];
                 User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).toEqual(username);
+                founded.name should equal(username);
             });
             it(@"WhereField notIn should not find record", ^{
                 NSString *username = @"john";
@@ -176,7 +175,7 @@ describe(@"LazyFetcher", ^{
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name not in %@", names, nil];
                 User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).Not.toEqual(username);
+                founded.name should_not equal(username);
             });
             it(@"WhereField LIKE should find record", ^{
                 NSString *username = @"john";
@@ -186,7 +185,7 @@ describe(@"LazyFetcher", ^{
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name like %@", @"%jo%", nil];
                 User *founded = [[fetcher fetchRecords] first];
-                expect(founded.name).toEqual(username);
+                founded.name should equal(username);
             });
         });
         describe(@"Complex where conditions", ^{
@@ -215,8 +214,8 @@ describe(@"LazyFetcher", ^{
                         nameStatementSuccess = YES;
                     }
                 }
-                expect(idStatementSuccess).toEqual(YES);
-                expect(nameStatementSuccess).toEqual(YES); 
+                idStatementSuccess should equal(YES);
+                nameStatementSuccess should equal(YES); 
             });
         });
     });
@@ -229,7 +228,7 @@ describe(@"LazyFetcher", ^{
             john.groupId = [NSNumber numberWithInt:145];
             [john save];
             User *user = [[fetcher fetchRecords] last];
-            expect(user.groupId).toBeNil();
+            user.groupId should BeNil();
         });
         it(@"except should return only not listed fields", ^{
             ARLazyFetcher *fetcher = [[User lazyFetcher] except:@"name", nil];
@@ -238,7 +237,7 @@ describe(@"LazyFetcher", ^{
             john.groupId = [NSNumber numberWithInt:145];
             [john save];
             User *user = [[fetcher fetchRecords] last];
-            expect(user.name).toBeNil();
+            user.name should BeNil();
         });
     });
 });

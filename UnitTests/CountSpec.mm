@@ -1,16 +1,15 @@
 //
-//  CountSpecs.h
+//  CountSpec.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 20.03.12.
-//  Copyright (c) 2012 CoreInvader. All rights 
+//  Created by Alex Denisov on 01.08.12.
+//  Copyright (c) 2012 CoreInvader. All rights reserver.
 
+#import "ARDatabaseManager.h"
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
-
 #import "User.h"
 #import "ARDatabaseManager.h"
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(CountSpecs)
 
@@ -31,7 +30,7 @@ describe(@"Count", ^{
         john.name = @"john";
         [john save];
         NSInteger count = [User count];
-        expect(count).toEqual(2);
+        count should equal(2);
     });
 });
 

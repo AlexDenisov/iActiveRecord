@@ -1,16 +1,19 @@
 //
-//  ARSchemaManagerSpecs.h
+//  SchemaManagerSpec.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 17.06.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
 #import "ARDatabaseManager.h"
+#import "ActiveRecord_Private.h"
 #import "User.h"
+#import "ARSchemaManager.h"
+#import "ARColumn.h"
+
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(ARSchemaManagerSpecs)
 
@@ -25,7 +28,7 @@ describe(@"SchemaManager", ^{
     it(@"should return nil on undefined column", ^{
         [[ARSchemaManager sharedInstance] registerSchemeForRecord:[User class]];
         ARColumn *column = [User columnNamed:@"FUUU"];
-        expect(column).toBeNil();
+        column should BeNil();
     });
 });
 

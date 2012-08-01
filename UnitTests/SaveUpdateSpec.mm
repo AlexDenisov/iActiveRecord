@@ -1,16 +1,17 @@
 //
-//  SaveUpdateSpecs.h
+//  SaveUpdateSpec.h
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 17.06.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
 #import "ARDatabaseManager.h"
 #import "Animal.h"
+#import "User.h"
+
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(SaveUpdateSpecs)
 
@@ -27,25 +28,25 @@ describe(@"Update", ^{
         Animal *enot = [[Animal newRecord] autorelease];
         enot.name = @"animal";
         enot.title = @"Racoon";
-        expect(enot.save).toBeTruthy();
+        enot.save should BeTruthy();
         recordId = enot.id;
         Animal *record = [[Animal allRecords] first];
         record.title = @"Enot";
         record.state = @"FuuBar";
-        expect(record.id).toEqual(recordId);
+        record.id should equal(recordId);
         [record save];
         Animal *racoon = [[Animal allRecords] first];
-        expect(racoon.id).toEqual(recordId);
-        expect(racoon.title).toEqual(@"Enot");
-        expect(racoon.state).toEqual(@"FuuBar");
+        racoon.id should equal(recordId);
+        racoon.title should equal(@"Enot");
+        racoon.state should equal(@"FuuBar");
     });
     it(@"should not validate properies that don't changed", ^{
         User *user = [[User newRecord] autorelease];
         user.name = @"Alex";
-        expect(user.save).toBeTruthy();
+        user.save should BeTruthy();
         user.name = @"Alex";
-        expect(user.save).toBeTruthy();
-        expect(user.save).toBeTruthy();
+        user.save should BeTruthy();
+        user.save should BeTruthy();
     });
 });
 

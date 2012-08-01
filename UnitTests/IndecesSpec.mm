@@ -1,15 +1,17 @@
 //
-//  ARIndicesSpecs.h
+//  IndicesSpec.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 02.07.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
 #import "ARDatabaseManager.h"
+#import "ARSchemaManager.h"
+#import "User.h"
+
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(IndicesPsecs)
 
@@ -23,7 +25,7 @@ afterEach(^{
 describe(@"User", ^{
     it(@"should have one index", ^{
         NSArray *indices = [[ARSchemaManager sharedInstance] indicesForRecord:[User class]];
-        expect(indices.count).toEqual(1);
+        indices.count should equal(1);
     });
 });
 

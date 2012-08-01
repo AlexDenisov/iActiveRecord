@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "SpecSet.h"
-
 int main(int argc, char *argv[])
 {
     @autoreleasepool {

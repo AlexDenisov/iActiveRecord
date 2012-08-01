@@ -1,18 +1,17 @@
 //
-//  ARFactorySpecs.h
+//  FactorySpec.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 21.03.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
-
 #import "ARDatabaseManager.h"
 #import "ARFactory.h"
 #import "User.h"
+
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(ARFactorySpecs)
 
@@ -27,14 +26,14 @@ describe(@"Factory", ^{
     it(@"should return non zero records", ^{
         NSArray *records = [ARFactory buildFew:10
                                        records:[User class]];
-        expect([records count]).Not.toEqual(0);
+        [records count] should_not equal(0);
     });
     it(@"should return 10 records", ^{
         NSArray *records = [ARFactory buildFew:10
                                        records:[User class]];
         NSInteger count = [records count];
         NSInteger userCount = [User count];
-        expect(count).toEqual(userCount);
+        count should equal(userCount);
     });
 });
 

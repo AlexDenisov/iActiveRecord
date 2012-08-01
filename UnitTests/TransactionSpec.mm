@@ -1,15 +1,16 @@
 //
-//  TransactionSpecs.h
+//  TransactionSpecs.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 01.04.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
 #import "ARDatabaseManager.h"
+#import "User.h"
+
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(TransactionSpecs)
 
@@ -29,7 +30,7 @@ describe(@"Transaction", ^{
             [alex save];
         }];
         NSInteger afterCount = [User count];
-        expect(beforeCount).Not.toEqual(afterCount);
+        beforeCount should_not equal(afterCount);
     });
     it(@"should not save record", ^{
         NSInteger beforeCount = [User count];
@@ -40,7 +41,7 @@ describe(@"Transaction", ^{
             ar_rollback
         }];
         NSInteger afterCount = [User count];
-        expect(beforeCount).toEqual(afterCount);
+        beforeCount should equal(afterCount);
     });
 });
 

@@ -1,17 +1,16 @@
 //
-//  DropRecordSpecs.h
+//  DropRecordSpec.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 20.03.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
-
 #import "User.h"
 #import "ARDatabaseManager.h"
+
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(DropRecordSpecs)
 
@@ -31,7 +30,7 @@ describe(@"Drop", ^{
         NSInteger beforeCount = [User count];
         [peter dropRecord];
         NSInteger afterCount = [User count];
-        expect(beforeCount).Not.toEqual(afterCount);
+        beforeCount should_not equal(afterCount);
     });
     it(@"dropAllRecord should remove al records from database", ^{
         NSString *username = @"Peter";
@@ -40,7 +39,7 @@ describe(@"Drop", ^{
         [peter save];
         [User dropAllRecords];
         NSInteger count = [User count];
-        expect(count).toEqual(0);
+        count should equal(0);
     });
 });
 

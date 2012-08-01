@@ -1,18 +1,18 @@
 //
-//  ARJoinSpecs.h
+//  JoinSpec.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 06.04.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
 #import "ARDatabaseManager.h"
 #import "User.h"
 #import "Group.h"
 #import "ARLazyFetcher.h"
+
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(JoinSpecs)
 
@@ -36,25 +36,25 @@ describe(@"Join", ^{
         }
     });
     it(@"should return array of dictionaries", ^{
-        ARLazyFetcher *fetcher = [[User lazyFetcher] join:[Group class] 
-                                                  useJoin:ARJoinInner 
-                                                  onField:@"groupId" 
+        ARLazyFetcher *fetcher = [[User lazyFetcher] join:[Group class]
+                                                  useJoin:ARJoinInner
+                                                  onField:@"groupId"
                                                  andField:@"id"];
         NSArray *records = [fetcher fetchJoinedRecords];
         id first = [records first];
         BOOL result = [first isKindOfClass:[NSDictionary class]];
-        expect(result).toEqual(YES);
+        result should BeTruthy();
     });
     it(@"returned dictionary should contain fields of two records", ^{
-        ARLazyFetcher *fetcher = [[User lazyFetcher] join:[Group class] 
-                                                  useJoin:ARJoinInner 
-                                                  onField:@"groupId" 
+        ARLazyFetcher *fetcher = [[User lazyFetcher] join:[Group class]
+                                                  useJoin:ARJoinInner
+                                                  onField:@"groupId"
                                                  andField:@"id"];
         NSArray *records = [fetcher fetchJoinedRecords];
         NSDictionary *first = [records first];
         NSArray *keys = [first allKeys];
         BOOL result = [keys containsObject:@"User"] && [keys containsObject:@"Group"];
-        expect(result).toEqual(YES);
+        result should BeTruthy();
     });
 });
 

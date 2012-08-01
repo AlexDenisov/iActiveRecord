@@ -1,17 +1,16 @@
 //
-//  FinderSpecs.h
+//  DatabaseManagerSpec.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 15.02.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
-
 #import "User.h"
 #import "ARDatabaseManager.h"
+
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(DatabaseManagerSpecs)
 
@@ -20,10 +19,10 @@ describe(@"ARDatabase", ^{
         User *user = [User newRecord];
         user.name = @"John";
         BOOL result = [user save];
-        expect(result).toEqual(YES);
+        result should BeTruthy();
         [[ARDatabaseManager sharedInstance] clearDatabase];
         NSInteger count = [[User allRecords] count];
-        expect(0).toEqual(count);
+        count should equal(0);
     });
 });
 

@@ -1,20 +1,20 @@
 //
-//  MigrationsSpecs.h
+//  MigrationSpecs.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 01.04.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
 #import "ARDatabaseManager.h"
 #import "Animal.h"
 #import "Entity.h"
 
+using namespace Cedar::Matchers;
+
 /*
-    This spec run once, when record 'Entity' doesn't exists
+ This spec run once, when record 'Entity' doesn't exists
  */
 
 SPEC_BEGIN(MigrationsSpecs)
@@ -32,7 +32,7 @@ describe(@"Add column", ^{
         animal.name = @"animal";
         animal.state = @"Full";
         BOOL result = [animal save];
-        expect(result).toEqual(YES);
+        result should BeTruthy();
     });
 });
 
@@ -40,9 +40,8 @@ describe(@"Create table", ^{
     it(@"new record should save successfully", ^{
         Entity *ent = [Entity newRecord];
         ent.property = @"LooLZ";
-        expect([ent save]).toEqual(YES);
+        [ent save] should BeTruthy();
     });
 });
 
 SPEC_END
-

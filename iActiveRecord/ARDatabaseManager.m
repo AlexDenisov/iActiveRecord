@@ -118,8 +118,10 @@ static NSArray *records = nil;
             }
             for(NSString *column in describedColumns){
                 if(![existedColumns containsObject:column]){
-                    const char *sql = (const char *)[Record performSelector:@selector(sqlOnAddColumn:) 
-                                                                 withObject:column];
+                    const char *sql = (const char *)[ARSQLBuilder sqlOnAddColumn:column
+                                                                        toRecord:Record];
+//                    const char *sql = (const char *)[Record performSelector:@selector(sqlOnAddColumn:) 
+//                                                                 withObject:column];
                     [self executeSqlQuery:sql];
                 }
             }

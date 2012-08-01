@@ -1,20 +1,19 @@
 //
-//  RelationshipsSpecs.h
+//  RelationshipSpec.mm
 //  iActiveRecord
 //
-//  Created by Alex Denisov on 15.02.12.
+//  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
 #import "Cedar-iOS/SpecHelper.h"
-#define EXP_SHORTHAND
-#import "Expecta.h"
-
 #import "User.h"
 #import "Group.h"
 #import "Project.h"
 #import "ARDatabaseManager.h"
 #import "UserProjectRelationship.h"
+
+using namespace Cedar::Matchers;
 
 SPEC_BEGIN(RelationshipsSpecs)
 
@@ -30,43 +29,43 @@ describe(@"HasMany", ^{
         User *john = [User newRecord];
         john.name = @"John";
         BOOL result = [john save];
-        expect(result).toEqual(YES);
+        result should BeTruthy();
         User *peter = [User newRecord];
         peter.name = @"Peter";
         result = [peter save];
-        expect(result).toEqual(YES);
+        result should BeTruthy();
         Group *students = [Group newRecord];
         students.title = @"students";
-        expect([students save]).toBeTruthy();
+        [students save] should BeTruthy();
         [students addUser:john];
         [students addUser:peter];
-        NSInteger count = [[students users] count]; 
-        expect(count).toEqual(2);
+        NSInteger count = [[students users] count];
+        count should equal(2);
     });
     it(@"Group should not add two equal users", ^{
         User *alex = [[User newRecord] autorelease];
         alex.name = @"Alex";
-        expect([alex save]).toBeTruthy();
+        [alex save] should BeTruthy();
         Project *project = [Project newRecord];
         project.name = @"students";
-        expect(project.save).toBeTruthy();
+        project.save should BeTruthy();
         [project addUser:alex];
         [project addUser:alex];
         NSInteger count = project.users.count;
-        expect(count).toEqual(1);
+        count should equal(1);
     });
     it(@"Should remove relationship record", ^{
         [[ARDatabaseManager sharedInstance] clearDatabase];
         User *alex = [[User newRecord] autorelease];
         alex.name = @"Alex";
-        expect([alex save]).toBeTruthy();
+        [alex save] should BeTruthy();
         Project *project = [Project newRecord];
         project.name = @"students";
-        expect(project.save).toBeTruthy();
+        project.save should BeTruthy();
         [project addUser:alex];
         [project removeUser:alex];
         NSInteger count = [UserProjectRelationship count];
-        expect(count).toEqual(0);
+        count should equal(0);
     });
     it(@"When I remove user, user should not have group", ^{
         Group *group = [Group newRecord];
@@ -77,7 +76,7 @@ describe(@"HasMany", ^{
         [user save];
         [user setGroup:group];
         [group removeUser:user];
-        expect(user.group).toBeNil();
+        user.group should BeNil();
     });
 });
 
@@ -86,18 +85,18 @@ describe(@"BelongsTo", ^{
         User *john = [User newRecord];
         john.name = @"John";
         BOOL result = [john save];
-        expect(result).toEqual(YES);
+        result should BeTruthy();
         User *peter = [User newRecord];
         peter.name = @"Peter";
         result = [peter save];
-        expect(result).toEqual(YES);
+        result should BeTruthy();
         Group *students = [Group newRecord];
         students.title = @"students";
         [students save];
         [students addUser:john];
         [students addUser:peter];
         Group *group = [john group];
-        expect([group title]).toEqual([students title]);
+        [group title] should equal([students title]);
     });
     it(@"when i set belongsTo group, group should contain this user", ^{
         Group *group = [Group newRecord];
@@ -108,7 +107,7 @@ describe(@"BelongsTo", ^{
         [user save];
         [user setGroup:group];
         User *foundedUser = [[[group users] fetchRecords] first];
-        expect(foundedUser.name).toEqual(user.name);        
+        foundedUser.name should equal(user.name);
     });
     it(@"when i set belongsTo nil, i should remove relation", ^{
         Group *group = [Group newRecord];
@@ -119,7 +118,7 @@ describe(@"BelongsTo", ^{
         [user save];
         [user setGroup:group];
         [user setGroup:nil];
-        expect(group.users.count).toEqual(0);
+        group.users.count should equal(0);
     });
 });
 
@@ -150,7 +149,7 @@ describe(@"HasManyThrough", ^{
         [makeTea addUser:vova];
         
         NSArray *projects = [[john projects] fetchRecords];
-        expect(projects.count).toEqual(2);
+        projects.count should equal(2);
     });
     it(@"Project should have many users", ^{
         User *john = [User newRecord];
@@ -177,7 +176,7 @@ describe(@"HasManyThrough", ^{
         [makeTea addUser:john];
         [makeTea addUser:vova];
         NSArray *users = [[worldConquest users] fetchRecords];
-        expect(users.count).toEqual(2);
+        users.count should equal(2);
     });
     it(@"when I remove user, group should not contain this user", ^{
         User *alex = [User newRecord];
@@ -191,7 +190,7 @@ describe(@"HasManyThrough", ^{
         NSInteger beforeCount = [[alex projects] count];
         [alex removeProject:makeTea];
         NSInteger afterCount = [[alex projects] count];
-        expect(beforeCount).Not.toEqual(afterCount);
+        beforeCount should_not equal(afterCount);
     });
 });
 
