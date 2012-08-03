@@ -21,7 +21,7 @@
 }
 
 + (const char *)sqlType {
-    return "real";
+    return "INTEGER";
 }
 
 @end

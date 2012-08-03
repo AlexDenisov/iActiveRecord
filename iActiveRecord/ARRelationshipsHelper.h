@@ -10,7 +10,7 @@
 
 #import <objc/runtime.h>
 
-#define belonsg_to_imp(class, getter, dependency) \
+#define belongs_to_imp(class, getter, dependency) \
     + (ARDependency)_ar_registerBelongsTo##class {\
         return dependency;\
     }\
