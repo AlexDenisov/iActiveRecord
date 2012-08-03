@@ -13,7 +13,7 @@
 
 using namespace Cedar::Matchers;
 
-SPEC_BEGIN(IndicesPsecs)
+SPEC_BEGIN(IndicesSpecs)
 
 beforeEach(^{
     [[ARDatabaseManager sharedInstance] clearDatabase];
