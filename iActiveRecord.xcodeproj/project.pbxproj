@@ -59,7 +59,7 @@
 		CA0BAECB15C9A952008985E6 /* DynamicAccessorSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECA15C9A952008985E6 /* DynamicAccessorSpec.mm */; };
 		CA0BAECD15C9A9D1008985E6 /* SaveUpdateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECC15C9A9D1008985E6 /* SaveUpdateSpec.mm */; };
 		CA0BAECF15C9AA59008985E6 /* SchemaManagerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECE15C9AA58008985E6 /* SchemaManagerSpec.mm */; };
-		CA0BAED115C9AACC008985E6 /* IndeicesSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAED015C9AACC008985E6 /* IndeicesSpec.mm */; };
+		CA0BAED115C9AACC008985E6 /* IndicesSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAED015C9AACC008985E6 /* IndicesSpec.mm */; };
 		CA0BAED415C9AC13008985E6 /* DynamicRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAED315C9AC13008985E6 /* DynamicRecord.m */; };
 		CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90971520DA2000E8D082 /* AREnum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA1AF753155FEA3A00D0B17E /* ARColumn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1AF750155FEA3A00D0B17E /* ARColumn_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -280,7 +280,7 @@
 		CA0BAECA15C9A952008985E6 /* DynamicAccessorSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DynamicAccessorSpec.mm; sourceTree = "<group>"; };
 		CA0BAECC15C9A9D1008985E6 /* SaveUpdateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SaveUpdateSpec.mm; sourceTree = "<group>"; };
 		CA0BAECE15C9AA58008985E6 /* SchemaManagerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SchemaManagerSpec.mm; sourceTree = "<group>"; };
-		CA0BAED015C9AACC008985E6 /* IndeicesSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IndeicesSpec.mm; sourceTree = "<group>"; };
+		CA0BAED015C9AACC008985E6 /* IndicesSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IndicesSpec.mm; sourceTree = "<group>"; };
 		CA0BAED215C9AC13008985E6 /* DynamicRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicRecord.h; path = TestSources/DynamicRecord.h; sourceTree = "<group>"; };
 		CA0BAED315C9AC13008985E6 /* DynamicRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicRecord.m; path = TestSources/DynamicRecord.m; sourceTree = "<group>"; };
 		CA1AF74E155FE99100D0B17E /* ActiveRecord_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveRecord_Private.h; sourceTree = "<group>"; };
@@ -475,7 +475,7 @@
 				CA0BAECA15C9A952008985E6 /* DynamicAccessorSpec.mm */,
 				CA0BAECC15C9A9D1008985E6 /* SaveUpdateSpec.mm */,
 				CA0BAECE15C9AA58008985E6 /* SchemaManagerSpec.mm */,
-				CA0BAED015C9AACC008985E6 /* IndeicesSpec.mm */,
+				CA0BAED015C9AACC008985E6 /* IndicesSpec.mm */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -1125,7 +1125,7 @@
 				CA0BAECB15C9A952008985E6 /* DynamicAccessorSpec.mm in Sources */,
 				CA0BAECD15C9A9D1008985E6 /* SaveUpdateSpec.mm in Sources */,
 				CA0BAECF15C9AA59008985E6 /* SchemaManagerSpec.mm in Sources */,
-				CA0BAED115C9AACC008985E6 /* IndeicesSpec.mm in Sources */,
+				CA0BAED115C9AACC008985E6 /* IndicesSpec.mm in Sources */,
 				CA0BAED415C9AC13008985E6 /* DynamicRecord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
