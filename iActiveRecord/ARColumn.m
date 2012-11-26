@@ -14,18 +14,26 @@
 
 @implementation ARColumn
 
-@synthesize columnName;
-@synthesize columnClass;
-@synthesize getter;
-@synthesize setter;
-@synthesize propertyType;
+@synthesize columnName = _columnName;
+@synthesize columnClass = _columnClass;
+@synthesize getter = _getter;
+@synthesize setter = _setter;
+@synthesize propertyType = _propertyType;
 
 - (id)initWithProperty:(objc_property_t)property {
     self = [super init];
     if(nil != self){
         BOOL dynamic = NO;
         self.propertyType = ARPropertyTypeAssign;
-        self.columnName = [NSString stringWithUTF8String:property_getName(property)];
+        
+        const char *propertyName = property_getName(property);
+        int propertyNameLength = strlen(propertyName);
+        _columnKey = calloc(propertyNameLength, sizeof(char));
+        strcpy(_columnKey, propertyName);
+        
+        self->_columnName = [[NSString alloc] initWithUTF8String:_columnKey];
+        
+//        self.columnName = [NSString stringWithUTF8String:property_getName(property)];
         //  set default setter/getter
         [self setSetterFromAttribute:NULL];
         [self setGetterFromAttribute:NULL];
@@ -42,13 +50,13 @@
                 case '&': 
                     self.propertyType = ARPropertyTypeRetain;
                     break;
-                case 'G': 
+                case 'G': // Getter
                     [self setGetterFromAttribute:attributes[i].value];
                     break;
-                case 'S': 
+                case 'S': // Setter
                     [self setSetterFromAttribute:attributes[i].value];
                     break;
-                case 'D':
+                case 'D': // is dynamic property?
                     dynamic = YES;
                     break;
                 default: 
@@ -83,6 +91,7 @@
 }
 
 - (void)dealloc {
+    free(_columnKey);
     self.columnClass = nil;
     self.columnName = nil;
     self.setter = nil;
@@ -118,12 +127,13 @@
    if(anAttribute){
         self.getter = [NSString stringWithUTF8String:anAttribute];
     }else {
-        self.getter = [NSString stringWithFormat:self.columnName];
+        self.getter = [NSString stringWithFormat:@"%@", self.columnName];
     } 
 }
 
 - (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord {
-    id value = [aRecord valueForColumn:self];
+    id value =  objc_getAssociatedObject(aRecord,
+                                         self->_columnKey); //[aRecord valueForColumn:self];
     return [value performSelector:@selector(toSql)];
 }
 

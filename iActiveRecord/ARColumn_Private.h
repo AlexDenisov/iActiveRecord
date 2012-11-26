@@ -13,6 +13,15 @@
 @class ActiveRecord;
 
 @interface ARColumn ()
+{
+    @public
+    NSString *_columnName;
+    Class _columnClass;
+    NSString *_setter;
+    NSString *_getter;
+    ARPropertyType _propertyType;
+    char *_columnKey;
+}
 
 @property (nonatomic, copy, readwrite) NSString *columnName;
 @property (nonatomic, copy, readwrite) Class columnClass;

@@ -9,6 +9,7 @@
 #import "ARValidatorUniqueness.h"
 #import "ARLazyFetcher.h"
 #import "ARErrorHelper.h"
+#import <objc/runtime.h>
 
 @implementation ARValidatorUniqueness
 

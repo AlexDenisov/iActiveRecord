@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
+#warning rename to 
 typedef enum {
     ARPropertyTypeAssign = 0,
     ARPropertyTypeRetain = 1,

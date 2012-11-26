@@ -17,8 +17,8 @@
 @private
     BOOL isNew;
     NSMutableSet *errors;
-    NSMutableDictionary *dynamicProperties;
-    NSMutableSet *changedColumns;
+//    NSMutableDictionary *dynamicProperties;
+    NSMutableSet *_changedColumns;
 }
 
 #pragma mark - Validations Declaration

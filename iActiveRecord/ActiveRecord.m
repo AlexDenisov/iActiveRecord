@@ -20,7 +20,6 @@
 #import "ARRelationHasMany.h"
 #import "ARRelationHasManyThrough.h"
 
-
 #import "ARValidator.h"
 #import "ARValidatorUniqueness.h"
 #import "ARValidatorPresence.h"
@@ -186,7 +185,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (id)init {
     self = [super init];
     if(nil != self){
-        dynamicProperties = [NSMutableDictionary new];
+//        dynamicProperties = [NSMutableDictionary new];
         self.createdAt = self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
     }
     return self;    
@@ -194,8 +193,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (void)dealloc {
     self.id = nil;
-    [changedColumns release];
-    [dynamicProperties release];
+    [_changedColumns release];
+//    [dynamicProperties release];
     [errors release];
     [super dealloc];
 }
@@ -207,7 +206,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark - 
 
 - (void)resetChanges {
-    [changedColumns removeAllObjects];
+    [_changedColumns removeAllObjects];
 }
 
 - (void)resetErrors {
@@ -310,7 +309,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if(newRecordId){
         self.id = [NSNumber numberWithInteger:newRecordId];
         isNew = NO;
-        [changedColumns removeAllObjects];
+        [_changedColumns removeAllObjects];
         return YES;
     }
     return NO;
@@ -325,7 +324,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
     NSInteger result = [[ARDatabaseManager sharedInstance] updateRecord:self];
     if(result){
-        [changedColumns removeAllObjects];
+        [_changedColumns removeAllObjects];
         return YES;
     }
     return NO;
@@ -540,7 +539,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 - (NSSet *)changedColumns {
-    return changedColumns;
+    return _changedColumns;
 }
 
 #pragma mark - Dynamic Properties
@@ -557,29 +556,63 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if(aColumn == nil){
         return;
     }
-    if(changedColumns == nil){
-        changedColumns = [NSMutableSet new];
+    if(_changedColumns == nil){
+        _changedColumns = [NSMutableSet new];
     }
-    id oldValue = [self valueForColumn:aColumn];
-    if([oldValue isEqual:aValue]){
+    objc_AssociationPolicy assocPolicy = OBJC_ASSOCIATION_ASSIGN;
+#warning maybe add support of atomic properties?..
+    switch (aColumn.propertyType) {
+        case ARPropertyTypeCopy:
+            assocPolicy = OBJC_ASSOCIATION_COPY_NONATOMIC;
+            break;
+        case ARPropertyTypeRetain:
+            assocPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
+            break;
+        default:
+            break;
+    }
+    
+    id oldValue = objc_getAssociatedObject(self,
+                                           aColumn->_columnKey);
+    if ( (oldValue == nil && aValue == nil) || ([oldValue isEqual:aValue]) ) {
         return;
     }
-    [changedColumns addObject:aColumn];
-    if(aValue == nil){
-        [dynamicProperties setValue:@"" forKey:aColumn.columnName];
-        return;
-    }
-    if(aColumn.propertyType == ARPropertyTypeCopy){
-        [dynamicProperties setValue:[aValue copy]
-                              forKey:aColumn.columnName];
-        return;
-    }
-    [dynamicProperties setValue:aValue
-                          forKey:aColumn.columnName];
+    
+    objc_setAssociatedObject(self,
+                             aColumn->_columnKey,
+                             nil,
+                             assocPolicy);
+
+    objc_setAssociatedObject(self,
+                             aColumn->_columnKey,
+                             aValue,
+                             assocPolicy);
+    
+    [_changedColumns addObject:aColumn];
+    
+//    id oldValue = [self valueForColumn:aColumn];
+//    if([oldValue isEqual:aValue]){
+//        return;
+//    }
+//    [changedColumns addObject:aColumn];
+//    if(aValue == nil){
+//        [dynamicProperties setValue:@"" forKey:aColumn.columnName];
+//        return;
+//    }
+//    if(aColumn.propertyType == ARPropertyTypeCopy){
+//        [dynamicProperties setValue:[aValue copy]
+//                              forKey:aColumn.columnName];
+//        return;
+//    }
+//    [dynamicProperties setValue:aValue
+//                          forKey:aColumn.columnName];
 }
 
 - (id)valueForColumn:(ARColumn *)aColumn {
-    return [dynamicProperties objectForKey:aColumn.columnName];
+    id object = objc_getAssociatedObject(self,
+                                         aColumn->_columnKey);
+//    return [dynamicProperties objectForKey:aColumn.columnName];
+    return object;
 }
 
 - (id)valueForUndefinedKey:(NSString *)aKey {
