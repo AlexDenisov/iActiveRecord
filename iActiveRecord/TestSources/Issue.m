@@ -13,6 +13,6 @@
 @dynamic projectId;
 @dynamic title;
 
-belonsg_to_imp(Project, project, ARDependencyNullify)
+belongs_to_imp(Project, project, ARDependencyNullify)
 
 @end

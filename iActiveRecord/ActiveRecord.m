@@ -41,7 +41,6 @@ static void dynamicSetter(ActiveRecord *record, SEL setter, ...){
     id value = va_arg(arguments, id);
     va_end(arguments);
     [record setValue:value forColumn:column];
-//    [[ARSchemaManager sharedInstance] addIndexOnColumn:<#(NSString *)#> ofRecord:<#(Class)#>]
 }
 
 static id dynamicGetter(ActiveRecord *record, SEL getter, ...){
@@ -185,16 +184,21 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (id)init {
     self = [super init];
     if(nil != self){
-//        dynamicProperties = [NSMutableDictionary new];
         self.createdAt = self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
     }
     return self;    
 }
 
 - (void)dealloc {
+    for (ARColumn *column in self.columns) {
+        objc_setAssociatedObject(self, column->_columnKey,
+                                 nil, OBJC_ASSOCIATION_ASSIGN);
+    }
+
     self.id = nil;
+    self.updatedAt = nil;
+    self.createdAt = nil;
     [_changedColumns release];
-//    [dynamicProperties release];
     [errors release];
     [super dealloc];
 }
@@ -611,7 +615,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (id)valueForColumn:(ARColumn *)aColumn {
     id object = objc_getAssociatedObject(self,
                                          aColumn->_columnKey);
-//    return [dynamicProperties objectForKey:aColumn.columnName];
     return object;
 }
 
