@@ -11,6 +11,7 @@
 #import "ARColumn_Private.h"
 #import "NSString+uppercaseFirst.h"
 #import "ActiveRecord_Private.h"
+#import "ARColumnType.h"
 
 @implementation ARColumn
 
@@ -19,13 +20,13 @@
 @synthesize getter = _getter;
 @synthesize setter = _setter;
 @synthesize associationPolicy = _associationPolicy;
+@synthesize columnType = _columnType;
 
 - (id)initWithProperty:(objc_property_t)property {
     self = [super init];
     if(nil != self){
         BOOL dynamic = NO;
         self->_associationPolicy = OBJC_ASSOCIATION_ASSIGN;
-        
         const char *propertyName = property_getName(property);
         int propertyNameLength = strlen(propertyName);
         _columnKey = calloc(propertyNameLength, sizeof(char));
@@ -109,6 +110,7 @@
         type = calloc(length, sizeof(char));
         strncpy(type, anAttribute+2, length);
         self.columnClass = [objc_getClass(type) class];
+        self->_columnType = ARColumnTypeComposite;
         free(type);
     }
 }

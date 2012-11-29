@@ -550,6 +550,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)initializeDynamicAccessors {
     for(ARColumn *column in [self columns]){
+        if (column.columnType != ARColumnTypeComposite) {
+            continue;
+        }
         class_addMethod(self, NSSelectorFromString(column.setter), (IMP)dynamicSetter, NULL);
         class_addMethod(self, NSSelectorFromString(column.getter), (IMP)dynamicGetter, NULL);
     }

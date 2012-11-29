@@ -214,6 +214,7 @@
 		CAC022EC157B76C300208445 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
 		CAC02305157B855500208445 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
 		CAC02306157B855500208445 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
+		CAD610A21668001200FBA75A /* PrimitiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD610A11668001200FBA75A /* PrimitiveModel.m */; };
 		CAD9B51215A20176004251C3 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = CAD9B51115A20176004251C3 /* CHANGELOG.md */; };
 		CADA6AEF154472D800CCE41D /* NSMutableDictionary+valueToArray.h in Headers */ = {isa = PBXBuildFile; fileRef = CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CADA6AF0154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
@@ -225,7 +226,6 @@
 		CADA6AFA154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
 		CAE865D1159068FF00B3BBFE /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
 		CAE865D2159068FF00B3BBFE /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
-		CAE865D41590691600B3BBFE /* ARPropertyType.h in Headers */ = {isa = PBXBuildFile; fileRef = CAE86582158FB3F700B3BBFE /* ARPropertyType.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CAE865D51590691600B3BBFE /* ARSQLBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = CAA26CD7158DE30600DE9490 /* ARSQLBuilder.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
@@ -378,13 +378,15 @@
 		CAC022EA157B76C300208445 /* NSArray+toSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+toSql.m"; sourceTree = "<group>"; };
 		CAC02303157B855500208445 /* NSSet+toSql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+toSql.h"; sourceTree = "<group>"; };
 		CAC02304157B855500208445 /* NSSet+toSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+toSql.m"; sourceTree = "<group>"; };
+		CAD610A01668001200FBA75A /* PrimitiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrimitiveModel.h; path = TestSources/PrimitiveModel.h; sourceTree = "<group>"; };
+		CAD610A11668001200FBA75A /* PrimitiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrimitiveModel.m; path = TestSources/PrimitiveModel.m; sourceTree = "<group>"; };
+		CAD610A31668043100FBA75A /* ARColumnType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARColumnType.h; sourceTree = "<group>"; };
 		CAD9B51115A20176004251C3 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		CAD9B51415A20375004251C3 /* ARIndicesMacroHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARIndicesMacroHelper.h; sourceTree = "<group>"; };
 		CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+valueToArray.h"; sourceTree = "<group>"; };
 		CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+valueToArray.m"; sourceTree = "<group>"; };
 		CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBaseRelationship.h; sourceTree = "<group>"; };
 		CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBaseRelationship.m; sourceTree = "<group>"; };
-		CAE86582158FB3F700B3BBFE /* ARPropertyType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARPropertyType.h; sourceTree = "<group>"; };
 		CAF24809151F298B00120198 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
 		CAF2480A151F298B00120198 /* ARError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARError.m; sourceTree = "<group>"; };
 		CAF24816151F383000120198 /* NSData+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 		25922B0014EC286000CBB58A /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				25998EED14BC1A9A00CA2490 /* Test Entities */,
 				25922B1314EC28D000CBB58A /* Specs */,
 				25922B0114EC286000CBB58A /* Supporting Files */,
 			);
@@ -565,7 +568,6 @@
 				CA0DC410152389B300C8E75D /* Validations */,
 				CAAE32F01525F47A0080447D /* Protocols */,
 				25998EFE14BC2D4600CA2490 /* Extra */,
-				25998EED14BC1A9A00CA2490 /* Test Entities */,
 				25998EDF14BC19F100CA2490 /* ActiveRecord */,
 				25998EDE14BC19E900CA2490 /* AppDelegate */,
 			);
@@ -615,8 +617,11 @@
 				CAAE33A51528C4500080447D /* User.m */,
 				CAAE33A61528C4500080447D /* UserProjectRelationship.h */,
 				CAAE33A71528C4500080447D /* UserProjectRelationship.m */,
+				CAD610A01668001200FBA75A /* PrimitiveModel.h */,
+				CAD610A11668001200FBA75A /* PrimitiveModel.m */,
 			);
 			name = "Test Entities";
+			path = ../iActiveRecord;
 			sourceTree = "<group>";
 		};
 		25998EFE14BC2D4600CA2490 /* Extra */ = {
@@ -853,7 +858,7 @@
 		CAE86584158FB40000B3BBFE /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				CAE86582158FB3F700B3BBFE /* ARPropertyType.h */,
+				CAD610A31668043100FBA75A /* ARColumnType.h */,
 			);
 			name = Enums;
 			sourceTree = "<group>";
@@ -919,7 +924,6 @@
 				CA2E5D441581E75F0053D511 /* ARLazyFetcher_Private.h in Headers */,
 				CA2E5D461581E75F0053D511 /* NSSet+toSql.h in Headers */,
 				CA2E5D471581E75F0053D511 /* NSArray+toSql.h in Headers */,
-				CAE865D41590691600B3BBFE /* ARPropertyType.h in Headers */,
 				CAE865D51590691600B3BBFE /* ARSQLBuilder.h in Headers */,
 				CA2E5D481581E75F0053D511 /* ActiveRecord_Private.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
@@ -1131,6 +1135,7 @@
 				CA0BAECF15C9AA59008985E6 /* SchemaManagerSpec.mm in Sources */,
 				CA0BAED115C9AACC008985E6 /* IndicesSpec.mm in Sources */,
 				CA0BAED415C9AC13008985E6 /* DynamicRecord.m in Sources */,
+				CAD610A21668001200FBA75A /* PrimitiveModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

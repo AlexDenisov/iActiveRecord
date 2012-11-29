@@ -26,42 +26,21 @@ afterEach(^{
 });
 
 describe(@"Dynamic properties", ^{
+    
     it(@"should success set value with default accessors", ^{
         NSString *defValue = @"Default";
         DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
         [record setDefaultProperty:defValue];
         record.defaultProperty should equal(defValue);
     });
+    
     it(@"should success set value with custom accessors", ^{
         NSString *defValue = @"Default";
         DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
         [record customSetter:defValue];
         record.customGetter should equal(defValue);
     });
-    it(@"should have right retainCount", ^{
-        DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
-        it(@"at copied property", ^{
-            NSMutableString *string = [NSMutableString string];
-            [string appendFormat:@"%d", (int)[NSDate timeIntervalSinceReferenceDate]];
-            record.copiedString = string;
-            NSInteger retainCount = string.retainCount;
-            retainCount should equal(1);
-        });
-        it(@"at retained property", ^{
-            NSMutableString *string = [NSMutableString string];
-            [string appendFormat:@"%d", (int)[NSDate timeIntervalSinceReferenceDate]];
-            record.retainedString = string;
-            NSInteger retainCount = string.retainCount;
-            retainCount should equal(2);
-        });
-        it(@"at assigned property", ^{
-            NSMutableString *string = [NSMutableString string];
-            [string appendFormat:@"%d", (int)[NSDate timeIntervalSinceReferenceDate]];
-            record.assignedString = string;
-            NSInteger retainCount = string.retainCount;
-            retainCount should equal(1);
-        });
-    });
+    
 });
 
 SPEC_END

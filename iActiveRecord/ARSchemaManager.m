@@ -12,6 +12,8 @@
 
 @implementation ARSchemaManager
 
+#warning replace with -> accessor
+
 @synthesize schemes;
 @synthesize indices;
 
