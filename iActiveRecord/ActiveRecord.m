@@ -563,18 +563,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if(_changedColumns == nil){
         _changedColumns = [NSMutableSet new];
     }
-    objc_AssociationPolicy assocPolicy = OBJC_ASSOCIATION_ASSIGN;
-#warning maybe add support of atomic properties?..
-    switch (aColumn.propertyType) {
-        case ARPropertyTypeCopy:
-            assocPolicy = OBJC_ASSOCIATION_COPY_NONATOMIC;
-            break;
-        case ARPropertyTypeRetain:
-            assocPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
-            break;
-        default:
-            break;
-    }
     
     id oldValue = objc_getAssociatedObject(self,
                                            aColumn->_columnKey);
@@ -585,31 +573,15 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     objc_setAssociatedObject(self,
                              aColumn->_columnKey,
                              nil,
-                             assocPolicy);
+                             aColumn->_associationPolicy);
 
     objc_setAssociatedObject(self,
                              aColumn->_columnKey,
                              aValue,
-                             assocPolicy);
+                             aColumn->_associationPolicy);
     
     [_changedColumns addObject:aColumn];
     
-//    id oldValue = [self valueForColumn:aColumn];
-//    if([oldValue isEqual:aValue]){
-//        return;
-//    }
-//    [changedColumns addObject:aColumn];
-//    if(aValue == nil){
-//        [dynamicProperties setValue:@"" forKey:aColumn.columnName];
-//        return;
-//    }
-//    if(aColumn.propertyType == ARPropertyTypeCopy){
-//        [dynamicProperties setValue:[aValue copy]
-//                              forKey:aColumn.columnName];
-//        return;
-//    }
-//    [dynamicProperties setValue:aValue
-//                          forKey:aColumn.columnName];
 }
 
 - (id)valueForColumn:(ARColumn *)aColumn {

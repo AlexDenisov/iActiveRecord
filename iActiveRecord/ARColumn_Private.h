@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
-#import "ARColumn.h"
 #import <objc/runtime.h>
-#import "ARPropertyType.h"
+#import "ARColumn.h"
 
 @class ActiveRecord;
 
@@ -19,7 +18,7 @@
     Class _columnClass;
     NSString *_setter;
     NSString *_getter;
-    ARPropertyType _propertyType;
+    objc_AssociationPolicy _associationPolicy;
     char *_columnKey;
 }
 
@@ -27,7 +26,7 @@
 @property (nonatomic, copy, readwrite) Class columnClass;
 @property (nonatomic, copy, readwrite) NSString *setter;
 @property (nonatomic, copy, readwrite) NSString *getter;
-@property (nonatomic, readwrite) ARPropertyType propertyType; 
+@property (nonatomic, readwrite) objc_AssociationPolicy associationPolicy;
 
 - (id)initWithProperty:(objc_property_t)property;
 

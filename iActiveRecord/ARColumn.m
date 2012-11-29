@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 CoreInvader. All rights reserved.
 //
 
+#import <objc/runtime.h>
 #import "ARColumn.h"
 #import "ARColumn_Private.h"
 #import "NSString+uppercaseFirst.h"
 #import "ActiveRecord_Private.h"
-#import "ARPropertyType.h"
 
 @implementation ARColumn
 
@@ -18,13 +18,13 @@
 @synthesize columnClass = _columnClass;
 @synthesize getter = _getter;
 @synthesize setter = _setter;
-@synthesize propertyType = _propertyType;
+@synthesize associationPolicy = _associationPolicy;
 
 - (id)initWithProperty:(objc_property_t)property {
     self = [super init];
     if(nil != self){
         BOOL dynamic = NO;
-        self.propertyType = ARPropertyTypeAssign;
+        self->_associationPolicy = OBJC_ASSOCIATION_ASSIGN;
         
         const char *propertyName = property_getName(property);
         int propertyNameLength = strlen(propertyName);
@@ -45,10 +45,10 @@
                     [self setPropertyTypeFromAttribute:attributes[i].value];
                     break;
                 case 'C': 
-                    self.propertyType = ARPropertyTypeCopy;
+                    self->_associationPolicy = OBJC_ASSOCIATION_COPY_NONATOMIC;
                     break;
                 case '&': 
-                    self.propertyType = ARPropertyTypeRetain;
+                    self->_associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
                     break;
                 case 'G': // Getter
                     [self setGetterFromAttribute:attributes[i].value];
