@@ -107,7 +107,7 @@
 		CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
 		CA523D7B1535FAEE00565E02 /* NSDate+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D3E1535F50500565E02 /* NSDate+isPresented.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA523E0715373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; };
-		CA523E0815373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; };
+		CA523E0815373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; settings = {COMPILER_FLAGS = "-Wno-missing-prototypes"; }; };
 		CA523E0915373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; };
 		CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523E0615373A5500565E02 /* sqlite3_unicode.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA62C313151E0AB800E54276 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA62C311151E0AB800E54276 /* InfoPlist.strings */; };
@@ -137,6 +137,7 @@
 		CA8D9EB0152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB2152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
+		CA9C334A1667F53900071200 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA9C33491667F53900071200 /* Default-568h@2x.png */; };
 		CAA26C8F158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
 		CAA26C90158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
 		CAA26CD9158DE30600DE9490 /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
@@ -319,6 +320,7 @@
 		CA8CB48C152F740F00510A14 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+stringWithEscapedQuote.h"; sourceTree = "<group>"; };
 		CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+stringWithEscapedQuote.m"; sourceTree = "<group>"; };
+		CA9C33491667F53900071200 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CAA26C8D158BA35100DE9490 /* NSString+uppercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+uppercaseFirst.h"; sourceTree = "<group>"; };
 		CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+uppercaseFirst.m"; sourceTree = "<group>"; };
 		CAA26CD7158DE30600DE9490 /* ARSQLBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSQLBuilder.h; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 		25998EB214BC199C00CA2490 = {
 			isa = PBXGroup;
 			children = (
+				CA9C33491667F53900071200 /* Default-568h@2x.png */,
 				CAAF5DCF151BA685004C4329 /* Readme */,
 				25998EC714BC199C00CA2490 /* iActiveRecord */,
 				25922B0014EC286000CBB58A /* UnitTests */,
@@ -1014,6 +1017,7 @@
 			files = (
 				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
 				CAB56AEC153E6C7F0062DC9E /* octocat.png in Resources */,
+				CA9C334A1667F53900071200 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1264,25 +1268,17 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../cedar-installer/cedar/build/Release-iphoneuniversal\"",
-					"\"$(SRCROOT)/../cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
-					"\"/tmp/cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
-					"\"/tmp/cedar-installer/cedar/build/Release-iphoneuniversal\"",
-					"\"/opt/cedar/cedar/build/Release-iphoneuniversal\"",
-					/opt/cedar/cedar/Externals/OCMock/Source/build/Release,
 					"\"/opt/cedar/build/Release-iphoneuniversal\"",
 				);
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"UNIT_TEST=1",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/UnitTests/Expecta\"",
-				);
 				OTHER_LDFLAGS = (
 					"-lstdc++",
 					"-ObjC",
@@ -1299,14 +1295,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../cedar-installer/cedar/build/Release-iphoneuniversal\"",
-					"\"$(SRCROOT)/../cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
-					"\"/tmp/cedar-installer/cedar/Externals/OCMock/Source/build/Release-iphoneuniversal\"",
-					"\"/tmp/cedar-installer/cedar/build/Release-iphoneuniversal\"",
-					"\"/opt/cedar/cedar/build/Release-iphoneuniversal\"",
-					/opt/cedar/cedar/Externals/OCMock/Source/build/Release,
 					"\"/opt/cedar/build/Release-iphoneuniversal\"",
 				);
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1314,10 +1305,6 @@
 					SQLITE_ENABLE_UNICODE,
 				);
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/UnitTests/Expecta\"",
-				);
 				OTHER_LDFLAGS = (
 					"-lstdc++",
 					"-ObjC",
