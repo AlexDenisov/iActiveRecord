@@ -1,3 +1,5 @@
+_Note: I'm working on new version, with new features and a bugfixes_
+
 ## ActiveRecord without CoreData.
 ### Only SQLite.
 ### Only HardCore.
