@@ -10,7 +10,7 @@
 
 @interface NSDecimalNumber (sqlRepresentation)
 
-+ (const char *)sqlType;
++ (NSString *)sqlType;
 - (NSString *)toSql;
 + (id)fromSql:(NSString *)sqlData;
 

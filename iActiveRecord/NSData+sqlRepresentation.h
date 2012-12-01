@@ -12,6 +12,6 @@
 
 - (NSString *)toSql;
 + (id)fromSql:(NSString *)sqlData;
-+ (const char *)sqlType;
++ (NSString *)sqlType;
 
 @end

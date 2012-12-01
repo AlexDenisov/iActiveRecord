@@ -20,8 +20,8 @@
     return [NSDate dateWithTimeIntervalSince1970:time];
 }
 
-+ (const char *)sqlType {
-    return "INTEGER";
++ (NSString *)sqlType {
+    return @"INTEGER";
 }
 
 @end

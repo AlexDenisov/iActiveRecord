@@ -20,8 +20,8 @@
     return [NSData dataFromBase64String:sqlData];
 }
 
-+ (const char *)sqlType {
-    return "blob";
++ (NSString *)sqlType {
+    return @"blob";
 }
 
 @end

@@ -14,8 +14,8 @@
     return [NSString stringWithFormat:@"%f", [self floatValue]];
 }
 
-+ (const char *)sqlType {
-    return "real";
++ (NSString *)sqlType {
+    return @"real";
 }
 
 + (id)fromSql:(NSString *)sqlData {

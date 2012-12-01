@@ -18,8 +18,8 @@
     return self;
 }
 
-+ (const char *)sqlType {
-    return "text";
++ (NSString *)sqlType {
+    return @"text";
 }
 
 @end

@@ -11,7 +11,7 @@
 @protocol ARRepresentationProtocol
 
 @required
-+ (const char *)sqlType;
++ (NSString *)sqlType;
 - (NSString *)toSql;
 + (id)fromSql:(NSString *)sqlData;
 

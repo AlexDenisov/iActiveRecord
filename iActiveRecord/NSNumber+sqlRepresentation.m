@@ -14,8 +14,8 @@
     return [NSString stringWithFormat:@"%d", [self intValue]];
 }
 
-+ (const char *)sqlType {
-    return "integer";
++ (NSString *)sqlType {
+    return @"integer";
 }
 
 + (id)fromSql:(NSString *)sqlData{
