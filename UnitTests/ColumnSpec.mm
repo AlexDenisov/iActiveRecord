@@ -153,7 +153,7 @@ describe(@"ARColumn", ^{
             it(@"unsigned long long type", ^{
                 [sharedContext setDictionary:@{
                            kPropertyNameKey : @"unsignedLongLongProperty",
-                           kPropertyTypeKey : @(ARColumnTypePrimitiveUnsignedLognLong)
+                           kPropertyTypeKey : @(ARColumnTypePrimitiveUnsignedLongLong)
                  }];
                 itShouldBehaveLike(@"primitive type");
             });

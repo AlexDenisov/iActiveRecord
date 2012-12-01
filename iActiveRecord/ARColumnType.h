@@ -20,7 +20,7 @@ typedef enum ARColumnType {
     ARColumnTypePrimitiveLong,
     ARColumnTypePrimitiveUnsignedLong,
     ARColumnTypePrimitiveLongLong,
-    ARColumnTypePrimitiveUnsignedLognLong,
+    ARColumnTypePrimitiveUnsignedLongLong,
     ARColumnTypePrimitiveFloat,
     ARColumnTypePrimitiveDouble,
     ARColumnTypePrimitiveBool = ARColumnTypePrimitiveChar // boolean and char have the same type

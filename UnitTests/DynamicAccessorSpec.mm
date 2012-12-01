@@ -43,11 +43,95 @@ describe(@"Dynamic properties", ^{
     
     context(@"primitive properties", ^{
         
-        it(@"should success change value", ^{
-            PrimitiveModel *primitiveModel = [PrimitiveModel new];
-            int value = 42;
-            primitiveModel.intProperty = value;
-            primitiveModel.intProperty should equal(value);
+        __block PrimitiveModel *model = [PrimitiveModel new];
+        it(@"integer value", ^{
+            int value = -42;
+            model.intProperty = value;
+            model.intProperty should equal(value);
+        });
+        
+        it(@"unsigned integer value", ^{
+            uint value = 42;
+            model.unsignedIntProperty = value;
+            model.unsignedIntProperty should equal(value);
+        });
+        
+        it(@"NSInteger value", ^{
+            NSInteger value = -42;
+            model.integerProperty = value;
+            model.integerProperty should equal(value);
+        });
+        
+        it(@"NSUInteger value", ^{
+            NSUInteger value = 42;
+            model.unsignedIntegerProperty = value;
+            model.unsignedIntegerProperty should equal(value);
+        });
+        
+        it(@"char value", ^{
+            char value = -42;
+            model.charProperty = value;
+            model.charProperty should equal(value);
+        });
+        
+        it(@"unsigned char value", ^{
+            unsigned char value = 42;
+            model.unsignedCharProperty = value;
+            model.unsignedCharProperty should equal(value);
+        });
+        
+        it(@"short value", ^{
+            short value = -42;
+            model.shortProperty = value;
+            model.shortProperty should equal(value);
+        });
+        
+        it(@"unsigned short value", ^{
+            unsigned char value = 42;
+            model.unsignedShortProperty = value;
+            model.unsignedShortProperty should equal(value);
+        });
+        
+        it(@"long value", ^{
+            long value = -42;
+            model.longProperty = value;
+            model.longProperty should equal(value);
+        });
+        
+        it(@"unsigned long value", ^{
+            unsigned long value = 42;
+            model.unsignedLongProperty = value;
+            model.unsignedLongProperty should equal(value);
+        });
+        
+        it(@"long long value", ^{
+            long long value = -42;
+            model.longLongProperty = value;
+            model.longLongProperty should equal(value);
+        });
+        
+        it(@"unsigned long long value", ^{
+            unsigned long long value = 42;
+            model.unsignedLongLongProperty = value;
+            model.unsignedLongLongProperty should equal(value);
+        });
+        
+        it(@"float value", ^{
+            float value = 42.4f;
+            model.floatProperty = value;
+            model.floatProperty should equal(value);
+        });
+        
+        it(@"double value", ^{
+            double value = -42.14;
+            model.doubleProperty = value;
+            model.doubleProperty should equal(value);
+        });
+        
+        it(@"bool value", ^{
+            BOOL value = YES;
+            model.boolProperty = value;
+            model.boolProperty should equal(value);
         });
         
     });

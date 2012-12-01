@@ -116,6 +116,7 @@
         self->_columnType = ARColumnTypeComposite;
         free(type);
     } else {
+        self->_associationPolicy = OBJC_ASSOCIATION_COPY_NONATOMIC;
         switch (anAttribute[0]) {
             case 'c': // BOOL, char
                 self->_columnType = ARColumnTypePrimitiveChar;
@@ -145,7 +146,7 @@
                 self->_columnType = ARColumnTypePrimitiveLongLong;
                 break;
             case 'Q': // unsigned long long
-                self->_columnType = ARColumnTypePrimitiveUnsignedLognLong;
+                self->_columnType = ARColumnTypePrimitiveUnsignedLongLong;
                 break;
             case 'f': // float, CGFloat
                 self->_columnType = ARColumnTypePrimitiveFloat;
@@ -161,7 +162,7 @@
     return result;
 }
 
-//  use custom setter if anAttribute == nil/NULL
+//  use default setter if anAttribute == nil/NULL
 - (void)setSetterFromAttribute:(const char *)anAttribute {
     if(anAttribute){
         self.setter = [NSString stringWithUTF8String:anAttribute];
@@ -170,7 +171,7 @@
     }
 }
 
-//  use custom getter if anAttribute == nil/NULL
+//  use default getter if anAttribute == nil/NULL
 - (void)setGetterFromAttribute:(const char *)anAttribute {
    if(anAttribute){
         self.getter = [NSString stringWithUTF8String:anAttribute];
@@ -186,7 +187,16 @@
 }
 
 - (const char *)sqlType {
-    return (const char*)[self.columnClass performSelector:@selector(sqlType)];
+    NSString *sqlType;
+    switch (self->_columnType) {
+        case ARColumnTypeComposite:{
+            sqlType = [self.columnClass performSelector:@selector(sqlType)];
+        }break;
+        case ARColumnTypePrimitiveBool:
+        default:
+            break;
+    }
+    return [sqlType UTF8String];
 }
 
 @end
