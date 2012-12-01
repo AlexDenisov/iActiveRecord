@@ -30,6 +30,7 @@ describe(@"ARColumn", ^{
             ARColumn *column = [[ARColumn alloc] initWithProperty:property ofClass:[DynamicRecord class]];
             column.setter should equal(@"setDefaultProperty:");
             column.getter should equal(@"defaultProperty");
+            [column release];
         });
         
         it(@"should parse custom", ^{
@@ -38,6 +39,7 @@ describe(@"ARColumn", ^{
             ARColumn *column = [[ARColumn alloc] initWithProperty:property ofClass:[DynamicRecord class]];
             column.setter should equal(@"customSetter:");
             column.getter should equal(@"customGetter");
+            [column release];
         });
         
     });
@@ -59,7 +61,7 @@ describe(@"ARColumn", ^{
                 ARColumn *column = [[ARColumn alloc] initWithProperty:property
                                                               ofClass:[PrimitiveModel class]];
                 column.columnType should equal(propertyType);
-                
+                [column release];
             });
             
             it(@"char type", ^{

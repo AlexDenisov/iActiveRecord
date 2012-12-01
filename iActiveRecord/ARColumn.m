@@ -31,7 +31,7 @@
         self->_associationPolicy = OBJC_ASSOCIATION_ASSIGN;
         const char *propertyName = property_getName(property);
         int propertyNameLength = strlen(propertyName);
-        _columnKey = calloc(propertyNameLength, sizeof(char));
+        _columnKey = calloc(propertyNameLength + 1, sizeof(char));
         strcpy(_columnKey, propertyName);
                 
         self->_columnName = [[NSString alloc] initWithUTF8String:_columnKey];
@@ -116,7 +116,8 @@
         self->_columnType = ARColumnTypeComposite;
         free(type);
     } else {
-        self->_associationPolicy = OBJC_ASSOCIATION_COPY_NONATOMIC;
+        self->_associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
+        
         switch (anAttribute[0]) {
             case 'c': // BOOL, char
                 self->_columnType = ARColumnTypePrimitiveChar;
@@ -193,7 +194,19 @@
             sqlType = [self.columnClass performSelector:@selector(sqlType)];
         }break;
         case ARColumnTypePrimitiveBool:
+        case ARColumnTypePrimitiveInt:
+        case ARColumnTypePrimitiveLong:
+        case ARColumnTypePrimitiveLongLong:
+        case ARColumnTypePrimitiveShort:
+        case ARColumnTypePrimitiveUnsignedChar:
+        case ARColumnTypePrimitiveUnsignedInt:
+        case ARColumnTypePrimitiveUnsignedLong:
+        case ARColumnTypePrimitiveUnsignedLongLong:
+        case ARColumnTypePrimitiveUnsignedShort:{
+            sqlType = @"INTEGER";
+        }break;
         default:
+            sqlType = @"REAL";
             break;
     }
     return [sqlType UTF8String];

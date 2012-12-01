@@ -43,7 +43,16 @@ describe(@"Dynamic properties", ^{
     
     context(@"primitive properties", ^{
         
-        __block PrimitiveModel *model = [PrimitiveModel new];
+        __block PrimitiveModel *model;
+        
+        beforeEach(^{
+           model = [PrimitiveModel new];
+        });
+        
+        afterEach(^{
+            [model release];
+        });
+        
         it(@"integer value", ^{
             int value = -42;
             model.intProperty = value;
