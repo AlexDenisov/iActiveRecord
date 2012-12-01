@@ -9,5 +9,19 @@
 typedef enum ARColumnType {
     ARColumnTypeUnknown,    // uknown DataType, not supported (yet?)
     ARColumnTypeComposite,  // NSObject's subclass
-    ARColumnTypePrimitiveInteger
+    ARColumnTypePrimitiveChar,
+    ARColumnTypePrimitiveUnsignedChar,
+    ARColumnTypePrimitiveShort,
+    ARColumnTypePrimitiveUnsignedShort,
+    ARColumnTypePrimitiveInt,
+    ARColumnTypePrimitiveUnsignedInt,
+    ARColumnTypePrimitiveInteger = ARColumnTypePrimitiveInt,
+    ARColumnTypePrimitiveUnsignedInteger = ARColumnTypePrimitiveUnsignedInt,
+    ARColumnTypePrimitiveLong,
+    ARColumnTypePrimitiveUnsignedLong,
+    ARColumnTypePrimitiveLongLong,
+    ARColumnTypePrimitiveUnsignedLognLong,
+    ARColumnTypePrimitiveFloat,
+    ARColumnTypePrimitiveDouble,
+    ARColumnTypePrimitiveBool = ARColumnTypePrimitiveChar // boolean and char have the same type
 } ARColumnType;

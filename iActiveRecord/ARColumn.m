@@ -31,10 +31,9 @@
         int propertyNameLength = strlen(propertyName);
         _columnKey = calloc(propertyNameLength, sizeof(char));
         strcpy(_columnKey, propertyName);
-        
+                
         self->_columnName = [[NSString alloc] initWithUTF8String:_columnKey];
         
-//        self.columnName = [NSString stringWithUTF8String:property_getName(property)];
         //  set default setter/getter
         [self setSetterFromAttribute:NULL];
         [self setGetterFromAttribute:NULL];
@@ -42,8 +41,10 @@
         objc_property_attribute_t *attributes = property_copyAttributeList(property, &attributesCount);
         for(int i=0;i<attributesCount;i++){
             switch (attributes[i].name[0]) {
-                case 'T': 
-                    [self setPropertyTypeFromAttribute:attributes[i].value];
+                case 'T':
+                    if (![self setPropertyTypeFromAttribute:attributes[i].value]) {
+                        NSLog(@"%s %s", attributes[i].value, propertyName);
+                    }
                     break;
                 case 'C': 
                     self->_associationPolicy = OBJC_ASSOCIATION_COPY_NONATOMIC;
@@ -102,7 +103,8 @@
 
 #pragma mark - Property Meta Parser
 
-- (void)setPropertyTypeFromAttribute:(const char *)anAttribute {
+- (BOOL)setPropertyTypeFromAttribute:(const char *)anAttribute {
+    BOOL result = YES;
     char *type = NULL;
     //  classes described as @"ClassName"
     if (anAttribute[0] == '@') {
@@ -112,7 +114,50 @@
         self.columnClass = [objc_getClass(type) class];
         self->_columnType = ARColumnTypeComposite;
         free(type);
+    } else {
+        switch (anAttribute[0]) {
+            case 'c': // BOOL, char
+                self->_columnType = ARColumnTypePrimitiveChar;
+                break;
+            case 'C': // unsigned char
+                self->_columnType = ARColumnTypePrimitiveUnsignedChar;
+                break;
+            case 's': // short
+                self->_columnType = ARColumnTypePrimitiveShort;
+                break;
+            case 'S': // unsigned short
+                self->_columnType = ARColumnTypePrimitiveUnsignedShort;
+                break;
+            case 'i': // int, NSInteger
+                self->_columnType = ARColumnTypePrimitiveInt;
+                break;
+            case 'I': // uint, NSUinteger
+                self->_columnType = ARColumnTypePrimitiveUnsignedInt;
+                break;
+            case 'l': // long
+                self->_columnType = ARColumnTypePrimitiveLong;
+                break;
+            case 'L': // unsigned long
+                self->_columnType = ARColumnTypePrimitiveUnsignedLong;
+                break;
+            case 'q': // long long
+                self->_columnType = ARColumnTypePrimitiveLongLong;
+                break;
+            case 'Q': // unsigned long long
+                self->_columnType = ARColumnTypePrimitiveUnsignedLognLong;
+                break;
+            case 'f': // float, CGFloat
+                self->_columnType = ARColumnTypePrimitiveFloat;
+                break;
+            case 'd': // double
+                self->_columnType = ARColumnTypePrimitiveDouble;
+                break;
+            default:
+                result = NO;
+                break;
+        }
     }
+    return result;
 }
 
 //  use custom setter if anAttribute == nil/NULL

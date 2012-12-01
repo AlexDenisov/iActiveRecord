@@ -32,7 +32,7 @@
 
 - (id)initWithProperty:(objc_property_t)property;
 
-- (void)setPropertyTypeFromAttribute:(const char *)anAttribute;
+- (BOOL)setPropertyTypeFromAttribute:(const char *)anAttribute;
 - (void)setSetterFromAttribute:(const char *)anAttribute;
 - (void)setGetterFromAttribute:(const char *)anAttribute;
 

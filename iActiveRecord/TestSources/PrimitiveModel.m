@@ -1,8 +1,8 @@
 //
-//  PrimitiveModel.m
-//  iActiveRecord
+// PrimitiveModel.m
+// iActiveRecord
 //
-//  Created by Alex Denisov on 29.11.12.
+// Created by Alex Denisov on 29.11.12.
 //
 //
 
@@ -10,13 +10,20 @@
 
 @implementation PrimitiveModel
 
+@dynamic charProperty;
+@dynamic unsignedCharProperty;
+@dynamic shortProperty;
+@dynamic unsignedShortProperty;
 @dynamic intProperty;
-@dynamic uintProperty;
+@dynamic unsignedIntProperty;
 @dynamic integerProperty;
-@dynamic uintegerProperty;
+@dynamic unsignedIntegerProperty;
+@dynamic longProperty;
+@dynamic unsignedLongProperty;
+@dynamic longLongProperty;
+@dynamic unsignedLongLongProperty;
 @dynamic floatProperty;
 @dynamic doubleProperty;
-@dynamic cgfloatProperty;
 @dynamic boolProperty;
 
 @end
