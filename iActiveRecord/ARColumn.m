@@ -17,15 +17,17 @@
 
 @synthesize columnName = _columnName;
 @synthesize columnClass = _columnClass;
+@synthesize recordClass = _recordClass;
 @synthesize getter = _getter;
 @synthesize setter = _setter;
 @synthesize associationPolicy = _associationPolicy;
 @synthesize columnType = _columnType;
 
-- (id)initWithProperty:(objc_property_t)property {
+- (id)initWithProperty:(objc_property_t)property ofClass:(Class)aClass {
     self = [super init];
     if(nil != self){
-        BOOL dynamic = NO;
+        self.recordClass = aClass;
+        _dynamic = NO;
         self->_associationPolicy = OBJC_ASSOCIATION_ASSIGN;
         const char *propertyName = property_getName(property);
         int propertyNameLength = strlen(propertyName);
@@ -43,7 +45,9 @@
             switch (attributes[i].name[0]) {
                 case 'T':
                     if (![self setPropertyTypeFromAttribute:attributes[i].value]) {
-                        NSLog(@"%s %s", attributes[i].value, propertyName);
+                        NSLog(@"Unsupported property type '%s' for column '%s'",
+                              attributes[i].value,
+                              propertyName);
                     }
                     break;
                 case 'C': 
@@ -59,16 +63,13 @@
                     [self setSetterFromAttribute:attributes[i].value];
                     break;
                 case 'D': // is dynamic property?
-                    dynamic = YES;
+                    _dynamic = YES;
                     break;
                 default: 
                 break;
             }
         }
         free(attributes);
-        if(!dynamic){
-            return nil;
-        }
     }
     return self;
 }
@@ -180,7 +181,7 @@
 
 - (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord {
     id value =  objc_getAssociatedObject(aRecord,
-                                         self->_columnKey); //[aRecord valueForColumn:self];
+                                         self->_columnKey);
     return [value performSelector:@selector(toSql)];
 }
 

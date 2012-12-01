@@ -51,7 +51,6 @@ static NSArray *records = nil;
 #endif
         NSString *storageDirectory = useCacheDirectory ? [self cachesDirectory] : [self documentsDirectory];
         dbPath = [[NSString alloc] initWithFormat:@"%@/%@", storageDirectory, dbName];
-        //NSLog(@"%@", dbPath);
         [self createDatabase];
     }
     return self;

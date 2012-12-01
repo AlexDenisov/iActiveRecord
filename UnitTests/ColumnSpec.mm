@@ -27,7 +27,7 @@ describe(@"ARColumn", ^{
         it(@"should parse default", ^{
             objc_property_t property = class_getProperty([DynamicRecord class],
                                                          "defaultProperty");
-            ARColumn *column = [[ARColumn alloc] initWithProperty:property];
+            ARColumn *column = [[ARColumn alloc] initWithProperty:property ofClass:[DynamicRecord class]];
             column.setter should equal(@"setDefaultProperty:");
             column.getter should equal(@"defaultProperty");
         });
@@ -35,7 +35,7 @@ describe(@"ARColumn", ^{
         it(@"should parse custom", ^{
             objc_property_t property = class_getProperty([DynamicRecord class],
                                                          "customProperty");
-            ARColumn *column = [[ARColumn alloc] initWithProperty:property];
+            ARColumn *column = [[ARColumn alloc] initWithProperty:property ofClass:[DynamicRecord class]];
             column.setter should equal(@"customSetter:");
             column.getter should equal(@"customGetter");
         });
@@ -56,7 +56,8 @@ describe(@"ARColumn", ^{
                 objc_property_t property = class_getProperty([PrimitiveModel class],
                                                              propertyName);
                 property should_not BeNil();
-                ARColumn *column = [[ARColumn alloc] initWithProperty:property];
+                ARColumn *column = [[ARColumn alloc] initWithProperty:property
+                                                              ofClass:[PrimitiveModel class]];
                 column.columnType should equal(propertyType);
                 
             });

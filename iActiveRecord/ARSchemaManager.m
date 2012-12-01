@@ -48,8 +48,9 @@ static ARSchemaManager *_instance = nil;
         unsigned int outCount, i;
         objc_property_t *properties = class_copyPropertyList(CurrentClass, &outCount);
         for (i = 0; i < outCount; i++) {
-            ARColumn *column = [[ARColumn alloc] initWithProperty:properties[i]];
-            if(column == nil){
+            ARColumn *column = [[ARColumn alloc] initWithProperty:properties[i] ofClass:aRecordClass];
+            if (!column.isDynamic) {
+                [column release];
                 continue;
             }
             [self.schemes addValue:column
@@ -59,7 +60,7 @@ static ARSchemaManager *_instance = nil;
         }
         free(properties);
         CurrentClass = class_getSuperclass(CurrentClass);
-    }  
+    }
 }
 
 - (NSArray *)columnsForRecord:(Class)aRecordClass {

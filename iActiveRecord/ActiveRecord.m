@@ -32,21 +32,9 @@
 #import "ARSchemaManager.h"
 #import "ARColumn_Private.h"
 
+#import "ARDynamicAccessor.h"
+
 static NSMutableDictionary *relationshipsDictionary = nil;
-
-static void dynamicSetter(ActiveRecord *record, SEL setter, ...){
-    ARColumn *column = [record columnWithSetterNamed:NSStringFromSelector(setter)];
-    va_list arguments = NULL; 
-    va_start(arguments, setter);
-    id value = va_arg(arguments, id);
-    va_end(arguments);
-    [record setValue:value forColumn:column];
-}
-
-static id dynamicGetter(ActiveRecord *record, SEL getter, ...){
-    ARColumn *column = [record columnWithGetterNamed:NSStringFromSelector(getter)];
-    return [record valueForColumn:column];
-}
 
 @implementation ActiveRecord
 
@@ -550,11 +538,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)initializeDynamicAccessors {
     for(ARColumn *column in [self columns]){
-        if (column.columnType != ARColumnTypeComposite) {
-            continue;
-        }
-        class_addMethod(self, NSSelectorFromString(column.setter), (IMP)dynamicSetter, NULL);
-        class_addMethod(self, NSSelectorFromString(column.getter), (IMP)dynamicGetter, NULL);
+        [ARDynamicAccessor addAccessorForColumn:column];
     }
 }
 

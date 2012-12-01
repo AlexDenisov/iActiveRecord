@@ -12,7 +12,9 @@
 
 @property (nonatomic, copy, readonly) NSString *columnName;
 @property (nonatomic, copy, readonly) Class columnClass;
+@property (nonatomic, copy, readonly) Class recordClass;
 @property (nonatomic, copy, readonly) NSString *getter;
 @property (nonatomic, copy, readonly) NSString *setter;
+@property (nonatomic, readwrite, getter = isDynamic) BOOL dynamic;
 
 @end
