@@ -568,7 +568,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
                              aColumn->_associationPolicy);
     
     [_changedColumns addObject:aColumn];
-    
 }
 
 - (id)valueForColumn:(ARColumn *)aColumn {

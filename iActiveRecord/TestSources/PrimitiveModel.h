@@ -8,7 +8,7 @@
 
 #import <ActiveRecord/ActiveRecord.h>
 
-@interface PrimitiveModel : NSObject
+@interface PrimitiveModel : ActiveRecord
 
 @property (nonatomic, readwrite) char charProperty;
 @property (nonatomic, readwrite) unsigned char unsignedCharProperty;

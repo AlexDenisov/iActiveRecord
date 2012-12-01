@@ -12,33 +12,44 @@
 #import "ActiveRecord.h"
 #import "ActiveRecord_Private.h"
 #import "ARColumn.h"
+#import "ARColumn_Private.h"
 #import "DynamicRecord.h"
+#import "PrimitiveModel.h"
+#import "ARDynamicAccessor.h"
 
 using namespace Cedar::Matchers;
 
 SPEC_BEGIN(ARDynamicAccessorsSpecs)
 
-beforeEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
-});
-afterEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
-});
-
 describe(@"Dynamic properties", ^{
     
-    it(@"should success set value with default accessors", ^{
-        NSString *defValue = @"Default";
-        DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
-        [record setDefaultProperty:defValue];
-        record.defaultProperty should equal(defValue);
+    context(@"composite properties", ^{
+    
+        it(@"should success set value with default accessors", ^{
+            NSString *defValue = @"Default";
+            DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
+            [record setDefaultProperty:defValue];
+            record.defaultProperty should equal(defValue);
+        });
+        
+        it(@"should success set value with custom accessors", ^{
+            NSString *defValue = @"Default";
+            DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
+            [record customSetter:defValue];
+            record.customGetter should equal(defValue);
+        });
+        
     });
     
-    it(@"should success set value with custom accessors", ^{
-        NSString *defValue = @"Default";
-        DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
-        [record customSetter:defValue];
-        record.customGetter should equal(defValue);
+    context(@"primitive properties", ^{
+        
+        it(@"should success change value", ^{
+            PrimitiveModel *primitiveModel = [PrimitiveModel new];
+            int value = 42;
+            primitiveModel.intProperty = value;
+            primitiveModel.intProperty should equal(value);
+        });
+        
     });
     
 });
