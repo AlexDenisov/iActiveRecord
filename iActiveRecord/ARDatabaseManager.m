@@ -328,11 +328,19 @@ static NSArray *records = nil;
                                                 withObject:propertyName];
                 if(pszValue){
                     NSString *sqlData = [NSString stringWithUTF8String:pszValue];
-                    aValue = [column.columnClass performSelector:@selector(fromSql:) 
-                                                 withObject:sqlData];
-                }else{
+                    if (column.columnClass) {
+                        aValue = [column.columnClass performSelector:@selector(fromSql:)
+                                                          withObject:sqlData];
+                    } else {
+                        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                        [formatter setNumberStyle:NSNumberFormatterNoStyle];
+                        aValue = [formatter numberFromString:sqlData];
+                        [formatter release];
+                    }
+                } else {
                     aValue = @"";
                 }
+
                 id currentRecord = [dictionary valueForKey:recordName];
                 if(currentRecord == nil){
                     currentRecord = [[Record new] autorelease];
