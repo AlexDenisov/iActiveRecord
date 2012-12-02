@@ -1,7 +1,8 @@
 
 TODO: add changelog
 
- - Use @dynamic for table columns
+ - primitive data types support
+ - @dynamic for table columns
  - @synthesize properties are ignored
- - Indices added
+ - indices
 
