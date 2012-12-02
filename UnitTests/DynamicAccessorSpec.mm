@@ -39,6 +39,20 @@ describe(@"Dynamic properties", ^{
             record.customGetter should equal(defValue);
         });
         
+        it(@"should correct set properties for different objects", ^{
+            DynamicRecord *record1 = [DynamicRecord newRecord];
+            DynamicRecord *record2 = [DynamicRecord newRecord];
+            
+            NSString *firstValue = @"FirstValue";
+            NSString *secondValue = @"SecondValue";
+            
+            record1.defaultProperty = firstValue;
+            record2.defaultProperty = secondValue;
+            
+            record1.defaultProperty should equal(firstValue);
+            record2.defaultProperty should equal(secondValue);
+        });
+        
     });
     
     context(@"primitive properties", ^{

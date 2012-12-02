@@ -544,6 +544,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 //  KVO-bycycle/Observer
 - (void)setValue:(id)aValue forColumn:(ARColumn *)aColumn {
+//    if ([[self recordName] isEqualToString:@"PrimitiveModel"]) {
+//        NSLog(@"%@ %@", aValue, aColumn.columnName);
+//    }
     if(aColumn == nil){
         return;
     }
@@ -564,15 +567,14 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
     objc_setAssociatedObject(self,
                              aColumn->_columnKey,
-                             aValue,
+                             aValue, 
                              aColumn->_associationPolicy);
     
     [_changedColumns addObject:aColumn];
 }
 
 - (id)valueForColumn:(ARColumn *)aColumn {
-    id object = objc_getAssociatedObject(self,
-                                         aColumn->_columnKey);
+    id object = objc_getAssociatedObject(self, aColumn->_columnKey);
     return object;
 }
 

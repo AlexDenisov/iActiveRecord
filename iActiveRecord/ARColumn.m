@@ -182,9 +182,15 @@
 }
 
 - (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord {
+    NSString *sqlValue = nil;
     id value =  objc_getAssociatedObject(aRecord,
                                          self->_columnKey);
-    return [value performSelector:@selector(toSql)];
+    if (self->_columnType == ARColumnTypeComposite) {
+        sqlValue = [value performSelector:@selector(toSql)];
+    } else {
+        sqlValue = [[value stringValue] performSelector:@selector(toSql)];
+    }
+    return sqlValue;
 }
 
 - (const char *)sqlType {

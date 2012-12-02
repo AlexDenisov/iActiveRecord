@@ -51,6 +51,7 @@ static NSArray *records = nil;
 #endif
         NSString *storageDirectory = useCacheDirectory ? [self cachesDirectory] : [self documentsDirectory];
         dbPath = [[NSString alloc] initWithFormat:@"%@/%@", storageDirectory, dbName];
+        NSLog(@"%@", dbPath);
         [self createDatabase];
     }
     return self;
@@ -268,12 +269,17 @@ static NSArray *records = nil;
                                                 withObject:propertyName];
                 if(pszValue){
                     NSString *sqlData = [NSString stringWithUTF8String:pszValue];
-                    aValue = [column.columnClass performSelector:@selector(fromSql:) 
-                                                 withObject:sqlData];
-                }else{
-                    aValue = @"";
+                    if (column.columnClass) {
+                        aValue = [column.columnClass performSelector:@selector(fromSql:)
+                                                          withObject:sqlData];
+                    } else {
+                        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                        [formatter setNumberStyle:NSNumberFormatterNoStyle];
+                        aValue = [formatter numberFromString:sqlData];
+                        [formatter release];
+                    }
+                    [record setValue:aValue forColumn:column];
                 }
-                [record setValue:aValue forColumn:column];
             }
             [record resetChanges];
             [resultArray addObject:record];
