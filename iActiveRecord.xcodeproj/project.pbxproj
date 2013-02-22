@@ -238,6 +238,9 @@
 		CAF2481A151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
 		CAF2481B151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
 		CAF24828151F3AA700120198 /* ARRepresentationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF2481C151F39C600120198 /* ARRepresentationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB78C39D16D7371700FAE89D /* ARIndicesMacroHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CAD9B51415A20375004251C3 /* ARIndicesMacroHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB78C3A616D73D8800FAE89D /* ARDynamicAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = CA04E8C1166A574100957F54 /* ARDynamicAccessor.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DB78C3A716D73D9500FAE89D /* ARDynamicAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04E8C2166A574100957F54 /* ARDynamicAccessor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -915,6 +918,7 @@
 				CAAE33471528819D0080447D /* ARException.h in Headers */,
 				CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
+				DB78C39D16D7371700FAE89D /* ARIndicesMacroHelper.h in Headers */,
 				CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */,
 				CA62C32D151E0EC400E54276 /* class_getSubclasses.h in Headers */,
 				CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */,
@@ -942,6 +946,7 @@
 				CA2E5D481581E75F0053D511 /* ActiveRecord_Private.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
 				CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */,
+				DB78C3A616D73D8800FAE89D /* ARDynamicAccessor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1250,6 +1255,7 @@
 				CADA6AFA154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 				CA1AF757155FEA3A00D0B17E /* ARColumn.m in Sources */,
 				CA1AF75E155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
+				DB78C3A716D73D9500FAE89D /* ARDynamicAccessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
