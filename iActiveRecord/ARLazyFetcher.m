@@ -27,6 +27,7 @@
         sqlRequest = nil;
         orderByConditions = nil;
         useJoin = NO;
+        useRandomOrder = NO;
     }
     return self;
 }
@@ -110,7 +111,11 @@
 
 - (NSString *)createOrderbyStatement {
     NSMutableString *statement = [NSMutableString string];
-    if(orderByConditions){
+    if (useRandomOrder)
+    {
+        [statement appendFormat:@" ORDER BY RANDOM() "];
+    }
+    else  if(orderByConditions){
         [statement appendFormat:@" ORDER BY "];
         for(NSString *key in [orderByConditions allKeys]){
             NSString *order = [[orderByConditions valueForKey:key] boolValue] ? @"ASC" : @"DESC";
@@ -233,6 +238,12 @@
 
 - (ARLazyFetcher *)orderBy:(NSString *)aField {
     return [self orderBy:aField ascending:YES];
+}
+
+- (ARLazyFetcher *)orderByRandom
+{
+    useRandomOrder = YES;
+    return self;
 }
 
 #pragma mark - Select

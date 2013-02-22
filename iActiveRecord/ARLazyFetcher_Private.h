@@ -22,6 +22,8 @@ static NSString* joinString(ARJoinType type)
     NSString *sqlRequest;
     //  order by
     NSMutableDictionary *orderByConditions;
+    //  random order flag
+    BOOL useRandomOrder;
     //  select
     NSMutableSet *onlyFields;
     NSMutableSet *exceptFields;
