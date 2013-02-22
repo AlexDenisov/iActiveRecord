@@ -37,6 +37,7 @@ typedef enum {
 
 - (ARLazyFetcher *)orderBy:(NSString *)aField ascending:(BOOL)isAscending;
 - (ARLazyFetcher *)orderBy:(NSString *)aField;// ASC by default
+- (ARLazyFetcher *)orderByRandom;
 
 - (ARLazyFetcher *)where:(NSString *)aCondition, ... NS_REQUIRES_NIL_TERMINATION;
 
