@@ -271,28 +271,38 @@ static NSArray *records = nil;
         {
             resultArray = [NSMutableArray arrayWithCapacity:nRows++];
             Record = NSClassFromString(aName);
+            BOOL hasColumns = NO;
+            NSMutableArray *columns = [NSMutableArray arrayWithCapacity:nColumns];
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            [formatter setNumberStyle:NSNumberFormatterNoStyle];
+
             for(int i=0;i<nRows-1;i++){
                 id record = [Record new];
                 for(int j=0;j<nColumns;j++){
                     propertyName = [NSString stringWithUTF8String:results[j]];
+
+                    if (!hasColumns) {
+                        columns[j] = [Record performSelector:@selector(columnNamed:)
+                                                        withObject:propertyName];
+                    }
+                    ARColumn *column = columns[j];
+
                     int index = (i+1)*nColumns + j;
                     const char *pszValue = results[index];
-                    ARColumn *column = [Record performSelector:@selector(columnNamed:)
-                                                    withObject:propertyName];
+
                     if(pszValue){
                         NSString *sqlData = [NSString stringWithUTF8String:pszValue];
                         if (column.columnClass) {
                             aValue = [column.columnClass performSelector:@selector(fromSql:)
                                                               withObject:sqlData];
                         } else {
-                            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-                            [formatter setNumberStyle:NSNumberFormatterNoStyle];
                             aValue = [formatter numberFromString:sqlData];
                         }
                         [record setValue:aValue forColumn:column];
                     }
                 }
                 [record resetChanges];
+                hasColumns = YES;
                 [resultArray addObject:record];
             }
             sqlite3_free_table(results);
@@ -326,29 +336,41 @@ static NSArray *records = nil;
                                           NULL))
         {
             resultArray = [NSMutableArray arrayWithCapacity:nRows++];
+            Class *recordClasses = (Class *)malloc(sizeof(Class) * nColumns);
+            NSMutableArray *recordNames = [NSMutableArray arrayWithCapacity:nColumns];
+            NSMutableArray *propertyNames = [NSMutableArray arrayWithCapacity:nColumns];
+            NSMutableArray *columns = [NSMutableArray arrayWithCapacity:nColumns];
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            [formatter setNumberStyle:NSNumberFormatterNoStyle];
+            BOOL cachesLoaded = NO;
             for(int i=0;i<nRows-1;i++){
                 NSMutableDictionary *dictionary = [NSMutableDictionary new];
                 NSString *recordName = nil;
                 for(int j=0;j<nColumns;j++){
-                    header = [NSString stringWithUTF8String:results[j]];
+                    if (!cachesLoaded) {
+                        header = [NSString stringWithUTF8String:results[j]];
+                        NSArray *splitHeader = [header componentsSeparatedByString:@"#"];
+                        [recordNames addObject:[splitHeader objectAtIndex:0]];
+                        [propertyNames addObject:[splitHeader objectAtIndex:1]];
+                        
+                        recordClasses[j] = NSClassFromString([recordNames lastObject]);
+                        [columns addObject:[recordClasses[j] performSelector:@selector(columnNamed:)
+                                                                  withObject:[propertyNames lastObject]]];
+                    }
                     
-                    recordName = [[header componentsSeparatedByString:@"#"] objectAtIndex:0];
-                    propertyName = [[header componentsSeparatedByString:@"#"] objectAtIndex:1];
-                    
-                    Class Record = NSClassFromString(recordName);
+                    recordName = [recordNames objectAtIndex:j];
+                    propertyName = [propertyNames objectAtIndex:j];
+                    ARColumn *column = [columns objectAtIndex:j];
                     
                     int index = (i+1)*nColumns + j;
                     const char *pszValue = results[index];
-                    ARColumn *column = [Record performSelector:@selector(columnNamed:)
-                                                    withObject:propertyName];
                     if(pszValue){
                         NSString *sqlData = [NSString stringWithUTF8String:pszValue];
                         if (column.columnClass) {
                             aValue = [column.columnClass performSelector:@selector(fromSql:)
                                                               withObject:sqlData];
                         } else {
-                            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-                            [formatter setNumberStyle:NSNumberFormatterNoStyle];
+
                             aValue = [formatter numberFromString:sqlData];
                         }
                     } else {
@@ -357,6 +379,7 @@ static NSArray *records = nil;
                     
                     id currentRecord = [dictionary valueForKey:recordName];
                     if(currentRecord == nil){
+                        Class Record = recordClasses[j];
                         currentRecord = [Record new];
                         [dictionary setValue:currentRecord
                                       forKey:recordName];
@@ -364,9 +387,11 @@ static NSArray *records = nil;
                     [currentRecord setValue:aValue
                                   forColumn:column];
                 }
+                cachesLoaded = YES;
                 [resultArray addObject:dictionary];
             }
             sqlite3_free_table(results);
+            free(recordClasses);
         }else
         {
             NSLog(@"%@", aSqlRequest);
