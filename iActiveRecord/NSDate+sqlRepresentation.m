@@ -16,7 +16,7 @@
 }
 
 + (id)fromSql:(NSString *)sqlData {
-    NSTimeInterval time = [sqlData floatValue];
+    NSTimeInterval time = [sqlData doubleValue];
     return [NSDate dateWithTimeIntervalSince1970:time];
 }
 
