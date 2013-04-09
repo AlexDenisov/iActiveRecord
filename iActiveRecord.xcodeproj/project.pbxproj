@@ -21,8 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		254F5EBC14C5E71C00AC0D86 /* NSString+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */; };
-		254F5EC014C5E78100AC0D86 /* NSNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */; };
 		25922AFD14EC286000CBB58A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
 		25922AFE14EC286000CBB58A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC314BC199C00CA2490 /* Foundation.framework */; };
 		25922AFF14EC286000CBB58A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC514BC199C00CA2490 /* CoreGraphics.framework */; };
@@ -35,19 +33,9 @@
 		25922B6414EC2C2200CBB58A /* NSNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */; };
 		25922B6514EC2C2200CBB58A /* NSString+lowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */; };
 		25922B6614EC2C2200CBB58A /* NSString+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */; };
-		2596BC5714C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596BC5614C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m */; };
-		25998EC214BC199C00CA2490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
-		25998EC414BC199C00CA2490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC314BC199C00CA2490 /* Foundation.framework */; };
-		25998EC614BC199C00CA2490 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC514BC199C00CA2490 /* CoreGraphics.framework */; };
-		25998EE714BC1A1D00CA2490 /* ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE114BC1A1D00CA2490 /* ActiveRecord.m */; };
-		25998EE814BC1A1D00CA2490 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
-		25998EE914BC1A1D00CA2490 /* NSString+lowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */; };
-		25998EFA14BC1DD400CA2490 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */; };
 		CA0365C0151FCB5F004167F1 /* NSString+quotedString.h in Headers */ = {isa = PBXBuildFile; fileRef = CA0365BE151FCB5F004167F1 /* NSString+quotedString.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CA0365C1151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
-		CA04E8C3166A574100957F54 /* ARDynamicAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04E8C2166A574100957F54 /* ARDynamicAccessor.m */; };
 		CA04E8C5166A620500957F54 /* ARDynamicAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04E8C2166A574100957F54 /* ARDynamicAccessor.m */; };
 		CA0BAEBB15C9A522008985E6 /* FactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBA15C9A522008985E6 /* FactorySpec.mm */; };
 		CA0BAEBD15C9A5D2008985E6 /* DependencySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBC15C9A5D2008985E6 /* DependencySpec.mm */; };
@@ -64,11 +52,9 @@
 		CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90971520DA2000E8D082 /* AREnum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA1AF753155FEA3A00D0B17E /* ARColumn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1AF750155FEA3A00D0B17E /* ARColumn_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA1AF754155FEA3A00D0B17E /* ARColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1AF751155FEA3A00D0B17E /* ARColumn.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CA1AF755155FEA3A00D0B17E /* ARColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF752155FEA3A00D0B17E /* ARColumn.m */; };
 		CA1AF756155FEA3A00D0B17E /* ARColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF752155FEA3A00D0B17E /* ARColumn.m */; };
 		CA1AF757155FEA3A00D0B17E /* ARColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF752155FEA3A00D0B17E /* ARColumn.m */; };
 		CA1AF75B155FEA5600D0B17E /* ARSchemaManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1AF759155FEA5600D0B17E /* ARSchemaManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CA1AF75C155FEA5600D0B17E /* ARSchemaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF75A155FEA5600D0B17E /* ARSchemaManager.m */; };
 		CA1AF75D155FEA5600D0B17E /* ARSchemaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF75A155FEA5600D0B17E /* ARSchemaManager.m */; };
 		CA1AF75E155FEA5600D0B17E /* ARSchemaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF75A155FEA5600D0B17E /* ARSchemaManager.m */; };
 		CA2E5D441581E75F0053D511 /* ARLazyFetcher_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CAC022DD1579477000208445 /* ARLazyFetcher_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -86,27 +72,20 @@
 		CA3B7B9C15C91B0500757498 /* DropRecordSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9B15C91B0500757498 /* DropRecordSpec.mm */; };
 		CA3B7B9E15C91B7D00757498 /* CountSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9D15C91B7D00757498 /* CountSpec.mm */; };
 		CA3B7BA015C91C3600757498 /* LazyFetcherSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9F15C91C3500757498 /* LazyFetcherSpec.mm */; };
-		CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
-		CA523D401535F50500565E02 /* NSDate+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D3F1535F50500565E02 /* NSDate+isPresented.m */; };
 		CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D421535F56100565E02 /* NSData+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA523D451535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
 		CA523D461535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
 		CA523D471535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
 		CA523D4A1535F5AA00565E02 /* NSDecimalNumber+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D481535F5AA00565E02 /* NSDecimalNumber+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA523D4B1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */; };
 		CA523D4C1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */; };
 		CA523D4D1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D491535F5AA00565E02 /* NSDecimalNumber+isPresented.m */; };
 		CA523D501535F5F100565E02 /* NSNumber+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D4E1535F5F100565E02 /* NSNumber+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA523D511535F5F100565E02 /* NSNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */; };
 		CA523D521535F5F100565E02 /* NSNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */; };
 		CA523D531535F5F100565E02 /* NSNumber+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D4F1535F5F100565E02 /* NSNumber+isPresented.m */; };
 		CA523D561535F61400565E02 /* NSString+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D541535F61400565E02 /* NSString+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA523D571535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
 		CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
 		CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D551535F61400565E02 /* NSString+isPresented.m */; };
 		CA523D7B1535FAEE00565E02 /* NSDate+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D3E1535F50500565E02 /* NSDate+isPresented.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CA523E0715373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; };
 		CA523E0815373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; settings = {COMPILER_FLAGS = "-Wno-missing-prototypes"; }; };
 		CA523E0915373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; };
 		CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523E0615373A5500565E02 /* sqlite3_unicode.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -131,71 +110,50 @@
 		CA62C339151E0F0700E54276 /* ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE114BC1A1D00CA2490 /* ActiveRecord.m */; };
 		CA62C33A151E0F0700E54276 /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA62C33D151E0F0700E54276 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
-		CA62C392151E710800E54276 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA62C391151E710700E54276 /* README.md */; };
-		CA8CB48D152F740F00510A14 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = CA8CB48C152F740F00510A14 /* LICENSE */; };
 		CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */ = {isa = PBXBuildFile; fileRef = CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA8D9EB0152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB2152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA9C334A1667F53900071200 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA9C33491667F53900071200 /* Default-568h@2x.png */; };
-		CAA26C8F158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
 		CAA26C90158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
-		CAA26CD9158DE30600DE9490 /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
 		CAA26CDA158DE30600DE9490 /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
 		CAAE32BA15244C330080447D /* NSDate+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CAAE32BB15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
 		CAAE32BC15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
 		CAAE32BD15244C330080447D /* NSDate+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32B915244C330080447D /* NSDate+sqlRepresentation.m */; };
 		CAAE32EB1525F2480080447D /* ARValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32E91525F2480080447D /* ARValidator.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CAAE32EC1525F2480080447D /* ARValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32EA1525F2480080447D /* ARValidator.m */; };
 		CAAE32ED1525F2480080447D /* ARValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32EA1525F2480080447D /* ARValidator.m */; };
 		CAAE32EE1525F2480080447D /* ARValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32EA1525F2480080447D /* ARValidator.m */; };
 		CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32F11525F4940080447D /* ARValidatorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAAE32F6152701860080447D /* ARValidatorUniqueness.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32F4152701860080447D /* ARValidatorUniqueness.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CAAE32F7152701860080447D /* ARValidatorUniqueness.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32F5152701860080447D /* ARValidatorUniqueness.m */; };
 		CAAE32F8152701860080447D /* ARValidatorUniqueness.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32F5152701860080447D /* ARValidatorUniqueness.m */; };
 		CAAE32F9152701860080447D /* ARValidatorUniqueness.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32F5152701860080447D /* ARValidatorUniqueness.m */; };
 		CAAE32FC1527079F0080447D /* ARValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32FA1527079F0080447D /* ARValidation.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CAAE32FD1527079F0080447D /* ARValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32FB1527079F0080447D /* ARValidation.m */; };
 		CAAE32FE1527079F0080447D /* ARValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32FB1527079F0080447D /* ARValidation.m */; };
 		CAAE32FF1527079F0080447D /* ARValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE32FB1527079F0080447D /* ARValidation.m */; };
 		CAAE3302152715270080447D /* ARValidatorPresence.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE3300152715270080447D /* ARValidatorPresence.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CAAE3303152715270080447D /* ARValidatorPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE3301152715270080447D /* ARValidatorPresence.m */; };
 		CAAE3304152715270080447D /* ARValidatorPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE3301152715270080447D /* ARValidatorPresence.m */; };
 		CAAE3305152715270080447D /* ARValidatorPresence.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE3301152715270080447D /* ARValidatorPresence.m */; };
 		CAAE33471528819D0080447D /* ARException.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE33451528819C0080447D /* ARException.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CAAE33481528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE33491528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE334A1528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
-		CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
 		CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
-		CAB56AEF153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
 		CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
 		CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
 		CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CABB909D1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
 		CABB909E1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
 		CABB909F1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
 		CABB90A21520E63200E8D082 /* ARRelationHasMany.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90A01520E63200E8D082 /* ARRelationHasMany.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CABB90A31520E63200E8D082 /* ARRelationHasMany.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90A11520E63200E8D082 /* ARRelationHasMany.m */; };
 		CABB90A41520E63200E8D082 /* ARRelationHasMany.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90A11520E63200E8D082 /* ARRelationHasMany.m */; };
 		CABB90A51520E63200E8D082 /* ARRelationHasMany.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90A11520E63200E8D082 /* ARRelationHasMany.m */; };
 		CABB90B21520F60700E8D082 /* ARRelationHasManyThrough.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90B01520F60700E8D082 /* ARRelationHasManyThrough.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
 		CABB90B41520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
 		CABB90B51520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB90B11520F60700E8D082 /* ARRelationHasManyThrough.m */; };
-		CAC022EB157B76C300208445 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
 		CAC022EC157B76C300208445 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
-		CAC02305157B855500208445 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
 		CAC02306157B855500208445 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
-		CAD9B51215A20176004251C3 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = CAD9B51115A20176004251C3 /* CHANGELOG.md */; };
 		CADA6AEF154472D800CCE41D /* NSMutableDictionary+valueToArray.h in Headers */ = {isa = PBXBuildFile; fileRef = CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CADA6AF0154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
 		CADA6AF1154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
 		CADA6AF2154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
 		CADA6AF7154473E600CCE41D /* ARBaseRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CADA6AF8154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
 		CADA6AF9154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
 		CADA6AFA154473E600CCE41D /* ARBaseRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */; };
 		CAE865D1159068FF00B3BBFE /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
@@ -215,11 +173,9 @@
 		CAE9227C171495880082A97C /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9227B171495880082A97C /* ARFactory.m */; };
 		CAE9227F17149A080082A97C /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9227E17149A080082A97C /* octocat.png */; };
 		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480E151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF24818151F383000120198 /* NSData+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24816151F383000120198 /* NSData+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		CAF24819151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
 		CAF2481A151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
 		CAF2481B151F383000120198 /* NSData+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF24817151F383000120198 /* NSData+sqlRepresentation.m */; };
 		CAF24828151F3AA700120198 /* ARRepresentationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF2481C151F39C600120198 /* ARRepresentationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -241,7 +197,6 @@
 		2596BC5514C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+sqlRepresentation.h"; sourceTree = "<group>"; };
 		2596BC5614C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+sqlRepresentation.m"; sourceTree = "<group>"; };
 		2598294114BDDB4200207D16 /* class_getSubclasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = class_getSubclasses.h; sourceTree = "<group>"; };
-		25998EBD14BC199C00CA2490 /* iActiveRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iActiveRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25998EC114BC199C00CA2490 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		25998EC314BC199C00CA2490 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		25998EC514BC199C00CA2490 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -393,17 +348,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		25998EBA14BC199C00CA2490 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				25998EFA14BC1DD400CA2490 /* libsqlite3.0.dylib in Frameworks */,
-				25998EC214BC199C00CA2490 /* UIKit.framework in Frameworks */,
-				25998EC414BC199C00CA2490 /* Foundation.framework in Frameworks */,
-				25998EC614BC199C00CA2490 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CA62C304151E0AB800E54276 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -500,7 +444,6 @@
 		25998EBE14BC199C00CA2490 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				25998EBD14BC199C00CA2490 /* iActiveRecord.app */,
 				25922AFB14EC286000CBB58A /* UnitTests.app */,
 				CA62C307151E0AB800E54276 /* ActiveRecord.framework */,
 			);
@@ -943,23 +886,6 @@
 			productReference = 25922AFB14EC286000CBB58A /* UnitTests.app */;
 			productType = "com.apple.product-type.application";
 		};
-		25998EBC14BC199C00CA2490 /* iActiveRecord */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 25998ED514BC199C00CA2490 /* Build configuration list for PBXNativeTarget "iActiveRecord" */;
-			buildPhases = (
-				25998EB914BC199C00CA2490 /* Sources */,
-				25998EBA14BC199C00CA2490 /* Frameworks */,
-				25998EBB14BC199C00CA2490 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = iActiveRecord;
-			productName = iActiveRecord;
-			productReference = 25998EBD14BC199C00CA2490 /* iActiveRecord.app */;
-			productType = "com.apple.product-type.application";
-		};
 		CA62C306151E0AB800E54276 /* ActiveRecord */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA62C315151E0AB800E54276 /* Build configuration list for PBXNativeTarget "ActiveRecord" */;
@@ -998,7 +924,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				25998EBC14BC199C00CA2490 /* iActiveRecord */,
 				25922AFA14EC286000CBB58A /* UnitTests */,
 				CA62C306151E0AB800E54276 /* ActiveRecord */,
 				CA62C33E151E0F7300E54276 /* Build_Framework */,
@@ -1014,16 +939,6 @@
 				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
 				CA9C334A1667F53900071200 /* Default-568h@2x.png in Resources */,
 				CAE9227F17149A080082A97C /* octocat.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25998EBB14BC199C00CA2490 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA62C392151E710800E54276 /* README.md in Resources */,
-				CA8CB48D152F740F00510A14 /* LICENSE in Resources */,
-				CAD9B51215A20176004251C3 /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1126,50 +1041,6 @@
 				CAE92277171495290082A97C /* User.m in Sources */,
 				CAE92278171495290082A97C /* UserProjectRelationship.m in Sources */,
 				CAE9227C171495880082A97C /* ARFactory.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25998EB914BC199C00CA2490 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				25998EE714BC1A1D00CA2490 /* ActiveRecord.m in Sources */,
-				25998EE814BC1A1D00CA2490 /* ARDatabaseManager.m in Sources */,
-				25998EE914BC1A1D00CA2490 /* NSString+lowercaseFirst.m in Sources */,
-				254F5EBC14C5E71C00AC0D86 /* NSString+sqlRepresentation.m in Sources */,
-				254F5EC014C5E78100AC0D86 /* NSNumber+sqlRepresentation.m in Sources */,
-				2596BC5714C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m in Sources */,
-				CA3D18061519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */,
-				CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */,
-				CAF2480C151F298B00120198 /* ARError.m in Sources */,
-				CAF24819151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
-				CA0365C1151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
-				CABB909D1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */,
-				CABB90A31520E63200E8D082 /* ARRelationHasMany.m in Sources */,
-				CABB90B31520F60700E8D082 /* ARRelationHasManyThrough.m in Sources */,
-				CAAE32BB15244C330080447D /* NSDate+sqlRepresentation.m in Sources */,
-				CAAE32EC1525F2480080447D /* ARValidator.m in Sources */,
-				CAAE32F7152701860080447D /* ARValidatorUniqueness.m in Sources */,
-				CAAE32FD1527079F0080447D /* ARValidation.m in Sources */,
-				CAAE3303152715270080447D /* ARValidatorPresence.m in Sources */,
-				CAAE33481528819D0080447D /* ARException.m in Sources */,
-				CA8D9EB0152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */,
-				CA523D401535F50500565E02 /* NSDate+isPresented.m in Sources */,
-				CA523D451535F56100565E02 /* NSData+isPresented.m in Sources */,
-				CA523D4B1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */,
-				CA523D511535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
-				CA523D571535F61400565E02 /* NSString+isPresented.m in Sources */,
-				CA523E0715373A5500565E02 /* sqlite3_unicode.c in Sources */,
-				CAB56AEF153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
-				CADA6AF0154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */,
-				CADA6AF8154473E600CCE41D /* ARBaseRelationship.m in Sources */,
-				CA1AF755155FEA3A00D0B17E /* ARColumn.m in Sources */,
-				CA1AF75C155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
-				CAC022EB157B76C300208445 /* NSArray+toSql.m in Sources */,
-				CAC02305157B855500208445 /* NSSet+toSql.m in Sources */,
-				CAA26C8F158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */,
-				CAA26CD9158DE30600DE9490 /* ARSQLBuilder.m in Sources */,
-				CA04E8C3166A574100957F54 /* ARDynamicAccessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,38 +1212,6 @@
 			};
 			name = Release;
 		};
-		25998ED614BC199C00CA2490 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iActiveRecord/iActiveRecord-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					SQLITE_CORE,
-					SQLITE_ENABLE_UNICODE,
-				);
-				INFOPLIST_FILE = "iActiveRecord/iActiveRecord-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		25998ED714BC199C00CA2490 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iActiveRecord/iActiveRecord-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					SQLITE_CORE,
-					SQLITE_ENABLE_UNICODE,
-				);
-				INFOPLIST_FILE = "iActiveRecord/iActiveRecord-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 		CA62C316151E0AB800E54276 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1465,15 +1304,6 @@
 			buildConfigurations = (
 				25998ED314BC199C00CA2490 /* Debug */,
 				25998ED414BC199C00CA2490 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		25998ED514BC199C00CA2490 /* Build configuration list for PBXNativeTarget "iActiveRecord" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				25998ED614BC199C00CA2490 /* Debug */,
-				25998ED714BC199C00CA2490 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
