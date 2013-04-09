@@ -3,14 +3,15 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 10.01.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
+
+#include <sys/xattr.h>
 
 #import "ARDatabaseManager.h"
 #import "ActiveRecord_Private.h"
 #import "class_getSubclasses.h"
 #import "NSString+quotedString.h"
-#include <sys/xattr.h>
 #import "sqlite3_unicode.h"
 #import "ARColumn.h"
 #import "ARSQLBuilder.h"
@@ -33,12 +34,12 @@ static NSArray *records = nil;
 }
 
 + (id)sharedInstance {
-    @synchronized(self){
-        if(nil == instance){
-            instance = [[ARDatabaseManager alloc] init];
-        }
-        return instance;
-    }    
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [self new];
+    });
+    return sharedInstance;
 }
 
 - (id)init {
