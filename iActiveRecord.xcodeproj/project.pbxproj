@@ -62,7 +62,6 @@
 		CA0BAECD15C9A9D1008985E6 /* SaveUpdateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECC15C9A9D1008985E6 /* SaveUpdateSpec.mm */; };
 		CA0BAECF15C9AA59008985E6 /* SchemaManagerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECE15C9AA58008985E6 /* SchemaManagerSpec.mm */; };
 		CA0BAED115C9AACC008985E6 /* IndicesSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAED015C9AACC008985E6 /* IndicesSpec.mm */; };
-		CA0BAED415C9AC13008985E6 /* DynamicRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAED315C9AC13008985E6 /* DynamicRecord.m */; };
 		CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90971520DA2000E8D082 /* AREnum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA1AF753155FEA3A00D0B17E /* ARColumn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1AF750155FEA3A00D0B17E /* ARColumn_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA1AF754155FEA3A00D0B17E /* ARColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1AF751155FEA3A00D0B17E /* ARColumn.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -169,33 +168,8 @@
 		CAAE33481528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE33491528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE334A1528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
-		CAAE33931528C41B0080447D /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33921528C41B0080447D /* ARFactory.m */; };
-		CAAE33941528C41B0080447D /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33921528C41B0080447D /* ARFactory.m */; };
-		CAAE33A81528C4500080447D /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33971528C4500080447D /* Animal.m */; };
-		CAAE33A91528C4500080447D /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33971528C4500080447D /* Animal.m */; };
-		CAAE33AA1528C4500080447D /* AnimalValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33991528C4500080447D /* AnimalValidator.m */; };
-		CAAE33AB1528C4500080447D /* AnimalValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33991528C4500080447D /* AnimalValidator.m */; };
-		CAAE33AC1528C4500080447D /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE339B1528C4500080447D /* Entity.m */; };
-		CAAE33AD1528C4500080447D /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE339B1528C4500080447D /* Entity.m */; };
-		CAAE33AE1528C4500080447D /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE339D1528C4500080447D /* Group.m */; };
-		CAAE33AF1528C4500080447D /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE339D1528C4500080447D /* Group.m */; };
-		CAAE33B01528C4500080447D /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE339F1528C4500080447D /* Issue.m */; };
-		CAAE33B11528C4500080447D /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE339F1528C4500080447D /* Issue.m */; };
-		CAAE33B21528C4500080447D /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33A11528C4500080447D /* Project.m */; };
-		CAAE33B31528C4500080447D /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33A11528C4500080447D /* Project.m */; };
-		CAAE33B41528C4500080447D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33A31528C4500080447D /* ProjectGroupRelationship.m */; };
-		CAAE33B51528C4500080447D /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33A31528C4500080447D /* ProjectGroupRelationship.m */; };
-		CAAE33B61528C4500080447D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33A51528C4500080447D /* User.m */; };
-		CAAE33B71528C4500080447D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33A51528C4500080447D /* User.m */; };
-		CAAE33B81528C4500080447D /* UserProjectRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33A71528C4500080447D /* UserProjectRelationship.m */; };
-		CAAE33B91528C4500080447D /* UserProjectRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33A71528C4500080447D /* UserProjectRelationship.m */; };
-		CAAE33BC1528C4710080447D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33BB1528C4710080447D /* AppDelegate.m */; };
-		CAAE33BD1528C4710080447D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33BB1528C4710080447D /* AppDelegate.m */; };
-		CAAE33BF1528C47E0080447D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33BE1528C47E0080447D /* main.m */; };
 		CAAF5DA1151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
 		CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
-		CAB56AEB153E6C7F0062DC9E /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB56AEA153E6C7F0062DC9E /* octocat.png */; };
-		CAB56AEC153E6C7F0062DC9E /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB56AEA153E6C7F0062DC9E /* octocat.png */; };
 		CAB56AEF153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
 		CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
 		CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
@@ -216,7 +190,6 @@
 		CAC022EC157B76C300208445 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
 		CAC02305157B855500208445 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
 		CAC02306157B855500208445 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
-		CAD610A21668001200FBA75A /* PrimitiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD610A11668001200FBA75A /* PrimitiveModel.m */; };
 		CAD9B51215A20176004251C3 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = CAD9B51115A20176004251C3 /* CHANGELOG.md */; };
 		CADA6AEF154472D800CCE41D /* NSMutableDictionary+valueToArray.h in Headers */ = {isa = PBXBuildFile; fileRef = CADA6AED154472D800CCE41D /* NSMutableDictionary+valueToArray.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CADA6AF0154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */; };
@@ -229,6 +202,18 @@
 		CAE865D1159068FF00B3BBFE /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
 		CAE865D2159068FF00B3BBFE /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
 		CAE865D51590691600B3BBFE /* ARSQLBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = CAA26CD7158DE30600DE9490 /* ARSQLBuilder.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		CAE9226B171495290082A97C /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE92251171495290082A97C /* Animal.m */; };
+		CAE9226C171495290082A97C /* AnimalValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE92253171495290082A97C /* AnimalValidator.m */; };
+		CAE9226F171495290082A97C /* DynamicRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE92259171495290082A97C /* DynamicRecord.m */; };
+		CAE92270171495290082A97C /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9225B171495290082A97C /* Entity.m */; };
+		CAE92271171495290082A97C /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9225D171495290082A97C /* Group.m */; };
+		CAE92272171495290082A97C /* Issue.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9225F171495290082A97C /* Issue.m */; };
+		CAE92274171495290082A97C /* PrimitiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE92262171495290082A97C /* PrimitiveModel.m */; };
+		CAE92275171495290082A97C /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE92264171495290082A97C /* Project.m */; };
+		CAE92276171495290082A97C /* ProjectGroupRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE92266171495290082A97C /* ProjectGroupRelationship.m */; };
+		CAE92277171495290082A97C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE92268171495290082A97C /* User.m */; };
+		CAE92278171495290082A97C /* UserProjectRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9226A171495290082A97C /* UserProjectRelationship.m */; };
+		CAE9227C171495880082A97C /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9227B171495880082A97C /* ARFactory.m */; };
 		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
@@ -289,8 +274,6 @@
 		CA0BAECC15C9A9D1008985E6 /* SaveUpdateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SaveUpdateSpec.mm; sourceTree = "<group>"; };
 		CA0BAECE15C9AA58008985E6 /* SchemaManagerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SchemaManagerSpec.mm; sourceTree = "<group>"; };
 		CA0BAED015C9AACC008985E6 /* IndicesSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IndicesSpec.mm; sourceTree = "<group>"; };
-		CA0BAED215C9AC13008985E6 /* DynamicRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicRecord.h; path = TestSources/DynamicRecord.h; sourceTree = "<group>"; };
-		CA0BAED315C9AC13008985E6 /* DynamicRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicRecord.m; path = TestSources/DynamicRecord.m; sourceTree = "<group>"; };
 		CA1AF74E155FE99100D0B17E /* ActiveRecord_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveRecord_Private.h; sourceTree = "<group>"; };
 		CA1AF750155FEA3A00D0B17E /* ARColumn_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARColumn_Private.h; sourceTree = "<group>"; };
 		CA1AF751155FEA3A00D0B17E /* ARColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARColumn.h; sourceTree = "<group>"; };
@@ -345,32 +328,8 @@
 		CAAE3301152715270080447D /* ARValidatorPresence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidatorPresence.m; sourceTree = "<group>"; };
 		CAAE33451528819C0080447D /* ARException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARException.h; sourceTree = "<group>"; };
 		CAAE33461528819C0080447D /* ARException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARException.m; sourceTree = "<group>"; };
-		CAAE33911528C41B0080447D /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARFactory.h; path = TestSources/ARFactory.h; sourceTree = "<group>"; };
-		CAAE33921528C41B0080447D /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARFactory.m; path = TestSources/ARFactory.m; sourceTree = "<group>"; };
-		CAAE33961528C4500080447D /* Animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Animal.h; path = TestSources/Animal.h; sourceTree = "<group>"; };
-		CAAE33971528C4500080447D /* Animal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Animal.m; path = TestSources/Animal.m; sourceTree = "<group>"; };
-		CAAE33981528C4500080447D /* AnimalValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimalValidator.h; path = TestSources/AnimalValidator.h; sourceTree = "<group>"; };
-		CAAE33991528C4500080447D /* AnimalValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimalValidator.m; path = TestSources/AnimalValidator.m; sourceTree = "<group>"; };
-		CAAE339A1528C4500080447D /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = TestSources/Entity.h; sourceTree = "<group>"; };
-		CAAE339B1528C4500080447D /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Entity.m; path = TestSources/Entity.m; sourceTree = "<group>"; };
-		CAAE339C1528C4500080447D /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Group.h; path = TestSources/Group.h; sourceTree = "<group>"; };
-		CAAE339D1528C4500080447D /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Group.m; path = TestSources/Group.m; sourceTree = "<group>"; };
-		CAAE339E1528C4500080447D /* Issue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Issue.h; path = TestSources/Issue.h; sourceTree = "<group>"; };
-		CAAE339F1528C4500080447D /* Issue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Issue.m; path = TestSources/Issue.m; sourceTree = "<group>"; };
-		CAAE33A01528C4500080447D /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = TestSources/Project.h; sourceTree = "<group>"; };
-		CAAE33A11528C4500080447D /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = TestSources/Project.m; sourceTree = "<group>"; };
-		CAAE33A21528C4500080447D /* ProjectGroupRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectGroupRelationship.h; path = TestSources/ProjectGroupRelationship.h; sourceTree = "<group>"; };
-		CAAE33A31528C4500080447D /* ProjectGroupRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectGroupRelationship.m; path = TestSources/ProjectGroupRelationship.m; sourceTree = "<group>"; };
-		CAAE33A41528C4500080447D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = TestSources/User.h; sourceTree = "<group>"; };
-		CAAE33A51528C4500080447D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = TestSources/User.m; sourceTree = "<group>"; };
-		CAAE33A61528C4500080447D /* UserProjectRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserProjectRelationship.h; path = TestSources/UserProjectRelationship.h; sourceTree = "<group>"; };
-		CAAE33A71528C4500080447D /* UserProjectRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserProjectRelationship.m; path = TestSources/UserProjectRelationship.m; sourceTree = "<group>"; };
-		CAAE33BA1528C4710080447D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = TestSources/AppDelegate.h; sourceTree = "<group>"; };
-		CAAE33BB1528C4710080447D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = TestSources/AppDelegate.m; sourceTree = "<group>"; };
-		CAAE33BE1528C47E0080447D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TestSources/main.m; sourceTree = "<group>"; };
 		CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+objectsAccessors.h"; sourceTree = "<group>"; };
 		CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+objectsAccessors.m"; sourceTree = "<group>"; };
-		CAB56AEA153E6C7F0062DC9E /* octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat.png; sourceTree = "<group>"; };
 		CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		CABB90971520DA2000E8D082 /* AREnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AREnum.h; sourceTree = "<group>"; };
@@ -385,8 +344,6 @@
 		CAC022EA157B76C300208445 /* NSArray+toSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+toSql.m"; sourceTree = "<group>"; };
 		CAC02303157B855500208445 /* NSSet+toSql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+toSql.h"; sourceTree = "<group>"; };
 		CAC02304157B855500208445 /* NSSet+toSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+toSql.m"; sourceTree = "<group>"; };
-		CAD610A01668001200FBA75A /* PrimitiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrimitiveModel.h; path = TestSources/PrimitiveModel.h; sourceTree = "<group>"; };
-		CAD610A11668001200FBA75A /* PrimitiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrimitiveModel.m; path = TestSources/PrimitiveModel.m; sourceTree = "<group>"; };
 		CAD610A31668043100FBA75A /* ARColumnType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARColumnType.h; sourceTree = "<group>"; };
 		CAD9B51115A20176004251C3 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		CAD9B51415A20375004251C3 /* ARIndicesMacroHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARIndicesMacroHelper.h; sourceTree = "<group>"; };
@@ -394,6 +351,30 @@
 		CADA6AEE154472D800CCE41D /* NSMutableDictionary+valueToArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+valueToArray.m"; sourceTree = "<group>"; };
 		CADA6AF5154473E500CCE41D /* ARBaseRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBaseRelationship.h; sourceTree = "<group>"; };
 		CADA6AF6154473E500CCE41D /* ARBaseRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARBaseRelationship.m; sourceTree = "<group>"; };
+		CAE92250171495290082A97C /* Animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
+		CAE92251171495290082A97C /* Animal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
+		CAE92252171495290082A97C /* AnimalValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimalValidator.h; sourceTree = "<group>"; };
+		CAE92253171495290082A97C /* AnimalValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimalValidator.m; sourceTree = "<group>"; };
+		CAE92258171495290082A97C /* DynamicRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicRecord.h; sourceTree = "<group>"; };
+		CAE92259171495290082A97C /* DynamicRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicRecord.m; sourceTree = "<group>"; };
+		CAE9225A171495290082A97C /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		CAE9225B171495290082A97C /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
+		CAE9225C171495290082A97C /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		CAE9225D171495290082A97C /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		CAE9225E171495290082A97C /* Issue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Issue.h; sourceTree = "<group>"; };
+		CAE9225F171495290082A97C /* Issue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Issue.m; sourceTree = "<group>"; };
+		CAE92261171495290082A97C /* PrimitiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimitiveModel.h; sourceTree = "<group>"; };
+		CAE92262171495290082A97C /* PrimitiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimitiveModel.m; sourceTree = "<group>"; };
+		CAE92263171495290082A97C /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		CAE92264171495290082A97C /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		CAE92265171495290082A97C /* ProjectGroupRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectGroupRelationship.h; sourceTree = "<group>"; };
+		CAE92266171495290082A97C /* ProjectGroupRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectGroupRelationship.m; sourceTree = "<group>"; };
+		CAE92267171495290082A97C /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		CAE92268171495290082A97C /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		CAE92269171495290082A97C /* UserProjectRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProjectRelationship.h; sourceTree = "<group>"; };
+		CAE9226A171495290082A97C /* UserProjectRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProjectRelationship.m; sourceTree = "<group>"; };
+		CAE9227A171495880082A97C /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
+		CAE9227B171495880082A97C /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
 		CAF24809151F298B00120198 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
 		CAF2480A151F298B00120198 /* ARError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARError.m; sourceTree = "<group>"; };
 		CAF24816151F383000120198 /* NSData+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -449,6 +430,7 @@
 		25922B0014EC286000CBB58A /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				CAE922791714954F0082A97C /* Support */,
 				25998EED14BC1A9A00CA2490 /* Test Entities */,
 				25922B1314EC28D000CBB58A /* Specs */,
 				25922B0114EC286000CBB58A /* Supporting Files */,
@@ -551,7 +533,6 @@
 		25998EC814BC199C00CA2490 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CAAE33BE1528C47E0080447D /* main.m */,
 				25998EC914BC199C00CA2490 /* iActiveRecord-Info.plist */,
 				25998ECA14BC199C00CA2490 /* InfoPlist.strings */,
 				25998ECF14BC199C00CA2490 /* iActiveRecord-Prefix.pch */,
@@ -577,18 +558,8 @@
 				CAAE32F01525F47A0080447D /* Protocols */,
 				25998EFE14BC2D4600CA2490 /* Extra */,
 				25998EDF14BC19F100CA2490 /* ActiveRecord */,
-				25998EDE14BC19E900CA2490 /* AppDelegate */,
 			);
-			name = Classes;
-			sourceTree = "<group>";
-		};
-		25998EDE14BC19E900CA2490 /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				CAAE33BA1528C4710080447D /* AppDelegate.h */,
-				CAAE33BB1528C4710080447D /* AppDelegate.m */,
-			);
-			name = AppDelegate;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		25998EDF14BC19F100CA2490 /* ActiveRecord */ = {
@@ -604,32 +575,31 @@
 		25998EED14BC1A9A00CA2490 /* Test Entities */ = {
 			isa = PBXGroup;
 			children = (
-				CA0BAED215C9AC13008985E6 /* DynamicRecord.h */,
-				CA0BAED315C9AC13008985E6 /* DynamicRecord.m */,
-				CAB56AEA153E6C7F0062DC9E /* octocat.png */,
-				CAAE33961528C4500080447D /* Animal.h */,
-				CAAE33971528C4500080447D /* Animal.m */,
-				CAAE33981528C4500080447D /* AnimalValidator.h */,
-				CAAE33991528C4500080447D /* AnimalValidator.m */,
-				CAAE339A1528C4500080447D /* Entity.h */,
-				CAAE339B1528C4500080447D /* Entity.m */,
-				CAAE339C1528C4500080447D /* Group.h */,
-				CAAE339D1528C4500080447D /* Group.m */,
-				CAAE339E1528C4500080447D /* Issue.h */,
-				CAAE339F1528C4500080447D /* Issue.m */,
-				CAAE33A01528C4500080447D /* Project.h */,
-				CAAE33A11528C4500080447D /* Project.m */,
-				CAAE33A21528C4500080447D /* ProjectGroupRelationship.h */,
-				CAAE33A31528C4500080447D /* ProjectGroupRelationship.m */,
-				CAAE33A41528C4500080447D /* User.h */,
-				CAAE33A51528C4500080447D /* User.m */,
-				CAAE33A61528C4500080447D /* UserProjectRelationship.h */,
-				CAAE33A71528C4500080447D /* UserProjectRelationship.m */,
-				CAD610A01668001200FBA75A /* PrimitiveModel.h */,
-				CAD610A11668001200FBA75A /* PrimitiveModel.m */,
+				CAE92250171495290082A97C /* Animal.h */,
+				CAE92251171495290082A97C /* Animal.m */,
+				CAE92252171495290082A97C /* AnimalValidator.h */,
+				CAE92253171495290082A97C /* AnimalValidator.m */,
+				CAE92258171495290082A97C /* DynamicRecord.h */,
+				CAE92259171495290082A97C /* DynamicRecord.m */,
+				CAE9225A171495290082A97C /* Entity.h */,
+				CAE9225B171495290082A97C /* Entity.m */,
+				CAE9225C171495290082A97C /* Group.h */,
+				CAE9225D171495290082A97C /* Group.m */,
+				CAE9225E171495290082A97C /* Issue.h */,
+				CAE9225F171495290082A97C /* Issue.m */,
+				CAE92261171495290082A97C /* PrimitiveModel.h */,
+				CAE92262171495290082A97C /* PrimitiveModel.m */,
+				CAE92263171495290082A97C /* Project.h */,
+				CAE92264171495290082A97C /* Project.m */,
+				CAE92265171495290082A97C /* ProjectGroupRelationship.h */,
+				CAE92266171495290082A97C /* ProjectGroupRelationship.m */,
+				CAE92267171495290082A97C /* User.h */,
+				CAE92268171495290082A97C /* User.m */,
+				CAE92269171495290082A97C /* UserProjectRelationship.h */,
+				CAE9226A171495290082A97C /* UserProjectRelationship.m */,
 			);
 			name = "Test Entities";
-			path = ../iActiveRecord;
+			path = TestSources;
 			sourceTree = "<group>";
 		};
 		25998EFE14BC2D4600CA2490 /* Extra */ = {
@@ -690,8 +660,6 @@
 		CA1AF74C155FE96C00D0B17E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CAAE33911528C41B0080447D /* ARFactory.h */,
-				CAAE33921528C41B0080447D /* ARFactory.m */,
 				CAF24809151F298B00120198 /* ARError.h */,
 				CAF2480A151F298B00120198 /* ARError.m */,
 				CAAE33451528819C0080447D /* ARException.h */,
@@ -880,6 +848,15 @@
 			name = Enums;
 			sourceTree = "<group>";
 		};
+		CAE922791714954F0082A97C /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9227A171495880082A97C /* ARFactory.h */,
+				CAE9227B171495880082A97C /* ARFactory.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		CAF2480F151F375000120198 /* NSData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1039,7 +1016,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
-				CAB56AEC153E6C7F0062DC9E /* octocat.png in Resources */,
 				CA9C334A1667F53900071200 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,7 +1027,6 @@
 				25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */,
 				CA62C392151E710800E54276 /* README.md in Resources */,
 				CA8CB48D152F740F00510A14 /* LICENSE in Resources */,
-				CAB56AEB153E6C7F0062DC9E /* octocat.png in Resources */,
 				CAD9B51215A20176004251C3 /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1110,17 +1085,6 @@
 				CAAE32FE1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3304152715270080447D /* ARValidatorPresence.m in Sources */,
 				CAAE33491528819D0080447D /* ARException.m in Sources */,
-				CAAE33941528C41B0080447D /* ARFactory.m in Sources */,
-				CAAE33A91528C4500080447D /* Animal.m in Sources */,
-				CAAE33AB1528C4500080447D /* AnimalValidator.m in Sources */,
-				CAAE33AD1528C4500080447D /* Entity.m in Sources */,
-				CAAE33AF1528C4500080447D /* Group.m in Sources */,
-				CAAE33B11528C4500080447D /* Issue.m in Sources */,
-				CAAE33B31528C4500080447D /* Project.m in Sources */,
-				CAAE33B51528C4500080447D /* ProjectGroupRelationship.m in Sources */,
-				CAAE33B71528C4500080447D /* User.m in Sources */,
-				CAAE33B91528C4500080447D /* UserProjectRelationship.m in Sources */,
-				CAAE33BD1528C4710080447D /* AppDelegate.m in Sources */,
 				CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */,
 				CA523D461535F56100565E02 /* NSData+isPresented.m in Sources */,
 				CA523D4C1535F5AA00565E02 /* NSDecimalNumber+isPresented.m in Sources */,
@@ -1154,8 +1118,18 @@
 				CA0BAECD15C9A9D1008985E6 /* SaveUpdateSpec.mm in Sources */,
 				CA0BAECF15C9AA59008985E6 /* SchemaManagerSpec.mm in Sources */,
 				CA0BAED115C9AACC008985E6 /* IndicesSpec.mm in Sources */,
-				CA0BAED415C9AC13008985E6 /* DynamicRecord.m in Sources */,
-				CAD610A21668001200FBA75A /* PrimitiveModel.m in Sources */,
+				CAE9226B171495290082A97C /* Animal.m in Sources */,
+				CAE9226C171495290082A97C /* AnimalValidator.m in Sources */,
+				CAE9226F171495290082A97C /* DynamicRecord.m in Sources */,
+				CAE92270171495290082A97C /* Entity.m in Sources */,
+				CAE92271171495290082A97C /* Group.m in Sources */,
+				CAE92272171495290082A97C /* Issue.m in Sources */,
+				CAE92274171495290082A97C /* PrimitiveModel.m in Sources */,
+				CAE92275171495290082A97C /* Project.m in Sources */,
+				CAE92276171495290082A97C /* ProjectGroupRelationship.m in Sources */,
+				CAE92277171495290082A97C /* User.m in Sources */,
+				CAE92278171495290082A97C /* UserProjectRelationship.m in Sources */,
+				CAE9227C171495880082A97C /* ARFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1183,18 +1157,6 @@
 				CAAE32FD1527079F0080447D /* ARValidation.m in Sources */,
 				CAAE3303152715270080447D /* ARValidatorPresence.m in Sources */,
 				CAAE33481528819D0080447D /* ARException.m in Sources */,
-				CAAE33931528C41B0080447D /* ARFactory.m in Sources */,
-				CAAE33A81528C4500080447D /* Animal.m in Sources */,
-				CAAE33AA1528C4500080447D /* AnimalValidator.m in Sources */,
-				CAAE33AC1528C4500080447D /* Entity.m in Sources */,
-				CAAE33AE1528C4500080447D /* Group.m in Sources */,
-				CAAE33B01528C4500080447D /* Issue.m in Sources */,
-				CAAE33B21528C4500080447D /* Project.m in Sources */,
-				CAAE33B41528C4500080447D /* ProjectGroupRelationship.m in Sources */,
-				CAAE33B61528C4500080447D /* User.m in Sources */,
-				CAAE33B81528C4500080447D /* UserProjectRelationship.m in Sources */,
-				CAAE33BC1528C4710080447D /* AppDelegate.m in Sources */,
-				CAAE33BF1528C47E0080447D /* main.m in Sources */,
 				CA8D9EB0152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */,
 				CA523D401535F50500565E02 /* NSDate+isPresented.m in Sources */,
 				CA523D451535F56100565E02 /* NSData+isPresented.m in Sources */,

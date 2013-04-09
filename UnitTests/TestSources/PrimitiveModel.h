@@ -6,7 +6,7 @@
 //
 //
 
-#import <ActiveRecord/ActiveRecord.h>
+#import "ActiveRecord.h"
 
 @interface PrimitiveModel : ActiveRecord
 
