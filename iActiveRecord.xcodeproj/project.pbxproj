@@ -213,6 +213,7 @@
 		CAE92277171495290082A97C /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE92268171495290082A97C /* User.m */; };
 		CAE92278171495290082A97C /* UserProjectRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9226A171495290082A97C /* UserProjectRelationship.m */; };
 		CAE9227C171495880082A97C /* ARFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9227B171495880082A97C /* ARFactory.m */; };
+		CAE9227F17149A080082A97C /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE9227E17149A080082A97C /* octocat.png */; };
 		CAF2480B151F298B00120198 /* ARError.h in Headers */ = {isa = PBXBuildFile; fileRef = CAF24809151F298B00120198 /* ARError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAF2480C151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
 		CAF2480D151F298B00120198 /* ARError.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF2480A151F298B00120198 /* ARError.m */; };
@@ -371,6 +372,7 @@
 		CAE9226A171495290082A97C /* UserProjectRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProjectRelationship.m; sourceTree = "<group>"; };
 		CAE9227A171495880082A97C /* ARFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARFactory.h; sourceTree = "<group>"; };
 		CAE9227B171495880082A97C /* ARFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARFactory.m; sourceTree = "<group>"; };
+		CAE9227E17149A080082A97C /* octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat.png; sourceTree = "<group>"; };
 		CAF24809151F298B00120198 /* ARError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARError.h; sourceTree = "<group>"; };
 		CAF2480A151F298B00120198 /* ARError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARError.m; sourceTree = "<group>"; };
 		CAF24816151F383000120198 /* NSData+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 		25922B0014EC286000CBB58A /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				CAE9227D171499F40082A97C /* Fixtures */,
 				CAE922791714954F0082A97C /* Support */,
 				25998EED14BC1A9A00CA2490 /* Test Entities */,
 				25922B1314EC28D000CBB58A /* Specs */,
@@ -842,6 +845,14 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		CAE9227D171499F40082A97C /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				CAE9227E17149A080082A97C /* octocat.png */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
 		CAF2480F151F375000120198 /* NSData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1002,6 +1013,7 @@
 			files = (
 				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
 				CA9C334A1667F53900071200 /* Default-568h@2x.png in Resources */,
+				CAE9227F17149A080082A97C /* octocat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
