@@ -39,7 +39,6 @@
 		25998EC214BC199C00CA2490 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
 		25998EC414BC199C00CA2490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC314BC199C00CA2490 /* Foundation.framework */; };
 		25998EC614BC199C00CA2490 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC514BC199C00CA2490 /* CoreGraphics.framework */; };
-		25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25998ECA14BC199C00CA2490 /* InfoPlist.strings */; };
 		25998EE714BC1A1D00CA2490 /* ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE114BC1A1D00CA2490 /* ActiveRecord.m */; };
 		25998EE814BC1A1D00CA2490 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
 		25998EE914BC1A1D00CA2490 /* NSString+lowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */; };
@@ -245,9 +244,6 @@
 		25998EC114BC199C00CA2490 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		25998EC314BC199C00CA2490 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		25998EC514BC199C00CA2490 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		25998EC914BC199C00CA2490 /* iActiveRecord-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iActiveRecord-Info.plist"; sourceTree = "<group>"; };
-		25998ECB14BC199C00CA2490 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		25998ECF14BC199C00CA2490 /* iActiveRecord-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iActiveRecord-Prefix.pch"; sourceTree = "<group>"; };
 		25998EE014BC1A1D00CA2490 /* ActiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveRecord.h; sourceTree = "<group>"; };
 		25998EE114BC1A1D00CA2490 /* ActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveRecord.m; sourceTree = "<group>"; };
 		25998EE214BC1A1D00CA2490 /* ARDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDatabaseManager.h; sourceTree = "<group>"; };
@@ -525,19 +521,8 @@
 			isa = PBXGroup;
 			children = (
 				25998EDC14BC19E200CA2490 /* Classes */,
-				25998EC814BC199C00CA2490 /* Supporting Files */,
 			);
 			path = iActiveRecord;
-			sourceTree = "<group>";
-		};
-		25998EC814BC199C00CA2490 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				25998EC914BC199C00CA2490 /* iActiveRecord-Info.plist */,
-				25998ECA14BC199C00CA2490 /* InfoPlist.strings */,
-				25998ECF14BC199C00CA2490 /* iActiveRecord-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		25998EDC14BC19E200CA2490 /* Classes */ = {
@@ -1024,7 +1009,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25998ECC14BC199C00CA2490 /* InfoPlist.strings in Resources */,
 				CA62C392151E710800E54276 /* README.md in Resources */,
 				CA8CB48D152F740F00510A14 /* LICENSE in Resources */,
 				CAD9B51215A20176004251C3 /* CHANGELOG.md in Resources */,
@@ -1228,14 +1212,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				25922B0414EC286000CBB58A /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		25998ECA14BC199C00CA2490 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				25998ECB14BC199C00CA2490 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
