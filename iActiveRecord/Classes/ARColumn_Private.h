@@ -3,7 +3,7 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 29.04.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
 #import <objc/runtime.h>
@@ -16,8 +16,8 @@
 {
     @public
     NSString *_columnName;
-    Class _columnClass;
-    Class _recordClass;
+    __strong Class _columnClass;
+    __strong Class _recordClass;
     NSString *_setter;
     NSString *_getter;
     objc_AssociationPolicy _associationPolicy;
@@ -26,8 +26,8 @@
 }
 
 @property (nonatomic, copy, readwrite) NSString *columnName;
-@property (nonatomic, copy, readwrite) Class columnClass;
-@property (nonatomic, copy, readwrite) Class recordClass;
+@property (nonatomic, strong, readwrite) Class columnClass;
+@property (nonatomic, strong, readwrite) Class recordClass;
 @property (nonatomic, copy, readwrite) NSString *setter;
 @property (nonatomic, copy, readwrite) NSString *getter;
 @property (nonatomic, readwrite) objc_AssociationPolicy associationPolicy;

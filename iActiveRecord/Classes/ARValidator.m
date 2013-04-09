@@ -3,7 +3,7 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 30.03.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
 #import "ARValidator.h"
@@ -37,18 +37,13 @@
     return self;
 }
 
-- (void)dealloc {
-    [validations release];
-    [super dealloc];
-}
-
 + (id)sharedInstance {
-    @synchronized(self){
-        if(_instance == nil){
-            _instance = [[ARValidator alloc] init];
-        }
-        return _instance;
-    }
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [self new];
+    });
+    return sharedInstance;
 }
 
 - (void)registerValidator:(Class)aValidator 
@@ -59,7 +54,6 @@
                                                               field:aField
                                                           validator:aValidator];
     [validations addObject:validation];
-    [validation release];
 }
 
 - (BOOL)isValidOnSave:(ActiveRecord *)aRecord {
@@ -82,10 +76,8 @@
                                                           error:errMsg];
                 [aRecord performSelector:@selector(addError:) 
                               withObject:error];
-                [error release];
                 valid  = NO;
             }
-            [validator release];
         }
     }
     return valid;
@@ -112,10 +104,8 @@
                                                               error:errMsg];
                     [aRecord performSelector:@selector(addError:) 
                                   withObject:error];
-                    [error release];
                     valid  = NO;
                 }
-                [validator release];
             }
         }
     }
@@ -131,8 +121,6 @@
 + (BOOL)isValidOnUpdate:(id)aRecord {
     return [[self sharedInstance] isValidOnUpdate:aRecord];
 }
-
-static ARValidator *_instance = nil;
 
 + (void)registerValidator:(Class)aValidator 
                 forRecord:(NSString *)aRecord 

@@ -3,7 +3,7 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 31.03.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
 #import "ARValidation.h"
@@ -25,13 +25,6 @@
         self.validator = aValidator;
     }
     return self;
-}
-
-- (void)dealloc {
-    self.record = nil;
-    self.validator = nil;
-    self.field = nil;
-    [super dealloc];
 }
 
 - (BOOL)isEqual:(id)object {

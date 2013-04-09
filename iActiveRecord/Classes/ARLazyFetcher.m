@@ -3,7 +3,7 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 21.03.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
 #import "ARLazyFetcher.h"
@@ -45,19 +45,6 @@
         sqlRequest = [anInitialSql copy];
     }
     return self;
-}
-
-- (void)dealloc {
-    [recordField release];
-    [joinField release];
-    [onlyFields release];
-    [exceptFields release];
-    [whereStatement release];
-    [orderByConditions release];
-    [sqlRequest release];
-    [limit release];
-    [offset release];
-    [super dealloc];
 }
 
 #pragma mark - Building SQL request
@@ -211,14 +198,12 @@
 #pragma mark - Helpers
 
 - (ARLazyFetcher *)offset:(NSInteger)anOffset {
-    [offset release];
-    offset = [[NSNumber alloc] initWithInteger:anOffset];
+    offset =  @(anOffset);
     return self;
 }
 
 - (ARLazyFetcher *)limit:(NSInteger)aLimit {
-    [limit release];
-    limit = [[NSNumber alloc] initWithInteger:aLimit];
+    limit = @(aLimit);
     return self;
 }
 
@@ -300,9 +285,7 @@
 {
     joinClass = aJoinRecord;
     joinType = aJoinType;
-    [recordField release];
     recordField = [aFirstField copy];
-    [joinField release];
     joinField = [aSecondField copy];
     useJoin = YES;
     return self;
@@ -369,16 +352,16 @@
         [sqlArguments addObject:argument]; 
     }
     va_end(args);
-
-    char *argList = (char *)malloc(sizeof(NSString *) * [sqlArguments count]);
-    [sqlArguments getObjects:(id *)argList];
-    NSString* result = [[[NSString alloc] initWithFormat:aCondition
-                                               arguments:argList] autorelease];
-    free(argList);
     
-    if(self.whereStatement == nil){
+    NSRange range = NSMakeRange(0, [sqlArguments count]);
+    NSMutableData* data = [NSMutableData dataWithLength: sizeof(id) * [sqlArguments count]];
+    [sqlArguments getObjects: (__unsafe_unretained id *)data.mutableBytes range:range];
+    NSString* result = [[NSString alloc] initWithFormat:aCondition
+                                               arguments:data.mutableBytes];
+    
+    if (self.whereStatement == nil) {
         self.whereStatement = [NSMutableString stringWithString:result];
-    }else {
+    } else {
         [self.whereStatement appendFormat:@"AND %@", result];
     }
     return self;

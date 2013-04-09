@@ -3,7 +3,7 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 10.01.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
 #import "ActiveRecord.h"
@@ -100,8 +100,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
                                                                       dependent:dependency];
     [relationshipsDictionary addValue:relation
                          toArrayNamed:[self recordName]];
-    [relation release];
-} 
+}
 
 + (void)registerHasMany:(NSString *)aSelectorName {
     if(hasManyRelations == nil){
@@ -116,7 +115,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
                                                                       dependent:dependency];
     [relationshipsDictionary addValue:relation
                          toArrayNamed:[self recordName]];
-    [relation release];
 }
 
 + (void)registerHasManyThrough:(NSString *)aSelectorName {
@@ -136,7 +134,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
                                                                                 dependent:dependency];
     [relationshipsDictionary addValue:relation
                          toArrayNamed:[self recordName]];
-    [relation release];
 }
 
 #pragma mark - private before filter
@@ -186,9 +183,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     self.id = nil;
     self.updatedAt = nil;
     self.createdAt = nil;
-    [_changedColumns release];
-    [errors release];
-    [super dealloc];
 }
 
 - (void)markAsNew {
@@ -202,7 +196,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 - (void)resetErrors {
-    [errors release];
     errors = nil;
 }
 
@@ -240,13 +233,13 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark - Fetchers
 
 + (NSArray *)allRecords {
-    ARLazyFetcher *fetcher = [[[ARLazyFetcher alloc] initWithRecord:[self class]] autorelease];
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:[self class]];
     return [fetcher fetchRecords];
 }
 
 + (ARLazyFetcher *)lazyFetcher {
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:[self class]];
-    return [fetcher autorelease];
+    return fetcher;
 }
 
 #pragma mark - Validations
@@ -337,7 +330,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if(rec_id == nil){
         return nil;
     }
-    ARLazyFetcher *fetcher = [[[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)] autorelease];
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     [fetcher where:@"id = %@", rec_id, nil];
     return [[fetcher fetchRecords] first];
 }
@@ -374,7 +367,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     NSString *selfId = [NSString stringWithFormat:@"%@Id", [[self class] description]];
     [fetcher where:@"%@ = %@", selfId, self.id, nil];
-    return [fetcher autorelease];
+    return fetcher;
 }
 
 #pragma mark HasManyThrough
@@ -385,7 +378,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     [fetcher join:NSClassFromString(aRelationsipClassName)];
     [fetcher where:@"%@.%@ = %@", aRelationsipClassName, relId, self.id, nil];
-    return [fetcher autorelease];
+    return fetcher;
 }
 
 - (void)addRecord:(ActiveRecord *)aRecord 
@@ -414,7 +407,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [relationshipRecord performSelector:currentIdSelector withObject:self.id];
     [relationshipRecord performSelector:relativeIdSelector withObject:aRecord.id];
     [relationshipRecord save];
-    [relationshipRecord release];
 }
 
 - (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName

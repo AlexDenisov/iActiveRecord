@@ -3,7 +3,7 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 01.05.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
 #import "ARSchemaManager.h"
@@ -30,15 +30,9 @@ static ARSchemaManager *_instance = nil;
 
 - (id)init {
     self = [super init];
-    self.schemes = [[NSMutableDictionary new] autorelease];
-    self.indices = [[NSMutableDictionary new] autorelease];
+    self.schemes = [NSMutableDictionary new];
+    self.indices = [NSMutableDictionary new];
     return self;
-}
-
-- (void)dealloc {
-    self.schemes = nil;
-    self.indices = nil;
-    [super dealloc];
 }
 
 - (void)registerSchemeForRecord:(Class)aRecordClass {
@@ -50,13 +44,11 @@ static ARSchemaManager *_instance = nil;
         for (i = 0; i < outCount; i++) {
             ARColumn *column = [[ARColumn alloc] initWithProperty:properties[i] ofClass:aRecordClass];
             if (!column.isDynamic) {
-                [column release];
                 continue;
             }
             [self.schemes addValue:column
                       toArrayNamed:[aRecordClass 
                                     performSelector:@selector(recordName)]];
-            [column release];
         }
         free(properties);
         CurrentClass = class_getSuperclass(CurrentClass);

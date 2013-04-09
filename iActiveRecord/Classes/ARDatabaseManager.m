@@ -21,7 +21,6 @@
 
 @implementation ARDatabaseManager
 
-static ARDatabaseManager *instance = nil;
 static BOOL useCacheDirectory = YES;
 static NSString *databaseName = DEFAULT_DBNAME;
 static BOOL migrationsEnabled = YES;
@@ -60,9 +59,6 @@ static NSArray *records = nil;
 
 - (void)dealloc{
     [self closeConnection];
-    [dbName release];
-    [dbPath release];
-    [super dealloc];
 }
 
 - (void)createDatabase {
@@ -277,14 +273,12 @@ static NSArray *records = nil;
                         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
                         [formatter setNumberStyle:NSNumberFormatterNoStyle];
                         aValue = [formatter numberFromString:sqlData];
-                        [formatter release];
                     }
                     [record setValue:aValue forColumn:column];
                 }
             }
             [record resetChanges];
             [resultArray addObject:record];
-            [record release];
         }
         sqlite3_free_table(results);
     }else
@@ -336,7 +330,6 @@ static NSArray *records = nil;
                         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
                         [formatter setNumberStyle:NSNumberFormatterNoStyle];
                         aValue = [formatter numberFromString:sqlData];
-                        [formatter release];
                     }
                 } else {
                     aValue = @"";
@@ -344,7 +337,7 @@ static NSArray *records = nil;
 
                 id currentRecord = [dictionary valueForKey:recordName];
                 if(currentRecord == nil){
-                    currentRecord = [[Record new] autorelease];
+                    currentRecord = [Record new];
                     [dictionary setValue:currentRecord
                                   forKey:recordName];
                 }
@@ -352,7 +345,6 @@ static NSArray *records = nil;
                               forColumn:column];
             }
             [resultArray addObject:dictionary];
-            [dictionary release];
         }
         sqlite3_free_table(results);
     }else
@@ -464,7 +456,7 @@ static NSArray *records = nil;
 
 - (NSArray *)records {
     if(records == nil){
-        records = [class_getSubclasses([ActiveRecord class]) retain];
+        records = class_getSubclasses([ActiveRecord class]);
     }
     return records;
 }

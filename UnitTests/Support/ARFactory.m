@@ -3,7 +3,7 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 21.03.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
 #import "ARFactory.h"
@@ -29,7 +29,7 @@
 
 + (ActiveRecord *)buildRecordWithName:(NSString *)aRecordName withSeed:(NSInteger)aSeed {
     Class RecordClass = NSClassFromString(aRecordName);
-    ActiveRecord *record = [[RecordClass newRecord] autorelease];
+    ActiveRecord *record = [RecordClass newRecord];
     record = [self buildPropertiesOfRecord:record
                                   withSeed:aSeed];
     return record;

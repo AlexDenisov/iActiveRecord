@@ -37,18 +37,18 @@
 		CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA04E8C5166A620500957F54 /* ARDynamicAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04E8C2166A574100957F54 /* ARDynamicAccessor.m */; };
-		CA0BAEBB15C9A522008985E6 /* FactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBA15C9A522008985E6 /* FactorySpec.mm */; };
-		CA0BAEBD15C9A5D2008985E6 /* DependencySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBC15C9A5D2008985E6 /* DependencySpec.mm */; };
-		CA0BAEBF15C9A68E008985E6 /* MigrationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBE15C9A68E008985E6 /* MigrationSpec.mm */; };
-		CA0BAEC115C9A73A008985E6 /* TransactionSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC015C9A73A008985E6 /* TransactionSpec.mm */; };
-		CA0BAEC315C9A7BD008985E6 /* UnicodeSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC215C9A7BD008985E6 /* UnicodeSpec.mm */; };
-		CA0BAEC515C9A81F008985E6 /* JoinSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC415C9A81F008985E6 /* JoinSpec.mm */; };
-		CA0BAEC715C9A87D008985E6 /* NSDataSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC615C9A87D008985E6 /* NSDataSpec.mm */; };
-		CA0BAEC915C9A8EC008985E6 /* ColumnSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC815C9A8EC008985E6 /* ColumnSpec.mm */; };
-		CA0BAECB15C9A952008985E6 /* DynamicAccessorSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECA15C9A952008985E6 /* DynamicAccessorSpec.mm */; };
-		CA0BAECD15C9A9D1008985E6 /* SaveUpdateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECC15C9A9D1008985E6 /* SaveUpdateSpec.mm */; };
-		CA0BAECF15C9AA59008985E6 /* SchemaManagerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECE15C9AA58008985E6 /* SchemaManagerSpec.mm */; };
-		CA0BAED115C9AACC008985E6 /* IndicesSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAED015C9AACC008985E6 /* IndicesSpec.mm */; };
+		CA0BAEBB15C9A522008985E6 /* FactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBA15C9A522008985E6 /* FactorySpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAEBD15C9A5D2008985E6 /* DependencySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBC15C9A5D2008985E6 /* DependencySpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAEBF15C9A68E008985E6 /* MigrationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBE15C9A68E008985E6 /* MigrationSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAEC115C9A73A008985E6 /* TransactionSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC015C9A73A008985E6 /* TransactionSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAEC315C9A7BD008985E6 /* UnicodeSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC215C9A7BD008985E6 /* UnicodeSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAEC515C9A81F008985E6 /* JoinSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC415C9A81F008985E6 /* JoinSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAEC715C9A87D008985E6 /* NSDataSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC615C9A87D008985E6 /* NSDataSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAEC915C9A8EC008985E6 /* ColumnSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEC815C9A8EC008985E6 /* ColumnSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAECB15C9A952008985E6 /* DynamicAccessorSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECA15C9A952008985E6 /* DynamicAccessorSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAECD15C9A9D1008985E6 /* SaveUpdateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECC15C9A9D1008985E6 /* SaveUpdateSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAECF15C9AA59008985E6 /* SchemaManagerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAECE15C9AA58008985E6 /* SchemaManagerSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA0BAED115C9AACC008985E6 /* IndicesSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAED015C9AACC008985E6 /* IndicesSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB90971520DA2000E8D082 /* AREnum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA1AF753155FEA3A00D0B17E /* ARColumn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1AF750155FEA3A00D0B17E /* ARColumn_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA1AF754155FEA3A00D0B17E /* ARColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1AF751155FEA3A00D0B17E /* ARColumn.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -65,13 +65,13 @@
 		CA2E5D4A1581EE130053D511 /* NSDate+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D3F1535F50500565E02 /* NSDate+isPresented.m */; };
 		CA2E5D4B1581EE130053D511 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
 		CA3B7B9315C90B6C00757498 /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B7B9215C90B6C00757498 /* Cedar-iOS.framework */; };
-		CA3B7B9515C90BA300757498 /* ValidationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9415C90BA300757498 /* ValidationSpec.mm */; };
+		CA3B7B9515C90BA300757498 /* ValidationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9415C90BA300757498 /* ValidationSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA3B7B9615C9176F00757498 /* NSDate+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D3F1535F50500565E02 /* NSDate+isPresented.m */; };
-		CA3B7B9815C9187D00757498 /* DatabaseManagerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9715C9187D00757498 /* DatabaseManagerSpec.mm */; };
-		CA3B7B9A15C918F500757498 /* RelationshipSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9915C918F500757498 /* RelationshipSpec.mm */; };
-		CA3B7B9C15C91B0500757498 /* DropRecordSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9B15C91B0500757498 /* DropRecordSpec.mm */; };
-		CA3B7B9E15C91B7D00757498 /* CountSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9D15C91B7D00757498 /* CountSpec.mm */; };
-		CA3B7BA015C91C3600757498 /* LazyFetcherSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9F15C91C3500757498 /* LazyFetcherSpec.mm */; };
+		CA3B7B9815C9187D00757498 /* DatabaseManagerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9715C9187D00757498 /* DatabaseManagerSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA3B7B9A15C918F500757498 /* RelationshipSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9915C918F500757498 /* RelationshipSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA3B7B9C15C91B0500757498 /* DropRecordSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9B15C91B0500757498 /* DropRecordSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA3B7B9E15C91B7D00757498 /* CountSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9D15C91B7D00757498 /* CountSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CA3B7BA015C91C3600757498 /* LazyFetcherSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9F15C91C3500757498 /* LazyFetcherSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D421535F56100565E02 /* NSData+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA523D461535F56100565E02 /* NSData+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D431535F56100565E02 /* NSData+isPresented.m */; };
@@ -136,7 +136,7 @@
 		CAAE33491528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE334A1528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
-		CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
+		CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
 		CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -1113,6 +1113,7 @@
 		25922B0D14EC286000CBB58A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1140,6 +1141,7 @@
 		25922B0E14EC286000CBB58A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

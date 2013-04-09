@@ -3,7 +3,7 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 29.04.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserved.
+//  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
 #import <objc/runtime.h>
@@ -95,11 +95,6 @@
 
 - (void)dealloc {
     free(_columnKey);
-    self.columnClass = nil;
-    self.columnName = nil;
-    self.setter = nil;
-    self.getter = nil;
-    [super dealloc];
 }
 
 #pragma mark - Property Meta Parser

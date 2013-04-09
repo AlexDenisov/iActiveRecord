@@ -3,7 +3,7 @@
 //  iActiveRecord
 //
 //  Created by Alex Denisov on 01.08.12.
-//  Copyright (c) 2012 CoreInvader. All rights reserver.
+//  Copyright (c) 2012 okolodev.org. All rights reserver.
 
 #import "ARDatabaseManager.h"
 #import "Cedar-iOS/SpecHelper.h"
