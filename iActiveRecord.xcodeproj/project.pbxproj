@@ -113,6 +113,7 @@
 		CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */ = {isa = PBXBuildFile; fileRef = CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB2152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
+		CA91ECCC1715AEC10085A27B /* GCDSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA91ECCB1715AEC10085A27B /* GCDSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA9C334A1667F53900071200 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA9C33491667F53900071200 /* Default-568h@2x.png */; };
 		CAA26C90158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
 		CAA26CDA158DE30600DE9490 /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
@@ -262,6 +263,7 @@
 		CA8CB48C152F740F00510A14 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+stringWithEscapedQuote.h"; sourceTree = "<group>"; };
 		CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+stringWithEscapedQuote.m"; sourceTree = "<group>"; };
+		CA91ECCB1715AEC10085A27B /* GCDSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDSpec.mm; sourceTree = "<group>"; };
 		CA9C33491667F53900071200 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CAA26C8D158BA35100DE9490 /* NSString+uppercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+uppercaseFirst.h"; sourceTree = "<group>"; };
 		CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+uppercaseFirst.m"; sourceTree = "<group>"; };
@@ -389,7 +391,7 @@
 				25922B0614EC286000CBB58A /* main.m */,
 				25922B0814EC286000CBB58A /* UnitTests-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		25922B1314EC28D000CBB58A /* Specs */ = {
@@ -413,8 +415,9 @@
 				CA0BAECC15C9A9D1008985E6 /* SaveUpdateSpec.mm */,
 				CA0BAECE15C9AA58008985E6 /* SchemaManagerSpec.mm */,
 				CA0BAED015C9AACC008985E6 /* IndicesSpec.mm */,
+				CA91ECCB1715AEC10085A27B /* GCDSpec.mm */,
 			);
-			name = Specs;
+			path = Specs;
 			sourceTree = "<group>";
 		};
 		2596BC5314C7207100C6B5E2 /* NSDecimalNumber */ = {
@@ -1041,6 +1044,7 @@
 				CAE92277171495290082A97C /* User.m in Sources */,
 				CAE92278171495290082A97C /* UserProjectRelationship.m in Sources */,
 				CAE9227C171495880082A97C /* ARFactory.m in Sources */,
+				CA91ECCC1715AEC10085A27B /* GCDSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,13 +1125,13 @@
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "UnitTests/Supporting Files/UnitTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"UNIT_TEST=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/UnitTests/Supporting Files/UnitTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-lstdc++",
 					"-ObjC",
@@ -1149,12 +1153,12 @@
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "UnitTests/Supporting Files/UnitTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					SQLITE_CORE,
 					SQLITE_ENABLE_UNICODE,
 				);
-				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/UnitTests/Supporting Files/UnitTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-lstdc++",
 					"-ObjC",
