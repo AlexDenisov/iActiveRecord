@@ -6,8 +6,7 @@
 //  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
-
-#import "Cedar-iOS/SpecHelper.h"
+#import <CedarAsync/CedarAsync.h>
 #import "User.h"
 
 using namespace Cedar::Matchers;
@@ -17,16 +16,19 @@ SPEC_BEGIN(GCDSpec)
 
 describe(@"GCD", ^{
     
-    describe(@"should save records in background", ^{
+    it(@"should save records in background", ^{
+        __block NSInteger count = 0;
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             User *user = [User newRecord];
             user.name = @"alex";
             [user save];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [User count] should be_greater_than(0);
+                count = [User count];
             });
         });
-        [NSThread sleepForTimeInterval:0.1];
+        
+        in_time(count) should be_greater_than(0);
     });
 });
 

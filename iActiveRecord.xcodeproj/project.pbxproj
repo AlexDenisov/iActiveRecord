@@ -1146,7 +1146,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C67E34BBAFB4C9C82753644 /* Pods-UnitTests.xcconfig */;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1179,7 +1179,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C67E34BBAFB4C9C82753644 /* Pods-UnitTests.xcconfig */;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
