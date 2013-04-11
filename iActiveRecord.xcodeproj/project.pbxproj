@@ -64,7 +64,6 @@
 		CA2E5D491581EE130053D511 /* NSSet+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC02304157B855500208445 /* NSSet+toSql.m */; };
 		CA2E5D4A1581EE130053D511 /* NSDate+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D3F1535F50500565E02 /* NSDate+isPresented.m */; };
 		CA2E5D4B1581EE130053D511 /* NSArray+toSql.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC022EA157B76C300208445 /* NSArray+toSql.m */; };
-		CA3B7B9315C90B6C00757498 /* Cedar-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3B7B9215C90B6C00757498 /* Cedar-iOS.framework */; };
 		CA3B7B9515C90BA300757498 /* ValidationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9415C90BA300757498 /* ValidationSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA3B7B9615C9176F00757498 /* NSDate+isPresented.m in Sources */ = {isa = PBXBuildFile; fileRef = CA523D3F1535F50500565E02 /* NSDate+isPresented.m */; };
 		CA3B7B9815C9187D00757498 /* DatabaseManagerSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9715C9187D00757498 /* DatabaseManagerSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -114,7 +113,6 @@
 		CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB2152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA91ECCC1715AEC10085A27B /* GCDSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA91ECCB1715AEC10085A27B /* GCDSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CA9C334A1667F53900071200 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA9C33491667F53900071200 /* Default-568h@2x.png */; };
 		CAA26C90158BA35100DE9490 /* NSString+uppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */; };
 		CAA26CDA158DE30600DE9490 /* ARSQLBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA26CD8158DE30600DE9490 /* ARSQLBuilder.m */; };
 		CAAE32BA15244C330080447D /* NSDate+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE32B815244C330080447D /* NSDate+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -183,9 +181,12 @@
 		DB78C39D16D7371700FAE89D /* ARIndicesMacroHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CAD9B51415A20375004251C3 /* ARIndicesMacroHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB78C3A616D73D8800FAE89D /* ARDynamicAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = CA04E8C1166A574100957F54 /* ARDynamicAccessor.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DB78C3A716D73D9500FAE89D /* ARDynamicAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04E8C2166A574100957F54 /* ARDynamicAccessor.m */; };
+		FBD3850645A34F7FBB672C9B /* libPods-UnitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A80946EE38A49BE8DC2D83C /* libPods-UnitTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A80946EE38A49BE8DC2D83C /* libPods-UnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C67E34BBAFB4C9C82753644 /* Pods-UnitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnitTests.xcconfig"; path = "Pods/Pods-UnitTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		254F5EBA14C5E71C00AC0D86 /* NSString+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+sqlRepresentation.h"; sourceTree = "<group>"; };
 		254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+sqlRepresentation.m"; sourceTree = "<group>"; };
 		254F5EBE14C5E78100AC0D86 /* NSNumber+sqlRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+sqlRepresentation.h"; sourceTree = "<group>"; };
@@ -233,7 +234,6 @@
 		CA1AF752155FEA3A00D0B17E /* ARColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARColumn.m; sourceTree = "<group>"; };
 		CA1AF759155FEA5600D0B17E /* ARSchemaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSchemaManager.h; sourceTree = "<group>"; };
 		CA1AF75A155FEA5600D0B17E /* ARSchemaManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARSchemaManager.m; sourceTree = "<group>"; };
-		CA3B7B9215C90B6C00757498 /* Cedar-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cedar-iOS.framework"; path = "/opt/cedar/build/Release-iphoneuniversal/Cedar-iOS.framework"; sourceTree = "<absolute>"; };
 		CA3B7B9415C90BA300757498 /* ValidationSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ValidationSpec.mm; sourceTree = "<group>"; };
 		CA3B7B9715C9187D00757498 /* DatabaseManagerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DatabaseManagerSpec.mm; sourceTree = "<group>"; };
 		CA3B7B9915C918F500757498 /* RelationshipSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RelationshipSpec.mm; sourceTree = "<group>"; };
@@ -264,7 +264,6 @@
 		CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+stringWithEscapedQuote.h"; sourceTree = "<group>"; };
 		CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+stringWithEscapedQuote.m"; sourceTree = "<group>"; };
 		CA91ECCB1715AEC10085A27B /* GCDSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GCDSpec.mm; sourceTree = "<group>"; };
-		CA9C33491667F53900071200 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CAA26C8D158BA35100DE9490 /* NSString+uppercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+uppercaseFirst.h"; sourceTree = "<group>"; };
 		CAA26C8E158BA35100DE9490 /* NSString+uppercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+uppercaseFirst.m"; sourceTree = "<group>"; };
 		CAA26CD7158DE30600DE9490 /* ARSQLBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSQLBuilder.h; sourceTree = "<group>"; };
@@ -342,11 +341,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA3B7B9315C90B6C00757498 /* Cedar-iOS.framework in Frameworks */,
 				25922B6114EC2BC600CBB58A /* libsqlite3.0.dylib in Frameworks */,
 				25922AFD14EC286000CBB58A /* UIKit.framework in Frameworks */,
 				25922AFE14EC286000CBB58A /* Foundation.framework in Frameworks */,
 				25922AFF14EC286000CBB58A /* CoreGraphics.framework in Frameworks */,
+				FBD3850645A34F7FBB672C9B /* libPods-UnitTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,13 +433,13 @@
 		25998EB214BC199C00CA2490 = {
 			isa = PBXGroup;
 			children = (
-				CA9C33491667F53900071200 /* Default-568h@2x.png */,
 				CAAF5DCF151BA685004C4329 /* Readme */,
 				25998EC714BC199C00CA2490 /* iActiveRecord */,
 				25922B0014EC286000CBB58A /* UnitTests */,
 				CA62C30E151E0AB800E54276 /* ARBundle */,
 				25998EC014BC199C00CA2490 /* Frameworks */,
 				25998EBE14BC199C00CA2490 /* Products */,
+				0C67E34BBAFB4C9C82753644 /* Pods-UnitTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -456,12 +455,12 @@
 		25998EC014BC199C00CA2490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CA3B7B9215C90B6C00757498 /* Cedar-iOS.framework */,
 				25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */,
 				25998EC114BC199C00CA2490 /* UIKit.framework */,
 				25998EC314BC199C00CA2490 /* Foundation.framework */,
 				25998EC514BC199C00CA2490 /* CoreGraphics.framework */,
 				CA62C2E9151E039900E54276 /* CoreFoundation.framework */,
+				0A80946EE38A49BE8DC2D83C /* libPods-UnitTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -876,9 +875,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 25922B0C14EC286000CBB58A /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
+				5E1E74B70661449D959925C8 /* Check Pods Manifest.lock */,
 				25922AF714EC286000CBB58A /* Sources */,
 				25922AF814EC286000CBB58A /* Frameworks */,
 				25922AF914EC286000CBB58A /* Resources */,
+				6FF13C8FB6E5425C8D4AAFC0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -940,7 +941,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
-				CA9C334A1667F53900071200 /* Default-568h@2x.png in Resources */,
 				CAE9227F17149A080082A97C /* octocat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -956,6 +956,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5E1E74B70661449D959925C8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+		};
+		6FF13C8FB6E5425C8D4AAFC0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-UnitTests-resources.sh\"\n";
+		};
 		CA62C342151E0FB100E54276 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1116,9 +1144,13 @@
 /* Begin XCBuildConfiguration section */
 		25922B0D14EC286000CBB58A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C67E34BBAFB4C9C82753644 /* Pods-UnitTests.xcconfig */;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"/opt/cedar/build/Release-iphoneuniversal\"",
@@ -1132,10 +1164,11 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/UnitTests/Supporting Files/UnitTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
-					"-lstdc++",
-					"-ObjC",
+					"-lc++",
 					"-all_load",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1144,9 +1177,13 @@
 		};
 		25922B0E14EC286000CBB58A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C67E34BBAFB4C9C82753644 /* Pods-UnitTests.xcconfig */;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"/opt/cedar/build/Release-iphoneuniversal\"",
@@ -1159,10 +1196,11 @@
 					SQLITE_ENABLE_UNICODE,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/UnitTests/Supporting Files/UnitTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
-					"-lstdc++",
-					"-ObjC",
+					"-lc++",
 					"-all_load",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1190,7 +1228,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1211,7 +1249,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

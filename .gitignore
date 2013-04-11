@@ -2,9 +2,9 @@
 tags
 a.out
 *.sqlite
-.DS_Store
-iActiveRecord.xcodeproj/project.xcworkspace/xcuserdata/*
-iActiveRecord.xcodeproj/xcuserdata/*
+*.DS_Store
+*xcuserdata*
 DerivedData/*
 build
 Products
+Pods
