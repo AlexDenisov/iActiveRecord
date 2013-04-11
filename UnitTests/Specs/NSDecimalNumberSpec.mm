@@ -4,7 +4,7 @@
 
 using namespace Cedar::Matchers;
 
-SPEC_BEGIN(NSDecimalNumberSpecSpec)
+SPEC_BEGIN(NSDecimalNumberSpec)
 
 beforeEach(^{
     [[ARDatabaseManager sharedInstance] clearDatabase];
@@ -19,8 +19,8 @@ describe(@"NSDecimalNumberSpec", ^{
         NSDecimalNumber *testDecimal = [NSDecimalNumber decimalNumberWithMantissa:1123563 exponent:-3 isNegative:NO];
         record.decimal = testDecimal;
         [record save];
-        ARLazyFetcher *fecther = [DecimalRecord lazyFetcher];
-        [fectcher where:@"id = %@", record.id];
+        ARLazyFetcher *fetcher = [DecimalRecord lazyFetcher];
+        [fetcher where:@"id = %@", record.id, nil];
         record = [[fetcher fetchRecords] objectAtIndex:0];
         record.decimal should equal(testDecimal);
     });
