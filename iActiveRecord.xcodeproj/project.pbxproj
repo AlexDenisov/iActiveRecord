@@ -922,7 +922,9 @@
 		25998EB414BC199C00CA2490 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AR;
 				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = okolodev.org;
 			};
 			buildConfigurationList = 25998EB714BC199C00CA2490 /* Build configuration list for PBXProject "iActiveRecord" */;
 			compatibilityVersion = "Xcode 3.2";

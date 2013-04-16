@@ -13,29 +13,6 @@
 
 @implementation ARSQLBuilder
 
-+ (const char *)sqlOnSaveRecord:(ActiveRecord *)aRecord {
-    NSSet *changedColumns = [aRecord changedColumns];
-    NSInteger columnsCount = changedColumns.count;
-    if(columnsCount == 0){
-        return NULL;
-    }
-    NSMutableArray *columns = [NSMutableArray arrayWithCapacity:columnsCount];
-    NSMutableArray *values = [NSMutableArray arrayWithCapacity:columnsCount];
-    NSEnumerator *columnsIterator = [changedColumns objectEnumerator];
-    ARColumn *column = nil;
-    while(column = [columnsIterator nextObject]){
-        [columns addObject:[column.columnName quotedString]];
-        NSString *value = [[column sqlValueForRecord:aRecord] quotedString];
-        [values addObject:value];
-    }
-    NSString *sqlString = [NSString stringWithFormat:
-                           @"INSERT INTO %@(%@) VALUES(%@)",
-                           [[aRecord recordName] quotedString],
-                           [columns componentsJoinedByString:@","],
-                           [values componentsJoinedByString:@","]];
-    return [sqlString UTF8String];
-}
-
 + (const char *)sqlOnUpdateRecord:(ActiveRecord *)aRecord {
     NSSet *changedColumns = [aRecord changedColumns];
     NSInteger columnsCount = changedColumns.count;

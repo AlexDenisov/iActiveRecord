@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ARColumnType.h"
+
 @interface ARColumn : NSObject
 
 @property (nonatomic, copy, readonly) NSString *columnName;
@@ -16,5 +18,6 @@
 @property (nonatomic, copy, readonly) NSString *getter;
 @property (nonatomic, copy, readonly) NSString *setter;
 @property (nonatomic, readwrite, getter = isDynamic) BOOL dynamic;
+@property (nonatomic, readonly) ARColumnType columnType;
 
 @end
