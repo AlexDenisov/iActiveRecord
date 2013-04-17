@@ -31,4 +31,19 @@ You do not need to create tables manually - just describe your ActiveRecord and 
 
     @end
 
+### Run tests
+
+iActiveRecord uses [Cedar](https://github.com/pivotal/cedar) for UnitTests and [CocoaPods](https://github.com/CocoaPods/CocoaPods) for dependency management.
+Follow this steps to run tests
+
+```bash
+[sudo] gem install cocoapods
+pod setup
+cd project_dir
+pod install
+open iActiveRecord.xcworkspace
+```
+
+Then build & run UnitTests target.
+
 ### Check [Wiki](https://github.com/AlexDenisov/iActiveRecord/wiki) to see details!
