@@ -24,7 +24,7 @@
 }
 
 + (NSString *)sqlType {
-    return @"real";
+    return @"text";
 }
 
 + (id)fromSql:(NSString *)sqlData {
