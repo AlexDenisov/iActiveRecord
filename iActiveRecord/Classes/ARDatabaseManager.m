@@ -107,7 +107,8 @@ static NSArray *records = nil;
             [self createTable:table];
         } else {
             Class Record = NSClassFromString(table);
-            NSArray *existedColumns = [self columnsForTable:table];
+            NSString *tableName = [NSClassFromString(table) recordName];
+            NSArray *existedColumns = [self columnsForTable:tableName];
             
             NSArray *describedProperties = [Record performSelector:@selector(columns)];
             NSMutableArray *describedColumns = [NSMutableArray array];
