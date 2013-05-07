@@ -39,6 +39,7 @@
 		CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA0365C3151FCB5F004167F1 /* NSString+quotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */; };
 		CA04E8C5166A620500957F54 /* ARDynamicAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04E8C2166A574100957F54 /* ARDynamicAccessor.m */; };
+		CA06017C1738EBBD009C0FE6 /* DifferentTableName.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06017B1738EBBD009C0FE6 /* DifferentTableName.m */; };
 		CA0BAEBB15C9A522008985E6 /* FactorySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBA15C9A522008985E6 /* FactorySpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA0BAEBD15C9A5D2008985E6 /* DependencySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBC15C9A5D2008985E6 /* DependencySpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA0BAEBF15C9A68E008985E6 /* MigrationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA0BAEBE15C9A68E008985E6 /* MigrationSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -221,6 +222,8 @@
 		CA0365BF151FCB5F004167F1 /* NSString+quotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+quotedString.m"; sourceTree = "<group>"; };
 		CA04E8C1166A574100957F54 /* ARDynamicAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDynamicAccessor.h; sourceTree = "<group>"; };
 		CA04E8C2166A574100957F54 /* ARDynamicAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDynamicAccessor.m; sourceTree = "<group>"; };
+		CA06017A1738EBBD009C0FE6 /* DifferentTableName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferentTableName.h; sourceTree = "<group>"; };
+		CA06017B1738EBBD009C0FE6 /* DifferentTableName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferentTableName.m; sourceTree = "<group>"; };
 		CA0BAEBA15C9A522008985E6 /* FactorySpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FactorySpec.mm; sourceTree = "<group>"; };
 		CA0BAEBC15C9A5D2008985E6 /* DependencySpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DependencySpec.mm; sourceTree = "<group>"; };
 		CA0BAEBE15C9A68E008985E6 /* MigrationSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MigrationSpec.mm; sourceTree = "<group>"; };
@@ -538,6 +541,8 @@
 				CAE92268171495290082A97C /* User.m */,
 				CAE92269171495290082A97C /* UserProjectRelationship.h */,
 				CAE9226A171495290082A97C /* UserProjectRelationship.m */,
+				CA06017A1738EBBD009C0FE6 /* DifferentTableName.h */,
+				CA06017B1738EBBD009C0FE6 /* DifferentTableName.m */,
 			);
 			name = "Test Entities";
 			path = TestSources;
@@ -1085,6 +1090,7 @@
 				CA91ECCC1715AEC10085A27B /* GCDSpec.mm in Sources */,
 				75F56DBA1717003C00A1DF7B /* DecimalRecord.m in Sources */,
 				75F56DBC171700D300A1DF7B /* NSDecimalNumberSpec.mm in Sources */,
+				CA06017C1738EBBD009C0FE6 /* DifferentTableName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

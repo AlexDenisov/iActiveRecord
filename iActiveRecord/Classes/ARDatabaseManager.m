@@ -102,8 +102,9 @@ static NSArray *records = nil;
     NSArray *existedTables = [self tables];
     NSArray *describedTables = [self describedTables];
     for(NSString *table in describedTables){
-        if(![existedTables containsObject:table]){
-            [self createTable:NSClassFromString(table)];
+        NSString *tableName = [NSClassFromString(table) recordName];
+        if(![existedTables containsObject:tableName]){
+            [self createTable:table];
         }else{
             Class Record = NSClassFromString(table);
             NSArray *existedColumns = [self columnsForTable:table];
@@ -427,22 +428,20 @@ static NSArray *records = nil;
         int nRows;
         int nColumns;
         const char *pszSql = [anSql UTF8String];
-        if(SQLITE_OK == sqlite3_get_table(database,
+        if (SQLITE_OK == sqlite3_get_table(database,
                                           pszSql,
                                           &results,
                                           &nRows,
                                           &nColumns,
-                                          NULL))
-        {
-            if(nRows == 0 || nColumns == 0){
+                                          NULL)) {
+            if (nRows == 0 || nColumns == 0) {
                 resId = -1;
-            }else{
+            } else {
                 resId = [[NSString stringWithUTF8String:results[1]] integerValue];
             }
             
             sqlite3_free_table(results);
-        }else
-        {
+        } else {
             NSLog(@"%@", anSql);
             NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
         }
@@ -470,7 +469,6 @@ static NSArray *records = nil;
         return 0;
     }
     
-    
     changedColumns = [aRecord changedColumns];
     columnsCount = changedColumns.count;
     
@@ -485,7 +483,7 @@ static NSArray *records = nil;
                                                startingAtIndex:0];
         NSMutableArray *columns = [NSMutableArray arrayWithCapacity:columnsCount];
         
-        for (ARColumn *column in changedColumns){
+        for (ARColumn *column in changedColumns) {
             [columns addObject:[NSString stringWithFormat:@"'%@'", column.columnName]];
         }
         
@@ -566,13 +564,8 @@ static NSArray *records = nil;
         }
         
         result = sqlite3_step(stmt);
-//        NSLog(@"Step: %d", result);
-        
         result = sqlite3_finalize(stmt);
-//        NSLog(@"Finalize: %d", result);
-        
         result = sqlite3_last_insert_rowid(database);
-//        NSLog(@"LastInsertRowID: %d", result);
     });
     return result;
 }
@@ -580,19 +573,21 @@ static NSArray *records = nil;
 - (NSInteger)updateRecord:(ActiveRecord *)aRecord {
     aRecord.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
     const char *sqlQuery = [ARSQLBuilder sqlOnUpdateRecord:aRecord];
-    if(sqlQuery){
-        if([self executeSqlQuery:sqlQuery]){
-            return 1;
-        }
+    if (!sqlQuery) {
+        return 0;
+    }
+    if ([self executeSqlQuery:sqlQuery]) {
+        return 1;
     }
     return 0;
 }
 
 - (void)dropRecord:(ActiveRecord *)aRecord {
     const char *sqlQuery = [ARSQLBuilder sqlOnDropRecord:aRecord];
-    if(sqlQuery){
-        [self executeSqlQuery:sqlQuery];
+    if (!sqlQuery) {
+        return;
     }
+    [self executeSqlQuery:sqlQuery];
 }
 
 - (NSInteger)executeFunction:(const char *)anSqlQuery {
@@ -601,9 +596,9 @@ static NSArray *records = nil;
 }
 
 - (void)createIndices {
-    for(Class record in [self records]){
+    for (Class record in [self records]) {
         NSArray *indices = [[ARSchemaManager sharedInstance] indicesForRecord:record];
-        for(NSString *indexColumn in indices){
+        for (NSString *indexColumn in indices) {
             const char *sqlQuery = [ARSQLBuilder sqlOnCreateIndex:indexColumn
                                                         forRecord:record];
             [self executeSqlQuery:sqlQuery];
@@ -612,12 +607,11 @@ static NSArray *records = nil;
 }
 
 - (NSArray *)records {
-    if(records == nil){
+    if (records == nil) {
         records = class_getSubclasses([ActiveRecord class]);
     }
     return records;
 }
-
 
 #pragma mark - GCD support
 

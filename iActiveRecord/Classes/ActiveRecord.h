@@ -54,4 +54,9 @@ typedef void (^ARTransactionBlock)();
 + (void)disableMigrations;
 + (void)transaction:(ARTransactionBlock)aTransactionBlock;
 
+#pragma mark - TableName
+
++ (NSString *)recordName;
+- (NSString *)recordName;
+
 @end

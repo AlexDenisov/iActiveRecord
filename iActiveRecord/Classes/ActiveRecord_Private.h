@@ -33,11 +33,6 @@
 - (void)resetErrors;
 - (void)resetChanges;
 
-#pragma mark - TableName
-
-+ (NSString *)recordName;
-- (NSString *)recordName;
-
 - (NSArray *)columns;
 + (NSArray *)columns;
 

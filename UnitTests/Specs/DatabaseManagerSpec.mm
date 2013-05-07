@@ -9,6 +9,7 @@
 #import "Cedar-iOS/SpecHelper.h"
 #import "User.h"
 #import "ARDatabaseManager.h"
+#import "DifferentTableName.h"
 
 using namespace Cedar::Matchers;
 
@@ -23,6 +24,21 @@ describe(@"ARDatabase", ^{
         [[ARDatabaseManager sharedInstance] clearDatabase];
         NSInteger count = [[User allRecords] count];
         count should equal(0);
+    });
+    
+    it(@"should use recordName instead of class name", ^{
+        ARDatabaseManager *databaseManager = [ARDatabaseManager sharedInstance];
+        databaseManager.tables should contain([DifferentTableName recordName]);
+    });
+    
+    it(@"save records with different table name", ^{
+        NSString *title = @"Does ot works?";
+        DifferentTableName *model = [DifferentTableName newRecord];
+        model.title = title;
+        [model save] should be_truthy;
+        
+        DifferentTableName *loadedModel = [[DifferentTableName allRecords] objectAtIndex:0];
+        loadedModel.title should equal(title);
     });
 });
 
