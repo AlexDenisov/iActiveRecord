@@ -272,9 +272,6 @@ static NSArray *records = nil;
         BOOL hasColumns = NO;
         NSMutableArray *columns = nil;
         
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterNoStyle];
-        
         while (sqlite3_step(statement) == SQLITE_ROW) {
             int columnsCount = sqlite3_column_count(statement);
             if (columns == nil) {
@@ -337,77 +334,109 @@ static NSArray *records = nil;
     __block NSMutableArray *resultArray = nil;
     
     dispatch_sync([self activeRecordQueue], ^{
-        NSString *propertyName;
-        NSString *header;
-        id aValue = @"";
-        char **results;
-        int nRows;
-        int nColumns;
-        const char *pszSql = [aSqlRequest UTF8String];
-        if (SQLITE_OK == sqlite3_get_table(database,
-                                           pszSql,
-                                           &results,
-                                           &nRows,
-                                           &nColumns,
-                                           NULL)) {
-            resultArray = [NSMutableArray arrayWithCapacity:nRows++];
-            Class *recordClasses = (Class *)malloc(sizeof(Class) * nColumns);
-            NSMutableArray *recordNames = [NSMutableArray arrayWithCapacity:nColumns];
-            NSMutableArray *propertyNames = [NSMutableArray arrayWithCapacity:nColumns];
-            NSMutableArray *columns = [NSMutableArray arrayWithCapacity:nColumns];
-            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-            [formatter setNumberStyle:NSNumberFormatterNoStyle];
-            BOOL cachesLoaded = NO;
-            for (int i=0;i<nRows-1;i++) {
-                NSMutableDictionary *dictionary = [NSMutableDictionary new];
-                NSString *recordName = nil;
-                for (int j=0;j<nColumns;j++) {
-                    if (!cachesLoaded) {
-                        header = [NSString stringWithUTF8String:results[j]];
-                        NSArray *splitHeader = [header componentsSeparatedByString:@"#"];
-                        [recordNames addObject:[splitHeader objectAtIndex:0]];
-                        [propertyNames addObject:[splitHeader objectAtIndex:1]];
-                        
-                        recordClasses[j] = NSClassFromString([recordNames lastObject]);
-                        [columns addObject:[recordClasses[j] performSelector:@selector(columnNamed:)
-                                                                  withObject:[propertyNames lastObject]]];
-                    }
-                    
-                    recordName = [recordNames objectAtIndex:j];
-                    propertyName = [propertyNames objectAtIndex:j];
-                    ARColumn *column = [columns objectAtIndex:j];
-                    
-                    int index = (i+1)*nColumns + j;
-                    const char *pszValue = results[index];
-                    if (pszValue) {
-                        NSString *sqlData = [NSString stringWithUTF8String:pszValue];
-                        if (column.columnClass) {
-                            aValue = [column.columnClass performSelector:@selector(fromSql:)
-                                                              withObject:sqlData];
-                        } else {
-                            aValue = [formatter numberFromString:sqlData];
-                        }
-                    }
-                    
-                    id currentRecord = [dictionary valueForKey:recordName];
-                    if (currentRecord == nil) {
-                        Class Record = recordClasses[j];
-                        currentRecord = [Record new];
-                        [dictionary setValue:currentRecord
-                                      forKey:recordName];
-                    }
-                    [currentRecord setValue:aValue
-                                  forColumn:column];
-                }
-                cachesLoaded = YES;
-                [resultArray addObject:dictionary];
-            }
-            sqlite3_free_table(results);
-            free(recordClasses);
-        } else {
-            NSLog(@"%@", aSqlRequest);
-            NSLog(@"Couldn't retrieve data from database: %s", sqlite3_errmsg(database));
+        sqlite3_stmt *statement;
+        
+        const char *sqlQuery = [aSqlRequest UTF8String];
+        
+        if (sqlite3_prepare_v2(database, sqlQuery, -1, &statement, NULL) != SQLITE_OK) {
+            NSLog(@"%s", sqlite3_errmsg(database));
+            return;
         }
+        
+        resultArray = [NSMutableArray array];
+        BOOL cachesLoaded = NO;
+        
+        NSMutableDictionary *recordsDictionary;
+        
+        NSMutableArray *columns = nil;
+        Class *recordClasses = NULL;
+        NSMutableArray *recordNames = nil;
+        NSMutableArray *propertyNames = nil;
+        NSString *propertyName = nil;
+        
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            int columnsCount = sqlite3_column_count(statement);
+            if (columns == nil) {
+                columns = [NSMutableArray arrayWithCapacity:columnsCount];
+            }
+            
+            if (!recordClasses) {
+                recordClasses = (Class *)malloc(sizeof(Class) * columnsCount);
+            }
+            
+            if (!recordNames) {
+                recordNames = [NSMutableArray arrayWithCapacity:columnsCount];
+            }
+            
+            if (!propertyNames) {
+                propertyNames = [NSMutableArray arrayWithCapacity:columnsCount];
+            }
+            
+            recordsDictionary = [NSMutableDictionary dictionary];
+            
+            for (int columnIndex = 0 ; columnIndex < columnsCount ; columnIndex++) {
+                
+                NSString *recordName = nil;
+                
+                NSString *columnName = [NSString stringWithUTF8String:sqlite3_column_name(statement, columnIndex)];
+                
+                if (!cachesLoaded) {
+                    NSArray *splitHeader = [columnName componentsSeparatedByString:@"#"];
+                    [recordNames addObject:[splitHeader objectAtIndex:0]];
+                    [propertyNames addObject:[splitHeader objectAtIndex:1]];
+                    
+                    recordClasses[columnIndex] = NSClassFromString([recordNames lastObject]);
+                    ARColumn *column = [recordClasses[columnIndex] performSelector:@selector(columnNamed:)
+                                                                       withObject:[propertyNames lastObject]];
+                    [columns addObject:column];
+                }
+                recordName = [recordNames objectAtIndex:columnIndex];
+                propertyName = [propertyNames objectAtIndex:columnIndex];
+                ARColumn *column = columns[columnIndex];
+                
+                id value = nil;
+                
+                int columnType = sqlite3_column_type(statement, columnIndex);
+                
+                switch (columnType) {
+                    case SQLITE_INTEGER:
+                        value = @(sqlite3_column_int(statement, columnIndex));
+                        break;
+                    case SQLITE_FLOAT:{
+                        value = @(sqlite3_column_double(statement, columnIndex));
+                    }break;
+                    case SQLITE_BLOB:{
+                        value = [NSData dataWithBytes:sqlite3_column_blob(statement, columnIndex)
+                                               length:sqlite3_column_bytes(statement, columnIndex)];
+                    }break;
+                    case SQLITE3_TEXT:{
+                        value = [NSString stringWithFormat:@"%s", sqlite3_column_text(statement, columnIndex)];
+                        if ([column.columnClass isSubclassOfClass:[NSDecimalNumber class]]) {
+                            value = [NSDecimalNumber decimalNumberWithString:value];
+                        }
+                    }break;
+                    case SQLITE_NULL:{
+                        value = nil;
+                    }break;
+                    default:
+                        NSLog(@"UNKOWN COLUMN TYPE %d", columnType);
+                        break;
+                }
+                ActiveRecord *currentRecord = [recordsDictionary valueForKey:recordName];
+                if (currentRecord == nil) {
+                    Class Record = recordClasses[columnIndex];
+                    currentRecord = [Record new];
+                    [recordsDictionary setValue:currentRecord
+                                         forKey:recordName];
+                }
+
+                [currentRecord setValue:value forColumn:column];
+            }
+            cachesLoaded = YES;
+            [resultArray addObject:recordsDictionary];
+        }
+        sqlite3_finalize(statement);
+
     });
     
     return resultArray;
