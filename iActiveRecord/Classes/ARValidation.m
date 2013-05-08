@@ -10,32 +10,28 @@
 
 @implementation ARValidation
 
-@synthesize field;
-@synthesize record;
-@synthesize validator;
-
-- (id)initWithRecord:(NSString *)aRecord 
-               field:(NSString *)aField
-           validator:(Class)aValidator
+- (instancetype)initWithRecord:(NSString *)aRecord
+                         field:(NSString *)aField
+                     validator:(Class)aValidator
 {
     self = [super init];
-    if(self != nil){
+    if (self) {
         self.record = aRecord;
-        self.field  =aField;
+        self.field  = aField;
         self.validator = aValidator;
     }
     return self;
 }
-
+#warning Reimplement with `hash`
 - (BOOL)isEqual:(id)object {
     ARValidation *otherObject = (ARValidation *)object;
-    if(![self.record isEqualToString:otherObject.record]){
+    if (![self.record isEqualToString:otherObject.record]) {
         return NO;
     }
-    if(![self.field isEqualToString:otherObject.field]){
+    if (![self.field isEqualToString:otherObject.field]) {
         return NO;
     }
-    if(![self.validator isEqual:otherObject.validator]){
+    if (![self.validator isEqual:otherObject.validator]) {
         return NO;
     }
     return YES;

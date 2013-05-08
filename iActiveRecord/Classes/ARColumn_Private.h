@@ -15,14 +15,7 @@
 @interface ARColumn ()
 {
     @public
-    NSString *_columnName;
-    __strong Class _columnClass;
-    __strong Class _recordClass;
-    NSString *_setter;
-    NSString *_getter;
-    objc_AssociationPolicy _associationPolicy;
     char *_columnKey;
-    ARColumnType _columnType;
 }
 
 @property (nonatomic, copy, readwrite) NSString *columnName;

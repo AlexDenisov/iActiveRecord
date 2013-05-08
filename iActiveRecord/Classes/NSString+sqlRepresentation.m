@@ -10,7 +10,7 @@
 
 @implementation NSString (sqlRepresentation)
 
-+ (id)fromSql:(NSString *)sqlData{
++ (id)fromSql:(NSString *)sqlData {
     return sqlData;
 }
 

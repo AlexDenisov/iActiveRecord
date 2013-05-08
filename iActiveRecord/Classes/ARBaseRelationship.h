@@ -16,8 +16,8 @@
 @property (nonatomic, readwrite) ARDependency dependency;
 @property (nonatomic, copy) NSString *throughRecord;
 
-- (id)initWithRecord:(NSString *)aRecordName 
-            relation:(NSString *)aRelation 
+- (id)initWithRecord:(NSString *)aRecordName
+            relation:(NSString *)aRelation
            dependent:(ARDependency)aDependency;
 
 - (ARRelationType)type;

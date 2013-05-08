@@ -106,7 +106,7 @@ describe(@"BelongsTo", ^{
         user.name = @"Alex";
         [user save];
         [user setGroup:group];
-        User *foundedUser = [[[group users] fetchRecords] first];
+        User *foundedUser = [[[group users] fetchRecords] objectAtIndex:0];
         foundedUser.name should equal(user.name);
     });
     it(@"when i set belongsTo nil, i should remove relation", ^{

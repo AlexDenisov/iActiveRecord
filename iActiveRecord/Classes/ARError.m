@@ -10,16 +10,12 @@
 
 @implementation ARError
 
-@synthesize propertyName;
-@synthesize modelName;
-@synthesize errorName;
-
-- (id)initWithModel:(NSString *)aModel 
-           property:(NSString *)aProperty 
-              error:(NSString *)anError 
+- (id)initWithModel:(NSString *)aModel
+           property:(NSString *)aProperty
+              error:(NSString *)anError
 {
     self = [super init];
-    if(self != nil){
+    if (self) {
         self.modelName = aModel;
         self.propertyName = aProperty;
         self.errorName = anError;

@@ -14,12 +14,12 @@
     if (aValue == nil) {
         return;
     }
-    
+
     NSMutableArray *anArray = [self objectForKey:anArrayName];
     if (anArray == nil) {
         anArray = [NSMutableArray array];
         [self setValue:anArray
-                forKey:anArrayName];
+         forKey:anArrayName];
     }
     [anArray addObject:aValue];
 }

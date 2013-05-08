@@ -32,12 +32,12 @@ describe(@"Update", ^{
         enot.title = @"Racoon";
         enot.save should BeTruthy();
         recordId = enot.id;
-        Animal *record = [[Animal allRecords] first];
+        Animal *record = [[Animal allRecords] objectAtIndex:0];
         record.title = @"Enot";
         record.state = @"FuuBar";
         record.id should equal(recordId);
         [record save];
-        Animal *racoon = [[Animal allRecords] first];
+        Animal *racoon = [[Animal allRecords] objectAtIndex:0];
         racoon.id should equal(recordId);
         racoon.title should equal(@"Enot");
         racoon.state should equal(@"FuuBar");
@@ -65,7 +65,7 @@ describe(@"Update", ^{
         [model save] should be_truthy;
         [model release];
         
-        PrimitiveModel *loadedModel = [[PrimitiveModel allRecords] first];
+        PrimitiveModel *loadedModel = [[PrimitiveModel allRecords] objectAtIndex:0];
         loadedModel.intProperty should equal(intValue);
         loadedModel.integerProperty should equal(integerValue);
         loadedModel.floatProperty should equal(floatValue);

@@ -13,8 +13,8 @@
 
 + (BOOL)isValidOnSave:(id)aRecord;
 + (BOOL)isValidOnUpdate:(id)aRecord;
-+ (void)registerValidator:(Class)aValidator 
-                forRecord:(NSString *)aRecord 
++ (void)registerValidator:(Class)aValidator
+                forRecord:(NSString *)aRecord
                   onField:(NSString *)aField;
 
 @end

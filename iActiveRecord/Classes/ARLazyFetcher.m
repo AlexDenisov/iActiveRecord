@@ -21,7 +21,7 @@
 
 - (id)init {
     self = [super init];
-    if(nil != self){
+    if (self) {
         limit = nil;
         offset = nil;
         sqlRequest = nil;
@@ -32,8 +32,7 @@
     return self;
 }
 
-- (id)initWithRecord:(Class)aRecord
-{
+- (id)initWithRecord:(Class)aRecord {
     self = [self init];
     recordClass = aRecord;
     return self;
@@ -41,7 +40,7 @@
 
 - (id)initWithRecord:(Class)aRecord withInitialSql:(NSString *)anInitialSql {
     self = [self initWithRecord:aRecord];
-    if(self){
+    if (self) {
         sqlRequest = [anInitialSql copy];
     }
     return self;
@@ -51,16 +50,16 @@
 
 - (NSSet *)fieldsOfRecord:(ActiveRecord *)aRecord {
     NSMutableSet *fields = [NSMutableSet set];
-    if(onlyFields){
+    if (onlyFields) {
         [fields addObjectsFromArray:[onlyFields allObjects]];
-    }else {
+    } else {
         NSArray *columns = [aRecord columns];
-        for(ARColumn *column in columns){
+        for (ARColumn *column in columns) {
             [fields addObject:column.columnName];
         }
     }
-    if(exceptFields){
-        for(NSString *field in exceptFields){
+    if (exceptFields) {
+        for (NSString *field in exceptFields) {
             [fields removeObject:field];
         }
     }
@@ -73,13 +72,13 @@
 
 - (void)buildSql {
     NSMutableString *sql = [NSMutableString string];
-    
+
     NSString *select = [self createSelectStatement];
     NSString *limitOffset = [self createLimitOffsetStatement];
     NSString *orderBy = [self createOrderbyStatement];
     NSString *where = [self createWhereStatement];
     NSString *join = [self createJoinStatement];
-    
+
     [sql appendString:select];
     [sql appendString:join];
     [sql appendString:where];
@@ -90,7 +89,7 @@
 
 - (NSString *)createWhereStatement {
     NSMutableString *statement = [NSMutableString string];
-    if(whereStatement){
+    if (whereStatement) {
         [statement appendFormat:@" WHERE (%@) ", self.whereStatement];
     }
     return statement;
@@ -98,33 +97,32 @@
 
 - (NSString *)createOrderbyStatement {
     NSMutableString *statement = [NSMutableString string];
-    if (useRandomOrder)
-    {
+    if (useRandomOrder) {
         [statement appendFormat:@" ORDER BY RANDOM() "];
+    } else if (!orderByConditions) {
+        return statement;
     }
-    else  if(orderByConditions){
-        [statement appendFormat:@" ORDER BY "];
-        for(NSString *key in [orderByConditions allKeys]){
-            NSString *order = [[orderByConditions valueForKey:key] boolValue] ? @"ASC" : @"DESC";
-            [statement appendFormat:
-             @" %@.%@ %@ ,", 
-             [[recordClass performSelector:@selector(recordName)] quotedString], 
-             [key quotedString], 
-             order];
-        }
-        [statement replaceCharactersInRange:NSMakeRange(statement.length - 1, 1) withString:@""];
+    [statement appendFormat:@" ORDER BY "];
+    for (NSString *key in [orderByConditions allKeys]) {
+        NSString *order = [[orderByConditions valueForKey:key] boolValue] ? @"ASC" : @"DESC";
+        [statement appendFormat:
+         @" %@.%@ %@ ,",
+         [[recordClass performSelector:@selector(recordName)] quotedString],
+         [key quotedString],
+         order];
     }
+    [statement replaceCharactersInRange:NSMakeRange(statement.length - 1, 1) withString:@""];
     return statement;
 }
 
 - (NSString *)createLimitOffsetStatement {
     NSMutableString *statement = [NSMutableString string];
     NSInteger limitNum = -1;
-    if(limit){
+    if (limit) {
         limitNum = limit.integerValue;
     }
     [statement appendFormat:@" LIMIT %d ", limitNum];
-    if(offset){
+    if (offset) {
         [statement appendFormat:@" OFFSET %d ", offset.integerValue];
     }
     return statement;
@@ -134,29 +132,28 @@
     NSMutableString *statement = [NSMutableString stringWithString:@"SELECT "];
     NSMutableArray *fields = [NSMutableArray array];
     NSString *fieldname = nil;
-    for(NSString *field in [self fieldsOfRecord:recordClass]){
+    for (NSString *field in [self fieldsOfRecord : recordClass]) {
         fieldname = [NSString stringWithFormat:
-                     @"%@.%@ AS '%@#%@'", 
+                     @"%@.%@ AS '%@#%@'",
                      [[recordClass performSelector:@selector(recordName)] quotedString],
                      [field quotedString],
                      [recordClass performSelector:@selector(recordName)],
                      field];
         [fields addObject:fieldname];
     }
-    
-    for(NSString *field in [self fieldsOfRecord:joinClass]){
+
+    for (NSString *field in [self fieldsOfRecord : joinClass]) {
         fieldname = [NSString stringWithFormat:
-                     @"%@.%@ AS '%@#%@'", 
+                     @"%@.%@ AS '%@#%@'",
                      [[joinClass performSelector:@selector(recordName)] quotedString],
                      [field quotedString],
                      [joinClass performSelector:@selector(recordName)],
                      field];
         [fields addObject:fieldname];
     }
-    
-    [statement appendFormat:
-     @"%@ FROM %@ ", 
-     [fields componentsJoinedByString:@","], 
+
+    [statement appendFormat:@"%@ FROM %@ ",
+     [fields componentsJoinedByString:@","],
      [[recordClass performSelector:@selector(recordName)] quotedString]];
     return statement;
 }
@@ -165,33 +162,33 @@
     NSMutableString *statement = [NSMutableString stringWithString:@"SELECT "];
     NSMutableArray *fields = [NSMutableArray array];
     NSString *fieldname = nil;
-    for(NSString *field in [self recordFields]){
+    for (NSString *field in [self recordFields]) {
         fieldname = [NSString stringWithFormat:
-                     @"%@.%@", 
+                     @"%@.%@",
                      [[recordClass performSelector:@selector(recordName)] quotedString],
                      [field quotedString]];
         [fields addObject:fieldname];
     }
-    [statement appendFormat:
-     @"%@ FROM %@ ", 
-     [fields componentsJoinedByString:@","], 
+    [statement appendFormat:@"%@ FROM %@ ",
+     [fields componentsJoinedByString:@","],
      [[recordClass performSelector:@selector(recordName)] quotedString]];
     return statement;
 }
 
 - (NSString *)createJoinStatement {
     NSMutableString *statement = [NSMutableString string];
-    if (useJoin){
-        NSString *join = joinString(joinType);
-        NSString *joinTable = [joinClass performSelector:@selector(recordName)];
-        NSString *selfTable = [recordClass performSelector:@selector(recordName)];
-        [statement appendFormat:
-         @" %@ JOIN %@ ON %@.%@ = %@.%@ ", 
-         join, 
-         [joinTable quotedString],
-         [selfTable quotedString], [recordField quotedString],
-         [joinTable quotedString], [joinField quotedString]];
+    if (!useJoin) {
+        return statement;
     }
+    NSString *join = joinString(joinType);
+    NSString *joinTable = [joinClass performSelector:@selector(recordName)];
+    NSString *selfTable = [recordClass performSelector:@selector(recordName)];
+    [statement appendFormat:
+     @" %@ JOIN %@ ON %@.%@ = %@.%@ ",
+     join,
+     [joinTable quotedString],
+     [selfTable quotedString], [recordField quotedString],
+     [joinTable quotedString], [joinField quotedString]];
     return statement;
 }
 
@@ -209,15 +206,12 @@
 
 #pragma mark - OrderBy
 
-- (ARLazyFetcher *)orderBy:(NSString *)aField
-                 ascending:(BOOL)isAscending
-{
-    if(orderByConditions == nil){
+- (ARLazyFetcher *)orderBy:(NSString *)aField ascending:(BOOL)isAscending {
+    if (orderByConditions == nil) {
         orderByConditions = [NSMutableDictionary new];
     }
     NSNumber *ascending = [NSNumber numberWithBool:isAscending];
-    [orderByConditions setValue:ascending
-                         forKey:aField];
+    [orderByConditions setValue:ascending forKey:aField];
     return self;
 }
 
@@ -225,8 +219,7 @@
     return [self orderBy:aField ascending:YES];
 }
 
-- (ARLazyFetcher *)orderByRandom
-{
+- (ARLazyFetcher *)orderByRandom {
     useRandomOrder = YES;
     return self;
 }
@@ -234,14 +227,14 @@
 #pragma mark - Select
 
 - (ARLazyFetcher *)only:(NSString *)aFirstParam, ... {
-    if(onlyFields == nil){
+    if (!onlyFields) {
         onlyFields = [NSMutableSet new];
     }
     [onlyFields addObject:aFirstParam];
     va_list args;
     va_start(args, aFirstParam);
     NSString *field = nil;
-    while((field = va_arg(args, NSString *))) {
+    while ( (field = va_arg(args, NSString *)) ) {
         [onlyFields addObject:field];
     }
     va_end(args);
@@ -249,14 +242,14 @@
 }
 
 - (ARLazyFetcher *)except:(NSString *)aFirstParam, ... {
-    if(exceptFields == nil){
+    if (exceptFields == nil) {
         exceptFields = [NSMutableSet new];
     }
     [exceptFields addObject:aFirstParam];
     va_list args;
     va_start(args, aFirstParam);
     NSString *field = nil;
-    while((field = va_arg(args, NSString *))) {
+    while ( (field = va_arg(args, NSString *)) ) {
         [exceptFields addObject:field];
     }
     va_end(args);
@@ -266,21 +259,20 @@
 #pragma mark - Joins
 
 - (ARLazyFetcher *)join:(Class)aJoinRecord {
-    
+
     NSString *_recordField = @"id";
-    NSString *_joinField = [NSString stringWithFormat:
-                 @"%@Id",
-                 [[recordClass description] lowercaseFirst]];
-    [self join:aJoinRecord 
-       useJoin:ARJoinInner 
+    NSString *_joinField = [NSString stringWithFormat:@"%@Id",
+                            [[recordClass description] lowercaseFirst]];
+    [self join:aJoinRecord
+       useJoin:ARJoinInner
        onField:_recordField
-      andField:_joinField];    
+      andField:_joinField];
     return self;
 }
 
-- (ARLazyFetcher *)join:(Class)aJoinRecord 
-                useJoin:(ARJoinType)aJoinType 
-                onField:(NSString *)aFirstField 
+- (ARLazyFetcher *)join:(Class)aJoinRecord
+                useJoin:(ARJoinType)aJoinType
+                onField:(NSString *)aFirstField
                andField:(NSString *)aSecondField
 {
     joinClass = aJoinRecord;
@@ -300,18 +292,18 @@
 }
 
 - (NSArray *)fetchJoinedRecords {
-    if(!useJoin){
+    if (!useJoin) {
         [NSException raise:@"InvalidCall"
-                    format:@"Call this method only with JOIN"];
+         format:@"Call this method only with JOIN"];
     }
     NSMutableString *sql = [NSMutableString string];
-    
+
     NSString *select = [self createJoinedSelectStatement];
     NSString *limitOffset = [self createLimitOffsetStatement];
     NSString *orderBy = [self createOrderbyStatement];
     NSString *where = [self createWhereStatement];
     NSString *join = [self createJoinStatement];
-    
+
     [sql appendString:select];
     [sql appendString:join];
     [sql appendString:where];
@@ -322,9 +314,8 @@
 
 - (NSInteger)count {
     NSMutableString *sql = [NSMutableString string];
-    
-    NSString *select = [NSString stringWithFormat:
-                        @"SELECT count(*) FROM %@ ", 
+
+    NSString *select = [NSString stringWithFormat:@"SELECT count(*) FROM %@ ",
                         [[recordClass performSelector:@selector(recordName)] quotedString]];
     NSString *where = [self createWhereStatement];
     NSString *join = [self createJoinStatement];
@@ -334,32 +325,33 @@
     return [[ARDatabaseManager sharedInstance] functionResult:sql];
 }
 
-- (ARLazyFetcher *)where:(NSString *)aCondition, ... {
+- (ARLazyFetcher *)where:(NSString *)aCondition, ...{
     va_list args;
     NSMutableArray *sqlArguments = [NSMutableArray array];
     NSString *argument = nil;
+    
     va_start(args, aCondition);
     id value = nil;
-    while ((value = va_arg(args, id))) {
-        if([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSSet class]]){
+    while ( (value = va_arg(args, id)) ) {
+        if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSSet class]]) {
             argument = [value performSelector:@selector(toSql)];
-        }else{
-            if([value respondsToSelector:@selector(toSql)]){
+        } else {
+            if ([value respondsToSelector:@selector(toSql)]) {
                 value = [value performSelector:@selector(toSql)];
             }
             argument = [value quotedString];
         }
-        [sqlArguments addObject:argument]; 
+        [sqlArguments addObject:argument];
     }
     va_end(args);
-    
+
     NSRange range = NSMakeRange(0, [sqlArguments count]);
-    NSMutableData* data = [NSMutableData dataWithLength: sizeof(id) * [sqlArguments count]];
+    NSMutableData * data = [NSMutableData dataWithLength: sizeof(id) * [sqlArguments count]];
     [sqlArguments getObjects: (__unsafe_unretained id *)data.mutableBytes range:range];
-    NSString* result = [[NSString alloc] initWithFormat:aCondition
+    NSString * result = [[NSString alloc] initWithFormat:aCondition
                                                arguments:data.mutableBytes];
-    
-    if (self.whereStatement == nil) {
+
+    if (!self.whereStatement) {
         self.whereStatement = [NSMutableString stringWithString:result];
     } else {
         [self.whereStatement appendFormat:@"AND %@", result];

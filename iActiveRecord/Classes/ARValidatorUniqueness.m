@@ -23,7 +23,7 @@
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(recordName)];
     [fetcher where:@"%@ = %@", aField, aValue, nil];
     NSInteger count = [fetcher count];
-    if(count){
+    if (count) {
         return NO;
     }
     return YES;

@@ -41,7 +41,7 @@ describe(@"NSData", ^{
         BOOL result = [alex save];
         result should BeTruthy();
         
-        User *fetchedUser = [[User allRecords] first];
+        User *fetchedUser = [[User allRecords] objectAtIndex:0];
         alex.imageData should equal(fetchedUser.imageData);
     });
 });

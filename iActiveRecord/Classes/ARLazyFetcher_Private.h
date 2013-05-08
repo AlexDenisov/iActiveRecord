@@ -10,30 +10,25 @@
 
 static const char *joins[] = {"LEFT", "RIGHT", "INNER", "OUTER"};
 
-static NSString* joinString(ARJoinType type) 
+static NSString * joinString(ARJoinType type)
 {
-    return [NSString stringWithUTF8String:joins[type]];
+    return [NSString stringWithUTF8String : joins[type]];
 }
 
 @interface ARLazyFetcher ()
 {
-@private
+    @private
     Class recordClass;
     NSString *sqlRequest;
-    //  order by
     NSMutableDictionary *orderByConditions;
-    //  random order flag
     BOOL useRandomOrder;
-    //  select
     NSMutableSet *onlyFields;
     NSMutableSet *exceptFields;
-    //  join    
     ARJoinType joinType;
     Class joinClass;
     NSString *recordField;
     NSString *joinField;
     BOOL useJoin;
-    //  limit/offset
     NSNumber *limit;
     NSNumber *offset;
 }

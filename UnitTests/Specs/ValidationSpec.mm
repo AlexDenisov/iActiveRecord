@@ -66,7 +66,7 @@ describe(@"Uniqueness", ^{
         john.name = @"John";
         BOOL result = [john save];
         result should BeTruthy();
-        User *user = [[[[User lazyFetcher] limit:1] fetchRecords] first];
+        User *user = [[[[User lazyFetcher] limit:1] fetchRecords] objectAtIndex:0];
         user.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
         user.save should BeTruthy();
     });

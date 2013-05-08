@@ -11,33 +11,35 @@
 #import "ActiveRecord_Private.h"
 #import "ARColumn_Private.h"
 
+#warning move to extension
+
 @interface ARValidator ()
 {
     NSMutableSet *validations;
 }
 
-+ (id)sharedInstance;
++ (instancetype)sharedInstance;
 
 - (BOOL)isValidOnSave:(id)aRecord;
 - (BOOL)isValidOnUpdate:(id)aRecord;
 
-- (void)registerValidator:(Class)aValidator 
-                forRecord:(NSString *)aRecord 
+- (void)registerValidator:(Class)aValidator
+                forRecord:(NSString *)aRecord
                   onField:(NSString *)aField;
 
 @end
 
 @implementation ARValidator
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
-    if(self){
+    if (self) {
         validations = [NSMutableSet new];
     }
     return self;
 }
 
-+ (id)sharedInstance {
++ (instancetype)sharedInstance {
     static dispatch_once_t once;
     static id sharedInstance;
     dispatch_once(&once, ^{
@@ -46,8 +48,8 @@
     return sharedInstance;
 }
 
-- (void)registerValidator:(Class)aValidator 
-                forRecord:(NSString *)aRecord 
+- (void)registerValidator:(Class)aValidator
+                forRecord:(NSString *)aRecord
                   onField:(NSString *)aField
 {
     ARValidation *validation = [[ARValidation alloc] initWithRecord:aRecord
@@ -59,23 +61,23 @@
 - (BOOL)isValidOnSave:(ActiveRecord *)aRecord {
     BOOL valid = YES;
     NSString *recordName = [aRecord performSelector:@selector(recordName)];
-    for(int i=0;i<validations.count;i++){
+    for (int i = 0; i < validations.count; i++) {
         ARValidation *validation = [[validations allObjects] objectAtIndex:i];
-        if([validation.record isEqualToString:recordName]){
+        if ([validation.record isEqualToString:recordName]) {
             id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
             BOOL result = [validator validateField:validation.field
-                                          ofRecord:aRecord];
-            
-            if(!result){
+                           ofRecord:aRecord];
+
+            if (!result) {
                 NSString *errMsg = @"";
-                if([validator respondsToSelector:@selector(errorMessage)]){
+                if ([validator respondsToSelector:@selector(errorMessage)]) {
                     errMsg = [validator errorMessage];
                 }
                 ARError *error = [[ARError alloc] initWithModel:validation.record
-                                                       property:validation.field
-                                                          error:errMsg];
-                [aRecord performSelector:@selector(addError:) 
-                              withObject:error];
+                                  property:validation.field
+                                  error:errMsg];
+                [aRecord performSelector:@selector(addError:)
+                 withObject:error];
                 valid  = NO;
             }
         }
@@ -86,24 +88,24 @@
 - (BOOL)isValidOnUpdate:(ActiveRecord *)aRecord {
     BOOL valid = YES;
     NSString *recordName = [aRecord performSelector:@selector(recordName)];
-    for(ARValidation *validation in validations){
-        if([validation.record isEqualToString:recordName]){
+    for (ARValidation *validation in validations) {
+        if ([validation.record isEqualToString:recordName]) {
             ARColumn *column = [aRecord columnNamed:validation.field];
-            if([[aRecord changedColumns] containsObject:column]){
+            if ([[aRecord changedColumns] containsObject:column]) {
                 id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
                 BOOL result = [validator validateField:validation.field
-                                              ofRecord:aRecord];
-                
-                if(!result){
+                               ofRecord:aRecord];
+
+                if (!result) {
                     NSString *errMsg = @"";
-                    if([validator respondsToSelector:@selector(errorMessage)]){
+                    if ([validator respondsToSelector:@selector(errorMessage)]) {
                         errMsg = [validator errorMessage];
                     }
                     ARError *error = [[ARError alloc] initWithModel:validation.record
-                                                           property:validation.field
-                                                              error:errMsg];
-                    [aRecord performSelector:@selector(addError:) 
-                                  withObject:error];
+                                      property:validation.field
+                                      error:errMsg];
+                    [aRecord performSelector:@selector(addError:)
+                     withObject:error];
                     valid  = NO;
                 }
             }
@@ -122,13 +124,13 @@
     return [[self sharedInstance] isValidOnUpdate:aRecord];
 }
 
-+ (void)registerValidator:(Class)aValidator 
-                forRecord:(NSString *)aRecord 
++ (void)registerValidator:(Class)aValidator
+                forRecord:(NSString *)aRecord
                   onField:(NSString *)aField
 {
     [[self sharedInstance] registerValidator:aValidator
-                                   forRecord:aRecord
-                                     onField:aField];
+     forRecord:aRecord
+     onField:aField];
 }
 
 @end

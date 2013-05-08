@@ -16,10 +16,10 @@ static NSArray *class_getSubclasses(Class parentClass) {
     NSMutableArray *result = [NSMutableArray array];
     for (NSInteger i = 0; i < numClasses; i++) {
         Class superClass = classes[i];
-        do{
+        do {
             superClass = class_getSuperclass(superClass);
-        } while(superClass && superClass != parentClass);
-        
+        } while (superClass && superClass != parentClass);
+
         if (superClass == nil) {
             continue;
         }

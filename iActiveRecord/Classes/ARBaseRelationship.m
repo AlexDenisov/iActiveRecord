@@ -10,17 +10,12 @@
 
 @implementation ARBaseRelationship
 
-@synthesize relation;
-@synthesize dependency;
-@synthesize record;
-@synthesize throughRecord;
-
-- (id)initWithRecord:(NSString *)aRecordName 
-            relation:(NSString *)aRelation 
+- (id)initWithRecord:(NSString *)aRecordName
+            relation:(NSString *)aRelation
            dependent:(ARDependency)aDependency
 {
     self = [super init];
-    if(self != nil){
+    if (self) {
         self.throughRecord = nil;
         self.record = aRecordName;
         self.relation = aRelation;

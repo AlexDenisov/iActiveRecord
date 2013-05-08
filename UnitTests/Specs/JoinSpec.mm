@@ -41,7 +41,7 @@ describe(@"Join", ^{
                                                   onField:@"groupId"
                                                  andField:@"id"];
         NSArray *records = [fetcher fetchJoinedRecords];
-        id first = [records first];
+        id first = [records objectAtIndex:0];
         BOOL result = [first isKindOfClass:[NSDictionary class]];
         result should BeTruthy();
     });
@@ -51,7 +51,7 @@ describe(@"Join", ^{
                                                   onField:@"groupId"
                                                  andField:@"id"];
         NSArray *records = [fetcher fetchJoinedRecords];
-        NSDictionary *first = [records first];
+        NSDictionary *first = [records objectAtIndex:0];
         NSArray *keys = [first allKeys];
         BOOL result = [keys containsObject:@"User"] && [keys containsObject:@"Group"];
         result should BeTruthy();

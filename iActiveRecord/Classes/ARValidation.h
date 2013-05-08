@@ -15,6 +15,8 @@
 @property (nonatomic, copy) NSString *field;
 @property (nonatomic, retain) Class validator;
 
-- (id)initWithRecord:(NSString *)aRecord field:(NSString *)aField validator:(Class)aValidator;
+- (instancetype)initWithRecord:(NSString *)aRecord
+                         field:(NSString *)aField
+                     validator:(Class)aValidator;
 
 @end

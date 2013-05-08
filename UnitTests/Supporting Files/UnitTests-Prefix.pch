@@ -11,6 +11,5 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import "NSArray+objectsAccessors.h"
     #import <Cedar-iOS/SpecHelper.h>
 #endif

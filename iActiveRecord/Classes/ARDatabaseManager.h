@@ -26,7 +26,6 @@
 
 - (void)createTables;
 - (void)createTable:(id)aRecord;
-- (void)addColumn:(NSString *)aColumn onTable:(NSString *)aTable;
 - (void)appendMigrations;
 
 - (void)openConnection;
@@ -53,13 +52,10 @@
 
 + (void)registerDatabase:(NSString *)aDatabaseName cachesDirectory:(BOOL)isCache;
 
-- (void)skipBackupAttributeToFile:(NSURL*) url;
+- (void)skipBackupAttributeToFile:(NSURL *) url;
 
-//  return new recordId or zero
 - (NSInteger)saveRecord:(ActiveRecord *)aRecord;
-//  return zero if failure
 - (NSInteger)updateRecord:(ActiveRecord *)aRecord;
-//  return false if failure
 - (void)dropRecord:(ActiveRecord *)aRecord;
 - (BOOL)executeSqlQuery:(const char *)anSqlQuery;
 
@@ -67,4 +63,3 @@
 - (NSArray *)records;
 
 @end
- 

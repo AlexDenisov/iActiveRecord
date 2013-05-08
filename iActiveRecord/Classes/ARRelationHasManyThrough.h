@@ -11,9 +11,9 @@
 
 @interface ARRelationHasManyThrough : ARBaseRelationship
 
-- (id)initWithRecord:(NSString *)aRecordName 
-       throughRecord:(NSString *)aThroughRecord
-            relation:(NSString *)aRelation 
-           dependent:(ARDependency)aDependency;
+- (instancetype)initWithRecord:(NSString *)aRecordName
+                 throughRecord:(NSString *)aThroughRecord
+                      relation:(NSString *)aRelation
+                     dependent:(ARDependency)aDependency;
 
 @end

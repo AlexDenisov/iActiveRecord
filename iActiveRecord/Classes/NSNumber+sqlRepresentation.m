@@ -18,7 +18,7 @@
     return @"integer";
 }
 
-+ (id)fromSql:(NSString *)sqlData{
++ (id)fromSql:(NSString *)sqlData {
     return [NSNumber numberWithInteger:[sqlData integerValue]];
 }
 

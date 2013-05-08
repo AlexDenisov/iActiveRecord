@@ -17,7 +17,7 @@
 
 - (BOOL)validateField:(NSString *)aField ofRecord:(id)aRecord {
     id aValue = [aRecord valueForKey:aField];
-    return (BOOL)[aValue performSelector:@selector(isPresented)];
+    return (BOOL)[aValue performSelector: @selector(isPresented)];
 }
 
 @end

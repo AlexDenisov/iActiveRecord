@@ -16,12 +16,12 @@
 + (const char *)sqlOnUpdateRecord:(ActiveRecord *)aRecord {
     NSSet *changedColumns = [aRecord changedColumns];
     NSInteger columnsCount = changedColumns.count;
-    if(columnsCount == 0){
+    if (columnsCount == 0) {
         return NULL;
     }
     NSMutableArray *columnValues = [NSMutableArray arrayWithCapacity:columnsCount];
     NSEnumerator *columnsIterator = [changedColumns objectEnumerator];
-    for(int index = 0;index<columnsCount;index++){
+    for (int index = 0; index < columnsCount; index++) {
         ARColumn *column = [columnsIterator nextObject];
         NSString *updater = [NSString stringWithFormat:
                              @"%@=%@",
@@ -29,8 +29,7 @@
                              [[column sqlValueForRecord:aRecord] quotedString]];
         [columnValues addObject:updater];
     }
-    NSString *sqlString = [NSString stringWithFormat:
-                           @"UPDATE %@ SET %@ WHERE id = %@",
+    NSString *sqlString = [NSString stringWithFormat:@"UPDATE %@ SET %@ WHERE id = %@",
                            [[aRecord recordName] quotedString],
                            [columnValues componentsJoinedByString:@","],
                            aRecord.id];
@@ -38,8 +37,7 @@
 }
 
 + (const char *)sqlOnDropRecord:(ActiveRecord *)aRecord {
-    NSString *sqlString = [NSString stringWithFormat:
-                           @"DELETE FROM %@ WHERE id = %@", 
+    NSString *sqlString = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id = %@",
                            [[aRecord recordName] quotedString],
                            aRecord.id];
     return [sqlString UTF8String];
@@ -47,12 +45,12 @@
 
 + (const char *)sqlOnCreateTableForRecord:(Class)aRecord {
     NSMutableString *sqlString = [NSMutableString stringWithFormat:
-                                  @"CREATE TABLE %@(id integer primary key unique", 
+                                  @"CREATE TABLE %@(id integer primary key unique",
                                   [[aRecord recordName] quotedString]];
-    for(ARColumn *column in [aRecord columns]){
-        if(![column.columnName isEqualToString:@"id"]){
-            [sqlString appendFormat:@",%@ %s", 
-             [column.columnName quotedString], 
+    for (ARColumn *column in [aRecord columns]) {
+        if (![column.columnName isEqualToString:@"id"]) {
+            [sqlString appendFormat:@",%@ %s",
+             [column.columnName quotedString],
              [column sqlType]];
         }
     }
@@ -62,11 +60,10 @@
 
 + (const char *)sqlOnAddColumn:(NSString *)aColumnName toRecord:(Class)aRecord {
     NSMutableString *sqlString = [NSMutableString stringWithFormat:
-                                  @"ALTER TABLE %@ ADD COLUMN ", 
+                                  @"ALTER TABLE %@ ADD COLUMN ",
                                   [[aRecord recordName] quotedString]];
     ARColumn *column = [aRecord columnNamed:aColumnName];
-    [sqlString appendFormat:
-     @"%@ %s", 
+    [sqlString appendFormat:@"%@ %s",
      [aColumnName quotedString],
      [column sqlType]];
     return [sqlString UTF8String];
@@ -74,9 +71,9 @@
 
 + (const char *)sqlOnCreateIndex:(NSString *)aColumnName forRecord:(ActiveRecord *)aRecord {
     NSString *sqlString = [NSString stringWithFormat:
-                           @"CREATE UNIQUE INDEX IF NOT EXISTS index_%@ ON %@ (%@)", 
+                           @"CREATE UNIQUE INDEX IF NOT EXISTS index_%@ ON %@ (%@)",
                            aColumnName,
-                           [[aRecord recordName] quotedString], 
+                           [[aRecord recordName] quotedString],
                            [aColumnName quotedString]];
     return [sqlString UTF8String];
 }

@@ -8,16 +8,14 @@
 
 #import "NSData+sqlRepresentation.h"
 
-#import "NSData+Base64.h"
-
 @implementation NSData (sqlRepresentation)
 
 - (NSString *)toSql {
-    return [self base64EncodedString];
+    return @"";
 }
 
 + (id)fromSql:(NSString *)sqlData {
-    return [NSData dataFromBase64String:sqlData];
+    return nil;
 }
 
 + (NSString *)sqlType {

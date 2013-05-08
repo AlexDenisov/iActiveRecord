@@ -12,15 +12,15 @@
 
 @synthesize throughRecord;
 
-- (id)initWithRecord:(NSString *)aRecordName 
-       throughRecord:(NSString *)aThroughRecord
-            relation:(NSString *)aRelation 
-           dependent:(ARDependency)aDependency
+- (instancetype)initWithRecord:(NSString *)aRecordName
+                 throughRecord:(NSString *)aThroughRecord
+                      relation:(NSString *)aRelation
+                     dependent:(ARDependency)aDependency
 {
     self = [super initWithRecord:aRecordName
-                        relation:aRelation
-                       dependent:aDependency];
-    if(self != nil){
+            relation:aRelation
+            dependent:aDependency];
+    if (self) {
         self.throughRecord = aThroughRecord;
     }
     return self;

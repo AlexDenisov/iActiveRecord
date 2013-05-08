@@ -13,7 +13,7 @@
 
 - (NSString *)toSql {
     NSMutableArray *sqlValues = [NSMutableArray array];
-    for(id value in self){
+    for (id value in self) {
         [sqlValues addObject:[[value toSql] quotedString]];
     }
     return [NSString stringWithFormat:@"(%@)", [sqlValues componentsJoinedByString:@","]];

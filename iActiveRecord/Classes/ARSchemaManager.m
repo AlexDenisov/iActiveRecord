@@ -12,20 +12,13 @@
 
 @implementation ARSchemaManager
 
-#warning replace with -> accessor
-
-@synthesize schemes;
-@synthesize indices;
-
-static ARSchemaManager *_instance = nil;
-
 + (id)sharedInstance {
-    @synchronized(self){
-        if(_instance == nil){
-            _instance = [ARSchemaManager new];
-        }
-        return _instance;
-    }
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
 }
 
 - (id)init {
@@ -38,17 +31,17 @@ static ARSchemaManager *_instance = nil;
 - (void)registerSchemeForRecord:(Class)aRecordClass {
     Class ActiveRecordClass = NSClassFromString(@"NSObject");
     id CurrentClass = aRecordClass;
-    while(nil != CurrentClass && CurrentClass != ActiveRecordClass){
+    while (nil != CurrentClass && CurrentClass != ActiveRecordClass) {
         unsigned int outCount, i;
         objc_property_t *properties = class_copyPropertyList(CurrentClass, &outCount);
+        NSString *recordName = [aRecordClass performSelector:@selector(recordName)];
         for (i = 0; i < outCount; i++) {
             ARColumn *column = [[ARColumn alloc] initWithProperty:properties[i] ofClass:aRecordClass];
             if (!column.isDynamic) {
                 continue;
             }
             [self.schemes addValue:column
-                      toArrayNamed:[aRecordClass 
-                                    performSelector:@selector(recordName)]];
+                      toArrayNamed:recordName];
         }
         free(properties);
         CurrentClass = class_getSuperclass(CurrentClass);

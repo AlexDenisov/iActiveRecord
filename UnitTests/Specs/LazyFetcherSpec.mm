@@ -43,14 +43,14 @@ describe(@"LazyFetcher", ^{
         it(@"OFFSET should return records from third record", ^{
             NSInteger offset = 3;
             NSArray *records = [[[User lazyFetcher] offset:offset] fetchRecords];
-            User *first = [records first];
+            User *first = [records objectAtIndex:0];
             first.id.integerValue should equal(offset + 1);
         });
         it(@"LIMIT/OFFSET should return 5 records starts from 3-d", ^{
             NSInteger limit = 5;
             NSInteger offset = 3;
             NSArray *records = [[[[User lazyFetcher] limit:limit] offset:offset] fetchRecords];
-            User *first = [records first];
+            User *first = [records objectAtIndex:0];
             first.id.integerValue should equal(offset + 1);
             records.count should equal(limit);
         });
@@ -142,7 +142,7 @@ describe(@"LazyFetcher", ^{
                 [john save];
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name == %@", username, nil];
-                User *founded = [[fetcher fetchRecords] first];
+                User *founded = [[fetcher fetchRecords] objectAtIndex:0];
                 founded.name should equal(username);
             });
             it(@"whereField notEqualToValue should not find record", ^{
@@ -152,7 +152,7 @@ describe(@"LazyFetcher", ^{
                 [john save];
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name <> %@", username, nil];
-                User *founded = [[fetcher fetchRecords] first];
+                User *founded = [[fetcher fetchRecords] objectAtIndex:0];
                 founded.name should_not equal(username);
             });
             it(@"WhereField in should find record", ^{
@@ -163,7 +163,7 @@ describe(@"LazyFetcher", ^{
                 [john save];
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name in %@", names, nil];
-                User *founded = [[fetcher fetchRecords] first];
+                User *founded = [[fetcher fetchRecords] objectAtIndex:0];
                 founded.name should equal(username);
             });
             it(@"WhereField notIn should not find record", ^{
@@ -174,7 +174,7 @@ describe(@"LazyFetcher", ^{
                 [john save];
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name not in %@", names, nil];
-                User *founded = [[fetcher fetchRecords] first];
+                User *founded = [[fetcher fetchRecords] objectAtIndex:0];
                 founded.name should_not equal(username);
             });
             it(@"WhereField LIKE should find record", ^{
@@ -184,7 +184,7 @@ describe(@"LazyFetcher", ^{
                 [john save];
                 ARLazyFetcher *fetcher = [User lazyFetcher];
                 [fetcher where:@"name like %@", @"%jo%", nil];
-                User *founded = [[fetcher fetchRecords] first];
+                User *founded = [[fetcher fetchRecords] objectAtIndex:0];
                 founded.name should equal(username);
             });
         });
@@ -227,7 +227,7 @@ describe(@"LazyFetcher", ^{
             john.name = @"john";
             john.groupId = [NSNumber numberWithInt:145];
             [john save];
-            User *user = [[fetcher fetchRecords] last];
+            User *user = [[fetcher fetchRecords] lastObject];
             user.groupId should BeNil();
         });
         it(@"except should return only not listed fields", ^{
@@ -236,7 +236,7 @@ describe(@"LazyFetcher", ^{
             john.name = @"john";
             john.groupId = [NSNumber numberWithInt:145];
             [john save];
-            User *user = [[fetcher fetchRecords] last];
+            User *user = [[fetcher fetchRecords] lastObject];
             user.name should BeNil();
         });
     });

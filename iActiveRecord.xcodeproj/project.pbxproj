@@ -92,7 +92,6 @@
 		CA523E0915373A5500565E02 /* sqlite3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = CA523E0515373A5500565E02 /* sqlite3_unicode.c */; };
 		CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523E0615373A5500565E02 /* sqlite3_unicode.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA62C313151E0AB800E54276 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA62C311151E0AB800E54276 /* InfoPlist.strings */; };
-		CA62C31F151E0EC400E54276 /* NSArray+objectsAccessors.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C320151E0EC400E54276 /* NSDecimalNumber+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2596BC5514C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA62C321151E0EC400E54276 /* NSNumber+sqlRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 254F5EBE14C5E78100AC0D86 /* NSNumber+sqlRepresentation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */ = {isa = PBXBuildFile; fileRef = 25998EE514BC1A1D00CA2490 /* NSString+lowercaseFirst.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -104,7 +103,6 @@
 		CA62C32D151E0EC400E54276 /* class_getSubclasses.h in Headers */ = {isa = PBXBuildFile; fileRef = 2598294114BDDB4200207D16 /* class_getSubclasses.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA62C32E151E0EC400E54276 /* ARRelationshipsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 25998EE414BC1A1D00CA2490 /* ARRelationshipsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA62C32F151E0EC400E54276 /* ARValidationsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A1131F14D9BAAE000720E7 /* ARValidationsHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA62C332151E0F0700E54276 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
 		CA62C333151E0F0700E54276 /* NSDecimalNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2596BC5614C7209100C6B5E2 /* NSDecimalNumber+sqlRepresentation.m */; };
 		CA62C334151E0F0700E54276 /* NSNumber+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBF14C5E78100AC0D86 /* NSNumber+sqlRepresentation.m */; };
 		CA62C336151E0F0700E54276 /* NSString+lowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */; };
@@ -137,10 +135,6 @@
 		CAAE33471528819D0080447D /* ARException.h in Headers */ = {isa = PBXBuildFile; fileRef = CAAE33451528819C0080447D /* ARException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAAE33491528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
 		CAAE334A1528819D0080447D /* ARException.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAE33461528819C0080447D /* ARException.m */; };
-		CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */; };
-		CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
-		CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CABB909E1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
 		CABB909F1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
@@ -289,10 +283,6 @@
 		CAAE3301152715270080447D /* ARValidatorPresence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARValidatorPresence.m; sourceTree = "<group>"; };
 		CAAE33451528819C0080447D /* ARException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARException.h; sourceTree = "<group>"; };
 		CAAE33461528819C0080447D /* ARException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARException.m; sourceTree = "<group>"; };
-		CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+objectsAccessors.h"; sourceTree = "<group>"; };
-		CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+objectsAccessors.m"; sourceTree = "<group>"; };
-		CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		CABB90971520DA2000E8D082 /* AREnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AREnum.h; sourceTree = "<group>"; };
 		CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationBelongsTo.h; sourceTree = "<group>"; };
 		CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRelationBelongsTo.m; sourceTree = "<group>"; };
@@ -727,8 +717,6 @@
 			children = (
 				CAC022E9157B76C300208445 /* NSArray+toSql.h */,
 				CAC022EA157B76C300208445 /* NSArray+toSql.m */,
-				CAAF5D9F151A5148004C4329 /* NSArray+objectsAccessors.h */,
-				CAAF5DA0151A5148004C4329 /* NSArray+objectsAccessors.m */,
 			);
 			name = NSArray;
 			sourceTree = "<group>";
@@ -814,8 +802,6 @@
 		CAF2480F151F375000120198 /* NSData */ = {
 			isa = PBXGroup;
 			children = (
-				CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */,
-				CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */,
 				CAF24816151F383000120198 /* NSData+sqlRepresentation.h */,
 				CAF24817151F383000120198 /* NSData+sqlRepresentation.m */,
 				CA523D421535F56100565E02 /* NSData+isPresented.h */,
@@ -831,7 +817,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA62C31F151E0EC400E54276 /* NSArray+objectsAccessors.h in Headers */,
 				CA62C327151E0EC400E54276 /* ActiveRecord.h in Headers */,
 				CA62C328151E0EC400E54276 /* ARLazyFetcher.h in Headers */,
 				CAF2480B151F298B00120198 /* ARError.h in Headers */,
@@ -847,7 +832,6 @@
 				CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */,
 				CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */,
 				CAAE33471528819D0080447D /* ARException.h in Headers */,
-				CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
 				DB78C39D16D7371700FAE89D /* ARIndicesMacroHelper.h in Headers */,
 				CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */,
@@ -1029,7 +1013,6 @@
 				25922B5814EC2BB600CBB58A /* ARDatabaseManager.m in Sources */,
 				25922B0714EC286000CBB58A /* main.m in Sources */,
 				CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */,
-				CAAF5DA2151A5148004C4329 /* NSArray+objectsAccessors.m in Sources */,
 				CAF2480D151F298B00120198 /* ARError.m in Sources */,
 				CAF2481A151F383000120198 /* NSData+sqlRepresentation.m in Sources */,
 				CA0365C2151FCB5F004167F1 /* NSString+quotedString.m in Sources */,
@@ -1048,7 +1031,6 @@
 				CA523D521535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0815373A5500565E02 /* sqlite3_unicode.c in Sources */,
-				CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
 				CADA6AF1154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */,
 				CADA6AF9154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 				CA1AF756155FEA3A00D0B17E /* ARColumn.m in Sources */,
@@ -1103,7 +1085,6 @@
 				CA2E5D491581EE130053D511 /* NSSet+toSql.m in Sources */,
 				CA2E5D4A1581EE130053D511 /* NSDate+isPresented.m in Sources */,
 				CA2E5D4B1581EE130053D511 /* NSArray+toSql.m in Sources */,
-				CA62C332151E0F0700E54276 /* NSArray+objectsAccessors.m in Sources */,
 				CA62C333151E0F0700E54276 /* NSDecimalNumber+sqlRepresentation.m in Sources */,
 				CA62C334151E0F0700E54276 /* NSNumber+sqlRepresentation.m in Sources */,
 				CA62C336151E0F0700E54276 /* NSString+lowercaseFirst.m in Sources */,
@@ -1129,7 +1110,6 @@
 				CA523D531535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0915373A5500565E02 /* sqlite3_unicode.c in Sources */,
-				CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
 				CADA6AF2154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */,
 				CADA6AFA154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 				CA1AF757155FEA3A00D0B17E /* ARColumn.m in Sources */,
