@@ -107,7 +107,7 @@
         NSString *order = [[orderByConditions valueForKey:key] boolValue] ? @"ASC" : @"DESC";
         [statement appendFormat:
          @" %@.%@ %@ ,",
-         [[recordClass performSelector:@selector(recordName)] quotedString],
+         [recordClass performSelector:@selector(recordName)],
          [key quotedString],
          order];
     }

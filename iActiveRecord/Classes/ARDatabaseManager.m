@@ -145,31 +145,26 @@ static NSArray *records = nil;
     __block NSMutableArray *resultArray = nil;
 
     dispatch_sync([self activeRecordQueue], ^{
-        NSString *sql = [NSString stringWithFormat:@"PRAGMA table_info(%@)", [aTableName quotedString]];
-        char * *results;
-        int nRows;
-        int nColumns;
-        const char *pszSql = [sql UTF8String];
-        if ( SQLITE_OK != sqlite3_get_table(database,
-                                            pszSql,
-                                            &results,
-                                            &nRows,
-                                            &nColumns,
-                                            NULL) )
-        {
-            NSLog( @"Couldn't retrieve data from database: %s", sqlite3_errmsg(database) );
+        
+        NSString *sqlString = [NSString stringWithFormat:@"PRAGMA table_info('%@')", aTableName];
+        
+        sqlite3_stmt *statement;
+        
+        const char *sqlQuery = [sqlString UTF8String];
+        
+        if (sqlite3_prepare_v2(database, sqlQuery, -1, &statement, NULL) != SQLITE_OK) {
+            NSLog( @"%s", sqlite3_errmsg(database) );
             return;
         }
-
-        resultArray = [NSMutableArray arrayWithCapacity:nRows++];
-        for (int i = 0; i < nRows - 1; i++) {
-            int index = (i + 1) * nColumns + 1;
-            const char *pszValue = results[index];
+        
+        resultArray = [NSMutableArray array];
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            const unsigned char *pszValue = sqlite3_column_text(statement, 1);
             if (pszValue) {
-                [resultArray addObject:[NSString stringWithUTF8String:pszValue]];
+                [resultArray addObject:[NSString stringWithUTF8String:(const char *)pszValue]];
             }
         }
-        sqlite3_free_table(results);
+
 
     });
     return resultArray;
@@ -202,7 +197,6 @@ static NSArray *records = nil;
             }
         }
         sqlite3_free_table(results);
-
     });
     return resultArray;
 }
@@ -217,7 +211,7 @@ static NSArray *records = nil;
 }
 
 - (NSString *)tableName:(NSString *)modelName {
-    return [[NSString stringWithFormat:@"%@", modelName] quotedString];
+    return modelName;
 }
 
 - (void)closeConnection {
@@ -445,14 +439,14 @@ static NSArray *records = nil;
 - (NSInteger)countOfRecordsWithName:(NSString *)aName {
 #warning remove
     NSString *aSqlRequest = [NSString stringWithFormat:
-                             @"SELECT count(id) FROM %@",
+                             @"SELECT count(id) FROM '%@'",
                              [self tableName:aName]];
     return [self functionResult:aSqlRequest];
 }
 
 - (NSNumber *)getLastId:(NSString *)aRecordName {
 #warning remove
-    NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from %@",
+    NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from '%@'",
                              [aRecordName quotedString]];
     NSInteger res = [self functionResult:aSqlRequest];
     return [NSNumber numberWithInt:res];
