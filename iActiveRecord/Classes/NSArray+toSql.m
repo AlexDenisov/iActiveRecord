@@ -7,14 +7,14 @@
 //
 
 #import "NSArray+toSql.h"
-#import "NSString+quotedString.h"
 
 @implementation NSArray (toSql)
 
 - (NSString *)toSql {
     NSMutableArray *sqlValues = [NSMutableArray array];
     for (id value in self) {
-        [sqlValues addObject:[[value toSql] quotedString]];
+        NSString *escapedSql = [NSString stringWithFormat:@"\"%@\"", [value toSql]];
+        [sqlValues addObject:escapedSql];
     }
     return [NSString stringWithFormat:@"(%@)", [sqlValues componentsJoinedByString:@","]];
 }

@@ -9,7 +9,6 @@
 #import "ARLazyFetcher.h"
 #import "ARDatabaseManager.h"
 #import "NSString+lowercaseFirst.h"
-#import "NSString+quotedString.h"
 #import "ARColumn.h"
 #import "ActiveRecord.h"
 #import "ActiveRecord_Private.h"
@@ -106,10 +105,8 @@
     for (NSString *key in [orderByConditions allKeys]) {
         NSString *order = [[orderByConditions valueForKey:key] boolValue] ? @"ASC" : @"DESC";
         [statement appendFormat:
-         @" %@.%@ %@ ,",
-         [recordClass performSelector:@selector(recordName)],
-         [key quotedString],
-         order];
+         @" \"%@\".\"%@\" %@ ,",
+         [recordClass performSelector:@selector(recordName)], key, order];
     }
     [statement replaceCharactersInRange:NSMakeRange(statement.length - 1, 1) withString:@""];
     return statement;
@@ -134,9 +131,9 @@
     NSString *fieldname = nil;
     for (NSString *field in [self fieldsOfRecord : recordClass]) {
         fieldname = [NSString stringWithFormat:
-                     @"%@.%@ AS '%@#%@'",
-                     [[recordClass performSelector:@selector(recordName)] quotedString],
-                     [field quotedString],
+                     @"\"%@\".\"%@\" AS '%@#%@'",
+                     [recordClass performSelector:@selector(recordName)],
+                     field,
                      [recordClass performSelector:@selector(recordName)],
                      field];
         [fields addObject:fieldname];
@@ -144,17 +141,17 @@
 
     for (NSString *field in [self fieldsOfRecord : joinClass]) {
         fieldname = [NSString stringWithFormat:
-                     @"%@.%@ AS '%@#%@'",
-                     [[joinClass performSelector:@selector(recordName)] quotedString],
-                     [field quotedString],
+                     @"\"%@\".\"%@\" AS '%@#%@'",
+                     [joinClass performSelector:@selector(recordName)],
+                     field,
                      [joinClass performSelector:@selector(recordName)],
                      field];
         [fields addObject:fieldname];
     }
 
-    [statement appendFormat:@"%@ FROM %@ ",
+    [statement appendFormat:@"%@ FROM \"%@\" ",
      [fields componentsJoinedByString:@","],
-     [[recordClass performSelector:@selector(recordName)] quotedString]];
+     [recordClass performSelector:@selector(recordName)]];
     return statement;
 }
 
@@ -164,14 +161,14 @@
     NSString *fieldname = nil;
     for (NSString *field in [self recordFields]) {
         fieldname = [NSString stringWithFormat:
-                     @"%@.%@",
-                     [[recordClass performSelector:@selector(recordName)] quotedString],
-                     [field quotedString]];
+                     @"\"%@\".\"%@\"",
+                     [recordClass performSelector:@selector(recordName)],
+                     field];
         [fields addObject:fieldname];
     }
-    [statement appendFormat:@"%@ FROM %@ ",
+    [statement appendFormat:@"%@ FROM \"%@\" ",
      [fields componentsJoinedByString:@","],
-     [[recordClass performSelector:@selector(recordName)] quotedString]];
+     [recordClass performSelector:@selector(recordName)]];
     return statement;
 }
 
@@ -184,11 +181,11 @@
     NSString *joinTable = [joinClass performSelector:@selector(recordName)];
     NSString *selfTable = [recordClass performSelector:@selector(recordName)];
     [statement appendFormat:
-     @" %@ JOIN %@ ON %@.%@ = %@.%@ ",
+     @" %@ JOIN \"%@\" ON \"%@\".\"%@\" = \"%@\".\"%@\" ",
      join,
-     [joinTable quotedString],
-     [selfTable quotedString], [recordField quotedString],
-     [joinTable quotedString], [joinField quotedString]];
+     joinTable,
+     selfTable, recordField,
+     joinTable, joinField];
     return statement;
 }
 
@@ -315,8 +312,8 @@
 - (NSInteger)count {
     NSMutableString *sql = [NSMutableString string];
 
-    NSString *select = [NSString stringWithFormat:@"SELECT count(*) FROM %@ ",
-                        [[recordClass performSelector:@selector(recordName)] quotedString]];
+    NSString *select = [NSString stringWithFormat:@"SELECT count(*) FROM \"%@\" ",
+                        [recordClass performSelector:@selector(recordName)]];
     NSString *where = [self createWhereStatement];
     NSString *join = [self createJoinStatement];
     [sql appendString:select];
@@ -339,7 +336,7 @@
             if ([value respondsToSelector:@selector(toSql)]) {
                 value = [value performSelector:@selector(toSql)];
             }
-            argument = [value quotedString];
+            argument = [NSString stringWithFormat:@"\"%@\"", value];
         }
         [sqlArguments addObject:argument];
     }

@@ -11,7 +11,6 @@
 #import "ARDatabaseManager.h"
 #import "ActiveRecord_Private.h"
 #import "class_getSubclasses.h"
-#import "NSString+quotedString.h"
 #import "sqlite3_unicode.h"
 #import "ARColumn.h"
 #import "ARSQLBuilder.h"
@@ -446,8 +445,7 @@ static NSArray *records = nil;
 
 - (NSNumber *)getLastId:(NSString *)aRecordName {
 #warning remove
-    NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from '%@'",
-                             [aRecordName quotedString]];
+    NSString *aSqlRequest = [NSString stringWithFormat:@"select MAX(id) from '%@'", aRecordName];
     NSInteger res = [self functionResult:aSqlRequest];
     return [NSNumber numberWithInt:res];
 }

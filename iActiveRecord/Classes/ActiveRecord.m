@@ -12,7 +12,6 @@
 #import <objc/runtime.h>
 #import "ARValidationsHelper.h"
 #import "ARErrorHelper.h"
-//#import "NSString+quotedString.h"
 #import "ARDatabaseManager.h"
 
 #import "ARRelationBelongsTo.h"
@@ -108,7 +107,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     SEL selector = NSSelectorFromString(aSelectorName);
     NSString *relationName = [aSelectorName stringByReplacingOccurrencesOfString:registerHasMany
                               withString:@""];
-    ARDependency dependency = (ARDependency)[self performSelector : selector];
+    ARDependency dependency = (ARDependency)[self performSelector:selector];
     ARRelationHasMany *relation = [[ARRelationHasMany alloc] initWithRecord:[self recordName]
                                    relation:relationName
                                    dependent:dependency];
@@ -123,7 +122,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     SEL selector = NSSelectorFromString(aSelectorName);
     NSString *records = [aSelectorName stringByReplacingOccurrencesOfString:registerHasManyThrough
                          withString:@""];
-    ARDependency dependency = (ARDependency)[self performSelector : selector];
+    ARDependency dependency = (ARDependency)[self performSelector:selector];
     NSArray *components = [records componentsSeparatedByString:@"_ar_"];
     NSString *relationName = [components objectAtIndex:0];
     NSString *throughRelationname = [components objectAtIndex:1];
