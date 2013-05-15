@@ -31,7 +31,7 @@ static NSArray *records = nil;
     useCacheDirectory = isCache;
 }
 
-+ (id)sharedInstance {
++ (instancetype)sharedInstance {
     static dispatch_once_t once;
     static id sharedInstance;
     dispatch_once(&once, ^{
@@ -40,7 +40,7 @@ static NSArray *records = nil;
     return sharedInstance;
 }
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (nil != self) {
 #ifdef UNIT_TEST

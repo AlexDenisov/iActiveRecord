@@ -18,7 +18,7 @@
 
 @synthesize whereStatement;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         limit = nil;
@@ -31,13 +31,13 @@
     return self;
 }
 
-- (id)initWithRecord:(Class)aRecord {
+- (instancetype)initWithRecord:(Class)aRecord {
     self = [self init];
     recordClass = aRecord;
     return self;
 }
 
-- (id)initWithRecord:(Class)aRecord withInitialSql:(NSString *)anInitialSql {
+- (instancetype)initWithRecord:(Class)aRecord withInitialSql:(NSString *)anInitialSql {
     self = [self initWithRecord:aRecord];
     if (self) {
         sqlRequest = [anInitialSql copy];
@@ -343,7 +343,7 @@
     va_end(args);
 
     NSRange range = NSMakeRange(0, [sqlArguments count]);
-    NSMutableData * data = [NSMutableData dataWithLength: sizeof(id) * [sqlArguments count]];
+    NSMutableData * data = [NSMutableData dataWithLength:sizeof(id) * [sqlArguments count]];
     [sqlArguments getObjects: (__unsafe_unretained id *)data.mutableBytes range:range];
     NSString * result = [[NSString alloc] initWithFormat:aCondition
                                                arguments:data.mutableBytes];

@@ -39,7 +39,7 @@
 - (NSString *)documentsDirectory;
 - (NSString *)cachesDirectory;
 
-+ (id)sharedInstance;
++ (instancetype)sharedInstance;
 
 - (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery;
 - (NSNumber *)getLastId:(NSString *)aRecordName;

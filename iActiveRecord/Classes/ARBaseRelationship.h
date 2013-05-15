@@ -13,12 +13,12 @@
 
 @property (nonatomic, copy) NSString *record;
 @property (nonatomic, copy) NSString *relation;
-@property (nonatomic, readwrite) ARDependency dependency;
 @property (nonatomic, copy) NSString *throughRecord;
+@property (nonatomic, readwrite) ARDependency dependency;
 
-- (id)initWithRecord:(NSString *)aRecordName
-            relation:(NSString *)aRelation
-           dependent:(ARDependency)aDependency;
+- (instancetype)initWithRecord:(NSString *)aRecordName
+                      relation:(NSString *)aRelation
+                     dependent:(ARDependency)aDependency;
 
 - (ARRelationType)type;
 

@@ -12,7 +12,7 @@
 
 @implementation ARSchemaManager
 
-+ (id)sharedInstance {
++ (instancetype)sharedInstance {
     static dispatch_once_t once;
     static id sharedInstance;
     dispatch_once(&once, ^{
@@ -21,7 +21,7 @@
     return sharedInstance;
 }
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     self.schemes = [NSMutableDictionary new];
     self.indices = [NSMutableDictionary new];

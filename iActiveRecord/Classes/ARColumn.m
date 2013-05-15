@@ -15,9 +15,9 @@
 
 @implementation ARColumn
 
-- (id)initWithProperty:(objc_property_t)property ofClass:(Class)aClass {
+- (instancetype)initWithProperty:(objc_property_t)property ofClass:(Class)aClass {
     self = [super init];
-    if (nil != self) {
+    if (self) {
         self.recordClass = aClass;
         _dynamic = NO;
         self->_associationPolicy = OBJC_ASSOCIATION_ASSIGN;
@@ -150,7 +150,6 @@
     return result;
 }
 
-//  use default setter if anAttribute == nil/NULL
 - (void)setSetterFromAttribute:(const char *)anAttribute {
     if (anAttribute) {
         self.setter = [NSString stringWithUTF8String:anAttribute];
@@ -159,7 +158,6 @@
     }
 }
 
-//  use default getter if anAttribute == nil/NULL
 - (void)setGetterFromAttribute:(const char *)anAttribute {
     if (anAttribute) {
         self.getter = [NSString stringWithUTF8String:anAttribute];

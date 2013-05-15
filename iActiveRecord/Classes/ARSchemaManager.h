@@ -13,7 +13,7 @@
 @property (nonatomic, retain) NSMutableDictionary *schemes;
 @property (nonatomic, retain) NSMutableDictionary *indices;
 
-+ (id)sharedInstance;
++ (instancetype)sharedInstance;
 
 - (void)registerSchemeForRecord:(Class)aRecordClass;
 - (NSArray *)columnsForRecord:(Class)aRecordClass;

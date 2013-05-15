@@ -10,9 +10,9 @@
 
 @implementation ARError
 
-- (id)initWithModel:(NSString *)aModel
-           property:(NSString *)aProperty
-              error:(NSString *)anError
+- (instancetype)initWithModel:(NSString *)aModel
+                     property:(NSString *)aProperty
+                        error:(NSString *)anError
 {
     self = [super init];
     if (self) {

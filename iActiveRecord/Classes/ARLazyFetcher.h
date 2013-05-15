@@ -17,7 +17,7 @@ typedef enum {
 
 @interface ARLazyFetcher : NSObject
 
-- (id)initWithRecord:(Class )aRecord;
+- (instancetype)initWithRecord:(Class )aRecord;
 
 - (ARLazyFetcher *)limit:(NSInteger)aLimit;
 - (ARLazyFetcher *)offset:(NSInteger)anOffset;

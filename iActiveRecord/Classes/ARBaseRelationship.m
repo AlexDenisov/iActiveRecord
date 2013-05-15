@@ -10,9 +10,9 @@
 
 @implementation ARBaseRelationship
 
-- (id)initWithRecord:(NSString *)aRecordName
-            relation:(NSString *)aRelation
-           dependent:(ARDependency)aDependency
+- (instancetype)initWithRecord:(NSString *)aRecordName
+                      relation:(NSString *)aRelation
+                     dependent:(ARDependency)aDependency
 {
     self = [super init];
     if (self) {

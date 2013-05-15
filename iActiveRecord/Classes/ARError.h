@@ -14,6 +14,6 @@
 @property (nonatomic, copy) NSString *propertyName;
 @property (nonatomic, copy) NSString *errorName;
 
-- (id)initWithModel:(NSString *)aModel property:(NSString *)aProperty error:(NSString *)anError;
+- (instancetype)initWithModel:(NSString *)aModel property:(NSString *)aProperty error:(NSString *)anError;
 
 @end

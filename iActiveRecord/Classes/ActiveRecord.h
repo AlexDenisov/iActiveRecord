@@ -37,7 +37,7 @@ typedef void (^ARTransactionBlock)();
 - (NSArray *)errors;
 - (void)addError:(ARError *)anError;
 
-+ (id)newRecord;
++ (instancetype)newRecord;
 - (BOOL)save;
 - (BOOL)update;
 - (void)dropRecord;
