@@ -6,13 +6,17 @@
 //  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
-#import <CedarAsync/CedarAsync.h>
+#import "SpecHelper.h"
 #import "User.h"
 
 using namespace Cedar::Matchers;
 using namespace Cedar::Doubles;
 
 SPEC_BEGIN(GCDSpec)
+
+beforeEach(^{
+    prepareDatabaseManager();
+});
 
 describe(@"GCD", ^{
     

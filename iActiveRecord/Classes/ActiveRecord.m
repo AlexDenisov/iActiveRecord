@@ -31,6 +31,7 @@
 #import "ARColumn_Private.h"
 
 #import "ARDynamicAccessor.h"
+#import "ARConfiguration.h"
 
 static NSMutableDictionary *relationshipsDictionary = nil;
 
@@ -433,16 +434,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [self privateAfterDestroy];
 }
 
-#pragma mark - Storage
-
-+ (void)registerDatabaseName:(NSString *)aDbName useDirectory:(ARStorageDirectory)aDirectory {
-    BOOL isCache = YES;
-    if (aDirectory == ARStorageDocuments) {
-        isCache = NO;
-    }
-    [ARDatabaseManager registerDatabase:aDbName cachesDirectory:isCache];
-}
-
 #pragma mark - Clear database
 
 + (void)clearDatabase {
@@ -587,6 +578,17 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 + (void)addIndexOn:(NSString *)aField {
     [[ARSchemaManager sharedInstance] addIndexOnColumn:aField
      ofRecord:self];
+}
+
+#pragma mark - Configuration
+
++ (void)applyConfiguration:(ARConfigurationBlock)configBlock {
+    NSAssert(configBlock, @"ARConfigurationBlock should not be nil");
+    
+    ARConfiguration *config = [ARConfiguration new];
+    configBlock(config);
+    ARDatabaseManager *manager = [ARDatabaseManager sharedInstance];
+    [manager applyConfiguration:config];
 }
 
 @end

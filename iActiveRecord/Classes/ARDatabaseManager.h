@@ -10,14 +10,15 @@
 #import <sqlite3.h>
 
 @class ActiveRecord;
+@class ARConfiguration;
 
 @interface ARDatabaseManager : NSObject
 {
     @private
     sqlite3 *database;
-    NSString *dbPath;
-    NSString *dbName;
 }
+
+@property (nonatomic, strong) ARConfiguration *configuration;
 
 + (void)disableMigrations;
 
@@ -36,10 +37,9 @@
 - (NSArray *)columnsForTable:(NSString *)aTableName;
 
 - (NSString *)tableName:(NSString *)modelName;
-- (NSString *)documentsDirectory;
-- (NSString *)cachesDirectory;
 
 + (instancetype)sharedInstance;
+- (void)applyConfiguration:(ARConfiguration *)configuration;
 
 - (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery;
 - (NSNumber *)getLastId:(NSString *)aRecordName;
@@ -49,10 +49,6 @@
 - (NSInteger)functionResult:(NSString *)anSql;
 
 - (NSInteger)executeFunction:(const char *)anSqlQuery;
-
-+ (void)registerDatabase:(NSString *)aDatabaseName cachesDirectory:(BOOL)isCache;
-
-- (void)skipBackupAttributeToFile:(NSURL *) url;
 
 - (NSInteger)saveRecord:(ActiveRecord *)aRecord;
 - (NSInteger)updateRecord:(ActiveRecord *)aRecord;

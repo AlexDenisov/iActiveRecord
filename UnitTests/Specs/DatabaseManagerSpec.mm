@@ -6,14 +6,21 @@
 //  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
-#import "Cedar-iOS/SpecHelper.h"
+#import "SpecHelper.h"
+
 #import "User.h"
 #import "ARDatabaseManager.h"
 #import "DifferentTableName.h"
 
+#import "ARConfiguration.h"
+
 using namespace Cedar::Matchers;
 
 SPEC_BEGIN(DatabaseManagerSpecs)
+
+beforeEach(^{
+    prepareDatabaseManager();
+});
 
 describe(@"ARDatabase", ^{
     it(@"Should clear all data", ^{

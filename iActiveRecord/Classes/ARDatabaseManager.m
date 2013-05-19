@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
-#include <sys/xattr.h>
-
 #import "ARDatabaseManager.h"
 #import "ActiveRecord_Private.h"
 #import "class_getSubclasses.h"
@@ -15,21 +13,13 @@
 #import "ARColumn.h"
 #import "ARSQLBuilder.h"
 #import "ARSchemaManager.h"
-
-#define DEFAULT_DBNAME @"database"
+#import "ARConfiguration.h"
 
 @implementation ARDatabaseManager
 
-static BOOL useCacheDirectory = YES;
-static NSString *databaseName = DEFAULT_DBNAME;
 static BOOL migrationsEnabled = YES;
 
 static NSArray *records = nil;
-
-+ (void)registerDatabase:(NSString *)aDatabaseName cachesDirectory:(BOOL)isCache {
-    databaseName = [aDatabaseName copy];
-    useCacheDirectory = isCache;
-}
 
 + (instancetype)sharedInstance {
     static dispatch_once_t once;
@@ -40,20 +30,9 @@ static NSArray *records = nil;
     return sharedInstance;
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (nil != self) {
-#ifdef UNIT_TEST
-        dbName = [[NSString alloc] initWithFormat:@"%@-test.sqlite", databaseName];
-#else
-        dbName = [[NSString alloc] initWithFormat:@"%@.sqlite", databaseName];
-#endif
-        NSString *storageDirectory = useCacheDirectory ?[self cachesDirectory] :[self documentsDirectory];
-        dbPath = [[NSString alloc] initWithFormat:@"%@/%@", storageDirectory, dbName];
-        NSLog(@"%@", dbPath);
-        [self createDatabase];
-    }
-    return self;
+- (void)applyConfiguration:(ARConfiguration *)configuration {
+    self.configuration = configuration;
+    [self createDatabase];
 }
 
 - (void)dealloc {
@@ -61,17 +40,15 @@ static NSArray *records = nil;
 }
 
 - (void)createDatabase {
-    if ([[NSFileManager defaultManager] fileExistsAtPath:dbPath]) {
+    NSString *databasePath = self.configuration.databasePath;
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:databasePath]) {
         [self openConnection];
         [self appendMigrations];
         return;
     }
     
-    [[NSFileManager defaultManager] createFileAtPath:dbPath contents:nil attributes:nil];
-    
-    if (!useCacheDirectory) {
-        [self skipBackupAttributeToFile:[NSURL fileURLWithPath:dbPath]];
-    }
+    [[NSFileManager defaultManager] createFileAtPath:databasePath contents:nil attributes:nil];
     
     [self openConnection];
     [self createTables];
@@ -203,7 +180,7 @@ static NSArray *records = nil;
 - (void)openConnection {
     dispatch_sync([self activeRecordQueue], ^{
         sqlite3_unicode_load();
-        if ( SQLITE_OK != sqlite3_open([dbPath UTF8String], &database) ) {
+        if ( SQLITE_OK != sqlite3_open([self.configuration.databasePath UTF8String], &database) ) {
             NSLog( @"Couldn't open database connection: %s", sqlite3_errmsg(database) );
         }
     });
@@ -234,16 +211,6 @@ static NSArray *records = nil;
         }
     });
     return result;
-}
-
-- (NSString *)documentsDirectory {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [paths count] ?[paths objectAtIndex:0] : nil;
-}
-
-- (NSString *)cachesDirectory {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    return [paths count] ?[paths objectAtIndex:0] : nil;
 }
 
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest {

@@ -6,13 +6,15 @@
 //  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
-#import "Cedar-iOS/SpecHelper.h"
+#import "SpecHelper.h"
+
 #import "ARDatabaseManager.h"
 #import "Animal.h"
 #import "Entity.h"
 
 using namespace Cedar::Matchers;
 
+#warning Reimplement this
 /*
  This spec run once, when record 'Entity' doesn't exists
  */
@@ -20,6 +22,7 @@ using namespace Cedar::Matchers;
 SPEC_BEGIN(MigrationsSpecs)
 
 beforeEach(^{
+    prepareDatabaseManager();
     [[ARDatabaseManager sharedInstance] clearDatabase];
 });
 afterEach(^{

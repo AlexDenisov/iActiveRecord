@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
-#import "Cedar-iOS/SpecHelper.h"
+#import "SpecHelper.h"
+
 #import "User.h"
 #import "Group.h"
 #import "Project.h"
@@ -18,6 +19,7 @@ using namespace Cedar::Matchers;
 SPEC_BEGIN(RelationshipsSpecs)
 
 beforeEach(^{
+    prepareDatabaseManager();
     [[ARDatabaseManager sharedInstance] clearDatabase];
 });
 afterEach(^{

@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
-#import "Cedar-iOS/SpecHelper.h"
+#import "SpecHelper.h"
+
 #import "User.h"
 #import "ARDatabaseManager.h"
 #import "ARFactory.h"
@@ -19,6 +20,7 @@ using namespace Cedar::Matchers;
 SPEC_BEGIN(ARLazyFetcherSpecs)
 
 beforeEach(^{
+    prepareDatabaseManager();
     [[ARDatabaseManager sharedInstance] clearDatabase];
     [ARFactory buildFew:10 recordsNamed:@"User"];
 });

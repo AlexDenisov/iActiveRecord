@@ -20,7 +20,10 @@
 #import "ARException.h"
 #import "ARIndicesMacroHelper.h"
 
+@class ARConfiguration;
+
 typedef void (^ARTransactionBlock)();
+typedef void (^ARConfigurationBlock) (ARConfiguration *config);
 
 #define ar_rollback \
     [ARException raise];
@@ -52,6 +55,8 @@ typedef void (^ARTransactionBlock)();
 + (void)clearDatabase;
 + (void)disableMigrations;
 + (void)transaction:(ARTransactionBlock)aTransactionBlock;
+
++ (void)applyConfiguration:(ARConfigurationBlock)configBlock;
 
 #pragma mark - TableName
 

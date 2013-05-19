@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 okolodev.org. All rights reserved.
 //
 
-#import "Cedar-iOS/SpecHelper.h"
+#import "SpecHelper.h"
+
 #import "ARDatabaseManager.h"
 #import "ActiveRecord.h"
 #import "ActiveRecord_Private.h"
@@ -19,6 +20,10 @@
 using namespace Cedar::Matchers;
 
 SPEC_BEGIN(ARColumnSpecs)
+
+beforeEach(^{
+    prepareDatabaseManager();
+});
 
 describe(@"ARColumn", ^{
         

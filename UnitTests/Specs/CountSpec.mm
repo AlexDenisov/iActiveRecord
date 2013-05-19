@@ -5,15 +5,18 @@
 //  Created by Alex Denisov on 01.08.12.
 //  Copyright (c) 2012 okolodev.org. All rights reserver.
 
+#import "SpecHelper.h"
+
 #import "ARDatabaseManager.h"
-#import "Cedar-iOS/SpecHelper.h"
 #import "User.h"
 #import "ARDatabaseManager.h"
+
 using namespace Cedar::Matchers;
 
 SPEC_BEGIN(CountSpecs)
 
 beforeEach(^{
+    prepareDatabaseManager();
     [[ARDatabaseManager sharedInstance] clearDatabase];
 });
 afterEach(^{
