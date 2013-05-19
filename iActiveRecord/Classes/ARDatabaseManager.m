@@ -17,8 +17,6 @@
 
 @implementation ARDatabaseManager
 
-static BOOL migrationsEnabled = YES;
-
 static NSArray *records = nil;
 
 + (instancetype)sharedInstance {
@@ -75,9 +73,10 @@ static NSArray *records = nil;
 }
 
 - (void)appendMigrations {
-    if (!migrationsEnabled) {
+    if (!self.configuration.isMigrationsEnabled) {
         return;
     }
+
     NSArray *existedTables = [self tables];
     NSArray *describedTables = [self describedTables];
     for (NSString *table in describedTables) {
@@ -447,15 +446,6 @@ static NSArray *records = nil;
     });
 
     return resId;
-}
-
-- (void)skipBackupAttributeToFile:(NSURL *)url {
-    u_int8_t b = 1;
-    setxattr([[url path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
-}
-
-+ (void)disableMigrations {
-    migrationsEnabled = NO;
 }
 
 - (NSInteger)saveRecord:(ActiveRecord *)aRecord {

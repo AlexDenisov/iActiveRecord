@@ -29,4 +29,12 @@ NSString *ARDocumentsDatabasePath(NSString *databaseName) {
 
 @implementation ARConfiguration
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.migrationsEnabled = YES;
+    }
+    return self;
+}
+
 @end

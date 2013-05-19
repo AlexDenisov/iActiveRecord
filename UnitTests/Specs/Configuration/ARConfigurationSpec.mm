@@ -19,6 +19,10 @@ describe(@"ARConfiguration", ^{
             subject should responds_to(@selector(databasePath));
         });
         
+        it(@"isMigrationsEnabled", ^{
+            subject should responds_to(@selector(isMigrationsEnabled));
+        });
+        
     });
     
     describe(@"databasePath", ^{
@@ -33,6 +37,14 @@ describe(@"ARConfiguration", ^{
         
         it(@"ARDocumentsDatabasePath not nil", ^{
             ARDocumentsDatabasePath(nil) should_not be_nil;
+        });
+        
+    });
+    
+    describe(@"migrationsEnabled", ^{
+        
+        it(@"YES by default", ^{
+            subject.migrationsEnabled should be_truthy;
         });
         
     });

@@ -20,5 +20,6 @@ extern "C" {
 @interface ARConfiguration : NSObject
 
 @property (nonatomic, copy) NSString *databasePath;
+@property (nonatomic, getter = isMigrationsEnabled) BOOL migrationsEnabled;
 
 @end
