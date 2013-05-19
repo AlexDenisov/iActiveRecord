@@ -51,9 +51,7 @@ typedef void (^ARConfigurationBlock) (ARConfiguration *config);
 
 + (void)dropAllRecords;
 
-+ (void)registerDatabaseName:(NSString *)aDbName useDirectory:(ARStorageDirectory)aDirectory;
 + (void)clearDatabase;
-+ (void)disableMigrations;
 + (void)transaction:(ARTransactionBlock)aTransactionBlock;
 
 + (void)applyConfiguration:(ARConfigurationBlock)configBlock;

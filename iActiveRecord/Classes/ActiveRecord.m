@@ -93,7 +93,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     SEL selector = NSSelectorFromString(aSelectorName);
     NSString *relationName = [aSelectorName stringByReplacingOccurrencesOfString:registerBelongs
                               withString:@""];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     ARDependency dependency = (ARDependency)[self performSelector : selector];
+#pragma clang diagnostic pop
     ARRelationBelongsTo *relation = [[ARRelationBelongsTo alloc] initWithRecord:[self recordName]
                                      relation:relationName
                                      dependent:dependency];
@@ -108,7 +111,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     SEL selector = NSSelectorFromString(aSelectorName);
     NSString *relationName = [aSelectorName stringByReplacingOccurrencesOfString:registerHasMany
                               withString:@""];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     ARDependency dependency = (ARDependency)[self performSelector:selector];
+#pragma clang diagnostic pop
     ARRelationHasMany *relation = [[ARRelationHasMany alloc] initWithRecord:[self recordName]
                                    relation:relationName
                                    dependent:dependency];
@@ -123,7 +129,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     SEL selector = NSSelectorFromString(aSelectorName);
     NSString *records = [aSelectorName stringByReplacingOccurrencesOfString:registerHasManyThrough
                          withString:@""];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     ARDependency dependency = (ARDependency)[self performSelector:selector];
+#pragma clang diagnostic pop
     NSArray *components = [records componentsSeparatedByString:@"_ar_"];
     NSString *relationName = [components objectAtIndex:0];
     NSString *throughRelationname = [components objectAtIndex:1];
@@ -326,7 +335,12 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (id)belongsTo:(NSString *)aClassName {
     NSString *selectorString = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
     SEL selector = NSSelectorFromString(selectorString);
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     NSNumber *rec_id = [self performSelector:selector];
+#pragma clang diagnostic pop
+
     if (rec_id == nil) {
         return nil;
     }
@@ -397,8 +411,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     SEL currentIdSelector = NSSelectorFromString(currentIdSelectorString);
     SEL relativeIdSelector = NSSelectorFromString(relativeIdSlectorString);
     ActiveRecord *relationshipRecord = [RelationshipClass newRecord];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [relationshipRecord performSelector:currentIdSelector withObject:self.id];
     [relationshipRecord performSelector:relativeIdSelector withObject:aRecord.id];
+#pragma clang diagnostic pop
     [relationshipRecord save];
 }
 
@@ -438,10 +455,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)clearDatabase {
     [[ARDatabaseManager sharedInstance] clearDatabase];
-}
-
-+ (void)disableMigrations {
-    [ARDatabaseManager disableMigrations];
 }
 
 #pragma mark - Transactions

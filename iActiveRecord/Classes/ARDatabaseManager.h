@@ -20,8 +20,6 @@
 
 @property (nonatomic, strong) ARConfiguration *configuration;
 
-+ (void)disableMigrations;
-
 - (void)createDatabase;
 - (void)clearDatabase;
 
