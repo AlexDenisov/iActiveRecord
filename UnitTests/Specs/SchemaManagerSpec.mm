@@ -20,10 +20,10 @@ SPEC_BEGIN(ARSchemaManagerSpecs)
 
 beforeEach(^{
     prepareDatabaseManager();
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 afterEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 
 describe(@"SchemaManager", ^{

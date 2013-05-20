@@ -17,10 +17,10 @@ SPEC_BEGIN(UnicodeSpecs)
 
 beforeEach(^{
     prepareDatabaseManager();
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 afterEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 
 describe(@"Unicode search", ^{

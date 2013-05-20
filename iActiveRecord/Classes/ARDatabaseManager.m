@@ -19,7 +19,7 @@
 
 static NSArray *records = nil;
 
-+ (instancetype)sharedInstance {
++ (instancetype)sharedManager {
     static dispatch_once_t once;
     static id sharedInstance;
     dispatch_once(&once, ^{

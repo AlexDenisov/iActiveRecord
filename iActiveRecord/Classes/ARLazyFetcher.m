@@ -284,7 +284,7 @@
 
 - (NSArray *)fetchRecords {
     [self buildSql];
-    return [[ARDatabaseManager sharedInstance] allRecordsWithName:[recordClass description]
+    return [[ARDatabaseManager sharedManager] allRecordsWithName:[recordClass description]
                                                           withSql:sqlRequest];
 }
 
@@ -306,7 +306,7 @@
     [sql appendString:where];
     [sql appendString:orderBy];
     [sql appendString:limitOffset];
-    return [[ARDatabaseManager sharedInstance] joinedRecordsWithSql:sql];
+    return [[ARDatabaseManager sharedManager] joinedRecordsWithSql:sql];
 }
 
 - (NSInteger)count {
@@ -319,7 +319,7 @@
     [sql appendString:select];
     [sql appendString:join];
     [sql appendString:where];
-    return [[ARDatabaseManager sharedInstance] functionResult:sql];
+    return [[ARDatabaseManager sharedManager] functionResult:sql];
 }
 
 - (ARLazyFetcher *)where:(NSString *)aCondition, ...{

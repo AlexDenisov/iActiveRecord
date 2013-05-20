@@ -19,10 +19,10 @@ SPEC_BEGIN(SaveUpdateSpecs)
 
 beforeEach(^{
     prepareDatabaseManager();
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 afterEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 
 describe(@"Update", ^{

@@ -7,10 +7,10 @@ using namespace Cedar::Matchers;
 SPEC_BEGIN(NSDecimalNumberSpec)
 
 beforeEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 afterEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 
 describe(@"NSDecimalNumberSpec", ^{

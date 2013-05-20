@@ -299,7 +299,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if (![self isValid]) {
         return NO;
     }
-    NSInteger newRecordId = [[ARDatabaseManager sharedInstance] saveRecord:self];
+    NSInteger newRecordId = [[ARDatabaseManager sharedManager] saveRecord:self];
     if (newRecordId) {
         self.id = [NSNumber numberWithInteger:newRecordId];
         isNew = NO;
@@ -316,7 +316,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if (isNew) {
         return [self save];
     }
-    NSInteger result = [[ARDatabaseManager sharedInstance] updateRecord:self];
+    NSInteger result = [[ARDatabaseManager sharedManager] updateRecord:self];
     if (result) {
         [_changedColumns removeAllObjects];
         return YES;
@@ -325,7 +325,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 + (NSInteger)count {
-    return [[ARDatabaseManager sharedInstance] countOfRecordsWithName:[[self class] description]];
+    return [[ARDatabaseManager sharedManager] countOfRecordsWithName:[[self class] description]];
 }
 
 #pragma mark - Relationships
@@ -447,14 +447,14 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 - (void)dropRecord {
-    [[ARDatabaseManager sharedInstance] dropRecord:self];
+    [[ARDatabaseManager sharedManager] dropRecord:self];
     [self privateAfterDestroy];
 }
 
 #pragma mark - Clear database
 
 + (void)clearDatabase {
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 }
 
 #pragma mark - Transactions
@@ -462,13 +462,13 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 + (void)transaction:(ARTransactionBlock)aTransactionBlock {
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        [[ARDatabaseManager sharedInstance] executeSqlQuery:"BEGIN"];
+        [[ARDatabaseManager sharedManager] executeSqlQuery:"BEGIN"];
         @try {
             aTransactionBlock();
-            [[ARDatabaseManager sharedInstance] executeSqlQuery:"COMMIT"];
+            [[ARDatabaseManager sharedManager] executeSqlQuery:"COMMIT"];
         }
         @catch (ARException *exception) {
-            [[ARDatabaseManager sharedInstance] executeSqlQuery:"ROLLBACK"];
+            [[ARDatabaseManager sharedManager] executeSqlQuery:"ROLLBACK"];
         }
     });
 }
@@ -600,7 +600,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     
     ARConfiguration *config = [ARConfiguration new];
     configBlock(config);
-    ARDatabaseManager *manager = [ARDatabaseManager sharedInstance];
+    ARDatabaseManager *manager = [ARDatabaseManager sharedManager];
     [manager applyConfiguration:config];
 }
 

@@ -20,10 +20,10 @@ SPEC_BEGIN(RelationshipsSpecs)
 
 beforeEach(^{
     prepareDatabaseManager();
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 afterEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 
 describe(@"HasMany", ^{
@@ -57,7 +57,7 @@ describe(@"HasMany", ^{
         count should equal(1);
     });
     it(@"Should remove relationship record", ^{
-        [[ARDatabaseManager sharedInstance] clearDatabase];
+        [[ARDatabaseManager sharedManager] clearDatabase];
         User *alex = [[User newRecord] autorelease];
         alex.name = @"Alex";
         [alex save] should BeTruthy();

@@ -36,7 +36,7 @@
 
 - (NSString *)tableName:(NSString *)modelName;
 
-+ (instancetype)sharedInstance;
++ (instancetype)sharedManager;
 - (void)applyConfiguration:(ARConfiguration *)configuration;
 
 - (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery;

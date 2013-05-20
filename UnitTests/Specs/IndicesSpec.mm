@@ -18,10 +18,10 @@ SPEC_BEGIN(IndicesSpecs)
 
 beforeEach(^{
     prepareDatabaseManager();
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 afterEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 
 describe(@"User", ^{

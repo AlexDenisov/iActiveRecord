@@ -28,13 +28,13 @@ describe(@"ARDatabase", ^{
         user.name = @"John";
         BOOL result = [user save];
         result should BeTruthy();
-        [[ARDatabaseManager sharedInstance] clearDatabase];
+        [[ARDatabaseManager sharedManager] clearDatabase];
         NSInteger count = [[User allRecords] count];
         count should equal(0);
     });
     
     it(@"should use recordName instead of class name", ^{
-        ARDatabaseManager *databaseManager = [ARDatabaseManager sharedInstance];
+        ARDatabaseManager *databaseManager = [ARDatabaseManager sharedManager];
         databaseManager.tables should contain([DifferentTableName recordName]);
     });
     

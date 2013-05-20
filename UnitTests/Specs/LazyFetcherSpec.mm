@@ -21,12 +21,12 @@ SPEC_BEGIN(ARLazyFetcherSpecs)
 
 beforeEach(^{
     prepareDatabaseManager();
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
     [ARFactory buildFew:10 recordsNamed:@"User"];
 });
 
 afterEach(^{
-    [[ARDatabaseManager sharedInstance] clearDatabase];
+    [[ARDatabaseManager sharedManager] clearDatabase];
 });
 
 describe(@"LazyFetcher", ^{
