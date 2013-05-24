@@ -106,40 +106,40 @@
         self->_associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
 
         switch (anAttribute[0]) {
-            case 'c':     // BOOL, char
+            case _C_CHR:     // BOOL, char
                 self->_columnType = ARColumnTypePrimitiveChar;
                 break;
-            case 'C':     // unsigned char
+            case _C_UCHR:     // unsigned char
                 self->_columnType = ARColumnTypePrimitiveUnsignedChar;
                 break;
-            case 's':     // short
+            case _C_SHT:     // short
                 self->_columnType = ARColumnTypePrimitiveShort;
                 break;
-            case 'S':     // unsigned short
+            case _C_USHT:     // unsigned short
                 self->_columnType = ARColumnTypePrimitiveUnsignedShort;
                 break;
-            case 'i':     // int, NSInteger
+            case _C_INT:     // int, NSInteger
                 self->_columnType = ARColumnTypePrimitiveInt;
                 break;
-            case 'I':     // uint, NSUinteger
+            case _C_UINT:     // uint, NSUinteger
                 self->_columnType = ARColumnTypePrimitiveUnsignedInt;
                 break;
-            case 'l':     // long
+            case _C_LNG:     // long
                 self->_columnType = ARColumnTypePrimitiveLong;
                 break;
-            case 'L':     // unsigned long
+            case _C_ULNG:     // unsigned long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLong;
                 break;
-            case 'q':     // long long
+            case _C_LNG_LNG:     // long long
                 self->_columnType = ARColumnTypePrimitiveLongLong;
                 break;
-            case 'Q':     // unsigned long long
+            case _C_ULNG_LNG:     // unsigned long long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLongLong;
                 break;
-            case 'f':     // float, CGFloat
+            case _C_FLT:     // float, CGFloat
                 self->_columnType = ARColumnTypePrimitiveFloat;
                 break;
-            case 'd':     // double
+            case _C_DBL:     // double
                 self->_columnType = ARColumnTypePrimitiveDouble;
                 break;
             default:
