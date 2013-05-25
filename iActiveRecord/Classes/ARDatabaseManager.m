@@ -482,7 +482,7 @@ static NSArray *records = nil;
                                valueMapping];
         
         sql = [sqlString UTF8String];
-        
+        printf("%s\n", sql);
         result = sqlite3_prepare_v2(database, sql, strlen(sql), &stmt, NULL);
         
         int columnIndex = 1;

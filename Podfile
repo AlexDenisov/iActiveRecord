@@ -5,3 +5,7 @@ target 'UnitTests' do
   pod 'CedarAsync'
 end
 
+target 'ActiveTwitter' do
+  pod 'RestKit'
+  pod 'iActiveRecord', :podspec => 'iActiveRecord.podspec'
+end
