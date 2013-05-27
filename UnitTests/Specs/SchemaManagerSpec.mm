@@ -16,22 +16,23 @@
 
 using namespace Cedar::Matchers;
 
-SPEC_BEGIN(ARSchemaManagerSpecs)
-
-beforeEach(^{
-    prepareDatabaseManager();
-    [[ARDatabaseManager sharedManager] clearDatabase];
-});
-afterEach(^{
-    [[ARDatabaseManager sharedManager] clearDatabase];
-});
-
-describe(@"SchemaManager", ^{
-    it(@"should return nil on undefined column", ^{
-        [[ARSchemaManager sharedInstance] registerSchemeForRecord:[User class]];
-        ARColumn *column = [User columnNamed:@"FUUU"];
-        column should BeNil();
+CDR_EXT
+Tsuga<ARSchemaManager>::run(^{
+   
+    beforeEach(^{
+        prepareDatabaseManager();
+        [[ARDatabaseManager sharedManager] clearDatabase];
     });
+    afterEach(^{
+        [[ARDatabaseManager sharedManager] clearDatabase];
+    });
+    
+    describe(@"SchemaManager", ^{
+        it(@"should return nil on undefined column", ^{
+            [[ARSchemaManager sharedInstance] registerSchemeForRecord:[User class]];
+            ARColumn *column = [User columnNamed:@"FUUU"];
+            column should BeNil();
+        });
+    });
+    
 });
-
-SPEC_END
