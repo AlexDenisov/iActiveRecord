@@ -21,12 +21,15 @@ PODS:
     - TransitionKit (= 1.1.0)
   - SOCKit (1.1)
   - TransitionKit (1.1.0)
+  - Tsuga (0.0.1):
+    - Cedar (~> 0.9)
 
 DEPENDENCIES:
   - Cedar
   - CedarAsync
   - iActiveRecord (from `iActiveRecord.podspec`)
   - RestKit
+  - Tsuga
 
 EXTERNAL SOURCES:
   iActiveRecord:
@@ -40,5 +43,6 @@ SPEC CHECKSUMS:
   RestKit: ceca63bc91172098c710c469facd2560e8a59164
   SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f
   TransitionKit: 1624e84f252d5cd26900be28ccb73c69fbe63f8a
+  Tsuga: 040a409f7e0e5a36ecc8756255cbe110cbf8acc3
 
 COCOAPODS: 0.20.1

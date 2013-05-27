@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		18EA5F0A534A428B8E0FDF75 /* libPods-ActiveTwitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DB15B0F98F47E19C6A4140 /* libPods-ActiveTwitter.a */; settings = {}; };
+		18EA5F0A534A428B8E0FDF75 /* libPods-ActiveTwitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DB15B0F98F47E19C6A4140 /* libPods-ActiveTwitter.a */; };
 		25922AFD14EC286000CBB58A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC114BC199C00CA2490 /* UIKit.framework */; };
 		25922AFE14EC286000CBB58A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC314BC199C00CA2490 /* Foundation.framework */; };
 		25922AFF14EC286000CBB58A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25998EC514BC199C00CA2490 /* CoreGraphics.framework */; };
@@ -234,7 +234,7 @@
 		75F56DB91717003C00A1DF7B /* DecimalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecimalRecord.m; sourceTree = "<group>"; };
 		75F56DBB171700D300A1DF7B /* NSDecimalNumberSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSDecimalNumberSpec.mm; sourceTree = "<group>"; };
 		A76A963FE4414086A44EBB01 /* Pods-ActiveTwitter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActiveTwitter.xcconfig"; path = "Pods/Pods-ActiveTwitter.xcconfig"; sourceTree = SOURCE_ROOT; };
-		C0DB15B0F98F47E19C6A4140 /* libPods-ActiveTwitter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-ActiveTwitter.a"; path = "libPods-ActiveTwitter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0DB15B0F98F47E19C6A4140 /* libPods-ActiveTwitter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ActiveTwitter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA04E8C1166A574100957F54 /* ARDynamicAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDynamicAccessor.h; sourceTree = "<group>"; };
 		CA04E8C2166A574100957F54 /* ARDynamicAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDynamicAccessor.m; sourceTree = "<group>"; };
 		CA06017A1738EBBD009C0FE6 /* DifferentTableName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferentTableName.h; sourceTree = "<group>"; };
@@ -269,8 +269,6 @@
 		CA44DE4C1748C96B00831183 /* ARConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARConfiguration.m; sourceTree = "<group>"; };
 		CA44DE501748CACD00831183 /* ARColumnType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARColumnType.h; sourceTree = "<group>"; };
 		CA44DE531748D17C00831183 /* ARConfigurationSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARConfigurationSpec.mm; sourceTree = "<group>"; };
-		CA44DE561748D1FA00831183 /* ConformsTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConformsTo.h; sourceTree = "<group>"; };
-		CA44DE571748D1FA00831183 /* RespondsTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RespondsTo.h; sourceTree = "<group>"; };
 		CA44DE581748D22F00831183 /* SpecHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpecHelper.h; sourceTree = "<group>"; };
 		CA523D3E1535F50500565E02 /* NSDate+isPresented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+isPresented.h"; sourceTree = "<group>"; };
 		CA523D3F1535F50500565E02 /* NSDate+isPresented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+isPresented.m"; sourceTree = "<group>"; };
@@ -722,8 +720,6 @@
 		CA44DE551748D1BE00831183 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				CA44DE561748D1FA00831183 /* ConformsTo.h */,
-				CA44DE571748D1FA00831183 /* RespondsTo.h */,
 				CA44DE581748D22F00831183 /* SpecHelper.h */,
 			);
 			path = Support;
@@ -1063,8 +1059,6 @@
 			mainGroup = 25998EB214BC199C00CA2490;
 			productRefGroup = 25998EBE14BC199C00CA2490 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				25922AFA14EC286000CBB58A /* UnitTests */,
@@ -1149,7 +1143,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-ActiveTwitter-resources.sh\"\n";
-			showEnvVarsInLog = 1;
 		};
 		C14ED684EC5E417CB4001C8A /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1164,7 +1157,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 1;
 		};
 		CA62C342151E0FB100E54276 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

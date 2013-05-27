@@ -8,9 +8,7 @@
 
 #import <Cedar-iOS/SpecHelper.h>
 #import <CedarAsync/CedarAsync.h>
-
-#import "RespondsTo.h"
-#import "ConformsTo.h"
+#import <Tsuga/Tsuga.h>
 
 #import "ARConfiguration.h"
 #import "ActiveRecord.h"
