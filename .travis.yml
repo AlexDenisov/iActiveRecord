@@ -1,0 +1,9 @@
+language: objective-c
+
+before_install:
+    - sudo gem update --system
+    - sudo gem install ios_ci
+    - brew install ios-sim
+
+script: ios_ci cedar --source-root $TRAVIS_BUILD_DIR --workspace iActiveRecord.xcworkspace --scheme UnitTests --build-path build/Products
+
