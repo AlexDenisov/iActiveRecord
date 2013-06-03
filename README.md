@@ -4,7 +4,9 @@ _Note: I'm working on new version, with new features and a bugfixes_
 ### Only SQLite.
 ### Only HardCore.
 
-### [Follow](https://twitter.com/#!/iactiverecord) this repo on Twitter.
+![Build status](https://travis-ci.org/AlexDenisov/iActiveRecord.png)
+
+### This repo [available](https://twitter.com/#!/iactiverecord) on Twitter.
     
 ### Features
 
