@@ -27,8 +27,8 @@ describe(@"ARConfiguration", ^{
     
     describe(@"databasePath", ^{
         
-        it(@"nil by default", ^{
-            subject.databasePath should be_nil;
+        it(@"Documents by default by default", ^{
+            subject.databasePath should_not be_nil;
         });
         
         it(@"ARCachesDatabasePath not nil", ^{
