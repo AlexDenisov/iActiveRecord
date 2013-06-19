@@ -19,6 +19,7 @@
 #import "ARValidatorProtocol.h"
 #import "ARException.h"
 #import "ARIndicesMacroHelper.h"
+#import "ARConfiguration.h"
 
 @class ARConfiguration;
 

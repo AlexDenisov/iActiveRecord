@@ -113,6 +113,10 @@
 		CA62C339151E0F0700E54276 /* ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE114BC1A1D00CA2490 /* ActiveRecord.m */; };
 		CA62C33A151E0F0700E54276 /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
 		CA62C33D151E0F0700E54276 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE314BC1A1D00CA2490 /* ARDatabaseManager.m */; };
+		CA7C716D17722B3A00C62B84 /* ARConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CA44DE4C1748C96B00831183 /* ARConfiguration.m */; };
+		CA7C716E17722B6800C62B84 /* ARColumnType.h in Headers */ = {isa = PBXBuildFile; fileRef = CA44DE501748CACD00831183 /* ARColumnType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA7C716F17722B6800C62B84 /* ARConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = CA44DE4B1748C96B00831183 /* ARConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA7C717017722B6800C62B84 /* NSString+uppercaseFirst.h in Headers */ = {isa = PBXBuildFile; fileRef = CAA26C8D158BA35100DE9490 /* NSString+uppercaseFirst.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA8D9EAF152D7876005F9073 /* NSString+stringWithEscapedQuote.h in Headers */ = {isa = PBXBuildFile; fileRef = CA8D9EAD152D7876005F9073 /* NSString+stringWithEscapedQuote.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA8D9EB1152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
 		CA8D9EB2152D7876005F9073 /* NSString+stringWithEscapedQuote.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D9EAE152D7876005F9073 /* NSString+stringWithEscapedQuote.m */; };
@@ -949,6 +953,9 @@
 				CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */,
 				CAAE33471528819D0080447D /* ARException.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
+				CA7C716E17722B6800C62B84 /* ARColumnType.h in Headers */,
+				CA7C716F17722B6800C62B84 /* ARConfiguration.h in Headers */,
+				CA7C717017722B6800C62B84 /* NSString+uppercaseFirst.h in Headers */,
 				DB78C39D16D7371700FAE89D /* ARIndicesMacroHelper.h in Headers */,
 				CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */,
 				CA62C32D151E0EC400E54276 /* class_getSubclasses.h in Headers */,
@@ -1256,6 +1263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA7C716D17722B3A00C62B84 /* ARConfiguration.m in Sources */,
 				CAE865D1159068FF00B3BBFE /* ARSQLBuilder.m in Sources */,
 				CAE865D2159068FF00B3BBFE /* NSString+uppercaseFirst.m in Sources */,
 				CA2E5D491581EE130053D511 /* NSSet+toSql.m in Sources */,
