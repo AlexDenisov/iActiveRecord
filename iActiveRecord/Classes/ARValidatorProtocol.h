@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class ActiveRecord;
+
 @protocol ARValidatorProtocol <NSObject>
 
 @optional
 - (NSString *)errorMessage;
 
 @required
-- (BOOL)validateField:(NSString *)aField ofRecord:(id)aRecord;
+- (BOOL)validateField:(NSString *)aField ofRecord:(ActiveRecord *)aRecord;
 
 @end
