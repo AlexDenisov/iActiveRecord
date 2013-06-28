@@ -13,7 +13,6 @@
 #import "ARColumn.h"
 #import "ARSQLBuilder.h"
 #import "ARSchemaManager.h"
-#import "ARConfiguration.h"
 
 @implementation ARDatabaseManager
 
@@ -98,21 +97,12 @@ static NSArray *records = nil;
                 if ([existedColumns containsObject:column]) {
                     continue;
                 }
-                const char *sql = (const char *)[ARSQLBuilder sqlOnAddColumn:column toRecord:tableClass];
+                const char *sql = [ARSQLBuilder sqlOnAddColumn:column toRecord:tableClass];
                 [self executeSqlQuery:sql];
             }
         }
     }
     [self createIndices];
-}
-
-- (NSArray *)describedTables {
-    NSArray *entities = [self records];
-    NSMutableArray *tables = [NSMutableArray arrayWithCapacity:entities.count];
-    for (Class record in entities) {
-        [tables addObject:NSStringFromClass(record)];
-    }
-    return tables;
 }
 
 - (NSArray *)columnsForTable:(NSString *)aTableName {
@@ -193,11 +183,6 @@ static NSArray *records = nil;
         sqlite3_close(database);
         sqlite3_unicode_free();
     });
-}
-
-- (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery {
-    [self executeSqlQuery:anSqlQuery];
-    return [self getLastId:aRecordName];
 }
 
 - (BOOL)executeSqlQuery:(const char *)anSqlQuery {
