@@ -25,9 +25,9 @@
         int propertyNameLength = strlen(propertyName);
         _columnKey = calloc( propertyNameLength + 1, sizeof(char) );
         strcpy(_columnKey, propertyName);
-
+        
         self->_columnName = [[NSString alloc] initWithUTF8String:_columnKey];
-
+        
         //  set default setter/getter
         [self setSetterFromAttribute:NULL];
         [self setGetterFromAttribute:NULL];
@@ -59,7 +59,7 @@
                     break;
                 default:
                     break;
-                }
+            }
         }
         free(attributes);
     }
@@ -104,7 +104,7 @@
         free(type);
     } else {
         self->_associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
-
+        
         switch (anAttribute[0]) {
             case _C_CHR:     // BOOL, char
                 self->_columnType = ARColumnTypePrimitiveChar;

@@ -69,7 +69,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     uint count = 0;
     Method *methods = class_copyMethodList(object_getClass(self), &count);
     for (int i = 0; i < count; i++) {
-        NSString *selectorName = NSStringFromSelector( method_getName(methods[i]) );
+        NSString *selectorName = NSStringFromSelector(method_getName(methods[i]));
         if ([selectorName hasPrefix:registerBelongs]) {
             [self registerBelongs:selectorName];
             continue;
@@ -92,16 +92,16 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
     SEL selector = NSSelectorFromString(aSelectorName);
     NSString *relationName = [aSelectorName stringByReplacingOccurrencesOfString:registerBelongs
-                              withString:@""];
+                                                                      withString:@""];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    ARDependency dependency = (ARDependency)[self performSelector : selector];
+    ARDependency dependency = (ARDependency)[self performSelector:selector];
 #pragma clang diagnostic pop
     ARRelationBelongsTo *relation = [[ARRelationBelongsTo alloc] initWithRecord:[self recordName]
-                                     relation:relationName
-                                     dependent:dependency];
+                                                                       relation:relationName
+                                                                      dependent:dependency];
     [relationshipsDictionary addValue:relation
-     toArrayNamed:[self recordName]];
+                         toArrayNamed:[self recordName]];
 }
 
 + (void)registerHasMany:(NSString *)aSelectorName {
@@ -110,16 +110,16 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
     SEL selector = NSSelectorFromString(aSelectorName);
     NSString *relationName = [aSelectorName stringByReplacingOccurrencesOfString:registerHasMany
-                              withString:@""];
+                                                                      withString:@""];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     ARDependency dependency = (ARDependency)[self performSelector:selector];
 #pragma clang diagnostic pop
     ARRelationHasMany *relation = [[ARRelationHasMany alloc] initWithRecord:[self recordName]
-                                   relation:relationName
-                                   dependent:dependency];
+                                                                   relation:relationName
+                                                                  dependent:dependency];
     [relationshipsDictionary addValue:relation
-     toArrayNamed:[self recordName]];
+                         toArrayNamed:[self recordName]];
 }
 
 + (void)registerHasManyThrough:(NSString *)aSelectorName {
@@ -128,7 +128,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
     SEL selector = NSSelectorFromString(aSelectorName);
     NSString *records = [aSelectorName stringByReplacingOccurrencesOfString:registerHasManyThrough
-                         withString:@""];
+                                                                 withString:@""];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     ARDependency dependency = (ARDependency)[self performSelector:selector];
@@ -137,11 +137,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSString *relationName = [components objectAtIndex:0];
     NSString *throughRelationname = [components objectAtIndex:1];
     ARRelationHasManyThrough *relation = [[ARRelationHasManyThrough alloc] initWithRecord:[self recordName]
-                                          throughRecord:throughRelationname
-                                          relation:relationName
-                                          dependent:dependency];
+                                                                            throughRecord:throughRelationname
+                                                                                 relation:relationName
+                                                                                dependent:dependency];
     [relationshipsDictionary addValue:relation
-     toArrayNamed:[self recordName]];
+                         toArrayNamed:[self recordName]];
 }
 
 #pragma mark - private before filter
@@ -189,7 +189,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         objc_setAssociatedObject(self, column->_columnKey,
                                  nil, OBJC_ASSOCIATION_ASSIGN);
     }
-
+    
     self.id = nil;
     self.updatedAt = nil;
     self.createdAt = nil;
@@ -259,20 +259,20 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)validateUniquenessOfField:(NSString *)aField {
     [ARValidator registerValidator:[ARValidatorUniqueness class]
-     forRecord:[self recordName]
-     onField:aField];
+                         forRecord:[self recordName]
+                           onField:aField];
 }
 
 + (void)validatePresenceOfField:(NSString *)aField {
     [ARValidator registerValidator:[ARValidatorPresence class]
-     forRecord:[self recordName]
-     onField:aField];
+                         forRecord:[self recordName]
+                           onField:aField];
 }
 
 + (void)validateField:(NSString *)aField withValidator:(NSString *)aValidator {
     [ARValidator registerValidator:NSClassFromString(aValidator)
-     forRecord:[self recordName]
-     onField:aField];
+                         forRecord:[self recordName]
+                           onField:aField];
 }
 
 - (BOOL)isValid {
@@ -340,7 +340,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     NSNumber *rec_id = [self performSelector:selector];
 #pragma clang diagnostic pop
-
+    
     if (rec_id == nil) {
         return nil;
     }
@@ -355,7 +355,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
                        @"%@Id", [aRelation lowercaseFirst]];
     ARColumn *column = [self columnNamed:relId];
     [self setValue:aRecord.id
-     forColumn:column];
+         forColumn:column];
     [self update];
 }
 
@@ -393,11 +393,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 - (void)addRecord:(ActiveRecord *)aRecord
-    ofClass:(NSString *)aClassname
-    through:(NSString *)aRelationshipClassName
+          ofClass:(NSString *)aClassname
+          through:(NSString *)aRelationshipClassName
 {
     Class RelationshipClass = NSClassFromString(aRelationshipClassName);
-
+    
     NSString *currentId = [NSString stringWithFormat:@"%@ID", [self recordName]];
     NSString *relId = [NSString stringWithFormat:@"%@ID", [aRecord recordName]];
     ARLazyFetcher *fetcher = [RelationshipClass lazyFetcher];
@@ -407,7 +407,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
     NSString *currentIdSelectorString = [NSString stringWithFormat:@"set%@Id:", [[self class] description]];
     NSString *relativeIdSlectorString = [NSString stringWithFormat:@"set%@Id:", aClassname];
-
+    
     SEL currentIdSelector = NSSelectorFromString(currentIdSelectorString);
     SEL relativeIdSelector = NSSelectorFromString(relativeIdSlectorString);
     ActiveRecord *relationshipRecord = [RelationshipClass newRecord];
@@ -530,31 +530,31 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 //  KVO-bycycle/Observer
 - (void)setValue:(id)aValue forColumn:(ARColumn *)aColumn {
-//    if ([[self recordName] isEqualToString:@"PrimitiveModel"]) {
-//        NSLog(@"%@ %@", aValue, aColumn.columnName);
-//    }
+    //    if ([[self recordName] isEqualToString:@"PrimitiveModel"]) {
+    //        NSLog(@"%@ %@", aValue, aColumn.columnName);
+    //    }
     if (aColumn == nil) {
         return;
     }
     if (_changedColumns == nil) {
         _changedColumns = [NSMutableSet new];
     }
-
+    
     id oldValue = objc_getAssociatedObject(self, aColumn->_columnKey);
     if ( (oldValue == nil && aValue == nil) || ([oldValue isEqual:aValue]) ) {
         return;
     }
-
+    
     objc_setAssociatedObject(self,
                              aColumn->_columnKey,
                              nil,
                              aColumn.associationPolicy);
-
+    
     objc_setAssociatedObject(self,
                              aColumn->_columnKey,
                              aValue,
                              aColumn.associationPolicy);
-
+    
     [_changedColumns addObject:aColumn];
 }
 
@@ -578,7 +578,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         [super setValue:value forUndefinedKey:aKey];
     }else {
         [self setValue:value
-         forColumn:column];
+             forColumn:column];
     }
 }
 
@@ -590,7 +590,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 + (void)addIndexOn:(NSString *)aField {
     [[ARSchemaManager sharedInstance] addIndexOnColumn:aField
-     ofRecord:self];
+                                              ofRecord:self];
 }
 
 #pragma mark - Configuration

@@ -13,7 +13,6 @@
 #import "ARColumn.h"
 #import "ARSQLBuilder.h"
 #import "ARSchemaManager.h"
-#import "ARConfiguration.h"
 
 @implementation ARDatabaseManager
 
@@ -76,30 +75,29 @@ static NSArray *records = nil;
     if (!self.configuration.isMigrationsEnabled) {
         return;
     }
-
+    
     NSArray *existedTables = [self tables];
-    NSArray *describedTables = [self describedTables];
-    for (NSString *table in describedTables) {
-        NSString *tableName = [NSClassFromString(table) recordName];
+    NSArray *describedTables = [self records];
+    
+    for (Class tableClass in describedTables) {
+        NSString *tableName = [tableClass recordName];
         if (![existedTables containsObject:tableName]) {
-            [self createTable:table];
+            [self createTable:tableClass];
         } else {
-            Class Record = NSClassFromString(table);
-            NSString *tableName = [NSClassFromString(table) recordName];
             NSArray *existedColumns = [self columnsForTable:tableName];
-
-            NSArray *describedProperties = [Record performSelector:@selector(columns)];
+            
+            NSArray *describedProperties = [tableClass performSelector:@selector(columns)];
             NSMutableArray *describedColumns = [NSMutableArray array];
-
+            
             for (ARColumn *column in describedProperties) {
                 [describedColumns addObject:column.columnName];
             }
-
+            
             for (NSString *column in describedColumns) {
                 if ([existedColumns containsObject:column]) {
                     continue;
                 }
-                const char *sql = (const char *)[ARSQLBuilder sqlOnAddColumn:column toRecord:Record];
+                const char *sql = [ARSQLBuilder sqlOnAddColumn:column toRecord:tableClass];
                 [self executeSqlQuery:sql];
             }
         }
@@ -107,18 +105,9 @@ static NSArray *records = nil;
     [self createIndices];
 }
 
-- (NSArray *)describedTables {
-    NSArray *entities = [self records];
-    NSMutableArray *tables = [NSMutableArray arrayWithCapacity:entities.count];
-    for (Class record in entities) {
-        [tables addObject:NSStringFromClass(record)];
-    }
-    return tables;
-}
-
 - (NSArray *)columnsForTable:(NSString *)aTableName {
     __block NSMutableArray *resultArray = nil;
-
+    
     dispatch_sync([self activeRecordQueue], ^{
         
         NSString *sqlString = [NSString stringWithFormat:@"PRAGMA table_info('%@')", aTableName];
@@ -139,8 +128,8 @@ static NSArray *records = nil;
                 [resultArray addObject:[NSString stringWithUTF8String:(const char *)pszValue]];
             }
         }
-
-
+        
+        
     });
     return resultArray;
 }
@@ -148,9 +137,9 @@ static NSArray *records = nil;
 //  select tbl_name from sqlite_master where type='table' and name not like 'sqlite_%'
 - (NSArray *)tables {
     __block NSMutableArray *resultArray = nil;
-
+    
     dispatch_sync([self activeRecordQueue], ^{
-        char * *results;
+        char **results;
         int nRows;
         int nColumns;
         const char *pszSql = [@"select tbl_name from sqlite_master where type='table' and name not like 'sqlite_%'" UTF8String];
@@ -196,11 +185,6 @@ static NSArray *records = nil;
     });
 }
 
-- (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery {
-    [self executeSqlQuery:anSqlQuery];
-    return [self getLastId:aRecordName];
-}
-
 - (BOOL)executeSqlQuery:(const char *)anSqlQuery {
     __block BOOL result = YES;
     dispatch_sync([self activeRecordQueue], ^{
@@ -214,18 +198,18 @@ static NSArray *records = nil;
 
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest {
     __block NSMutableArray *resultArray = nil;
-
+    
     dispatch_sync([self activeRecordQueue], ^{
-
+        
         sqlite3_stmt *statement;
-
+        
         const char *sqlQuery = [aSqlRequest UTF8String];
-
+        
         if (sqlite3_prepare_v2(database, sqlQuery, -1, &statement, NULL) != SQLITE_OK) {
             NSLog( @"%s", sqlite3_errmsg(database) );
             return;
         }
-
+        
         resultArray = [NSMutableArray array];
         Class Record = NSClassFromString(aName);
         BOOL hasColumns = NO;
@@ -285,16 +269,16 @@ static NSArray *records = nil;
         sqlite3_finalize(statement);
         
     });
-
+    
     return resultArray;
 }
 
 - (NSArray *)joinedRecordsWithSql:(NSString *)aSqlRequest {
     __block NSMutableArray *resultArray = nil;
-
+    
     dispatch_sync([self activeRecordQueue], ^{
         sqlite3_stmt *statement;
-
+        
         const char *sqlQuery = [aSqlRequest UTF8String];
         
         if (sqlite3_prepare_v2(database, sqlQuery, -1, &statement, NULL) != SQLITE_OK) {
@@ -419,18 +403,18 @@ static NSArray *records = nil;
 - (NSInteger)functionResult:(NSString *)anSql {
 #warning remove
     __block NSInteger resId = 0;
-
+    
     dispatch_sync([self activeRecordQueue], ^{
         char **results;
         int nRows;
         int nColumns;
         const char *pszSql = [anSql UTF8String];
         if ( SQLITE_OK != sqlite3_get_table(database,
-                                          pszSql,
-                                          &results,
-                                          &nRows,
-                                          &nColumns,
-                                          NULL) )
+                                            pszSql,
+                                            &results,
+                                            &nRows,
+                                            &nColumns,
+                                            NULL) )
         {
             NSLog(@"%@", anSql);
             NSLog( @"Couldn't retrieve data from database: %s", sqlite3_errmsg(database) );
@@ -444,24 +428,24 @@ static NSArray *records = nil;
         
         sqlite3_free_table(results);
     });
-
+    
     return resId;
 }
 
 - (NSInteger)saveRecord:(ActiveRecord *)aRecord {
     aRecord.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
-
+    
     NSSet *changedColumns = [aRecord changedColumns];
     NSInteger columnsCount = changedColumns.count;
     if (!columnsCount) {
         return 0;
     }
-
+    
     changedColumns = [aRecord changedColumns];
     columnsCount = changedColumns.count;
-
+    
     __block int result = 0;
-
+    
     dispatch_sync([self activeRecordQueue], ^{
         sqlite3_stmt *stmt;
         const char *sql;
@@ -577,17 +561,12 @@ static NSArray *records = nil;
     [self executeSqlQuery:sqlQuery];
 }
 
-- (NSInteger)executeFunction:(const char *)anSqlQuery {
-#warning implement
-    return 0;
-}
-
 - (void)createIndices {
     for (Class record in [self records]) {
         NSArray *indices = [[ARSchemaManager sharedInstance] indicesForRecord:record];
         for (NSString *indexColumn in indices) {
             const char *sqlQuery = [ARSQLBuilder sqlOnCreateIndex:indexColumn
-                                    forRecord:record];
+                                                        forRecord:record];
             [self executeSqlQuery:sqlQuery];
         }
     }

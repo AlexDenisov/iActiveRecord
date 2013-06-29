@@ -60,6 +60,5 @@ typedef void (^ARConfigurationBlock) (ARConfiguration *config);
 #pragma mark - TableName
 
 + (NSString *)recordName;
-- (NSString *)recordName;
 
 @end
