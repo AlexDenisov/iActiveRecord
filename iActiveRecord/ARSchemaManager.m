@@ -52,6 +52,7 @@ static ARSchemaManager *_instance = nil;
             }
             [column release];
         }
+        free(properties);
         CurrentClass = class_getSuperclass(CurrentClass);
     }  
 }

@@ -178,8 +178,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 - (id)init {
     self = [super init];
     if(nil != self){
-        self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
-        self.createdAt = [NSDate dateWithTimeIntervalSinceNow:0];
+        self.updatedAt = [[NSDate dateWithTimeIntervalSinceNow:0] autorelease];
+        self.createdAt = [[NSDate dateWithTimeIntervalSinceNow:0] autorelease];
     }
     return self;    
 }
@@ -447,7 +447,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if(![self isValid]){
         return NO;
     }
-    self.updatedAt = [NSDate dateWithTimeIntervalSinceNow:0];
+    self.updatedAt = [[NSDate dateWithTimeIntervalSinceNow:0] autorelease];
     const char *sql = [self sqlOnSave];
     if(NULL != sql){
         NSNumber *tmpId = [[ARDatabaseManager sharedInstance] 

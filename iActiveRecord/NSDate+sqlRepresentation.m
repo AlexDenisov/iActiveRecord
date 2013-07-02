@@ -17,7 +17,7 @@
 
 + (id)fromSql:(NSString *)sqlData {
     NSTimeInterval time = [sqlData floatValue];
-    return [NSDate dateWithTimeIntervalSince1970:time];
+    return [[NSDate dateWithTimeIntervalSince1970:time] autorelease];
 }
 
 + (const char *)sqlType {
