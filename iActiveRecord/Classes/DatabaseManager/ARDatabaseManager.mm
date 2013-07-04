@@ -10,7 +10,7 @@
 #import "ActiveRecord_Private.h"
 #import "class_getSubclasses.h"
 #import "sqlite3_unicode.h"
-#import "ARColumn.h"
+#import "ARColumn_Private.h"
 #import "ARSQLBuilder.h"
 #import "ARSchemaManager.h"
 
@@ -493,7 +493,8 @@ static NSArray *records = nil;
                     
                     break;
                 case ARColumnTypePrimitiveChar: // BOOL, char
-                    sqlite3_bind_int(stmt, columnIndex, [value charValue]);
+                    column.binder->bind(stmt, columnIndex, value);
+//                    sqlite3_bind_int(stmt, columnIndex, [value charValue]);
                     break;
                 case ARColumnTypePrimitiveUnsignedChar: // unsigned char
                     sqlite3_bind_int(stmt, columnIndex, [value unsignedCharValue]);

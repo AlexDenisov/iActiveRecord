@@ -41,12 +41,12 @@
 		5898A7F23D57F4D4EED57E6B /* Binder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AC34BC297CDE28FCC7EC /* Binder.h */; };
 		5898A883EA4FEB58142A24B4 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898AE350130DC812235D484 /* Tweet.m */; };
 		5898A88B0D021550D9DC9B2F /* CharBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A183FF45202717CFB5A3 /* CharBinder.mm */; };
-		5898A914E4BDA1BD99E6AF1F /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898A20B8FA043AE675A5C6D /* ARDatabaseManager.m */; };
+		5898A914E4BDA1BD99E6AF1F /* ARDatabaseManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A20B8FA043AE675A5C6D /* ARDatabaseManager.mm */; };
 		5898AA1B23B56861F3076D22 /* CharBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A183FF45202717CFB5A3 /* CharBinder.mm */; };
 		5898AAAD3F38F0B2468FF303 /* ARDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A31CAAF37A0EAD89A480 /* ARDatabaseManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		5898AB8CABF3CD1D0A28E6EB /* IBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AD319172630841E7FCA7 /* IBinder.h */; };
 		5898AC822180BA4E6CD72719 /* CharBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A183FF45202717CFB5A3 /* CharBinder.mm */; };
-		5898AC82448CDD47C5DFC8A0 /* ARDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898A20B8FA043AE675A5C6D /* ARDatabaseManager.m */; };
+		5898AC82448CDD47C5DFC8A0 /* ARDatabaseManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A20B8FA043AE675A5C6D /* ARDatabaseManager.mm */; };
 		5898AE9CA7A3C505F1982C43 /* ATSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898ABFCF2766795BEAF19DC /* ATSearchManager.m */; };
 		5898AFD085A61106DF70EC25 /* ARColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AECD6515B2B750D6563E /* ARColumn.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		75F56DBA1717003C00A1DF7B /* DecimalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F56DB91717003C00A1DF7B /* DecimalRecord.m */; };
@@ -233,7 +233,7 @@
 		25A1131F14D9BAAE000720E7 /* ARValidationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidationsHelper.h; sourceTree = "<group>"; };
 		25A1132614D9BCF7000720E7 /* ARErrorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrorHelper.h; sourceTree = "<group>"; };
 		5898A183FF45202717CFB5A3 /* CharBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CharBinder.mm; sourceTree = "<group>"; };
-		5898A20B8FA043AE675A5C6D /* ARDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDatabaseManager.m; sourceTree = "<group>"; };
+		5898A20B8FA043AE675A5C6D /* ARDatabaseManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARDatabaseManager.mm; sourceTree = "<group>"; };
 		5898A31CAAF37A0EAD89A480 /* ARDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDatabaseManager.h; sourceTree = "<group>"; };
 		5898A58A635513062A2F3785 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		5898A622099B26391ED7B4AD /* ATTweetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTweetTableViewCell.m; sourceTree = "<group>"; };
@@ -683,7 +683,7 @@
 		5898A988DC13EDE23C843E90 /* DatabaseManager */ = {
 			isa = PBXGroup;
 			children = (
-				5898A20B8FA043AE675A5C6D /* ARDatabaseManager.m */,
+				5898A20B8FA043AE675A5C6D /* ARDatabaseManager.mm */,
 				5898A31CAAF37A0EAD89A480 /* ARDatabaseManager.h */,
 			);
 			path = DatabaseManager;
@@ -1296,7 +1296,7 @@
 				CA44DE4D1748C96B00831183 /* ARConfiguration.m in Sources */,
 				CA44DE541748D17C00831183 /* ARConfigurationSpec.mm in Sources */,
 				5898A4666251E8308A22BF3B /* ARColumn.mm in Sources */,
-				5898AC82448CDD47C5DFC8A0 /* ARDatabaseManager.m in Sources */,
+				5898AC82448CDD47C5DFC8A0 /* ARDatabaseManager.mm in Sources */,
 				5898AA1B23B56861F3076D22 /* CharBinder.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1339,7 +1339,7 @@
 				CA1AF75E155FEA5600D0B17E /* ARSchemaManager.m in Sources */,
 				DB78C3A716D73D9500FAE89D /* ARDynamicAccessor.m in Sources */,
 				5898A0101A6EC487CECFBA61 /* ARColumn.mm in Sources */,
-				5898A914E4BDA1BD99E6AF1F /* ARDatabaseManager.m in Sources */,
+				5898A914E4BDA1BD99E6AF1F /* ARDatabaseManager.mm in Sources */,
 				5898AC822180BA4E6CD72719 /* CharBinder.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
