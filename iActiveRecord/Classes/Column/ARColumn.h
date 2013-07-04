@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <objc/runtime.h>
 #import "ARColumnType.h"
 
+@class ActiveRecord;
+
 @interface ARColumn : NSObject
+{
+@public
+    char *_columnKey;
+}
 
 @property (nonatomic, copy, readonly) NSString *columnName;
 @property (nonatomic, strong, readonly) Class columnClass;
@@ -19,5 +25,11 @@
 @property (nonatomic, copy, readonly) NSString *setter;
 @property (nonatomic, readwrite, getter = isDynamic) BOOL dynamic;
 @property (nonatomic, readonly) ARColumnType columnType;
+
+@property (nonatomic, readwrite) objc_AssociationPolicy associationPolicy;
+
+- (instancetype)initWithProperty:(objc_property_t)property ofClass:(Class)aClass;
+- (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord;
+- (const char *)sqlType;
 
 @end

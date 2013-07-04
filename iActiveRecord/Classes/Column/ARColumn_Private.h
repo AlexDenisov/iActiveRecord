@@ -10,29 +10,25 @@
 #import "ARColumn.h"
 #import "ARColumnType.h"
 
+#import "Binder.h"
+
 @class ActiveRecord;
 
 @interface ARColumn ()
-{
-    @public
-    char *_columnKey;
-}
 
 @property (nonatomic, copy, readwrite) NSString *columnName;
 @property (nonatomic, copy, readwrite) NSString *setter;
 @property (nonatomic, copy, readwrite) NSString *getter;
 @property (nonatomic, strong, readwrite) Class columnClass;
 @property (nonatomic, strong, readwrite) Class recordClass;
-@property (nonatomic, readwrite) objc_AssociationPolicy associationPolicy;
 @property (nonatomic, readwrite) ARColumnType columnType;
 
-- (instancetype)initWithProperty:(objc_property_t)property ofClass:(Class)aClass;
+@property (nonatomic, readwrite) AR::IBinder *binder;
+
 
 - (BOOL)setPropertyTypeFromAttribute:(const char *)anAttribute;
 - (void)setSetterFromAttribute:(const char *)anAttribute;
 - (void)setGetterFromAttribute:(const char *)anAttribute;
 
-- (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord;
-- (const char *)sqlType;
 
 @end

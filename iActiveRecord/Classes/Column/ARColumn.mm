@@ -23,7 +23,7 @@
         self->_associationPolicy = OBJC_ASSOCIATION_ASSIGN;
         const char *propertyName = property_getName(property);
         int propertyNameLength = strlen(propertyName);
-        _columnKey = calloc( propertyNameLength + 1, sizeof(char) );
+        _columnKey = (char *)calloc( propertyNameLength + 1, sizeof(char) );
         strcpy(_columnKey, propertyName);
         
         self->_columnName = [[NSString alloc] initWithUTF8String:_columnKey];
@@ -97,7 +97,7 @@
     //  classes described as @"ClassName"
     if (anAttribute[0] == '@') {
         unsigned long length = strlen(anAttribute) - 3;
-        type = calloc( length, sizeof(char) );
+        type = (char *)calloc( length, sizeof(char) );
         strncpy(type, anAttribute + 2, length);
         self.columnClass = [objc_getClass(type) class];
         self->_columnType = ARColumnTypeComposite;
@@ -108,6 +108,7 @@
         switch (anAttribute[0]) {
             case _C_CHR:     // BOOL, char
                 self->_columnType = ARColumnTypePrimitiveChar;
+                self.binder = new AR::Binder<ARColumnTypePrimitiveChar>;
                 break;
             case _C_UCHR:     // unsigned char
                 self->_columnType = ARColumnTypePrimitiveUnsignedChar;

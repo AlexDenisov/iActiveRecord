@@ -8,7 +8,7 @@
 
 #import "ARSQLBuilder.h"
 #import "ActiveRecord_Private.h"
-#import "ARColumn_Private.h"
+#import "ARColumn.h"
 
 @implementation ARSQLBuilder
 

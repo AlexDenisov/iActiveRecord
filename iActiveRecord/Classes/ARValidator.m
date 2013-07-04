@@ -9,7 +9,6 @@
 #import "ARValidator.h"
 #import "ARValidation.h"
 #import "ActiveRecord_Private.h"
-#import "ARColumn_Private.h"
 
 #warning move to extension
 

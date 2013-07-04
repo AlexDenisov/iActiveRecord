@@ -7,7 +7,7 @@
 //
 
 #import "ARSchemaManager.h"
-#import "ARColumn_Private.h"
+#import "ARColumn.h"
 #import "NSMutableDictionary+valueToArray.h"
 
 @implementation ARSchemaManager

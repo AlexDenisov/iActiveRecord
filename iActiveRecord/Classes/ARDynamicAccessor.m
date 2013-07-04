@@ -8,7 +8,6 @@
 
 #import "ARDynamicAccessor.h"
 #import "ARColumn.h"
-#import "ARColumn_Private.h"
 #import "ActiveRecord_Private.h"
 
 #warning find the way to do it more cleanest

@@ -6,6 +6,8 @@
 //
 //
 
+#pragma once
+
 typedef enum ARColumnType {
     ARColumnTypeUnknown,    // uknown DataType, not supported (yet?)
     ARColumnTypeComposite,  // NSObject's subclass

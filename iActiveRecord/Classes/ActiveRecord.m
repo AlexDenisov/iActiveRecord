@@ -28,7 +28,7 @@
 
 #import "ActiveRecord_Private.h"
 #import "ARSchemaManager.h"
-#import "ARColumn_Private.h"
+#import "ARColumn.h"
 
 #import "ARDynamicAccessor.h"
 #import "ARConfiguration.h"
