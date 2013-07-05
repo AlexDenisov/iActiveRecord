@@ -492,26 +492,8 @@ static NSArray *records = nil;
                     }
                     
                     break;
-//                case ARColumnTypePrimitiveUnsignedShort: // unsigned short
-//                    sqlite3_bind_int(stmt, columnIndex, [value unsignedShortValue]);
-//                    break;
                 case ARColumnTypePrimitiveInt: // int, NSInteger
                     sqlite3_bind_int(stmt, columnIndex, [value intValue]);
-                    break;
-//                case ARColumnTypePrimitiveUnsignedInt: // uint, NSUinteger
-//                    sqlite3_bind_int(stmt, columnIndex, [value unsignedIntValue]);
-//                    break;
-//                case ARColumnTypePrimitiveLong: // long
-//                    sqlite3_bind_int(stmt, columnIndex, [value longValue]);
-//                    break;
-//                case ARColumnTypePrimitiveUnsignedLong: // unsigned long
-//                    sqlite3_bind_int(stmt, columnIndex, [value unsignedLongValue]);
-//                    break;
-//                case ARColumnTypePrimitiveLongLong: // long long
-//                    sqlite3_bind_int(stmt, columnIndex, [value longLongValue]);
-//                    break;
-                case ARColumnTypePrimitiveUnsignedLongLong: // unsigned long long
-                    sqlite3_bind_int(stmt, columnIndex, [value unsignedLongLongValue]);
                     break;
                 case ARColumnTypePrimitiveFloat: // float, CGFloat
                     sqlite3_bind_double(stmt, columnIndex, [value floatValue]);
@@ -520,11 +502,7 @@ static NSArray *records = nil;
                     sqlite3_bind_double(stmt, columnIndex, [value doubleValue]);
                     break;
                 default:
-                    bool rc = column.binder->bind(stmt, columnIndex, value);
-                    if  (!rc) {
-                        NSLog(@"Could not bind %@ at %d", value, columnIndex);
-                        NSLog(@"%s", sqlite3_errmsg(database));
-                    }
+                    column.binder->bind(stmt, columnIndex, value);
                     break;
             }
             columnIndex++;

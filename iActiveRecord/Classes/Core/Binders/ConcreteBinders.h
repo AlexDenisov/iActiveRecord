@@ -52,7 +52,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <NSInteger>
+    class Binder <int>
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -62,7 +62,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <NSUInteger>
+    class Binder <unsigned int>
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -77,7 +77,7 @@ namespace AR {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
-            return sqlite3_bind_int(statement, columnIndex, [value longValue]) == SQLITE_OK;
+            return sqlite3_bind_int64(statement, columnIndex, [value longValue]) == SQLITE_OK;
         }
     };
 
@@ -87,7 +87,7 @@ namespace AR {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
-            return sqlite3_bind_int(statement, columnIndex, [value unsignedLongValue]) == SQLITE_OK;
+            return sqlite3_bind_int64(statement, columnIndex, [value unsignedLongValue]) == SQLITE_OK;
         }
     };
 
@@ -97,7 +97,37 @@ namespace AR {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
-            return sqlite3_bind_int(statement, columnIndex, [value unsignedLongLongValue]) == SQLITE_OK;
+            return sqlite3_bind_int64(statement, columnIndex, [value longLongValue]) == SQLITE_OK;
+        }
+    };
+
+    template <>
+    class Binder <unsigned long long>
+    {
+    public:
+        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+        {
+            return sqlite3_bind_int64(statement, columnIndex, [value unsignedLongLongValue]) == SQLITE_OK;
+        }
+    };
+
+    template <>
+    class Binder <float>
+    {
+    public:
+        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+        {
+            return sqlite3_bind_double(statement, columnIndex, [value floatValue]) == SQLITE_OK;
+        }
+    };
+
+    template <>
+    class Binder <double>
+    {
+    public:
+        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+        {
+            return sqlite3_bind_double(statement, columnIndex, [value doubleValue]) == SQLITE_OK;
         }
     };
 

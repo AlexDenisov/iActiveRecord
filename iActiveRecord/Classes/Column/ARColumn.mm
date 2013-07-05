@@ -124,11 +124,11 @@
                 break;
             case _C_INT:     // int, NSInteger
                 self->_columnType = ARColumnTypePrimitiveInt;
-                self.binder = new AR::Binder<NSInteger>;
+                self.binder = new AR::Binder<int>;
                 break;
             case _C_UINT:     // uint, NSUinteger
                 self->_columnType = ARColumnTypePrimitiveUnsignedInt;
-                self.binder = new AR::Binder<NSUInteger>;
+                self.binder = new AR::Binder<unsigned int>;
                 break;
             case _C_LNG:     // long
                 self->_columnType = ARColumnTypePrimitiveLong;
@@ -144,12 +144,15 @@
                 break;
             case _C_ULNG_LNG:     // unsigned long long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLongLong;
+                self.binder = new AR::Binder<unsigned long long>;
                 break;
             case _C_FLT:     // float, CGFloat
                 self->_columnType = ARColumnTypePrimitiveFloat;
+                self.binder = new AR::Binder<float>;
                 break;
             case _C_DBL:     // double
                 self->_columnType = ARColumnTypePrimitiveDouble;
+                self.binder = new AR::Binder<double>;
                 break;
             default:
                 result = NO;
