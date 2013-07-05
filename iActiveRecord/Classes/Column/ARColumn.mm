@@ -136,6 +136,7 @@
                 break;
             case _C_ULNG:     // unsigned long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLong;
+                self.binder = new AR::Binder<unsigned long>;
                 break;
             case _C_LNG_LNG:     // long long
                 self->_columnType = ARColumnTypePrimitiveLongLong;

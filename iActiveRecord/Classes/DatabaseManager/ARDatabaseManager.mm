@@ -504,9 +504,9 @@ static NSArray *records = nil;
 //                case ARColumnTypePrimitiveLong: // long
 //                    sqlite3_bind_int(stmt, columnIndex, [value longValue]);
 //                    break;
-                case ARColumnTypePrimitiveUnsignedLong: // unsigned long
-                    sqlite3_bind_int(stmt, columnIndex, [value unsignedLongValue]);
-                    break;
+//                case ARColumnTypePrimitiveUnsignedLong: // unsigned long
+//                    sqlite3_bind_int(stmt, columnIndex, [value unsignedLongValue]);
+//                    break;
                 case ARColumnTypePrimitiveLongLong: // long long
                     sqlite3_bind_int(stmt, columnIndex, [value longLongValue]);
                     break;
