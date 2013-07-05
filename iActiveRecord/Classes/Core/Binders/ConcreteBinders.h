@@ -71,4 +71,14 @@ namespace AR {
         }
     };
 
+    template <>
+    class Binder <long>
+    {
+    public:
+        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+        {
+            return sqlite3_bind_int(statement, columnIndex, [value longValue]) == SQLITE_OK;
+        }
+    };
+
 };
