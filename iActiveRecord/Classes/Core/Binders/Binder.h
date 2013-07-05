@@ -11,6 +11,8 @@
 
 namespace AR {
 
+    #pragma mark - Base
+
     template <ARColumnType type>
     class Binder : public IBinder {
     public:
@@ -20,6 +22,9 @@ namespace AR {
             return false;
         }
     };
+
+    #pragma mark - Concrete
+
 
 };
 

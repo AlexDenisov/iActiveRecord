@@ -112,15 +112,19 @@
                 break;
             case _C_UCHR:     // unsigned char
                 self->_columnType = ARColumnTypePrimitiveUnsignedChar;
+                self.binder = new AR::Binder<ARColumnTypePrimitiveUnsignedChar>;
                 break;
             case _C_SHT:     // short
                 self->_columnType = ARColumnTypePrimitiveShort;
+                self.binder = new AR::Binder<ARColumnTypePrimitiveShort>;
                 break;
             case _C_USHT:     // unsigned short
                 self->_columnType = ARColumnTypePrimitiveUnsignedShort;
+                self.binder = new AR::Binder<ARColumnTypePrimitiveUnsignedShort>;
                 break;
             case _C_INT:     // int, NSInteger
                 self->_columnType = ARColumnTypePrimitiveInt;
+                self.binder = new AR::Binder<ARColumnTypePrimitiveInt>;
                 break;
             case _C_UINT:     // uint, NSUinteger
                 self->_columnType = ARColumnTypePrimitiveUnsignedInt;

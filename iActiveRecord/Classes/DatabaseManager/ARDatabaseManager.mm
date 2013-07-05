@@ -492,12 +492,9 @@ static NSArray *records = nil;
                     }
                     
                     break;
-                case ARColumnTypePrimitiveShort: // short
-                    sqlite3_bind_int(stmt, columnIndex, [value shortValue]);
-                    break;
-                case ARColumnTypePrimitiveUnsignedShort: // unsigned short
-                    sqlite3_bind_int(stmt, columnIndex, [value unsignedShortValue]);
-                    break;
+//                case ARColumnTypePrimitiveUnsignedShort: // unsigned short
+//                    sqlite3_bind_int(stmt, columnIndex, [value unsignedShortValue]);
+//                    break;
                 case ARColumnTypePrimitiveInt: // int, NSInteger
                     sqlite3_bind_int(stmt, columnIndex, [value intValue]);
                     break;
