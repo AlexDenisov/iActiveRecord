@@ -11,20 +11,14 @@
 
 namespace AR {
 
-    #pragma mark - Base
-
-    template <ARColumnType type>
+    template <typename type>
     class Binder : public IBinder {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
-            #warning throw exception
-            return false;
+            throw std::exception();
         }
     };
-
-    #pragma mark - Concrete
-
 
 };
 

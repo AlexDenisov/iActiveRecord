@@ -108,26 +108,27 @@
         switch (anAttribute[0]) {
             case _C_CHR:     // BOOL, char
                 self->_columnType = ARColumnTypePrimitiveChar;
-                self.binder = new AR::Binder<ARColumnTypePrimitiveChar>;
+                self.binder = new AR::Binder<char>;
                 break;
             case _C_UCHR:     // unsigned char
                 self->_columnType = ARColumnTypePrimitiveUnsignedChar;
-                self.binder = new AR::Binder<ARColumnTypePrimitiveUnsignedChar>;
+                self.binder = new AR::Binder<unsigned char>;
                 break;
             case _C_SHT:     // short
                 self->_columnType = ARColumnTypePrimitiveShort;
-                self.binder = new AR::Binder<ARColumnTypePrimitiveShort>;
+                self.binder = new AR::Binder<short>;
                 break;
             case _C_USHT:     // unsigned short
                 self->_columnType = ARColumnTypePrimitiveUnsignedShort;
-                self.binder = new AR::Binder<ARColumnTypePrimitiveUnsignedShort>;
+                self.binder = new AR::Binder<unsigned short>;
                 break;
             case _C_INT:     // int, NSInteger
                 self->_columnType = ARColumnTypePrimitiveInt;
-                self.binder = new AR::Binder<ARColumnTypePrimitiveInt>;
+                self.binder = new AR::Binder<NSInteger>;
                 break;
             case _C_UINT:     // uint, NSUinteger
                 self->_columnType = ARColumnTypePrimitiveUnsignedInt;
+                self.binder = new AR::Binder<NSUInteger>;
                 break;
             case _C_LNG:     // long
                 self->_columnType = ARColumnTypePrimitiveLong;

@@ -7,11 +7,14 @@
 
 #include "Binder.h"
 
+@class PrimitiveModel;
+
 namespace AR {
 
     template <>
-    class Binder <ARColumnTypePrimitiveChar>
+    class Binder <char>
     {
+    public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
             return sqlite3_bind_int(statement, columnIndex, [value charValue]) == SQLITE_OK;
@@ -19,8 +22,9 @@ namespace AR {
     };
 
     template <>
-    class Binder <ARColumnTypePrimitiveUnsignedChar>
+    class Binder <unsigned char>
     {
+    public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
             return sqlite3_bind_int(statement, columnIndex, [value unsignedCharValue]) == SQLITE_OK;
@@ -28,8 +32,9 @@ namespace AR {
     };
 
     template <>
-    class Binder <ARColumnTypePrimitiveShort>
+    class Binder <short>
     {
+    public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
             return sqlite3_bind_int(statement, columnIndex, [value shortValue]) == SQLITE_OK;
@@ -37,20 +42,32 @@ namespace AR {
     };
 
     template <>
-    class Binder <ARColumnTypePrimitiveUnsignedShort>
+    class Binder <unsigned short>
     {
+    public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
-            return sqlite3_bind_int(statement, columnIndex, [value unsignedCharValue]) == SQLITE_OK;
+            return sqlite3_bind_int(statement, columnIndex, [value unsignedShortValue]) == SQLITE_OK;
         }
     };
 
     template <>
-    class Binder <ARColumnTypePrimitiveInt>
+    class Binder <NSInteger>
     {
+    public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
             return sqlite3_bind_int(statement, columnIndex, [value intValue]) == SQLITE_OK;
+        }
+    };
+
+    template <>
+    class Binder <NSUInteger>
+    {
+    public:
+        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+        {
+            return sqlite3_bind_int(statement, columnIndex, [value unsignedIntegerValue]) == SQLITE_OK;
         }
     };
 

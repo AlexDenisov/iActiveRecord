@@ -498,9 +498,9 @@ static NSArray *records = nil;
                 case ARColumnTypePrimitiveInt: // int, NSInteger
                     sqlite3_bind_int(stmt, columnIndex, [value intValue]);
                     break;
-                case ARColumnTypePrimitiveUnsignedInt: // uint, NSUinteger
-                    sqlite3_bind_int(stmt, columnIndex, [value unsignedIntValue]);
-                    break;
+//                case ARColumnTypePrimitiveUnsignedInt: // uint, NSUinteger
+//                    sqlite3_bind_int(stmt, columnIndex, [value unsignedIntValue]);
+//                    break;
                 case ARColumnTypePrimitiveLong: // long
                     sqlite3_bind_int(stmt, columnIndex, [value longValue]);
                     break;
@@ -520,7 +520,11 @@ static NSArray *records = nil;
                     sqlite3_bind_double(stmt, columnIndex, [value doubleValue]);
                     break;
                 default:
-                    column.binder->bind(stmt, columnIndex, value);
+                    bool rc = column.binder->bind(stmt, columnIndex, value);
+                    if  (!rc) {
+                        NSLog(@"Could not bind %@ at %d", value, columnIndex);
+                        NSLog(@"%s", sqlite3_errmsg(database));
+                    }
                     break;
             }
             columnIndex++;
