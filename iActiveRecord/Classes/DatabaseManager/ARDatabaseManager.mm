@@ -492,15 +492,6 @@ static NSArray *records = nil;
                     }
                     
                     break;
-                case ARColumnTypePrimitiveInt: // int, NSInteger
-                    sqlite3_bind_int(stmt, columnIndex, [value intValue]);
-                    break;
-                case ARColumnTypePrimitiveFloat: // float, CGFloat
-                    sqlite3_bind_double(stmt, columnIndex, [value floatValue]);
-                    break;
-                case ARColumnTypePrimitiveDouble: // double
-                    sqlite3_bind_double(stmt, columnIndex, [value doubleValue]);
-                    break;
                 default:
                     column.binder->bind(stmt, columnIndex, value);
                     break;

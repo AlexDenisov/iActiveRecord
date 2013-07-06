@@ -12,7 +12,7 @@
 namespace AR {
 
     template <>
-    class Binder <char>
+    class Binder <char> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -22,7 +22,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <unsigned char>
+    class Binder <unsigned char> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -32,7 +32,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <short>
+    class Binder <short> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -42,7 +42,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <unsigned short>
+    class Binder <unsigned short> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -52,7 +52,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <int>
+    class Binder <int> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -62,7 +62,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <unsigned int>
+    class Binder <unsigned int> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -72,7 +72,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <long>
+    class Binder <long> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -82,7 +82,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <unsigned long>
+    class Binder <unsigned long> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -92,7 +92,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <long long>
+    class Binder <long long> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -102,7 +102,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <unsigned long long>
+    class Binder <unsigned long long> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -112,7 +112,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <float>
+    class Binder <float> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
@@ -122,7 +122,7 @@ namespace AR {
     };
 
     template <>
-    class Binder <double>
+    class Binder <double> : public IBinder
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const

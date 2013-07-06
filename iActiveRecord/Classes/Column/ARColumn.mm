@@ -11,7 +11,8 @@
 #import "ARColumn_Private.h"
 #import "NSString+uppercaseFirst.h"
 #import "ActiveRecord_Private.h"
-#import "ARColumnType.h"
+//#import "ARColumnType.h"
+#import "ConcreteBinders.h"
 
 @implementation ARColumn
 

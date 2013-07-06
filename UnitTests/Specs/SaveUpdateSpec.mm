@@ -56,20 +56,57 @@ describe(@"Update", ^{
     
     it(@"should save/load record with primitive types", ^{
         PrimitiveModel *model = [PrimitiveModel newRecord];
+
+        char charValue = -42;
+        unsigned char unsignedCharValue = 'q';
+
+        short shortValue = -22;
+        unsigned short unsignedShortValue = 23;
+
         NSInteger integerValue = 15;
         int intValue = 14;
+        unsigned int unsignedIntValue = 223;
+
+        long longValue = 14L;
+        unsigned long unsignedLongValue = 42UL;
+
+        long long longLongValue = 331LL;
+        unsigned long long unsignedLongLongValue = 11124ULL;
+
         float floatValue = 17.43f;
         double doubleValue = 22.34;
+
+
+        model.charProperty = charValue;
+        model.unsignedCharProperty = unsignedCharValue;
+        model.shortProperty = shortValue;
+        model.unsignedShortProperty = unsignedShortValue;
         model.integerProperty = integerValue;
         model.intProperty = intValue;
+        model.unsignedIntProperty = unsignedIntValue;
+        model.longProperty = longValue;
+        model.unsignedLongProperty = unsignedLongValue;
+        model.longLongProperty = longLongValue;
+        model.unsignedLongLongProperty = unsignedLongLongValue;
         model.floatProperty = floatValue;
         model.doubleProperty = doubleValue;
+
         [model save] should be_truthy;
         [model release];
         
         PrimitiveModel *loadedModel = [[PrimitiveModel allRecords] objectAtIndex:0];
+
+        loadedModel.charProperty should equal(charValue);
+        loadedModel.unsignedCharProperty should equal(unsignedCharValue);
+        loadedModel.shortProperty should equal(shortValue);
+        loadedModel.unsignedShortProperty should equal(unsignedShortValue);
         loadedModel.intProperty should equal(intValue);
         loadedModel.integerProperty should equal(integerValue);
+        loadedModel.unsignedIntProperty should equal(unsignedIntValue);
+        loadedModel.longProperty should equal(longValue);
+        loadedModel.unsignedLongProperty should equal(unsignedLongValue);
+        loadedModel.longLongProperty should equal(longLongValue);
+        loadedModel.unsignedLongLongProperty should equal(unsignedLongLongValue);
         loadedModel.floatProperty should equal(floatValue);
         loadedModel.doubleProperty should equal(doubleValue);
     });
