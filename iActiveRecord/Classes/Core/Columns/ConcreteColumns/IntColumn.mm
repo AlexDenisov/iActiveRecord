@@ -12,4 +12,7 @@ namespace AR {
         return sqlite3_bind_int(statement, columnIndex, [value intValue]) == SQLITE_OK;
     }
 
+    const char *ColumnInternal<int>::sqlType(void) const {
+        return "integer";
+    }
 };

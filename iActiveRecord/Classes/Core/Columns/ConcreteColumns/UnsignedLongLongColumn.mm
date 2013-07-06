@@ -13,4 +13,7 @@ namespace AR {
         return sqlite3_bind_int64(statement, columnIndex, [value unsignedLongLongValue]) == SQLITE_OK;
     }
 
+    const char *ColumnInternal<unsigned long long>::sqlType(void) const {
+        return "integer";
+    }
 };

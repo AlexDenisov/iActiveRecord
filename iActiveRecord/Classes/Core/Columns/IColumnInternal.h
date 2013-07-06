@@ -12,6 +12,8 @@ namespace AR {
     public:
         virtual bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const = 0;
         virtual const char *sqlType(void) const = 0;
+
+        virtual ~IColumnInternal(){};
     };
 
 };

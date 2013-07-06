@@ -10,8 +10,9 @@
 
 namespace AR {
 
-    template <typename type>
+    template <typename columnType>
     class ColumnInternal : public IColumnInternal {
+    private:
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {

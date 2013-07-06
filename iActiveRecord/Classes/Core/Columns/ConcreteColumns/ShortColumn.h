@@ -13,5 +13,6 @@ namespace AR {
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const override;
+        const char *sqlType(void) const override;
     };
 };

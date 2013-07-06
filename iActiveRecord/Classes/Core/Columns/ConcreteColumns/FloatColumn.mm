@@ -12,4 +12,8 @@ namespace AR {
         return sqlite3_bind_double(statement, columnIndex, [value floatValue]) == SQLITE_OK;
     }
 
+    const char *ColumnInternal<float>::sqlType(void) const {
+        return "real";
+    }
+
 };

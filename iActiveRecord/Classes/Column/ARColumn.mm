@@ -96,6 +96,7 @@
     char *type = NULL;
     //  classes described as @"ClassName"
     if (anAttribute[0] == '@') {
+//        printf("%s\n", anAttribute);
         unsigned long length = strlen(anAttribute) - 3;
         type = (char *)calloc( length, sizeof(char) );
         strncpy(type, anAttribute + 2, length);
@@ -190,29 +191,11 @@
 }
 
 - (const char *)sqlType {
-    return self.internal->sqlType();
-//    NSString *sqlType;
-//    switch (self->_columnType) {
-//        case ARColumnTypeComposite: {
-//            sqlType = [self.columnClass performSelector:@selector(sqlType)];
-//        } break;
-//        case ARColumnTypePrimitiveBool:
-//        case ARColumnTypePrimitiveInt:
-//        case ARColumnTypePrimitiveLong:
-//        case ARColumnTypePrimitiveLongLong:
-//        case ARColumnTypePrimitiveShort:
-//        case ARColumnTypePrimitiveUnsignedChar:
-//        case ARColumnTypePrimitiveUnsignedInt:
-//        case ARColumnTypePrimitiveUnsignedLong:
-//        case ARColumnTypePrimitiveUnsignedLongLong:
-//        case ARColumnTypePrimitiveUnsignedShort: {
-//            sqlType = @"INTEGER";
-//        } break;
-//        default:
-//            sqlType = @"REAL";
-//            break;
-//    }
-//    return [sqlType UTF8String];
+    if (self.columnType == ARColumnType::ARColumnTypeComposite) {
+        return [[self.columnClass performSelector:@selector(sqlType)] UTF8String];
+    } else {
+        return self.internal->sqlType();
+    }
 }
 
 @end
