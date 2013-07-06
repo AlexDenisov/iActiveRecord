@@ -11,8 +11,7 @@
 #import "ARColumn_Private.h"
 #import "NSString+uppercaseFirst.h"
 #import "ActiveRecord_Private.h"
-//#import "ARColumnType.h"
-#import "ConcreteBinders.h"
+#import "ConcreteColumns.h"
 
 @implementation ARColumn
 
@@ -109,51 +108,51 @@
         switch (anAttribute[0]) {
             case _C_CHR:     // BOOL, char
                 self->_columnType = ARColumnTypePrimitiveChar;
-                self.binder = new AR::Binder<char>;
+                self.internal = new AR::ColumnInternal<char>;
                 break;
             case _C_UCHR:     // unsigned char
                 self->_columnType = ARColumnTypePrimitiveUnsignedChar;
-                self.binder = new AR::Binder<unsigned char>;
+                self.internal = new AR::ColumnInternal<unsigned char>;
                 break;
             case _C_SHT:     // short
                 self->_columnType = ARColumnTypePrimitiveShort;
-                self.binder = new AR::Binder<short>;
+                self.internal = new AR::ColumnInternal<short>;
                 break;
             case _C_USHT:     // unsigned short
                 self->_columnType = ARColumnTypePrimitiveUnsignedShort;
-                self.binder = new AR::Binder<unsigned short>;
+                self.internal = new AR::ColumnInternal<unsigned short>;
                 break;
             case _C_INT:     // int, NSInteger
                 self->_columnType = ARColumnTypePrimitiveInt;
-                self.binder = new AR::Binder<int>;
+                self.internal = new AR::ColumnInternal<int>;
                 break;
             case _C_UINT:     // uint, NSUinteger
                 self->_columnType = ARColumnTypePrimitiveUnsignedInt;
-                self.binder = new AR::Binder<unsigned int>;
+                self.internal = new AR::ColumnInternal<unsigned int>;
                 break;
             case _C_LNG:     // long
                 self->_columnType = ARColumnTypePrimitiveLong;
-                self.binder = new AR::Binder<long>;
+                self.internal = new AR::ColumnInternal<long>;
                 break;
             case _C_ULNG:     // unsigned long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLong;
-                self.binder = new AR::Binder<unsigned long>;
+                self.internal = new AR::ColumnInternal<unsigned long>;
                 break;
             case _C_LNG_LNG:     // long long
                 self->_columnType = ARColumnTypePrimitiveLongLong;
-                self.binder = new AR::Binder<long long>;
+                self.internal = new AR::ColumnInternal<long long>;
                 break;
             case _C_ULNG_LNG:     // unsigned long long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLongLong;
-                self.binder = new AR::Binder<unsigned long long>;
+                self.internal = new AR::ColumnInternal<unsigned long long>;
                 break;
             case _C_FLT:     // float, CGFloat
                 self->_columnType = ARColumnTypePrimitiveFloat;
-                self.binder = new AR::Binder<float>;
+                self.internal = new AR::ColumnInternal<float>;
                 break;
             case _C_DBL:     // double
                 self->_columnType = ARColumnTypePrimitiveDouble;
-                self.binder = new AR::Binder<double>;
+                self.internal = new AR::ColumnInternal<double>;
                 break;
             default:
                 result = NO;
@@ -191,28 +190,29 @@
 }
 
 - (const char *)sqlType {
-    NSString *sqlType;
-    switch (self->_columnType) {
-        case ARColumnTypeComposite: {
-            sqlType = [self.columnClass performSelector:@selector(sqlType)];
-        } break;
-        case ARColumnTypePrimitiveBool:
-        case ARColumnTypePrimitiveInt:
-        case ARColumnTypePrimitiveLong:
-        case ARColumnTypePrimitiveLongLong:
-        case ARColumnTypePrimitiveShort:
-        case ARColumnTypePrimitiveUnsignedChar:
-        case ARColumnTypePrimitiveUnsignedInt:
-        case ARColumnTypePrimitiveUnsignedLong:
-        case ARColumnTypePrimitiveUnsignedLongLong:
-        case ARColumnTypePrimitiveUnsignedShort: {
-            sqlType = @"INTEGER";
-        } break;
-        default:
-            sqlType = @"REAL";
-            break;
-    }
-    return [sqlType UTF8String];
+    return self.internal->sqlType();
+//    NSString *sqlType;
+//    switch (self->_columnType) {
+//        case ARColumnTypeComposite: {
+//            sqlType = [self.columnClass performSelector:@selector(sqlType)];
+//        } break;
+//        case ARColumnTypePrimitiveBool:
+//        case ARColumnTypePrimitiveInt:
+//        case ARColumnTypePrimitiveLong:
+//        case ARColumnTypePrimitiveLongLong:
+//        case ARColumnTypePrimitiveShort:
+//        case ARColumnTypePrimitiveUnsignedChar:
+//        case ARColumnTypePrimitiveUnsignedInt:
+//        case ARColumnTypePrimitiveUnsignedLong:
+//        case ARColumnTypePrimitiveUnsignedLongLong:
+//        case ARColumnTypePrimitiveUnsignedShort: {
+//            sqlType = @"INTEGER";
+//        } break;
+//        default:
+//            sqlType = @"REAL";
+//            break;
+//    }
+//    return [sqlType UTF8String];
 }
 
 @end

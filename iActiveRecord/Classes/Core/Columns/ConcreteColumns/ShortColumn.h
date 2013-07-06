@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "Binder.h"
+#include "ColumnInternal.h"
 
 namespace AR {
     template <>
-    class Binder <long> : public IBinder
+    class ColumnInternal <short> : public IColumnInternal
     {
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const override;

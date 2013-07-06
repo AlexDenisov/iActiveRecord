@@ -34,69 +34,69 @@
 		25922B6514EC2C2200CBB58A /* NSString+lowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 25998EE614BC1A1D00CA2490 /* NSString+lowercaseFirst.m */; };
 		25922B6614EC2C2200CBB58A /* NSString+sqlRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 254F5EBB14C5E71C00AC0D86 /* NSString+sqlRepresentation.m */; };
 		5898A0101A6EC487CECFBA61 /* ARColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ABB7B438253DCA64627B /* ARColumn.mm */; };
-		5898A019F91F124743FBB63B /* LongBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A134DE9D5BCDDBF2C47D /* LongBinder.h */; };
-		5898A01EF63BE3D684BBF47C /* UnsignedLongLongBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A7988DC1C216DBE6BF97 /* UnsignedLongLongBinder.h */; };
+		5898A019F91F124743FBB63B /* LongColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A134DE9D5BCDDBF2C47D /* LongColumn.h */; };
+		5898A01EF63BE3D684BBF47C /* UnsignedLongLongColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A7988DC1C216DBE6BF97 /* UnsignedLongLongColumn.h */; };
 		5898A021561E3602CAAC990A /* ARColumn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A80C1D9B02B4F75C9829 /* ARColumn_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		5898A13617983079F9E4D274 /* ConcreteBinders.mm in Resources */ = {isa = PBXBuildFile; fileRef = 5898ADC430328F01136F8415 /* ConcreteBinders.mm */; };
-		5898A17051272B3ABC56092A /* CharBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AC3006D8F5D6454DDECB /* CharBinder.h */; };
-		5898A1D8225E8007D2046045 /* LongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AC25485096C9552B5E6D /* LongBinder.mm */; };
-		5898A1E1F6DD079D5E5008C2 /* UnsignedLongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A95D8BF26D740875CB3A /* UnsignedLongBinder.mm */; };
-		5898A20823713C7151C3416C /* ShortBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A844F29DF9F8AC1046CD /* ShortBinder.mm */; };
-		5898A23182C70F5B3F92887B /* UnsignedCharBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A697EDD87029F09F7F53 /* UnsignedCharBinder.h */; };
-		5898A242893402E60DFBB7DA /* FloatBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AAA9ED5D3C1E81268FC6 /* FloatBinder.mm */; };
-		5898A2B0ECCE61D3D435DAB7 /* UnsignedCharBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A3F4051F09BD8D06CC19 /* UnsignedCharBinder.mm */; };
-		5898A32B66049BB34BAEE298 /* UnsignedLongLongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A93BE73E3FFF83E9427E /* UnsignedLongLongBinder.mm */; };
-		5898A3A80641781A2280DA3D /* IntBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A2E333CFDB43BF669439 /* IntBinder.mm */; };
-		5898A3E4C748E0E570B023C3 /* IntBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A2E333CFDB43BF669439 /* IntBinder.mm */; };
-		5898A402EB56C840288FCC5F /* DoubleBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AC03C096BB7197A3BBB3 /* DoubleBinder.h */; };
+		5898A13617983079F9E4D274 /* ConcreteColumns.mm in Resources */ = {isa = PBXBuildFile; fileRef = 5898ADC430328F01136F8415 /* ConcreteColumns.mm */; };
+		5898A17051272B3ABC56092A /* CharColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AC3006D8F5D6454DDECB /* CharColumn.h */; };
+		5898A1D8225E8007D2046045 /* LongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AC25485096C9552B5E6D /* LongColumn.mm */; };
+		5898A1E1F6DD079D5E5008C2 /* UnsignedLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A95D8BF26D740875CB3A /* UnsignedLongColumn.mm */; };
+		5898A20823713C7151C3416C /* ShortColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A844F29DF9F8AC1046CD /* ShortColumn.mm */; };
+		5898A23182C70F5B3F92887B /* UnsignedCharColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A697EDD87029F09F7F53 /* UnsignedCharColumn.h */; };
+		5898A242893402E60DFBB7DA /* FloatColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AAA9ED5D3C1E81268FC6 /* FloatColumn.mm */; };
+		5898A2B0ECCE61D3D435DAB7 /* UnsignedCharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A3F4051F09BD8D06CC19 /* UnsignedCharColumn.mm */; };
+		5898A32B66049BB34BAEE298 /* UnsignedLongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A93BE73E3FFF83E9427E /* UnsignedLongLongColumn.mm */; };
+		5898A3A80641781A2280DA3D /* IntColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A2E333CFDB43BF669439 /* IntColumn.mm */; };
+		5898A3E4C748E0E570B023C3 /* IntColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A2E333CFDB43BF669439 /* IntColumn.mm */; };
+		5898A402EB56C840288FCC5F /* DoubleColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AC03C096BB7197A3BBB3 /* DoubleColumn.h */; };
 		5898A4666251E8308A22BF3B /* ARColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ABB7B438253DCA64627B /* ARColumn.mm */; };
-		5898A4988E786B52337B8D76 /* UnsignedIntBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A8A6C92A0CB46C5A551F /* UnsignedIntBinder.h */; };
-		5898A53AB3D701D64056159D /* UnsignedShortBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AFB5B08D056ACBE03FC4 /* UnsignedShortBinder.mm */; };
-		5898A5AF1B57A527D357FB51 /* UnsignedIntBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A78A75DB039C41476B68 /* UnsignedIntBinder.mm */; };
-		5898A606ED9BFF20E8EB2E9E /* LongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AC25485096C9552B5E6D /* LongBinder.mm */; };
-		5898A60927A56B670A64D56F /* ShortBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AA3184172FBC7F4FBF96 /* ShortBinder.h */; };
-		5898A62B74A9B05B40AC25E2 /* ShortBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A844F29DF9F8AC1046CD /* ShortBinder.mm */; };
+		5898A4988E786B52337B8D76 /* UnsignedIntColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A8A6C92A0CB46C5A551F /* UnsignedIntColumn.h */; };
+		5898A53AB3D701D64056159D /* UnsignedShortColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AFB5B08D056ACBE03FC4 /* UnsignedShortColumn.mm */; };
+		5898A5AF1B57A527D357FB51 /* UnsignedIntColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A78A75DB039C41476B68 /* UnsignedIntColumn.mm */; };
+		5898A606ED9BFF20E8EB2E9E /* LongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AC25485096C9552B5E6D /* LongColumn.mm */; };
+		5898A60927A56B670A64D56F /* ShortColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AA3184172FBC7F4FBF96 /* ShortColumn.h */; };
+		5898A62B74A9B05B40AC25E2 /* ShortColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A844F29DF9F8AC1046CD /* ShortColumn.mm */; };
 		5898A648BC3F2120100C65FC /* ATTweetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898A622099B26391ED7B4AD /* ATTweetTableViewCell.m */; };
-		5898A64D0CF08E9B3C956FD0 /* UnsignedIntBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A78A75DB039C41476B68 /* UnsignedIntBinder.mm */; };
-		5898A69E0E8AE0884C8D38F2 /* UnsignedLongLongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A93BE73E3FFF83E9427E /* UnsignedLongLongBinder.mm */; };
-		5898A6F7CC2D277DAA274D24 /* ShortBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A844F29DF9F8AC1046CD /* ShortBinder.mm */; };
-		5898A6FB5874640A3351ACAB /* UnsignedLongLongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A93BE73E3FFF83E9427E /* UnsignedLongLongBinder.mm */; };
-		5898A7CF6B3267B2C68A5E34 /* UnsignedIntBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A78A75DB039C41476B68 /* UnsignedIntBinder.mm */; };
-		5898A7F23D57F4D4EED57E6B /* Binder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AC34BC297CDE28FCC7EC /* Binder.h */; };
-		5898A839B12B193EC00C0ED2 /* CharBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ADB615B5F045F7C09873 /* CharBinder.mm */; };
-		5898A84DCB8EFC964979E671 /* DoubleBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AD552574FE5907B84F0A /* DoubleBinder.mm */; };
+		5898A64D0CF08E9B3C956FD0 /* UnsignedIntColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A78A75DB039C41476B68 /* UnsignedIntColumn.mm */; };
+		5898A69E0E8AE0884C8D38F2 /* UnsignedLongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A93BE73E3FFF83E9427E /* UnsignedLongLongColumn.mm */; };
+		5898A6F7CC2D277DAA274D24 /* ShortColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A844F29DF9F8AC1046CD /* ShortColumn.mm */; };
+		5898A6FB5874640A3351ACAB /* UnsignedLongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A93BE73E3FFF83E9427E /* UnsignedLongLongColumn.mm */; };
+		5898A7CF6B3267B2C68A5E34 /* UnsignedIntColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A78A75DB039C41476B68 /* UnsignedIntColumn.mm */; };
+		5898A7F23D57F4D4EED57E6B /* ColumnInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AC34BC297CDE28FCC7EC /* ColumnInternal.h */; };
+		5898A839B12B193EC00C0ED2 /* CharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ADB615B5F045F7C09873 /* CharColumn.mm */; };
+		5898A84DCB8EFC964979E671 /* DoubleColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AD552574FE5907B84F0A /* DoubleColumn.mm */; };
 		5898A883EA4FEB58142A24B4 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898AE350130DC812235D484 /* Tweet.m */; };
-		5898A8AB9A752C8D4E643061 /* FloatBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AAC113A0833FAD15EB5B /* FloatBinder.h */; };
-		5898A8C02E13790ADD0A7D93 /* IntBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AF1FCDD4E7F00439AA9A /* IntBinder.h */; };
-		5898A8C42B12D9C5CE8B050B /* UnsignedCharBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A3F4051F09BD8D06CC19 /* UnsignedCharBinder.mm */; };
-		5898A8EE6A4173DFA3C76BCA /* UnsignedShortBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A333B4092E26A558CD70 /* UnsignedShortBinder.h */; };
+		5898A8AB9A752C8D4E643061 /* FloatColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AAC113A0833FAD15EB5B /* FloatColumn.h */; };
+		5898A8C02E13790ADD0A7D93 /* IntColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AF1FCDD4E7F00439AA9A /* IntColumn.h */; };
+		5898A8C42B12D9C5CE8B050B /* UnsignedCharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A3F4051F09BD8D06CC19 /* UnsignedCharColumn.mm */; };
+		5898A8EE6A4173DFA3C76BCA /* UnsignedShortColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A333B4092E26A558CD70 /* UnsignedShortColumn.h */; };
 		5898A914E4BDA1BD99E6AF1F /* ARDatabaseManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A20B8FA043AE675A5C6D /* ARDatabaseManager.mm */; };
-		5898A942FA9B4F5A4FD51D67 /* UnsignedShortBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AFB5B08D056ACBE03FC4 /* UnsignedShortBinder.mm */; };
-		5898A9DDEC8E73060B050F31 /* CharBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ADB615B5F045F7C09873 /* CharBinder.mm */; };
-		5898AA75CDCC7D1BA1F599AE /* UnsignedLongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A95D8BF26D740875CB3A /* UnsignedLongBinder.mm */; };
-		5898AA7A3E9E080FB166B40C /* CharBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ADB615B5F045F7C09873 /* CharBinder.mm */; };
+		5898A942FA9B4F5A4FD51D67 /* UnsignedShortColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AFB5B08D056ACBE03FC4 /* UnsignedShortColumn.mm */; };
+		5898A9DDEC8E73060B050F31 /* CharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ADB615B5F045F7C09873 /* CharColumn.mm */; };
+		5898AA75CDCC7D1BA1F599AE /* UnsignedLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A95D8BF26D740875CB3A /* UnsignedLongColumn.mm */; };
+		5898AA7A3E9E080FB166B40C /* CharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ADB615B5F045F7C09873 /* CharColumn.mm */; };
 		5898AAAD3F38F0B2468FF303 /* ARDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A31CAAF37A0EAD89A480 /* ARDatabaseManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		5898AB07B66A3BE2D599F77C /* FloatBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AAA9ED5D3C1E81268FC6 /* FloatBinder.mm */; };
-		5898AB208A5CAA200ADD7283 /* UnsignedShortBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AFB5B08D056ACBE03FC4 /* UnsignedShortBinder.mm */; };
-		5898AB56F5E65043953F4B17 /* IntBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A2E333CFDB43BF669439 /* IntBinder.mm */; };
-		5898AB8CABF3CD1D0A28E6EB /* IBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AD319172630841E7FCA7 /* IBinder.h */; };
-		5898AC49FD549A67A5C3DF99 /* FloatBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AAA9ED5D3C1E81268FC6 /* FloatBinder.mm */; };
+		5898AB07B66A3BE2D599F77C /* FloatColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AAA9ED5D3C1E81268FC6 /* FloatColumn.mm */; };
+		5898AB208A5CAA200ADD7283 /* UnsignedShortColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AFB5B08D056ACBE03FC4 /* UnsignedShortColumn.mm */; };
+		5898AB56F5E65043953F4B17 /* IntColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A2E333CFDB43BF669439 /* IntColumn.mm */; };
+		5898AB8CABF3CD1D0A28E6EB /* IColumnInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AD319172630841E7FCA7 /* IColumnInternal.h */; };
+		5898AC49FD549A67A5C3DF99 /* FloatColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AAA9ED5D3C1E81268FC6 /* FloatColumn.mm */; };
 		5898AC82448CDD47C5DFC8A0 /* ARDatabaseManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A20B8FA043AE675A5C6D /* ARDatabaseManager.mm */; };
-		5898ACD28D476BFE95511524 /* LongLongBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AE3F930C606A9F3CEC31 /* LongLongBinder.h */; };
-		5898ACEA5961B37B9DAA60CC /* ConcreteBinders.mm in Resources */ = {isa = PBXBuildFile; fileRef = 5898ADC430328F01136F8415 /* ConcreteBinders.mm */; };
-		5898AD6548F0FCD6F83074D7 /* UnsignedLongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A95D8BF26D740875CB3A /* UnsignedLongBinder.mm */; };
-		5898AE0CA78A78DE2C87A34E /* UnsignedLongBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A74C784C910C79F5A6D0 /* UnsignedLongBinder.h */; };
-		5898AE14F893BF5058FCE8BA /* LongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AC25485096C9552B5E6D /* LongBinder.mm */; };
-		5898AE380243EF372EA4676A /* ConcreteBinders.mm in Resources */ = {isa = PBXBuildFile; fileRef = 5898ADC430328F01136F8415 /* ConcreteBinders.mm */; };
-		5898AE49C38121CD93301FCC /* UnsignedCharBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A3F4051F09BD8D06CC19 /* UnsignedCharBinder.mm */; };
+		5898ACD28D476BFE95511524 /* LongLongColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AE3F930C606A9F3CEC31 /* LongLongColumn.h */; };
+		5898ACEA5961B37B9DAA60CC /* ConcreteColumns.mm in Resources */ = {isa = PBXBuildFile; fileRef = 5898ADC430328F01136F8415 /* ConcreteColumns.mm */; };
+		5898AD6548F0FCD6F83074D7 /* UnsignedLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A95D8BF26D740875CB3A /* UnsignedLongColumn.mm */; };
+		5898AE0CA78A78DE2C87A34E /* UnsignedLongColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A74C784C910C79F5A6D0 /* UnsignedLongColumn.h */; };
+		5898AE14F893BF5058FCE8BA /* LongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AC25485096C9552B5E6D /* LongColumn.mm */; };
+		5898AE380243EF372EA4676A /* ConcreteColumns.mm in Resources */ = {isa = PBXBuildFile; fileRef = 5898ADC430328F01136F8415 /* ConcreteColumns.mm */; };
+		5898AE49C38121CD93301FCC /* UnsignedCharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A3F4051F09BD8D06CC19 /* UnsignedCharColumn.mm */; };
 		5898AE9CA7A3C505F1982C43 /* ATSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898ABFCF2766795BEAF19DC /* ATSearchManager.m */; };
-		5898AF0A615C7EFC80D7E63A /* ConcreteBinders.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898ACD1BA8E8807AD5CD9CD /* ConcreteBinders.h */; };
-		5898AF9FA4E5FD0700C80C02 /* DoubleBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AD552574FE5907B84F0A /* DoubleBinder.mm */; };
-		5898AF9FE051B197F233CBE4 /* LongLongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongBinder.mm */; };
-		5898AFB5BCBD6B8D2A3FB1E6 /* DoubleBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AD552574FE5907B84F0A /* DoubleBinder.mm */; };
+		5898AF0A615C7EFC80D7E63A /* ConcreteColumns.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898ACD1BA8E8807AD5CD9CD /* ConcreteColumns.h */; };
+		5898AF9FA4E5FD0700C80C02 /* DoubleColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AD552574FE5907B84F0A /* DoubleColumn.mm */; };
+		5898AF9FE051B197F233CBE4 /* LongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */; };
+		5898AFB5BCBD6B8D2A3FB1E6 /* DoubleColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AD552574FE5907B84F0A /* DoubleColumn.mm */; };
 		5898AFD085A61106DF70EC25 /* ARColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AECD6515B2B750D6563E /* ARColumn.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		5898AFE293C96238DE89AAB6 /* LongLongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongBinder.mm */; };
-		5898AFFD23B08853D039C729 /* LongLongBinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongBinder.mm */; };
+		5898AFE293C96238DE89AAB6 /* LongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */; };
+		5898AFFD23B08853D039C729 /* LongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */; };
 		75F56DBA1717003C00A1DF7B /* DecimalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F56DB91717003C00A1DF7B /* DecimalRecord.m */; };
 		75F56DBC171700D300A1DF7B /* NSDecimalNumberSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75F56DBB171700D300A1DF7B /* NSDecimalNumberSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA04E8C5166A620500957F54 /* ARDynamicAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04E8C2166A574100957F54 /* ARDynamicAccessor.m */; };
@@ -280,45 +280,45 @@
 		25998EF914BC1DD400CA2490 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		25A1131F14D9BAAE000720E7 /* ARValidationsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARValidationsHelper.h; sourceTree = "<group>"; };
 		25A1132614D9BCF7000720E7 /* ARErrorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARErrorHelper.h; sourceTree = "<group>"; };
-		5898A134DE9D5BCDDBF2C47D /* LongBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongBinder.h; sourceTree = "<group>"; };
+		5898A134DE9D5BCDDBF2C47D /* LongColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongColumn.h; sourceTree = "<group>"; };
 		5898A20B8FA043AE675A5C6D /* ARDatabaseManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARDatabaseManager.mm; sourceTree = "<group>"; };
-		5898A2E333CFDB43BF669439 /* IntBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntBinder.mm; sourceTree = "<group>"; };
+		5898A2E333CFDB43BF669439 /* IntColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntColumn.mm; sourceTree = "<group>"; };
 		5898A31CAAF37A0EAD89A480 /* ARDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDatabaseManager.h; sourceTree = "<group>"; };
-		5898A333B4092E26A558CD70 /* UnsignedShortBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedShortBinder.h; sourceTree = "<group>"; };
-		5898A3F4051F09BD8D06CC19 /* UnsignedCharBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedCharBinder.mm; sourceTree = "<group>"; };
+		5898A333B4092E26A558CD70 /* UnsignedShortColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedShortColumn.h; sourceTree = "<group>"; };
+		5898A3F4051F09BD8D06CC19 /* UnsignedCharColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedCharColumn.mm; sourceTree = "<group>"; };
 		5898A58A635513062A2F3785 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		5898A622099B26391ED7B4AD /* ATTweetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATTweetTableViewCell.m; sourceTree = "<group>"; };
-		5898A697EDD87029F09F7F53 /* UnsignedCharBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedCharBinder.h; sourceTree = "<group>"; };
-		5898A74C784C910C79F5A6D0 /* UnsignedLongBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedLongBinder.h; sourceTree = "<group>"; };
-		5898A78A75DB039C41476B68 /* UnsignedIntBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedIntBinder.mm; sourceTree = "<group>"; };
-		5898A7988DC1C216DBE6BF97 /* UnsignedLongLongBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedLongLongBinder.h; sourceTree = "<group>"; };
+		5898A697EDD87029F09F7F53 /* UnsignedCharColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedCharColumn.h; sourceTree = "<group>"; };
+		5898A74C784C910C79F5A6D0 /* UnsignedLongColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedLongColumn.h; sourceTree = "<group>"; };
+		5898A78A75DB039C41476B68 /* UnsignedIntColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedIntColumn.mm; sourceTree = "<group>"; };
+		5898A7988DC1C216DBE6BF97 /* UnsignedLongLongColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedLongLongColumn.h; sourceTree = "<group>"; };
 		5898A7BB778B342BE52EF5C2 /* ATSearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATSearchManager.h; sourceTree = "<group>"; };
 		5898A80C1D9B02B4F75C9829 /* ARColumn_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARColumn_Private.h; sourceTree = "<group>"; };
-		5898A844F29DF9F8AC1046CD /* ShortBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShortBinder.mm; sourceTree = "<group>"; };
-		5898A8A6C92A0CB46C5A551F /* UnsignedIntBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedIntBinder.h; sourceTree = "<group>"; };
-		5898A93BE73E3FFF83E9427E /* UnsignedLongLongBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedLongLongBinder.mm; sourceTree = "<group>"; };
-		5898A95D8BF26D740875CB3A /* UnsignedLongBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedLongBinder.mm; sourceTree = "<group>"; };
-		5898AA3184172FBC7F4FBF96 /* ShortBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortBinder.h; sourceTree = "<group>"; };
-		5898AAA9ED5D3C1E81268FC6 /* FloatBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FloatBinder.mm; sourceTree = "<group>"; };
-		5898AAC113A0833FAD15EB5B /* FloatBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatBinder.h; sourceTree = "<group>"; };
+		5898A844F29DF9F8AC1046CD /* ShortColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShortColumn.mm; sourceTree = "<group>"; };
+		5898A8A6C92A0CB46C5A551F /* UnsignedIntColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedIntColumn.h; sourceTree = "<group>"; };
+		5898A93BE73E3FFF83E9427E /* UnsignedLongLongColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedLongLongColumn.mm; sourceTree = "<group>"; };
+		5898A95D8BF26D740875CB3A /* UnsignedLongColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedLongColumn.mm; sourceTree = "<group>"; };
+		5898AA3184172FBC7F4FBF96 /* ShortColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortColumn.h; sourceTree = "<group>"; };
+		5898AAA9ED5D3C1E81268FC6 /* FloatColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FloatColumn.mm; sourceTree = "<group>"; };
+		5898AAC113A0833FAD15EB5B /* FloatColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatColumn.h; sourceTree = "<group>"; };
 		5898ABB7B438253DCA64627B /* ARColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARColumn.mm; sourceTree = "<group>"; };
 		5898ABFCF2766795BEAF19DC /* ATSearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSearchManager.m; sourceTree = "<group>"; };
-		5898AC03C096BB7197A3BBB3 /* DoubleBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleBinder.h; sourceTree = "<group>"; };
+		5898AC03C096BB7197A3BBB3 /* DoubleColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleColumn.h; sourceTree = "<group>"; };
 		5898AC240D4B17D007620E12 /* ATTweetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATTweetTableViewCell.h; sourceTree = "<group>"; };
-		5898AC25485096C9552B5E6D /* LongBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LongBinder.mm; sourceTree = "<group>"; };
-		5898AC3006D8F5D6454DDECB /* CharBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharBinder.h; sourceTree = "<group>"; };
-		5898AC34BC297CDE28FCC7EC /* Binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Binder.h; sourceTree = "<group>"; };
-		5898ACD1BA8E8807AD5CD9CD /* ConcreteBinders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcreteBinders.h; sourceTree = "<group>"; };
-		5898AD319172630841E7FCA7 /* IBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBinder.h; sourceTree = "<group>"; };
-		5898AD552574FE5907B84F0A /* DoubleBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DoubleBinder.mm; sourceTree = "<group>"; };
-		5898ADB615B5F045F7C09873 /* CharBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CharBinder.mm; sourceTree = "<group>"; };
-		5898ADC430328F01136F8415 /* ConcreteBinders.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConcreteBinders.mm; sourceTree = "<group>"; };
+		5898AC25485096C9552B5E6D /* LongColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LongColumn.mm; sourceTree = "<group>"; };
+		5898AC3006D8F5D6454DDECB /* CharColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharColumn.h; sourceTree = "<group>"; };
+		5898AC34BC297CDE28FCC7EC /* ColumnInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColumnInternal.h; sourceTree = "<group>"; };
+		5898ACD1BA8E8807AD5CD9CD /* ConcreteColumns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcreteColumns.h; sourceTree = "<group>"; };
+		5898AD319172630841E7FCA7 /* IColumnInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IColumnInternal.h; sourceTree = "<group>"; };
+		5898AD552574FE5907B84F0A /* DoubleColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DoubleColumn.mm; sourceTree = "<group>"; };
+		5898ADB615B5F045F7C09873 /* CharColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CharColumn.mm; sourceTree = "<group>"; };
+		5898ADC430328F01136F8415 /* ConcreteColumns.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ConcreteColumns.mm; sourceTree = "<group>"; };
 		5898AE350130DC812235D484 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
-		5898AE3F930C606A9F3CEC31 /* LongLongBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongLongBinder.h; sourceTree = "<group>"; };
+		5898AE3F930C606A9F3CEC31 /* LongLongColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongLongColumn.h; sourceTree = "<group>"; };
 		5898AECD6515B2B750D6563E /* ARColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARColumn.h; sourceTree = "<group>"; };
-		5898AF0CFBDE2FB5CD7A1690 /* LongLongBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LongLongBinder.mm; sourceTree = "<group>"; };
-		5898AF1FCDD4E7F00439AA9A /* IntBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntBinder.h; sourceTree = "<group>"; };
-		5898AFB5B08D056ACBE03FC4 /* UnsignedShortBinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedShortBinder.mm; sourceTree = "<group>"; };
+		5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LongLongColumn.mm; sourceTree = "<group>"; };
+		5898AF1FCDD4E7F00439AA9A /* IntColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntColumn.h; sourceTree = "<group>"; };
+		5898AFB5B08D056ACBE03FC4 /* UnsignedShortColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedShortColumn.mm; sourceTree = "<group>"; };
 		75F56DB81717003C00A1DF7B /* DecimalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecimalRecord.h; sourceTree = "<group>"; };
 		75F56DB91717003C00A1DF7B /* DecimalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecimalRecord.m; sourceTree = "<group>"; };
 		75F56DBB171700D300A1DF7B /* NSDecimalNumberSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSDecimalNumberSpec.mm; sourceTree = "<group>"; };
@@ -718,7 +718,7 @@
 		5898A01C8CD08A13A0681F29 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5898A3F41A8E43710FB21372 /* Binders */,
+				5898A3F41A8E43710FB21372 /* Columns */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -733,16 +733,16 @@
 			path = Column;
 			sourceTree = "<group>";
 		};
-		5898A3F41A8E43710FB21372 /* Binders */ = {
+		5898A3F41A8E43710FB21372 /* Columns */ = {
 			isa = PBXGroup;
 			children = (
-				5898AC34BC297CDE28FCC7EC /* Binder.h */,
-				5898AD319172630841E7FCA7 /* IBinder.h */,
-				5898ACD1BA8E8807AD5CD9CD /* ConcreteBinders.h */,
-				5898ADC430328F01136F8415 /* ConcreteBinders.mm */,
-				5898AE922C141AC76A7BE422 /* ConcreteBinders */,
+				5898AC34BC297CDE28FCC7EC /* ColumnInternal.h */,
+				5898AD319172630841E7FCA7 /* IColumnInternal.h */,
+				5898ACD1BA8E8807AD5CD9CD /* ConcreteColumns.h */,
+				5898ADC430328F01136F8415 /* ConcreteColumns.mm */,
+				5898AE922C141AC76A7BE422 /* ConcreteColumns */,
 			);
-			path = Binders;
+			path = Columns;
 			sourceTree = "<group>";
 		};
 		5898A988DC13EDE23C843E90 /* DatabaseManager */ = {
@@ -754,35 +754,35 @@
 			path = DatabaseManager;
 			sourceTree = "<group>";
 		};
-		5898AE922C141AC76A7BE422 /* ConcreteBinders */ = {
+		5898AE922C141AC76A7BE422 /* ConcreteColumns */ = {
 			isa = PBXGroup;
 			children = (
-				5898ADB615B5F045F7C09873 /* CharBinder.mm */,
-				5898AC3006D8F5D6454DDECB /* CharBinder.h */,
-				5898A3F4051F09BD8D06CC19 /* UnsignedCharBinder.mm */,
-				5898A697EDD87029F09F7F53 /* UnsignedCharBinder.h */,
-				5898A844F29DF9F8AC1046CD /* ShortBinder.mm */,
-				5898AA3184172FBC7F4FBF96 /* ShortBinder.h */,
-				5898AFB5B08D056ACBE03FC4 /* UnsignedShortBinder.mm */,
-				5898A333B4092E26A558CD70 /* UnsignedShortBinder.h */,
-				5898A2E333CFDB43BF669439 /* IntBinder.mm */,
-				5898AF1FCDD4E7F00439AA9A /* IntBinder.h */,
-				5898A78A75DB039C41476B68 /* UnsignedIntBinder.mm */,
-				5898A8A6C92A0CB46C5A551F /* UnsignedIntBinder.h */,
-				5898AC25485096C9552B5E6D /* LongBinder.mm */,
-				5898A134DE9D5BCDDBF2C47D /* LongBinder.h */,
-				5898A95D8BF26D740875CB3A /* UnsignedLongBinder.mm */,
-				5898A74C784C910C79F5A6D0 /* UnsignedLongBinder.h */,
-				5898AF0CFBDE2FB5CD7A1690 /* LongLongBinder.mm */,
-				5898AE3F930C606A9F3CEC31 /* LongLongBinder.h */,
-				5898A93BE73E3FFF83E9427E /* UnsignedLongLongBinder.mm */,
-				5898A7988DC1C216DBE6BF97 /* UnsignedLongLongBinder.h */,
-				5898AAA9ED5D3C1E81268FC6 /* FloatBinder.mm */,
-				5898AAC113A0833FAD15EB5B /* FloatBinder.h */,
-				5898AD552574FE5907B84F0A /* DoubleBinder.mm */,
-				5898AC03C096BB7197A3BBB3 /* DoubleBinder.h */,
+				5898ADB615B5F045F7C09873 /* CharColumn.mm */,
+				5898AC3006D8F5D6454DDECB /* CharColumn.h */,
+				5898A3F4051F09BD8D06CC19 /* UnsignedCharColumn.mm */,
+				5898A697EDD87029F09F7F53 /* UnsignedCharColumn.h */,
+				5898A844F29DF9F8AC1046CD /* ShortColumn.mm */,
+				5898AA3184172FBC7F4FBF96 /* ShortColumn.h */,
+				5898AFB5B08D056ACBE03FC4 /* UnsignedShortColumn.mm */,
+				5898A333B4092E26A558CD70 /* UnsignedShortColumn.h */,
+				5898A2E333CFDB43BF669439 /* IntColumn.mm */,
+				5898AF1FCDD4E7F00439AA9A /* IntColumn.h */,
+				5898A78A75DB039C41476B68 /* UnsignedIntColumn.mm */,
+				5898A8A6C92A0CB46C5A551F /* UnsignedIntColumn.h */,
+				5898AC25485096C9552B5E6D /* LongColumn.mm */,
+				5898A134DE9D5BCDDBF2C47D /* LongColumn.h */,
+				5898A95D8BF26D740875CB3A /* UnsignedLongColumn.mm */,
+				5898A74C784C910C79F5A6D0 /* UnsignedLongColumn.h */,
+				5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */,
+				5898AE3F930C606A9F3CEC31 /* LongLongColumn.h */,
+				5898A93BE73E3FFF83E9427E /* UnsignedLongLongColumn.mm */,
+				5898A7988DC1C216DBE6BF97 /* UnsignedLongLongColumn.h */,
+				5898AAA9ED5D3C1E81268FC6 /* FloatColumn.mm */,
+				5898AAC113A0833FAD15EB5B /* FloatColumn.h */,
+				5898AD552574FE5907B84F0A /* DoubleColumn.mm */,
+				5898AC03C096BB7197A3BBB3 /* DoubleColumn.h */,
 			);
-			path = ConcreteBinders;
+			path = ConcreteColumns;
 			sourceTree = "<group>";
 		};
 		CA04E8BF166A571B00957F54 /* ARDynamicAccessor */ = {
@@ -1115,24 +1115,24 @@
 				CA2E5D481581E75F0053D511 /* ActiveRecord_Private.h in Headers */,
 				CA62C325151E0EC400E54276 /* NSString+sqlRepresentation.h in Headers */,
 				DB78C3A616D73D8800FAE89D /* ARDynamicAccessor.h in Headers */,
-				5898A7F23D57F4D4EED57E6B /* Binder.h in Headers */,
+				5898A7F23D57F4D4EED57E6B /* ColumnInternal.h in Headers */,
 				5898AFD085A61106DF70EC25 /* ARColumn.h in Headers */,
 				5898A021561E3602CAAC990A /* ARColumn_Private.h in Headers */,
-				5898AB8CABF3CD1D0A28E6EB /* IBinder.h in Headers */,
+				5898AB8CABF3CD1D0A28E6EB /* IColumnInternal.h in Headers */,
 				5898AAAD3F38F0B2468FF303 /* ARDatabaseManager.h in Headers */,
-				5898AF0A615C7EFC80D7E63A /* ConcreteBinders.h in Headers */,
-				5898A17051272B3ABC56092A /* CharBinder.h in Headers */,
-				5898A23182C70F5B3F92887B /* UnsignedCharBinder.h in Headers */,
-				5898A60927A56B670A64D56F /* ShortBinder.h in Headers */,
-				5898A8EE6A4173DFA3C76BCA /* UnsignedShortBinder.h in Headers */,
-				5898A8C02E13790ADD0A7D93 /* IntBinder.h in Headers */,
-				5898A4988E786B52337B8D76 /* UnsignedIntBinder.h in Headers */,
-				5898A019F91F124743FBB63B /* LongBinder.h in Headers */,
-				5898AE0CA78A78DE2C87A34E /* UnsignedLongBinder.h in Headers */,
-				5898ACD28D476BFE95511524 /* LongLongBinder.h in Headers */,
-				5898A01EF63BE3D684BBF47C /* UnsignedLongLongBinder.h in Headers */,
-				5898A8AB9A752C8D4E643061 /* FloatBinder.h in Headers */,
-				5898A402EB56C840288FCC5F /* DoubleBinder.h in Headers */,
+				5898AF0A615C7EFC80D7E63A /* ConcreteColumns.h in Headers */,
+				5898A17051272B3ABC56092A /* CharColumn.h in Headers */,
+				5898A23182C70F5B3F92887B /* UnsignedCharColumn.h in Headers */,
+				5898A60927A56B670A64D56F /* ShortColumn.h in Headers */,
+				5898A8EE6A4173DFA3C76BCA /* UnsignedShortColumn.h in Headers */,
+				5898A8C02E13790ADD0A7D93 /* IntColumn.h in Headers */,
+				5898A4988E786B52337B8D76 /* UnsignedIntColumn.h in Headers */,
+				5898A019F91F124743FBB63B /* LongColumn.h in Headers */,
+				5898AE0CA78A78DE2C87A34E /* UnsignedLongColumn.h in Headers */,
+				5898ACD28D476BFE95511524 /* LongLongColumn.h in Headers */,
+				5898A01EF63BE3D684BBF47C /* UnsignedLongLongColumn.h in Headers */,
+				5898A8AB9A752C8D4E643061 /* FloatColumn.h in Headers */,
+				5898A402EB56C840288FCC5F /* DoubleColumn.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,7 +1232,7 @@
 			files = (
 				25922B0514EC286000CBB58A /* InfoPlist.strings in Resources */,
 				CAE9227F17149A080082A97C /* octocat.png in Resources */,
-				5898A13617983079F9E4D274 /* ConcreteBinders.mm in Resources */,
+				5898A13617983079F9E4D274 /* ConcreteColumns.mm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1241,7 +1241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA62C313151E0AB800E54276 /* InfoPlist.strings in Resources */,
-				5898ACEA5961B37B9DAA60CC /* ConcreteBinders.mm in Resources */,
+				5898ACEA5961B37B9DAA60CC /* ConcreteColumns.mm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1254,7 +1254,7 @@
 				CA8FA3F61750ED7400BA47E6 /* Default@2x.png in Resources */,
 				CA8FA3F81750ED7400BA47E6 /* Default-568h@2x.png in Resources */,
 				CA8FA3FB1750ED7400BA47E6 /* MainStoryboard.storyboard in Resources */,
-				5898AE380243EF372EA4676A /* ConcreteBinders.mm in Resources */,
+				5898AE380243EF372EA4676A /* ConcreteColumns.mm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1408,18 +1408,18 @@
 				CA44DE541748D17C00831183 /* ARConfigurationSpec.mm in Sources */,
 				5898A4666251E8308A22BF3B /* ARColumn.mm in Sources */,
 				5898AC82448CDD47C5DFC8A0 /* ARDatabaseManager.mm in Sources */,
-				5898AA7A3E9E080FB166B40C /* CharBinder.mm in Sources */,
-				5898A2B0ECCE61D3D435DAB7 /* UnsignedCharBinder.mm in Sources */,
-				5898A62B74A9B05B40AC25E2 /* ShortBinder.mm in Sources */,
-				5898A942FA9B4F5A4FD51D67 /* UnsignedShortBinder.mm in Sources */,
-				5898A3E4C748E0E570B023C3 /* IntBinder.mm in Sources */,
-				5898A5AF1B57A527D357FB51 /* UnsignedIntBinder.mm in Sources */,
-				5898AE14F893BF5058FCE8BA /* LongBinder.mm in Sources */,
-				5898AA75CDCC7D1BA1F599AE /* UnsignedLongBinder.mm in Sources */,
-				5898AF9FE051B197F233CBE4 /* LongLongBinder.mm in Sources */,
-				5898A69E0E8AE0884C8D38F2 /* UnsignedLongLongBinder.mm in Sources */,
-				5898AC49FD549A67A5C3DF99 /* FloatBinder.mm in Sources */,
-				5898AFB5BCBD6B8D2A3FB1E6 /* DoubleBinder.mm in Sources */,
+				5898AA7A3E9E080FB166B40C /* CharColumn.mm in Sources */,
+				5898A2B0ECCE61D3D435DAB7 /* UnsignedCharColumn.mm in Sources */,
+				5898A62B74A9B05B40AC25E2 /* ShortColumn.mm in Sources */,
+				5898A942FA9B4F5A4FD51D67 /* UnsignedShortColumn.mm in Sources */,
+				5898A3E4C748E0E570B023C3 /* IntColumn.mm in Sources */,
+				5898A5AF1B57A527D357FB51 /* UnsignedIntColumn.mm in Sources */,
+				5898AE14F893BF5058FCE8BA /* LongColumn.mm in Sources */,
+				5898AA75CDCC7D1BA1F599AE /* UnsignedLongColumn.mm in Sources */,
+				5898AF9FE051B197F233CBE4 /* LongLongColumn.mm in Sources */,
+				5898A69E0E8AE0884C8D38F2 /* UnsignedLongLongColumn.mm in Sources */,
+				5898AC49FD549A67A5C3DF99 /* FloatColumn.mm in Sources */,
+				5898AFB5BCBD6B8D2A3FB1E6 /* DoubleColumn.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1462,18 +1462,18 @@
 				DB78C3A716D73D9500FAE89D /* ARDynamicAccessor.m in Sources */,
 				5898A0101A6EC487CECFBA61 /* ARColumn.mm in Sources */,
 				5898A914E4BDA1BD99E6AF1F /* ARDatabaseManager.mm in Sources */,
-				5898A9DDEC8E73060B050F31 /* CharBinder.mm in Sources */,
-				5898AE49C38121CD93301FCC /* UnsignedCharBinder.mm in Sources */,
-				5898A6F7CC2D277DAA274D24 /* ShortBinder.mm in Sources */,
-				5898A53AB3D701D64056159D /* UnsignedShortBinder.mm in Sources */,
-				5898AB56F5E65043953F4B17 /* IntBinder.mm in Sources */,
-				5898A7CF6B3267B2C68A5E34 /* UnsignedIntBinder.mm in Sources */,
-				5898A1D8225E8007D2046045 /* LongBinder.mm in Sources */,
-				5898AD6548F0FCD6F83074D7 /* UnsignedLongBinder.mm in Sources */,
-				5898AFFD23B08853D039C729 /* LongLongBinder.mm in Sources */,
-				5898A32B66049BB34BAEE298 /* UnsignedLongLongBinder.mm in Sources */,
-				5898AB07B66A3BE2D599F77C /* FloatBinder.mm in Sources */,
-				5898A84DCB8EFC964979E671 /* DoubleBinder.mm in Sources */,
+				5898A9DDEC8E73060B050F31 /* CharColumn.mm in Sources */,
+				5898AE49C38121CD93301FCC /* UnsignedCharColumn.mm in Sources */,
+				5898A6F7CC2D277DAA274D24 /* ShortColumn.mm in Sources */,
+				5898A53AB3D701D64056159D /* UnsignedShortColumn.mm in Sources */,
+				5898AB56F5E65043953F4B17 /* IntColumn.mm in Sources */,
+				5898A7CF6B3267B2C68A5E34 /* UnsignedIntColumn.mm in Sources */,
+				5898A1D8225E8007D2046045 /* LongColumn.mm in Sources */,
+				5898AD6548F0FCD6F83074D7 /* UnsignedLongColumn.mm in Sources */,
+				5898AFFD23B08853D039C729 /* LongLongColumn.mm in Sources */,
+				5898A32B66049BB34BAEE298 /* UnsignedLongLongColumn.mm in Sources */,
+				5898AB07B66A3BE2D599F77C /* FloatColumn.mm in Sources */,
+				5898A84DCB8EFC964979E671 /* DoubleColumn.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1488,18 +1488,18 @@
 				5898AE9CA7A3C505F1982C43 /* ATSearchManager.m in Sources */,
 				5898A883EA4FEB58142A24B4 /* Tweet.m in Sources */,
 				5898A648BC3F2120100C65FC /* ATTweetTableViewCell.m in Sources */,
-				5898A839B12B193EC00C0ED2 /* CharBinder.mm in Sources */,
-				5898A8C42B12D9C5CE8B050B /* UnsignedCharBinder.mm in Sources */,
-				5898A20823713C7151C3416C /* ShortBinder.mm in Sources */,
-				5898AB208A5CAA200ADD7283 /* UnsignedShortBinder.mm in Sources */,
-				5898A3A80641781A2280DA3D /* IntBinder.mm in Sources */,
-				5898A64D0CF08E9B3C956FD0 /* UnsignedIntBinder.mm in Sources */,
-				5898A606ED9BFF20E8EB2E9E /* LongBinder.mm in Sources */,
-				5898A1E1F6DD079D5E5008C2 /* UnsignedLongBinder.mm in Sources */,
-				5898AFE293C96238DE89AAB6 /* LongLongBinder.mm in Sources */,
-				5898A6FB5874640A3351ACAB /* UnsignedLongLongBinder.mm in Sources */,
-				5898A242893402E60DFBB7DA /* FloatBinder.mm in Sources */,
-				5898AF9FA4E5FD0700C80C02 /* DoubleBinder.mm in Sources */,
+				5898A839B12B193EC00C0ED2 /* CharColumn.mm in Sources */,
+				5898A8C42B12D9C5CE8B050B /* UnsignedCharColumn.mm in Sources */,
+				5898A20823713C7151C3416C /* ShortColumn.mm in Sources */,
+				5898AB208A5CAA200ADD7283 /* UnsignedShortColumn.mm in Sources */,
+				5898A3A80641781A2280DA3D /* IntColumn.mm in Sources */,
+				5898A64D0CF08E9B3C956FD0 /* UnsignedIntColumn.mm in Sources */,
+				5898A606ED9BFF20E8EB2E9E /* LongColumn.mm in Sources */,
+				5898A1E1F6DD079D5E5008C2 /* UnsignedLongColumn.mm in Sources */,
+				5898AFE293C96238DE89AAB6 /* LongLongColumn.mm in Sources */,
+				5898A6FB5874640A3351ACAB /* UnsignedLongLongColumn.mm in Sources */,
+				5898A242893402E60DFBB7DA /* FloatColumn.mm in Sources */,
+				5898AF9FA4E5FD0700C80C02 /* DoubleColumn.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

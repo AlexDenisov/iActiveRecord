@@ -493,7 +493,7 @@ static NSArray *records = nil;
                     
                     break;
                 default:
-                    column.binder->bind(stmt, columnIndex, value);
+                    column.internal->bind(stmt, columnIndex, value);
                     break;
             }
             columnIndex++;

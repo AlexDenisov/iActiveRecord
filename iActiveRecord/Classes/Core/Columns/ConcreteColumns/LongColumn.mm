@@ -3,11 +3,11 @@
 // Copyright (c) 2013 okolodev.org. All rights reserved.
 //
 
-#include "LongBinder.h"
+#include "LongColumn.h"
 
 namespace AR {
 
-    bool Binder<long>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+    bool ColumnInternal<long>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
     {
         return sqlite3_bind_int64(statement, columnIndex, [value longValue]) == SQLITE_OK;
     }

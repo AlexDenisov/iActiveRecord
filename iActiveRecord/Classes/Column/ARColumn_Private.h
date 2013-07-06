@@ -10,7 +10,7 @@
 #import "ARColumn.h"
 #import "ARColumnType.h"
 
-#import "Binder.h"
+#import "ColumnInternal.h"
 
 @class ActiveRecord;
 
@@ -23,7 +23,7 @@
 @property (nonatomic, strong, readwrite) Class recordClass;
 @property (nonatomic, readwrite) ARColumnType columnType;
 
-@property (nonatomic, readwrite) AR::IBinder *binder;
+@property (nonatomic, readwrite) AR::IColumnInternal *internal;
 
 
 - (BOOL)setPropertyTypeFromAttribute:(const char *)anAttribute;
