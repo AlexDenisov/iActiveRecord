@@ -11,8 +11,22 @@ namespace AR {
     template <>
     class ColumnInternal <long long> : public IColumnInternal
     {
+    private:
+        static long long accessorImpl(ActiveRecord *receiver, SEL _cmd);
+        static void mutatorImpl(ActiveRecord *receiver, SEL _cmd, long long value);
+
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const override;
         const char *sqlType(void) const override;
+
+        const IMP accessor(void) const
+        {
+            return reinterpret_cast<IMP>(&ColumnInternal::accessorImpl);
+        }
+
+        const IMP mutator(void) const
+        {
+            return reinterpret_cast<IMP>(&ColumnInternal::mutatorImpl);
+        }
     };
 };

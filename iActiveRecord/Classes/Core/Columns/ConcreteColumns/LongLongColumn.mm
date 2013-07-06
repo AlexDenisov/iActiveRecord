@@ -4,8 +4,21 @@
 //
 
 #include "LongLongColumn.h"
+#include "ActiveRecord_Private.h"
 
 namespace AR {
+
+    long long ColumnInternal<long long>::accessorImpl(ActiveRecord *receiver, SEL _cmd)
+    {
+        ARColumn *column = [receiver columnWithGetterNamed:NSStringFromSelector(_cmd)];
+        return [[receiver valueForColumn:column] longLongValue];
+    }
+
+    void ColumnInternal<long long>::mutatorImpl(ActiveRecord *receiver, SEL _cmd, long long value)
+    {
+        ARColumn *column = [receiver columnWithSetterNamed:NSStringFromSelector(_cmd)];
+        [receiver setValue:@(value) forColumn:column];
+    }
 
     bool ColumnInternal<long long>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
     {
@@ -15,4 +28,5 @@ namespace AR {
     const char *ColumnInternal<long long>::sqlType(void) const {
         return "integer";
     }
+
 };

@@ -4,8 +4,21 @@
 //
 
 #include "UnsignedIntColumn.h"
+#include "ActiveRecord_Private.h"
 
 namespace AR {
+
+    unsigned int ColumnInternal<unsigned int>::accessorImpl(ActiveRecord *receiver, SEL _cmd)
+    {
+        ARColumn *column = [receiver columnWithGetterNamed:NSStringFromSelector(_cmd)];
+        return [[receiver valueForColumn:column] unsignedIntValue];
+    }
+
+    void ColumnInternal<unsigned int>::mutatorImpl(ActiveRecord *receiver, SEL _cmd, unsigned int value)
+    {
+        ARColumn *column = [receiver columnWithSetterNamed:NSStringFromSelector(_cmd)];
+        [receiver setValue:@(value) forColumn:column];
+    }
 
     bool ColumnInternal<unsigned int>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
     {
@@ -15,4 +28,5 @@ namespace AR {
     const char *ColumnInternal<unsigned int>::sqlType(void) const {
         return "integer";
     }
+
 };
