@@ -5,130 +5,18 @@
 
 #pragma once
 
-#include "Binder.h"
+#include "FloatBinder.h"
+#include "DoubleBinder.h"
 
-@class PrimitiveModel;
+#include "CharBinder.h"
+#include "ShortBinder.h"
+#include "IntBinder.h"
+#include "LongBinder.h"
+#include "LongLongBinder.h"
 
-namespace AR {
+#include "UnsignedCharBinder.h"
+#include "UnsignedShortBinder.h"
+#include "UnsignedIntBinder.h"
+#include "UnsignedLongBinder.h"
+#include "UnsignedLongLongBinder.h"
 
-    template <>
-    class Binder <char> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int(statement, columnIndex, [value charValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <unsigned char> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int(statement, columnIndex, [value unsignedCharValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <short> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int(statement, columnIndex, [value shortValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <unsigned short> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int(statement, columnIndex, [value unsignedShortValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <int> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int(statement, columnIndex, [value intValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <unsigned int> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int(statement, columnIndex, [value unsignedIntegerValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <long> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int64(statement, columnIndex, [value longValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <unsigned long> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int64(statement, columnIndex, [value unsignedLongValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <long long> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int64(statement, columnIndex, [value longLongValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <unsigned long long> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_int64(statement, columnIndex, [value unsignedLongLongValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <float> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_double(statement, columnIndex, [value floatValue]) == SQLITE_OK;
-        }
-    };
-
-    template <>
-    class Binder <double> : public IBinder
-    {
-    public:
-        bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
-        {
-            return sqlite3_bind_double(statement, columnIndex, [value doubleValue]) == SQLITE_OK;
-        }
-    };
-
-};

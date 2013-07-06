@@ -6,7 +6,6 @@
 #pragma once
 
 #include <sqlite3.h>
-#include "ARColumnType.h"
 #include "IBinder.h"
 
 namespace AR {
