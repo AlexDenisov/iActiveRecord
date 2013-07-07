@@ -29,4 +29,10 @@ namespace AR {
         return "real";
     }
 
+    NSString *ColumnInternal<double>::sqlValueFromRecord(ActiveRecord *record) const
+    {
+        NSNumber *value = objc_getAssociatedObject(record, this->columnKey());
+        return [value stringValue];
+    }
+
 };

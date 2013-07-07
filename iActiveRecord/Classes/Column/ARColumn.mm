@@ -14,15 +14,20 @@
 #import "ConcreteColumns.h"
 
 @implementation ARColumn
+{
+    char *_columnKey;
+}
 
 - (instancetype)initWithProperty:(objc_property_t)property ofClass:(Class)aClass {
     self = [super init];
     if (self) {
+        self.internal = nullptr;
+
         self.recordClass = aClass;
         _dynamic = NO;
         self->_associationPolicy = OBJC_ASSOCIATION_ASSIGN;
         const char *propertyName = property_getName(property);
-        int propertyNameLength = strlen(propertyName);
+        size_t propertyNameLength = strlen(propertyName);
         _columnKey = (char *)calloc( propertyNameLength + 1, sizeof(char) );
         strcpy(_columnKey, propertyName);
         
@@ -97,13 +102,13 @@
     char *type = NULL;
     //  classes described as @"ClassName"
     if (anAttribute[0] == '@') {
-//        printf("%s\n", anAttribute);
         unsigned long length = strlen(anAttribute) - 3;
         type = (char *)calloc( length, sizeof(char) );
         strncpy(type, anAttribute + 2, length);
         self.columnClass = [objc_getClass(type) class];
         if (self.columnClass == [NSString class]) {
             self.internal = new AR::ColumnInternal<NSString>;
+            self.internal->setColumnKey(self->_columnKey);
         } else {
             self->_columnType = ARColumnTypeComposite;
         }
@@ -164,6 +169,9 @@
                 result = NO;
                 break;
         }
+        if (self.internal != nullptr) {
+            self.internal->setColumnKey(self->_columnKey);
+        }
     }
     return result;
 }
@@ -184,17 +192,14 @@
     }
 }
 
-- (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord {
-    NSString *sqlValue = nil;
-    id value =  objc_getAssociatedObject(aRecord, self->_columnKey);
+- (NSString *)sqlValueForRecord:(ActiveRecord *)record {
     if (self->_columnType == ARColumnTypeComposite) {
-        sqlValue = [value performSelector:@selector(toSql)];
-    } else if ([value isKindOfClass:[NSString class]]){
-        sqlValue = [value performSelector:@selector(toSql)];
+        NSString *sqlValue = nil;
+        id value =  objc_getAssociatedObject(record, self->_columnKey);
+        return [value performSelector:@selector(toSql)];
     } else {
-        sqlValue = [[value stringValue] performSelector:@selector(toSql)];
+        return self.internal->sqlValueFromRecord(record);
     }
-    return sqlValue;
 }
 
 - (const char *)sqlType {
@@ -204,5 +209,15 @@
         return self.internal->sqlType();
     }
 }
+
+- (const char *)columnKey
+{
+    if (self.internal != nullptr) {
+        return self.internal->columnKey();
+    } else {
+        return _columnKey;
+    }
+}
+
 
 @end

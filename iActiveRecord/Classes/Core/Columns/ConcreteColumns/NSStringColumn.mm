@@ -30,4 +30,9 @@ namespace AR {
         return "text";
     }
 
+    NSString *ColumnInternal<NSString>::sqlValueFromRecord(ActiveRecord *record) const
+    {
+        return objc_getAssociatedObject(record, this->columnKey());
+    }
+
 };

@@ -44,6 +44,11 @@ namespace AR {
             return reinterpret_cast<IMP>(&ColumnInternal<columnType>::mutatorImpl);
         }
 
+        NSString *sqlValueFromRecord(ActiveRecord *record) const
+        {
+            throw std::exception();
+        }
+
     };
 
 };

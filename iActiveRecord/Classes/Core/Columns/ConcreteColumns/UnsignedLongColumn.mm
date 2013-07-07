@@ -28,5 +28,11 @@ namespace AR {
     const char *ColumnInternal<unsigned long>::sqlType(void) const {
         return "integer";
     }
+
+    NSString *ColumnInternal<unsigned long>::sqlValueFromRecord(ActiveRecord *record) const
+    {
+        NSNumber *value = objc_getAssociatedObject(record, this->columnKey());
+        return [value stringValue];
+    }
 };
 

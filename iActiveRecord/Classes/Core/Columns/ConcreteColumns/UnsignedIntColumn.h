@@ -18,6 +18,8 @@ namespace AR {
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const override;
         const char *sqlType(void) const override;
 
+        NSString *sqlValueFromRecord(ActiveRecord *record) const override;
+
         const IMP accessor(void) const
         {
             return reinterpret_cast<IMP>(&ColumnInternal::accessorImpl);

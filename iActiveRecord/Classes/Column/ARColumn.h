@@ -14,8 +14,8 @@
 
 @interface ARColumn : NSObject
 {
-@public
-    char *_columnKey;
+//@public
+//    char *_columnKey;
 }
 
 @property (nonatomic, copy, readonly) NSString *columnName;
@@ -31,5 +31,7 @@
 - (instancetype)initWithProperty:(objc_property_t)property ofClass:(Class)aClass;
 - (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord;
 - (const char *)sqlType;
+
+- (const char *)columnKey;
 
 @end
