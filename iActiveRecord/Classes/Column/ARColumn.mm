@@ -86,6 +86,7 @@
 }
 
 - (void)dealloc {
+    delete _internal;
     free(_columnKey);
 }
 
