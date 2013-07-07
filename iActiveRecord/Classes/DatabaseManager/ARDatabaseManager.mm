@@ -474,9 +474,10 @@ static NSArray *records = nil;
             
             switch (column.columnType) {
                 case ARColumnTypeComposite:
-                    if ([value isKindOfClass:[NSString class]]) {
-                        sqlite3_bind_text(stmt, columnIndex, [value UTF8String], -1, SQLITE_TRANSIENT);
-                    } else if ([value isKindOfClass:[NSDate class]]) {
+//                    if ([value isKindOfClass:[NSString class]]) {
+//                        sqlite3_bind_text(stmt, columnIndex, [value UTF8String], -1, SQLITE_TRANSIENT);
+//                    } else
+                    if ([value isKindOfClass:[NSDate class]]) {
                         sqlite3_bind_double(stmt, columnIndex, [value timeIntervalSince1970]);
                     } else if ([value isKindOfClass:[NSDecimalNumber class]]) {
                         sqlite3_bind_text(stmt, columnIndex, [[value toSql] UTF8String], -1, SQLITE_TRANSIENT);

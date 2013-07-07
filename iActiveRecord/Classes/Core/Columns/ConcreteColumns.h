@@ -20,3 +20,5 @@
 #include "UnsignedLongColumn.h"
 #include "UnsignedLongLongColumn.h"
 
+#include "NSStringColumn.h"
+

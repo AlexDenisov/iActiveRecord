@@ -37,11 +37,13 @@
 		5898A019F91F124743FBB63B /* LongColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A134DE9D5BCDDBF2C47D /* LongColumn.h */; };
 		5898A01EF63BE3D684BBF47C /* UnsignedLongLongColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A7988DC1C216DBE6BF97 /* UnsignedLongLongColumn.h */; };
 		5898A021561E3602CAAC990A /* ARColumn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A80C1D9B02B4F75C9829 /* ARColumn_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		5898A0809EDAF33E3292AD51 /* NSStringColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A279FF3FC43EED86CDFC /* NSStringColumn.mm */; };
 		5898A17051272B3ABC56092A /* CharColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AC3006D8F5D6454DDECB /* CharColumn.h */; };
 		5898A1AE590CE11715DD12FD /* ARDynamicAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AD8E088799A1DCE419EC /* ARDynamicAccessor.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		5898A1D8225E8007D2046045 /* LongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AC25485096C9552B5E6D /* LongColumn.mm */; };
 		5898A1E1F6DD079D5E5008C2 /* UnsignedLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A95D8BF26D740875CB3A /* UnsignedLongColumn.mm */; };
 		5898A20823713C7151C3416C /* ShortColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A844F29DF9F8AC1046CD /* ShortColumn.mm */; };
+		5898A20B6E0C173D0236D1C6 /* NSStringColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AB0598A81A32FBB5F775 /* NSStringColumn.h */; };
 		5898A23182C70F5B3F92887B /* UnsignedCharColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A697EDD87029F09F7F53 /* UnsignedCharColumn.h */; };
 		5898A242893402E60DFBB7DA /* FloatColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AAA9ED5D3C1E81268FC6 /* FloatColumn.mm */; };
 		5898A2B0ECCE61D3D435DAB7 /* UnsignedCharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A3F4051F09BD8D06CC19 /* UnsignedCharColumn.mm */; };
@@ -76,6 +78,7 @@
 		5898A9DDEC8E73060B050F31 /* CharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ADB615B5F045F7C09873 /* CharColumn.mm */; };
 		5898AA75CDCC7D1BA1F599AE /* UnsignedLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A95D8BF26D740875CB3A /* UnsignedLongColumn.mm */; };
 		5898AA7A3E9E080FB166B40C /* CharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898ADB615B5F045F7C09873 /* CharColumn.mm */; };
+		5898AAA97BABA8AB7BEE4AE1 /* NSStringColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A279FF3FC43EED86CDFC /* NSStringColumn.mm */; };
 		5898AAAD3F38F0B2468FF303 /* ARDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A31CAAF37A0EAD89A480 /* ARDatabaseManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		5898AB07B66A3BE2D599F77C /* FloatColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AAA9ED5D3C1E81268FC6 /* FloatColumn.mm */; };
 		5898AB208A5CAA200ADD7283 /* UnsignedShortColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AFB5B08D056ACBE03FC4 /* UnsignedShortColumn.mm */; };
@@ -88,6 +91,7 @@
 		5898AD6548F0FCD6F83074D7 /* UnsignedLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A95D8BF26D740875CB3A /* UnsignedLongColumn.mm */; };
 		5898AE0CA78A78DE2C87A34E /* UnsignedLongColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898A74C784C910C79F5A6D0 /* UnsignedLongColumn.h */; };
 		5898AE14F893BF5058FCE8BA /* LongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AC25485096C9552B5E6D /* LongColumn.mm */; };
+		5898AE1B02DF5986F8F1726E /* NSStringColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A279FF3FC43EED86CDFC /* NSStringColumn.mm */; };
 		5898AE49C38121CD93301FCC /* UnsignedCharColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898A3F4051F09BD8D06CC19 /* UnsignedCharColumn.mm */; };
 		5898AE9CA7A3C505F1982C43 /* ATSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898ABFCF2766795BEAF19DC /* ATSearchManager.m */; };
 		5898AF0A615C7EFC80D7E63A /* ConcreteColumns.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898ACD1BA8E8807AD5CD9CD /* ConcreteColumns.h */; };
@@ -280,6 +284,7 @@
 		5898A0824FC067E71F42A60C /* ARDynamicAccessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARDynamicAccessor.mm; sourceTree = "<group>"; };
 		5898A134DE9D5BCDDBF2C47D /* LongColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LongColumn.h; sourceTree = "<group>"; };
 		5898A20B8FA043AE675A5C6D /* ARDatabaseManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARDatabaseManager.mm; sourceTree = "<group>"; };
+		5898A279FF3FC43EED86CDFC /* NSStringColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSStringColumn.mm; sourceTree = "<group>"; };
 		5898A2E333CFDB43BF669439 /* IntColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IntColumn.mm; sourceTree = "<group>"; };
 		5898A31CAAF37A0EAD89A480 /* ARDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDatabaseManager.h; sourceTree = "<group>"; };
 		5898A333B4092E26A558CD70 /* UnsignedShortColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnsignedShortColumn.h; sourceTree = "<group>"; };
@@ -299,6 +304,7 @@
 		5898AA3184172FBC7F4FBF96 /* ShortColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortColumn.h; sourceTree = "<group>"; };
 		5898AAA9ED5D3C1E81268FC6 /* FloatColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FloatColumn.mm; sourceTree = "<group>"; };
 		5898AAC113A0833FAD15EB5B /* FloatColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatColumn.h; sourceTree = "<group>"; };
+		5898AB0598A81A32FBB5F775 /* NSStringColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringColumn.h; sourceTree = "<group>"; };
 		5898ABB7B438253DCA64627B /* ARColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARColumn.mm; sourceTree = "<group>"; };
 		5898ABFCF2766795BEAF19DC /* ATSearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATSearchManager.m; sourceTree = "<group>"; };
 		5898AC03C096BB7197A3BBB3 /* DoubleColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleColumn.h; sourceTree = "<group>"; };
@@ -785,6 +791,8 @@
 				5898AAC113A0833FAD15EB5B /* FloatColumn.h */,
 				5898AD552574FE5907B84F0A /* DoubleColumn.mm */,
 				5898AC03C096BB7197A3BBB3 /* DoubleColumn.h */,
+				5898A279FF3FC43EED86CDFC /* NSStringColumn.mm */,
+				5898AB0598A81A32FBB5F775 /* NSStringColumn.h */,
 			);
 			path = ConcreteColumns;
 			sourceTree = "<group>";
@@ -1128,6 +1136,7 @@
 				5898A8AB9A752C8D4E643061 /* FloatColumn.h in Headers */,
 				5898A402EB56C840288FCC5F /* DoubleColumn.h in Headers */,
 				5898A1AE590CE11715DD12FD /* ARDynamicAccessor.h in Headers */,
+				5898A20B6E0C173D0236D1C6 /* NSStringColumn.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,6 +1421,7 @@
 				5898AC49FD549A67A5C3DF99 /* FloatColumn.mm in Sources */,
 				5898AFB5BCBD6B8D2A3FB1E6 /* DoubleColumn.mm in Sources */,
 				5898AB614C99634F8246156C /* ARDynamicAccessor.mm in Sources */,
+				5898AAA97BABA8AB7BEE4AE1 /* NSStringColumn.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1466,6 +1476,7 @@
 				5898AB07B66A3BE2D599F77C /* FloatColumn.mm in Sources */,
 				5898A84DCB8EFC964979E671 /* DoubleColumn.mm in Sources */,
 				5898A5B3D9BC955180C74A8E /* ARDynamicAccessor.mm in Sources */,
+				5898AE1B02DF5986F8F1726E /* NSStringColumn.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1492,6 +1503,7 @@
 				5898A6FB5874640A3351ACAB /* UnsignedLongLongColumn.mm in Sources */,
 				5898A242893402E60DFBB7DA /* FloatColumn.mm in Sources */,
 				5898AF9FA4E5FD0700C80C02 /* DoubleColumn.mm in Sources */,
+				5898A0809EDAF33E3292AD51 /* NSStringColumn.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

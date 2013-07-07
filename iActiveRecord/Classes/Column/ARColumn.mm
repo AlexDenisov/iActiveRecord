@@ -102,7 +102,11 @@
         type = (char *)calloc( length, sizeof(char) );
         strncpy(type, anAttribute + 2, length);
         self.columnClass = [objc_getClass(type) class];
-        self->_columnType = ARColumnTypeComposite;
+        if (self.columnClass == [NSString class]) {
+            self.internal = new AR::ColumnInternal<NSString>;
+        } else {
+            self->_columnType = ARColumnTypeComposite;
+        }
         free(type);
     } else {
         self->_associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
@@ -184,6 +188,8 @@
     NSString *sqlValue = nil;
     id value =  objc_getAssociatedObject(aRecord, self->_columnKey);
     if (self->_columnType == ARColumnTypeComposite) {
+        sqlValue = [value performSelector:@selector(toSql)];
+    } else if ([value isKindOfClass:[NSString class]]){
         sqlValue = [value performSelector:@selector(toSql)];
     } else {
         sqlValue = [[value stringValue] performSelector:@selector(toSql)];
