@@ -107,7 +107,7 @@
         strncpy(type, anAttribute + 2, length);
         self.columnClass = [objc_getClass(type) class];
         if (self.columnClass == [NSString class]) {
-            self.internal = new AR::ColumnInternal<NSString>;
+            self.internal = new AR::NSStringColumn;
             self.internal->setColumnKey(self->_columnKey);
         } else {
             self->_columnType = ARColumnTypeComposite;
@@ -119,51 +119,51 @@
         switch (anAttribute[0]) {
             case _C_CHR:     // BOOL, char
                 self->_columnType = ARColumnTypePrimitiveChar;
-                self.internal = new AR::ColumnInternal<char>;
+                self.internal = new AR::CharColumn;
                 break;
             case _C_UCHR:     // unsigned char
                 self->_columnType = ARColumnTypePrimitiveUnsignedChar;
-                self.internal = new AR::ColumnInternal<unsigned char>;
+                self.internal = new AR::UnsignedCharColumn;
                 break;
             case _C_SHT:     // short
                 self->_columnType = ARColumnTypePrimitiveShort;
-                self.internal = new AR::ColumnInternal<short>;
+                self.internal = new AR::ShortColumn;
                 break;
             case _C_USHT:     // unsigned short
                 self->_columnType = ARColumnTypePrimitiveUnsignedShort;
-                self.internal = new AR::ColumnInternal<unsigned short>;
+                self.internal = new AR::UnsignedShortColumn;
                 break;
             case _C_INT:     // int, NSInteger
                 self->_columnType = ARColumnTypePrimitiveInt;
-                self.internal = new AR::ColumnInternal<int>;
+                self.internal = new AR::IntColumn;
                 break;
             case _C_UINT:     // uint, NSUinteger
                 self->_columnType = ARColumnTypePrimitiveUnsignedInt;
-                self.internal = new AR::ColumnInternal<unsigned int>;
+                self.internal = new AR::UnsignedIntColumn;
                 break;
             case _C_LNG:     // long
                 self->_columnType = ARColumnTypePrimitiveLong;
-                self.internal = new AR::ColumnInternal<long>;
+                self.internal = new AR::LongColumn;
                 break;
             case _C_ULNG:     // unsigned long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLong;
-                self.internal = new AR::ColumnInternal<unsigned long>;
+                self.internal = new AR::UnsignedLongColumn;
                 break;
             case _C_LNG_LNG:     // long long
                 self->_columnType = ARColumnTypePrimitiveLongLong;
-                self.internal = new AR::ColumnInternal<long long>;
+                self.internal = new AR::LongLongColumn;
                 break;
             case _C_ULNG_LNG:     // unsigned long long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLongLong;
-                self.internal = new AR::ColumnInternal<unsigned long long>;
+                self.internal = new AR::UnsignedLongLongColumn;
                 break;
             case _C_FLT:     // float, CGFloat
                 self->_columnType = ARColumnTypePrimitiveFloat;
-                self.internal = new AR::ColumnInternal<float>;
+                self.internal = new AR::FloatColumn;
                 break;
             case _C_DBL:     // double
                 self->_columnType = ARColumnTypePrimitiveDouble;
-                self.internal = new AR::ColumnInternal<double>;
+                self.internal = new AR::DoubleColumn;
                 break;
             default:
                 result = NO;

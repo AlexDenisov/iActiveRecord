@@ -4,35 +4,32 @@
 //
 
 #include "FloatColumn.h"
-#include "ActiveRecord_Private.h"
 
 namespace AR {
 
-    float ColumnInternal<float>::accessorImpl(ActiveRecord *receiver, SEL _cmd)
-    {
-        ARColumn *column = [receiver columnWithGetterNamed:NSStringFromSelector(_cmd)];
-        return [[receiver valueForColumn:column] floatValue];
-    }
-
-    void ColumnInternal<float>::mutatorImpl(ActiveRecord *receiver, SEL _cmd, float value)
-    {
-        ARColumn *column = [receiver columnWithSetterNamed:NSStringFromSelector(_cmd)];
-        [receiver setValue:@(value) forColumn:column];
-    }
-
-    bool ColumnInternal<float>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+    bool FloatColumn::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
     {
         return sqlite3_bind_double(statement, columnIndex, [value floatValue]) == SQLITE_OK;
     }
 
-    const char *ColumnInternal<float>::sqlType(void) const {
+    const char *FloatColumn::sqlType(void) const {
         return "real";
     }
 
-    NSString *ColumnInternal<float>::sqlValueFromRecord(ActiveRecord *record) const
+    NSString *FloatColumn::sqlValueFromRecord(ActiveRecord *record) const
     {
         NSNumber *value = objc_getAssociatedObject(record, this->columnKey());
         return [value stringValue];
+    }
+
+    float FloatColumn::toColumnType(id value) const
+    {
+        return [value floatValue];
+    }
+
+    id FloatColumn::toObjCObject(float value) const
+    {
+        return @(value);
     }
 
 };

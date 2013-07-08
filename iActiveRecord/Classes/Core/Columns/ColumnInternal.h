@@ -7,23 +7,31 @@
 
 #include <sqlite3.h>
 #include "IColumnInternal.h"
-
-@class ActiveRecord;
+#include "ARColumn_Private.h"
+#include "ActiveRecord_Private.h"
 
 namespace AR {
 
     template <typename columnType>
     class ColumnInternal : public IColumnInternal {
     private:
-        static columnType accessorImpl(ActiveRecord *self, SEL _cmd)
+        static columnType accessorImpl(ActiveRecord *receiver, SEL _cmd)
         {
-            throw std::exception();
+            ARColumn *column = [receiver columnWithGetterNamed:NSStringFromSelector(_cmd)];
+            id value = [receiver valueForColumn:column];
+            ColumnInternal<columnType> *columnInternal = dynamic_cast<ColumnInternal<columnType> *>(column.internal);
+            return columnInternal->toColumnType(value);
         }
-        static void mutatorImpl(ActiveRecord *self, SEL _cmd, columnType value)
+        static void mutatorImpl(ActiveRecord *receiver, SEL _cmd, columnType value)
         {
-            throw std::exception();
+            ARColumn *column = [receiver columnWithSetterNamed:NSStringFromSelector(_cmd)];
+            ColumnInternal<columnType> *columnInternal = dynamic_cast<ColumnInternal<columnType> *>(column.internal);
+            id objcValue = columnInternal->toObjCObject(value);
+            [receiver setValue:objcValue forColumn:column];
         }
+
     public:
+
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
         {
             throw std::exception();
@@ -34,22 +42,24 @@ namespace AR {
             throw std::exception();
         }
 
-        const IMP accessor(void) const
-        {
-            return reinterpret_cast<IMP>(&ColumnInternal<columnType>::accessorImpl);
-        }
-
-        const IMP mutator(void) const
-        {
-            return reinterpret_cast<IMP>(&ColumnInternal<columnType>::mutatorImpl);
-        }
-
         NSString *sqlValueFromRecord(ActiveRecord *record) const
         {
             throw std::exception();
         }
 
+        const IMP accessor(void) const
+        {
+            return reinterpret_cast<IMP>(&accessorImpl);
+        }
+
+        const IMP mutator(void) const
+        {
+            return reinterpret_cast<IMP>(&mutatorImpl);
+        }
+
+        virtual columnType toColumnType(id value) const = 0;
+        virtual id toObjCObject(columnType value) const = 0;
+
     };
 
 };
-

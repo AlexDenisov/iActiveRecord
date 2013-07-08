@@ -4,35 +4,32 @@
 //
 
 #include "DoubleColumn.h"
-#include "ActiveRecord_Private.h"
 
 namespace AR {
 
-    double ColumnInternal<double>::accessorImpl(ActiveRecord *receiver, SEL _cmd)
-    {
-        ARColumn *column = [receiver columnWithGetterNamed:NSStringFromSelector(_cmd)];
-        return [[receiver valueForColumn:column] doubleValue];
-    }
-
-    void ColumnInternal<double>::mutatorImpl(ActiveRecord *receiver, SEL _cmd, double value)
-    {
-        ARColumn *column = [receiver columnWithSetterNamed:NSStringFromSelector(_cmd)];
-        [receiver setValue:@(value) forColumn:column];
-    }
-
-    bool ColumnInternal<double>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+    bool DoubleColumn::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
     {
         return sqlite3_bind_double(statement, columnIndex, [value doubleValue]) == SQLITE_OK;
     }
 
-    const char *ColumnInternal<double>::sqlType(void) const {
+    const char *DoubleColumn::sqlType(void) const {
         return "real";
     }
 
-    NSString *ColumnInternal<double>::sqlValueFromRecord(ActiveRecord *record) const
+    NSString *DoubleColumn::sqlValueFromRecord(ActiveRecord *record) const
     {
         NSNumber *value = objc_getAssociatedObject(record, this->columnKey());
         return [value stringValue];
+    }
+
+    double DoubleColumn::toColumnType(id value) const
+    {
+        return [value doubleValue];
+    }
+
+    id DoubleColumn::toObjCObject(double value) const
+    {
+        return @(value);
     }
 
 };

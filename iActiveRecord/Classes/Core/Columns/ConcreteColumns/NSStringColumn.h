@@ -8,27 +8,15 @@
 #include "ColumnInternal.h"
 
 namespace AR {
-    template <>
-    class ColumnInternal <NSString> : public IColumnInternal
+    class NSStringColumn : public ColumnInternal<NSString *>
     {
-    private:
-        static NSString* accessorImpl(ActiveRecord *receiver, SEL _cmd);
-        static void mutatorImpl(ActiveRecord *receiver, SEL _cmd, NSString *value);
-
     public:
         bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const override;
         const char *sqlType(void) const override;
 
         NSString *sqlValueFromRecord(ActiveRecord *record) const override;
 
-        const IMP accessor(void) const
-        {
-            return reinterpret_cast<IMP>(&ColumnInternal::accessorImpl);
-        }
-
-        const IMP mutator(void) const
-        {
-            return reinterpret_cast<IMP>(&ColumnInternal::mutatorImpl);
-        }
+        NSString *__strong toColumnType(id value) const override;
+        id toObjCObject(NSString *value) const override;
     };
 };

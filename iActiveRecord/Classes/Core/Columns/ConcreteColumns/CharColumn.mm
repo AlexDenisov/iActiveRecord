@@ -4,35 +4,32 @@
 //
 
 #include "CharColumn.h"
-#include "ActiveRecord_Private.h"
 
 namespace AR {
 
-    char ColumnInternal<char>::accessorImpl(ActiveRecord *receiver, SEL _cmd)
-    {
-        ARColumn *column = [receiver columnWithGetterNamed:NSStringFromSelector(_cmd)];
-        return [[receiver valueForColumn:column] charValue];
-    }
-
-    void ColumnInternal<char>::mutatorImpl(ActiveRecord *receiver, SEL _cmd, char value)
-    {
-        ARColumn *column = [receiver columnWithSetterNamed:NSStringFromSelector(_cmd)];
-        [receiver setValue:@(value) forColumn:column];
-    }
-
-    bool ColumnInternal<char>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+    bool CharColumn::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
     {
         return sqlite3_bind_int(statement, columnIndex, [value charValue]) == SQLITE_OK;
     }
 
-    const char *ColumnInternal<char>::sqlType() const {
+    const char *CharColumn::sqlType() const {
         return "integer";
     }
 
-    NSString *ColumnInternal<char>::sqlValueFromRecord(ActiveRecord *record) const
+    NSString *CharColumn::sqlValueFromRecord(ActiveRecord *record) const
     {
         NSNumber *value = objc_getAssociatedObject(record, this->columnKey());
         return [value stringValue];
+    }
+
+    char CharColumn::toColumnType(id value) const
+    {
+        return [value charValue];
+    }
+
+    id CharColumn::toObjCObject(char value) const
+    {
+        return @(value);
     }
 
 };

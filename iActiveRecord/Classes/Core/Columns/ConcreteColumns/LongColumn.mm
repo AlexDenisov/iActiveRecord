@@ -4,35 +4,32 @@
 //
 
 #include "LongColumn.h"
-#include "ActiveRecord_Private.h"
 
 namespace AR {
 
-    long ColumnInternal<long>::accessorImpl(ActiveRecord *receiver, SEL _cmd)
-    {
-        ARColumn *column = [receiver columnWithGetterNamed:NSStringFromSelector(_cmd)];
-        return [[receiver valueForColumn:column] longValue];
-    }
-
-    void ColumnInternal<long>::mutatorImpl(ActiveRecord *receiver, SEL _cmd, long value)
-    {
-        ARColumn *column = [receiver columnWithSetterNamed:NSStringFromSelector(_cmd)];
-        [receiver setValue:@(value) forColumn:column];
-    }
-
-    bool ColumnInternal<long>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+    bool LongColumn::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
     {
         return sqlite3_bind_int64(statement, columnIndex, [value longValue]) == SQLITE_OK;
     }
 
-    const char *ColumnInternal<long>::sqlType(void) const {
+    const char *LongColumn::sqlType(void) const {
         return "integer";
     }
 
-    NSString *ColumnInternal<long>::sqlValueFromRecord(ActiveRecord *record) const
+    NSString *LongColumn::sqlValueFromRecord(ActiveRecord *record) const
     {
         NSNumber *value = objc_getAssociatedObject(record, this->columnKey());
         return [value stringValue];
+    }
+
+    long LongColumn::toColumnType(id value) const
+    {
+        return [value longValue];
+    }
+
+    id LongColumn::toObjCObject(long value) const
+    {
+        return @(value);
     }
 
 };

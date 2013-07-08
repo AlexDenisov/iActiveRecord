@@ -4,35 +4,32 @@
 //
 
 #include "UnsignedCharColumn.h"
-#include "ActiveRecord_Private.h"
 
 namespace AR {
 
-    unsigned char ColumnInternal<unsigned char>::accessorImpl(ActiveRecord *receiver, SEL _cmd)
-    {
-        ARColumn *column = [receiver columnWithGetterNamed:NSStringFromSelector(_cmd)];
-        return [[receiver valueForColumn:column] unsignedCharValue];
-    }
-
-    void ColumnInternal<unsigned char>::mutatorImpl(ActiveRecord *receiver, SEL _cmd, unsigned char value)
-    {
-        ARColumn *column = [receiver columnWithSetterNamed:NSStringFromSelector(_cmd)];
-        [receiver setValue:@(value) forColumn:column];
-    }
-
-    bool ColumnInternal<unsigned char>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+    bool UnsignedCharColumn::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
     {
         return sqlite3_bind_int(statement, columnIndex, [value unsignedCharValue]) == SQLITE_OK;
     }
 
-    const char *ColumnInternal<unsigned char>::sqlType(void) const {
+    const char *UnsignedCharColumn::sqlType(void) const {
         return "integer";
     }
 
-    NSString *ColumnInternal<unsigned char>::sqlValueFromRecord(ActiveRecord *record) const
+    NSString *UnsignedCharColumn::sqlValueFromRecord(ActiveRecord *record) const
     {
         NSNumber *value = objc_getAssociatedObject(record, this->columnKey());
         return [value stringValue];
+    }
+
+    unsigned char AR::UnsignedCharColumn::toColumnType(id value) const
+    {
+        return [value unsignedCharValue];
+    }
+
+    id AR::UnsignedCharColumn::toObjCObject(unsigned char value) const
+    {
+        return @(value);
     }
 
 };

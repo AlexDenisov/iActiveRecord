@@ -4,35 +4,32 @@
 //
 
 #include "ShortColumn.h"
-#include "ActiveRecord_Private.h"
 
 namespace AR {
 
-    short ColumnInternal<short>::accessorImpl(ActiveRecord *receiver, SEL _cmd)
-    {
-        ARColumn *column = [receiver columnWithGetterNamed:NSStringFromSelector(_cmd)];
-        return [[receiver valueForColumn:column] shortValue];
-    }
-
-    void ColumnInternal<short>::mutatorImpl(ActiveRecord *receiver, SEL _cmd, short value)
-    {
-        ARColumn *column = [receiver columnWithSetterNamed:NSStringFromSelector(_cmd)];
-        [receiver setValue:@(value) forColumn:column];
-    }
-
-    bool ColumnInternal<short>::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
+    bool ShortColumn::bind(sqlite3_stmt *statement, const int columnIndex, const id value) const
     {
         return sqlite3_bind_int(statement, columnIndex, [value shortValue]) == SQLITE_OK;
     }
 
-    const char *ColumnInternal<short>::sqlType(void) const {
+    const char *ShortColumn::sqlType(void) const {
         return "integer";
     }
 
-    NSString *ColumnInternal<short>::sqlValueFromRecord(ActiveRecord *record) const
+    NSString *ShortColumn::sqlValueFromRecord(ActiveRecord *record) const
     {
         NSNumber *value = objc_getAssociatedObject(record, this->columnKey());
         return [value stringValue];
+    }
+
+    short ShortColumn::toColumnType(id value) const
+    {
+        return [value shortValue];
+    }
+
+    id ShortColumn::toObjCObject(short value) const
+    {
+        return @(value);
     }
 
 };

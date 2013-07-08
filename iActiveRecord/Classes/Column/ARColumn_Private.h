@@ -10,7 +10,7 @@
 #import "ARColumn.h"
 #import "ARColumnType.h"
 
-#import "ColumnInternal.h"
+#import "IColumnInternal.h"
 
 @class ActiveRecord;
 
