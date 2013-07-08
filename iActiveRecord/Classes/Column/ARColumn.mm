@@ -109,6 +109,9 @@
         if (self.columnClass == [NSString class]) {
             self.internal = new AR::NSStringColumn;
             self.internal->setColumnKey(self->_columnKey);
+        } else if (self.columnClass == [NSDate class]) {
+            self.internal = new AR::NSDateColumn;
+            self.internal->setColumnKey(self->_columnKey);
         } else {
             self->_columnType = ARColumnTypeComposite;
         }

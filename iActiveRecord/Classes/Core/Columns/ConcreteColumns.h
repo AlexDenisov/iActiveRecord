@@ -21,4 +21,5 @@
 #include "UnsignedLongLongColumn.h"
 
 #include "NSStringColumn.h"
+#include "NSDateColumn.h"
 
