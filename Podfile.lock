@@ -1,27 +1,27 @@
 PODS:
-  - AFNetworking (1.2.1)
+  - AFNetworking (1.3.1)
   - Cedar (0.9.1)
   - CedarAsync (0.0.1):
     - Cedar
   - iActiveRecord (1.9)
-  - RestKit (0.20.1):
+  - RestKit (0.20.2):
     - RestKit/Core
-  - RestKit/Core (0.20.1):
+  - RestKit/Core (0.20.2):
     - RestKit/CoreData
     - RestKit/Network
     - RestKit/ObjectMapping
-  - RestKit/CoreData (0.20.1)
-  - RestKit/Network (0.20.1):
-    - AFNetworking (~> 1.2.0)
+  - RestKit/CoreData (0.20.2)
+  - RestKit/Network (0.20.2):
+    - AFNetworking (~> 1.3.0)
     - RestKit/ObjectMapping
     - RestKit/Support
     - SOCKit
-  - RestKit/ObjectMapping (0.20.1)
-  - RestKit/Support (0.20.1):
-    - TransitionKit (= 1.1.0)
+  - RestKit/ObjectMapping (0.20.2)
+  - RestKit/Support (0.20.2):
+    - TransitionKit (= 1.1.1)
   - SOCKit (1.1)
-  - TransitionKit (1.1.0)
-  - Tsuga (0.0.1):
+  - TransitionKit (1.1.1)
+  - Tsuga (0.0.5):
     - Cedar (~> 0.9)
 
 DEPENDENCIES:
@@ -36,13 +36,13 @@ EXTERNAL SOURCES:
     :podspec: iActiveRecord.podspec
 
 SPEC CHECKSUMS:
-  AFNetworking: a44069e3c9c89867544f6639482f155c7e5f9b41
+  AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
   Cedar: a4181d8873d5049223c8511a50de4151ad603edc
   CedarAsync: 1caaa63c587edfdb4c4fe099c442f12df1c134b9
-  iActiveRecord: 9c6cff03e02b123b2e674ed704ab779addcdca6c
-  RestKit: ceca63bc91172098c710c469facd2560e8a59164
+  iActiveRecord: 6a9ce1cfe5e0241976a02c2eced3d9539f1fcdc1
+  RestKit: e511651e916245fa4becfb0e8f966a1fa021fcd4
   SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f
-  TransitionKit: 1624e84f252d5cd26900be28ccb73c69fbe63f8a
-  Tsuga: 040a409f7e0e5a36ecc8756255cbe110cbf8acc3
+  TransitionKit: 3b3836af6887d16a0834fa35031028792d1d5c0c
+  Tsuga: a1d87436fd0978949a5dc1e03d28fbc9199aa77a
 
 COCOAPODS: 0.20.2

@@ -6,6 +6,7 @@
 #pragma once
 
 #include <sqlite3.h>
+#include <exception>
 #include "IColumnInternal.h"
 #include "ARColumn_Private.h"
 #include "ActiveRecord_Private.h"

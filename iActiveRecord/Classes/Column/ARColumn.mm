@@ -21,7 +21,7 @@
 - (instancetype)initWithProperty:(objc_property_t)property ofClass:(Class)aClass {
     self = [super init];
     if (self) {
-        self.internal = nullptr;
+        self.internal = NULL;
 
         self.recordClass = aClass;
         _dynamic = NO;
@@ -175,7 +175,7 @@
                 result = NO;
                 break;
         }
-        if (self.internal != nullptr) {
+        if (self.internal != NULL) {
             self.internal->setColumnKey(self->_columnKey);
         }
     }
@@ -218,7 +218,7 @@
 
 - (const char *)columnKey
 {
-    if (self.internal != nullptr) {
+    if (self.internal != NULL) {
         return self.internal->columnKey();
     } else {
         return _columnKey;
