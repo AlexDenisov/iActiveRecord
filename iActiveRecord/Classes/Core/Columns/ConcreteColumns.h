@@ -22,4 +22,5 @@
 
 #include "NSStringColumn.h"
 #include "NSDateColumn.h"
+#include "NSDecimalNumberColumn.h"
 
