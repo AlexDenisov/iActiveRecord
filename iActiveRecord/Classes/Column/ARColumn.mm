@@ -200,7 +200,6 @@
 
 - (NSString *)sqlValueForRecord:(ActiveRecord *)record {
     if (self->_columnType == ARColumnTypeComposite) {
-        NSString *sqlValue = nil;
         id value =  objc_getAssociatedObject(record, self->_columnKey);
         return [value performSelector:@selector(toSql)];
     } else {
@@ -209,7 +208,7 @@
 }
 
 - (const char *)sqlType {
-    if (self.columnType == ARColumnType::ARColumnTypeComposite) {
+    if (self.columnType == ARColumnTypeComposite) {
         return [[self.columnClass performSelector:@selector(sqlType)] UTF8String];
     } else {
         return self.internal->sqlType();
