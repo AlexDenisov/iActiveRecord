@@ -15,4 +15,9 @@ Pod::Spec.new do |s|
   s.library = 'sqlite3'
   s.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) SQLITE_CORE SQLITE_ENABLE_UNICODE' }
   s.requires_arc = true
+  s.xcconfig = {
+    'CLANG_CXX_LANGUAGE_STANDARD' => 'c++0x',
+    'CLANG_CXX_LIBRARY' => 'libc++',
+    'OTHER_LDFLAGS' => '-lc++'
+  }
 end
