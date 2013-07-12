@@ -115,6 +115,9 @@
         } else if (self.columnClass == [NSDecimalNumber class]) {
             self.internal = new AR::NSDecimalNumberColumn;
             self.internal->setColumnKey(self->_columnKey);
+        } else if (self.columnClass == [NSNumber class]) {
+            self.internal = new AR::NSNumberColumn;
+            self.internal->setColumnKey(self->_columnKey);
         } else {
             self->_columnType = ARColumnTypeComposite;
         }

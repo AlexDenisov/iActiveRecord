@@ -128,6 +128,7 @@
 		CA1AF75B155FEA5600D0B17E /* ARSchemaManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1AF759155FEA5600D0B17E /* ARSchemaManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA1AF75D155FEA5600D0B17E /* ARSchemaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF75A155FEA5600D0B17E /* ARSchemaManager.m */; };
 		CA1AF75E155FEA5600D0B17E /* ARSchemaManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1AF75A155FEA5600D0B17E /* ARSchemaManager.m */; };
+		CA1EF6D9178FB9C400C76AA8 /* NSNumberColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA1EF6D7178FB9C400C76AA8 /* NSNumberColumn.mm */; };
 		CA2E5D441581E75F0053D511 /* ARLazyFetcher_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CAC022DD1579477000208445 /* ARLazyFetcher_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA2E5D461581E75F0053D511 /* NSSet+toSql.h in Headers */ = {isa = PBXBuildFile; fileRef = CAC02303157B855500208445 /* NSSet+toSql.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CA2E5D471581E75F0053D511 /* NSArray+toSql.h in Headers */ = {isa = PBXBuildFile; fileRef = CAC022E9157B76C300208445 /* NSArray+toSql.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -357,6 +358,8 @@
 		CA1AF74E155FE99100D0B17E /* ActiveRecord_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActiveRecord_Private.h; sourceTree = "<group>"; };
 		CA1AF759155FEA5600D0B17E /* ARSchemaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSchemaManager.h; sourceTree = "<group>"; };
 		CA1AF75A155FEA5600D0B17E /* ARSchemaManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARSchemaManager.m; sourceTree = "<group>"; };
+		CA1EF6D7178FB9C400C76AA8 /* NSNumberColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSNumberColumn.mm; sourceTree = "<group>"; };
+		CA1EF6D8178FB9C400C76AA8 /* NSNumberColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberColumn.h; sourceTree = "<group>"; };
 		CA3B7B9415C90BA300757498 /* ValidationSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ValidationSpec.mm; sourceTree = "<group>"; };
 		CA3B7B9715C9187D00757498 /* DatabaseManagerSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DatabaseManagerSpec.mm; sourceTree = "<group>"; };
 		CA3B7B9915C918F500757498 /* RelationshipSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RelationshipSpec.mm; sourceTree = "<group>"; };
@@ -809,6 +812,8 @@
 				5898A300845F97B03D2A1468 /* NSDateColumn.h */,
 				5898A003AF510D3E1B1EC139 /* NSDecimalNumberColumn.mm */,
 				5898AC8318A424DCB6FB142D /* NSDecimalNumberColumn.h */,
+				CA1EF6D7178FB9C400C76AA8 /* NSNumberColumn.mm */,
+				CA1EF6D8178FB9C400C76AA8 /* NSNumberColumn.h */,
 			);
 			path = ConcreteColumns;
 			sourceTree = "<group>";
@@ -1442,6 +1447,7 @@
 				5898AAA97BABA8AB7BEE4AE1 /* NSStringColumn.mm in Sources */,
 				5898ADA29564B11C5A2D5CE7 /* NSDateColumn.mm in Sources */,
 				5898AD7B10C6CF1A56A2B80B /* NSDecimalNumberColumn.mm in Sources */,
+				CA1EF6D9178FB9C400C76AA8 /* NSNumberColumn.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

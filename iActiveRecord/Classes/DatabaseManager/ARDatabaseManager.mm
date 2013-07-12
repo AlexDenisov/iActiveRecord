@@ -479,9 +479,10 @@ static NSArray *records = nil;
                         //NOTE: NSNumber must come after NSDecimalNumber because NSDecimalNumber is a
                         //subclass of NSNumber
 //                    } else
-                    if ([value isKindOfClass:[NSNumber class]]) {
-                        sqlite3_bind_int(stmt, columnIndex, [value integerValue]);
-                    } else if ([value isKindOfClass:[NSData class]]) {
+//                    if ([value isKindOfClass:[NSNumber class]]) {
+//                        sqlite3_bind_int(stmt, columnIndex, [value integerValue]);
+//                    } else
+                    if ([value isKindOfClass:[NSData class]]) {
                         NSData *data = value;
                         sqlite3_bind_blob(stmt, columnIndex, [data bytes], [data length], NULL);
                     } else {
