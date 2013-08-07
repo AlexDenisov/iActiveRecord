@@ -28,7 +28,7 @@
 
 #import "ActiveRecord_Private.h"
 #import "ARSchemaManager.h"
-#import "ARColumn_Private.h"
+#import "ARColumn.h"
 
 #import "ARDynamicAccessor.h"
 #import "ARConfiguration.h"
@@ -186,7 +186,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (void)dealloc {
     for (ARColumn *column in self.columns) {
-        objc_setAssociatedObject(self, column->_columnKey,
+        objc_setAssociatedObject(self, column.columnKey,
                                  nil, OBJC_ASSOCIATION_ASSIGN);
     }
     
@@ -540,18 +540,18 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         _changedColumns = [NSMutableSet new];
     }
     
-    id oldValue = objc_getAssociatedObject(self, aColumn->_columnKey);
+    id oldValue = objc_getAssociatedObject(self, aColumn.columnKey);
     if ( (oldValue == nil && aValue == nil) || ([oldValue isEqual:aValue]) ) {
         return;
     }
     
     objc_setAssociatedObject(self,
-                             aColumn->_columnKey,
+                             aColumn.columnKey,
                              nil,
                              aColumn.associationPolicy);
     
     objc_setAssociatedObject(self,
-                             aColumn->_columnKey,
+                             aColumn.columnKey,
                              aValue,
                              aColumn.associationPolicy);
     
@@ -559,7 +559,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 - (id)valueForColumn:(ARColumn *)aColumn {
-    id object = objc_getAssociatedObject(self, aColumn->_columnKey);
+    id object = objc_getAssociatedObject(self, aColumn.columnKey);
     return object;
 }
 

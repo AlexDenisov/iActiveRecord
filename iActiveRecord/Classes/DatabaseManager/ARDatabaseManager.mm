@@ -10,7 +10,7 @@
 #import "ActiveRecord_Private.h"
 #import "class_getSubclasses.h"
 #import "sqlite3_unicode.h"
-#import "ARColumn.h"
+#import "ARColumn_Private.h"
 #import "ARSQLBuilder.h"
 #import "ARSchemaManager.h"
 
@@ -474,17 +474,15 @@ static NSArray *records = nil;
             
             switch (column.columnType) {
                 case ARColumnTypeComposite:
-                    if ([value isKindOfClass:[NSString class]]) {
-                        sqlite3_bind_text(stmt, columnIndex, [value UTF8String], -1, SQLITE_TRANSIENT);
-                    } else if ([value isKindOfClass:[NSDate class]]) {
-                        sqlite3_bind_double(stmt, columnIndex, [value timeIntervalSince1970]);
-                    } else if ([value isKindOfClass:[NSDecimalNumber class]]) {
-                        sqlite3_bind_text(stmt, columnIndex, [[value toSql] UTF8String], -1, SQLITE_TRANSIENT);
+//                    if ([value isKindOfClass:[NSDecimalNumber class]]) {
+//                        sqlite3_bind_text(stmt, columnIndex, [[value toSql] UTF8String], -1, SQLITE_TRANSIENT);
                         //NOTE: NSNumber must come after NSDecimalNumber because NSDecimalNumber is a
                         //subclass of NSNumber
-                    } else if ([value isKindOfClass:[NSNumber class]]) {
-                        sqlite3_bind_int(stmt, columnIndex, [value integerValue]);
-                    } else if ([value isKindOfClass:[NSData class]]) {
+//                    } else
+//                    if ([value isKindOfClass:[NSNumber class]]) {
+//                        sqlite3_bind_int(stmt, columnIndex, [value integerValue]);
+//                    } else
+                    if ([value isKindOfClass:[NSData class]]) {
                         NSData *data = value;
                         sqlite3_bind_blob(stmt, columnIndex, [data bytes], [data length], NULL);
                     } else {
@@ -492,43 +490,8 @@ static NSArray *records = nil;
                     }
                     
                     break;
-                case ARColumnTypePrimitiveChar: // BOOL, char
-                    sqlite3_bind_int(stmt, columnIndex, [value charValue]);
-                    break;
-                case ARColumnTypePrimitiveUnsignedChar: // unsigned char
-                    sqlite3_bind_int(stmt, columnIndex, [value unsignedCharValue]);
-                    break;
-                case ARColumnTypePrimitiveShort: // short
-                    sqlite3_bind_int(stmt, columnIndex, [value shortValue]);
-                    break;
-                case ARColumnTypePrimitiveUnsignedShort: // unsigned short
-                    sqlite3_bind_int(stmt, columnIndex, [value unsignedShortValue]);
-                    break;
-                case ARColumnTypePrimitiveInt: // int, NSInteger
-                    sqlite3_bind_int(stmt, columnIndex, [value intValue]);
-                    break;
-                case ARColumnTypePrimitiveUnsignedInt: // uint, NSUinteger
-                    sqlite3_bind_int(stmt, columnIndex, [value unsignedIntValue]);
-                    break;
-                case ARColumnTypePrimitiveLong: // long
-                    sqlite3_bind_int(stmt, columnIndex, [value longValue]);
-                    break;
-                case ARColumnTypePrimitiveUnsignedLong: // unsigned long
-                    sqlite3_bind_int(stmt, columnIndex, [value unsignedLongValue]);
-                    break;
-                case ARColumnTypePrimitiveLongLong: // long long
-                    sqlite3_bind_int(stmt, columnIndex, [value longLongValue]);
-                    break;
-                case ARColumnTypePrimitiveUnsignedLongLong: // unsigned long long
-                    sqlite3_bind_int(stmt, columnIndex, [value unsignedLongLongValue]);
-                    break;
-                case ARColumnTypePrimitiveFloat: // float, CGFloat
-                    sqlite3_bind_double(stmt, columnIndex, [value floatValue]);
-                    break;
-                case ARColumnTypePrimitiveDouble: // double
-                    sqlite3_bind_double(stmt, columnIndex, [value doubleValue]);
-                    break;
                 default:
+                    column.internal->bind(stmt, columnIndex, value);
                     break;
             }
             columnIndex++;
