@@ -11,23 +11,28 @@
 #import "ARColumn_Private.h"
 #import "NSString+uppercaseFirst.h"
 #import "ActiveRecord_Private.h"
-#import "ARColumnType.h"
+#import "ConcreteColumns.h"
 
 @implementation ARColumn
+{
+    char *_columnKey;
+}
 
 - (instancetype)initWithProperty:(objc_property_t)property ofClass:(Class)aClass {
     self = [super init];
     if (self) {
+        self.internal = NULL;
+
         self.recordClass = aClass;
         _dynamic = NO;
         self->_associationPolicy = OBJC_ASSOCIATION_ASSIGN;
         const char *propertyName = property_getName(property);
-        int propertyNameLength = strlen(propertyName);
-        _columnKey = calloc( propertyNameLength + 1, sizeof(char) );
+        size_t propertyNameLength = strlen(propertyName);
+        _columnKey = (char *)calloc( propertyNameLength + 1, sizeof(char) );
         strcpy(_columnKey, propertyName);
-
+        
         self->_columnName = [[NSString alloc] initWithUTF8String:_columnKey];
-
+        
         //  set default setter/getter
         [self setSetterFromAttribute:NULL];
         [self setGetterFromAttribute:NULL];
@@ -59,7 +64,7 @@
                     break;
                 default:
                     break;
-                }
+            }
         }
         free(attributes);
     }
@@ -86,6 +91,7 @@
 }
 
 - (void)dealloc {
+    delete _internal;
     free(_columnKey);
 }
 
@@ -97,54 +103,83 @@
     //  classes described as @"ClassName"
     if (anAttribute[0] == '@') {
         unsigned long length = strlen(anAttribute) - 3;
-        type = calloc( length, sizeof(char) );
+        type = (char *)calloc( length, sizeof(char) );
         strncpy(type, anAttribute + 2, length);
         self.columnClass = [objc_getClass(type) class];
-        self->_columnType = ARColumnTypeComposite;
+        if (self.columnClass == [NSString class]) {
+            self.internal = new AR::NSStringColumn;
+            self.internal->setColumnKey(self->_columnKey);
+        } else if (self.columnClass == [NSDate class]) {
+            self.internal = new AR::NSDateColumn;
+            self.internal->setColumnKey(self->_columnKey);
+        } else if (self.columnClass == [NSDecimalNumber class]) {
+            self.internal = new AR::NSDecimalNumberColumn;
+            self.internal->setColumnKey(self->_columnKey);
+        } else if (self.columnClass == [NSNumber class]) {
+            self.internal = new AR::NSNumberColumn;
+            self.internal->setColumnKey(self->_columnKey);
+        } else {
+            self->_columnType = ARColumnTypeComposite;
+        }
         free(type);
     } else {
         self->_associationPolicy = OBJC_ASSOCIATION_RETAIN_NONATOMIC;
-
+        
         switch (anAttribute[0]) {
             case _C_CHR:     // BOOL, char
                 self->_columnType = ARColumnTypePrimitiveChar;
+                self.internal = new AR::CharColumn;
                 break;
             case _C_UCHR:     // unsigned char
                 self->_columnType = ARColumnTypePrimitiveUnsignedChar;
+                self.internal = new AR::UnsignedCharColumn;
                 break;
             case _C_SHT:     // short
                 self->_columnType = ARColumnTypePrimitiveShort;
+                self.internal = new AR::ShortColumn;
                 break;
             case _C_USHT:     // unsigned short
                 self->_columnType = ARColumnTypePrimitiveUnsignedShort;
+                self.internal = new AR::UnsignedShortColumn;
                 break;
             case _C_INT:     // int, NSInteger
                 self->_columnType = ARColumnTypePrimitiveInt;
+                self.internal = new AR::IntColumn;
                 break;
             case _C_UINT:     // uint, NSUinteger
                 self->_columnType = ARColumnTypePrimitiveUnsignedInt;
+                self.internal = new AR::UnsignedIntColumn;
                 break;
             case _C_LNG:     // long
                 self->_columnType = ARColumnTypePrimitiveLong;
+                self.internal = new AR::LongColumn;
                 break;
             case _C_ULNG:     // unsigned long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLong;
+                self.internal = new AR::UnsignedLongColumn;
                 break;
             case _C_LNG_LNG:     // long long
                 self->_columnType = ARColumnTypePrimitiveLongLong;
+                self.internal = new AR::LongLongColumn;
                 break;
             case _C_ULNG_LNG:     // unsigned long long
                 self->_columnType = ARColumnTypePrimitiveUnsignedLongLong;
+                self.internal = new AR::UnsignedLongLongColumn;
                 break;
             case _C_FLT:     // float, CGFloat
                 self->_columnType = ARColumnTypePrimitiveFloat;
+                self.internal = new AR::FloatColumn;
                 break;
             case _C_DBL:     // double
                 self->_columnType = ARColumnTypePrimitiveDouble;
+                self.internal = new AR::DoubleColumn;
                 break;
             default:
                 result = NO;
                 break;
+        }
+        if (self.internal != NULL) {
+            self.internal->setColumnKey(self->_columnKey);
         }
     }
     return result;
@@ -166,40 +201,31 @@
     }
 }
 
-- (NSString *)sqlValueForRecord:(ActiveRecord *)aRecord {
-    NSString *sqlValue = nil;
-    id value =  objc_getAssociatedObject(aRecord, self->_columnKey);
+- (NSString *)sqlValueForRecord:(ActiveRecord *)record {
     if (self->_columnType == ARColumnTypeComposite) {
-        sqlValue = [value performSelector:@selector(toSql)];
+        id value =  objc_getAssociatedObject(record, self->_columnKey);
+        return [value performSelector:@selector(toSql)];
     } else {
-        sqlValue = [[value stringValue] performSelector:@selector(toSql)];
+        return self.internal->sqlValueFromRecord(record);
     }
-    return sqlValue;
 }
 
 - (const char *)sqlType {
-    NSString *sqlType;
-    switch (self->_columnType) {
-        case ARColumnTypeComposite: {
-            sqlType = [self.columnClass performSelector:@selector(sqlType)];
-        } break;
-        case ARColumnTypePrimitiveBool:
-        case ARColumnTypePrimitiveInt:
-        case ARColumnTypePrimitiveLong:
-        case ARColumnTypePrimitiveLongLong:
-        case ARColumnTypePrimitiveShort:
-        case ARColumnTypePrimitiveUnsignedChar:
-        case ARColumnTypePrimitiveUnsignedInt:
-        case ARColumnTypePrimitiveUnsignedLong:
-        case ARColumnTypePrimitiveUnsignedLongLong:
-        case ARColumnTypePrimitiveUnsignedShort: {
-            sqlType = @"INTEGER";
-        } break;
-        default:
-            sqlType = @"REAL";
-            break;
+    if (self.columnType == ARColumnTypeComposite) {
+        return [[self.columnClass performSelector:@selector(sqlType)] UTF8String];
+    } else {
+        return self.internal->sqlType();
     }
-    return [sqlType UTF8String];
 }
+
+- (const char *)columnKey
+{
+    if (self.internal != NULL) {
+        return self.internal->columnKey();
+    } else {
+        return _columnKey;
+    }
+}
+
 
 @end

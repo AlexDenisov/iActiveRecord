@@ -10,7 +10,6 @@
 
 @interface NSNumber (sqlRepresentation)
 
-+ (NSString *)sqlType;
 - (NSString *)toSql;
 + (id)fromSql:(NSString *)sqlData;
 

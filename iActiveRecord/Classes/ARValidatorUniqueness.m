@@ -10,6 +10,8 @@
 #import "ARLazyFetcher.h"
 #import "ARErrorHelper.h"
 #import <objc/runtime.h>
+#import "ActiveRecord_Private.h"
+#import "ARColumn.h"
 
 @implementation ARValidatorUniqueness
 
@@ -17,9 +19,23 @@
     return kARFieldAlreadyExists;
 }
 
-- (BOOL)validateField:(NSString *)aField ofRecord:(id)aRecord {
-    NSString *recordName = [[aRecord class] description];
-    id aValue = [aRecord valueForKey:aField];
+- (BOOL)validateField:(NSString *)aField ofRecord:(ActiveRecord *)record {
+    
+    BOOL founded = NO;
+    for (ARColumn *column in record.changedColumns) {
+        if ([column.columnName isEqualToString:aField]) {
+            founded = YES;
+            break;
+        }
+    }
+    
+    if (!founded) {
+        return YES;
+    }
+    
+    NSString *recordName = [[record class] description];
+    id aValue = [record valueForKey:aField];
+    
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(recordName)];
     [fetcher where:@"%@ = %@", aField, aValue, nil];
     NSInteger count = [fetcher count];

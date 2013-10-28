@@ -12,4 +12,8 @@
 
 @dynamic property;
 
++ (NSString *)recordName {
+    return @"new_entity_name";
+}
+
 @end

@@ -8,7 +8,7 @@
 
 #import "ARSQLBuilder.h"
 #import "ActiveRecord_Private.h"
-#import "ARColumn_Private.h"
+#import "ARColumn.h"
 
 @implementation ARSQLBuilder
 
@@ -23,6 +23,7 @@
     for (int index = 0; index < columnsCount; index++) {
         ARColumn *column = [columnsIterator nextObject];
         NSString *value = [column sqlValueForRecord:aRecord];
+<<<<<<< HEAD
         
         value = [value stringByReplacingOccurrencesOfString:@"\"" withString:@"\"\""];
         value = [value stringByReplacingOccurrencesOfString:@"\'" withString:@"\'"];
@@ -31,6 +32,12 @@
                              @"\"%@\"=\"%@\"",
                              column.columnName,
                              value];
+=======
+        NSString *updater = [NSString stringWithFormat:
+                             @"\"%@\"=\"%@\"",
+                             column.columnName,
+                             [value stringByReplacingOccurrencesOfString:@"\"" withString:@"\"\""]];
+>>>>>>> 16a8dcc32261fb6b2a778ff3af20f082e50f67fe
         [columnValues addObject:updater];
     }
     NSString *sqlString = [NSString stringWithFormat:@"UPDATE \"%@\" SET %@ WHERE id = %@",

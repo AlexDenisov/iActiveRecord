@@ -95,4 +95,6 @@
 + (void)initializeIndices;
 + (void)addIndexOn:(NSString *)aField;
 
+- (NSString *)recordName;
+
 @end

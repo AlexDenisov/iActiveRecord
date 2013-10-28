@@ -14,10 +14,6 @@
     return [NSString stringWithFormat:@"%d", [self intValue]];
 }
 
-+ (NSString *)sqlType {
-    return @"integer";
-}
-
 + (id)fromSql:(NSString *)sqlData {
     return [NSNumber numberWithInteger:[sqlData integerValue]];
 }

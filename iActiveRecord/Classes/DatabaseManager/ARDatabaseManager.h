@@ -31,7 +31,6 @@
 - (void)closeConnection;
 
 - (NSArray *)tables;
-- (NSArray *)describedTables;
 - (NSArray *)columnsForTable:(NSString *)aTableName;
 
 - (NSString *)tableName:(NSString *)modelName;
@@ -39,14 +38,11 @@
 + (instancetype)sharedManager;
 - (void)applyConfiguration:(ARConfiguration *)configuration;
 
-- (NSNumber *)insertRecord:(NSString *)aRecordName withSqlQuery:(const char *)anSqlQuery;
 - (NSNumber *)getLastId:(NSString *)aRecordName;
 - (NSArray *)allRecordsWithName:(NSString *)aName withSql:(NSString *)aSqlRequest;
 - (NSArray *)joinedRecordsWithSql:(NSString *)aSqlRequest;
 - (NSInteger)countOfRecordsWithName:(NSString *)aName;
 - (NSInteger)functionResult:(NSString *)anSql;
-
-- (NSInteger)executeFunction:(const char *)anSqlQuery;
 
 - (NSInteger)saveRecord:(ActiveRecord *)aRecord;
 - (NSInteger)updateRecord:(ActiveRecord *)aRecord;

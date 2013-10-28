@@ -9,7 +9,6 @@
 #import "ARValidator.h"
 #import "ARValidation.h"
 #import "ActiveRecord_Private.h"
-#import "ARColumn_Private.h"
 
 #warning move to extension
 
@@ -66,18 +65,18 @@
         if ([validation.record isEqualToString:recordName]) {
             id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
             BOOL result = [validator validateField:validation.field
-                           ofRecord:aRecord];
-
+                                          ofRecord:aRecord];
+            
             if (!result) {
                 NSString *errMsg = @"";
                 if ([validator respondsToSelector:@selector(errorMessage)]) {
                     errMsg = [validator errorMessage];
                 }
                 ARError *error = [[ARError alloc] initWithModel:validation.record
-                                  property:validation.field
-                                  error:errMsg];
+                                                       property:validation.field
+                                                          error:errMsg];
                 [aRecord performSelector:@selector(addError:)
-                 withObject:error];
+                              withObject:error];
                 valid  = NO;
             }
         }
@@ -94,18 +93,18 @@
             if ([[aRecord changedColumns] containsObject:column]) {
                 id<ARValidatorProtocol> validator = [[validation.validator alloc] init];
                 BOOL result = [validator validateField:validation.field
-                               ofRecord:aRecord];
-
+                                              ofRecord:aRecord];
+                
                 if (!result) {
                     NSString *errMsg = @"";
                     if ([validator respondsToSelector:@selector(errorMessage)]) {
                         errMsg = [validator errorMessage];
                     }
                     ARError *error = [[ARError alloc] initWithModel:validation.record
-                                      property:validation.field
-                                      error:errMsg];
+                                                           property:validation.field
+                                                              error:errMsg];
                     [aRecord performSelector:@selector(addError:)
-                     withObject:error];
+                                  withObject:error];
                     valid  = NO;
                 }
             }
@@ -129,8 +128,8 @@
                   onField:(NSString *)aField
 {
     [[self sharedInstance] registerValidator:aValidator
-     forRecord:aRecord
-     onField:aField];
+                                   forRecord:aRecord
+                                     onField:aField];
 }
 
 @end

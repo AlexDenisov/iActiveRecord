@@ -8,6 +8,7 @@
 
 #import "ARValidatorPresence.h"
 #import "ARErrorHelper.h"
+#import "ActiveRecord.h"
 
 @implementation ARValidatorPresence
 
@@ -15,7 +16,7 @@
     return kARFieldCantBeBlank;
 }
 
-- (BOOL)validateField:(NSString *)aField ofRecord:(id)aRecord {
+- (BOOL)validateField:(NSString *)aField ofRecord:(ActiveRecord *)aRecord {
     id aValue = [aRecord valueForKey:aField];
     return (BOOL)[aValue performSelector: @selector(isPresented)];
 }
