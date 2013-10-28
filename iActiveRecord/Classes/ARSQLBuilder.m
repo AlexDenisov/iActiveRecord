@@ -22,10 +22,11 @@
     NSEnumerator *columnsIterator = [changedColumns objectEnumerator];
     for (int index = 0; index < columnsCount; index++) {
         ARColumn *column = [columnsIterator nextObject];
+        NSString *value = [column sqlValueForRecord:aRecord];
         NSString *updater = [NSString stringWithFormat:
                              @"\"%@\"=\"%@\"",
                              column.columnName,
-                             [column sqlValueForRecord:aRecord]];
+                             [value stringByReplacingOccurrencesOfString:@"\"" withString:@"\"\""]];
         [columnValues addObject:updater];
     }
     NSString *sqlString = [NSString stringWithFormat:@"UPDATE \"%@\" SET %@ WHERE id = %@",

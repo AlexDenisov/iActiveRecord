@@ -54,6 +54,21 @@ describe(@"Update", ^{
         user.save should BeTruthy();
     });
     
+    it(@"should save values with quotes", ^{
+        User *user = [[User newRecord] autorelease];
+        user.name = @"Al\"ex";
+        user.save should be_truthy;
+    });
+    
+    it(@"should update values with quotes", ^{
+        User *user = [[User newRecord] autorelease];
+        user.name = @"Peter";
+        user.save should be_truthy;
+        User *savedUser = [[User allRecords] lastObject];
+        savedUser.name = @"Pet\"er";
+        savedUser.save should be_truthy;
+    });
+    
     it(@"should save/load record with primitive types", ^{
         PrimitiveModel *model = [PrimitiveModel newRecord];
 
