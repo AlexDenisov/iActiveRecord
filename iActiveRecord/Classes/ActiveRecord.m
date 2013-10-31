@@ -460,8 +460,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark - Transactions
 
 + (void)transaction:(ARTransactionBlock)aTransactionBlock {
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
         [[ARDatabaseManager sharedManager] executeSqlQuery:"BEGIN"];
         @try {
             aTransactionBlock();
@@ -470,7 +468,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         @catch (ARException *exception) {
             [[ARDatabaseManager sharedManager] executeSqlQuery:"ROLLBACK"];
         }
-    });
 }
 
 #pragma mark - Record Columns
