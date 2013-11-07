@@ -349,9 +349,9 @@
                                                arguments:data.mutableBytes];
 
     if (!self.whereStatement) {
-        self.whereStatement = [NSMutableString stringWithString:result];
+        self.whereStatement = [[NSMutableString alloc] initWithString:result];
     } else {
-        [self.whereStatement appendFormat:@"AND %@", result];
+        self.whereStatement = [NSMutableString stringWithFormat:@"%@AND %@", self.whereStatement, result];
     }
     return self;
 }
