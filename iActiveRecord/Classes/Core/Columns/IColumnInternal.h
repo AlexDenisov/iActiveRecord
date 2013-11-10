@@ -16,7 +16,6 @@ namespace AR {
     private:
         char *m_columnKey;
     public:
-        virtual ~IColumnInternal();
         
         virtual bool bind(sqlite3_stmt *statement, const int columnIndex, const id value) const = 0;
         virtual const char *sqlType(void) const = 0;
@@ -25,9 +24,23 @@ namespace AR {
         virtual const IMP mutator(void) const = 0;
         
         virtual NSString *sqlValueFromRecord(ActiveRecord *record) const = 0;
-
-        void setColumnKey(const char *key);
-        const char* columnKey() const;
+        
+        const char *columnKey() const
+        {
+            return m_columnKey;
+        }
+        
+        void setColumnKey(const char *key)
+        {
+            size_t propertyNameLength = strlen(key);
+            m_columnKey = (char *)calloc(propertyNameLength + 1, sizeof(char));
+            strcpy(m_columnKey, key);
+        }
+        
+        virtual ~IColumnInternal()
+        {
+            free(m_columnKey);
+        }
     };
 
 };
