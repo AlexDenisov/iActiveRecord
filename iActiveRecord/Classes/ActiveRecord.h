@@ -61,4 +61,7 @@ typedef void (^ARConfigurationBlock) (ARConfiguration *config);
 
 + (NSString *)recordName;
 
+#pragma mark - Default foreign key name
+
++ (NSString*) foreignKeyName;
 @end
