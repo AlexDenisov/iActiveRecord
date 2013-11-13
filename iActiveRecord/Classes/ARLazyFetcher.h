@@ -22,8 +22,8 @@ typedef enum {
 - (ARLazyFetcher *)limit:(NSInteger)aLimit;
 - (ARLazyFetcher *)offset:(NSInteger)anOffset;
 
-- (ARLazyFetcher *)only:(NSString *)aFirstParam, ...;
-- (ARLazyFetcher *)except:(NSString *)aFirstParam, ...;
+- (ARLazyFetcher *)only:(NSString *)aFirstParam, ... NS_REQUIRES_NIL_TERMINATION;
+- (ARLazyFetcher *)except:(NSString *)aFirstParam, ... NS_REQUIRES_NIL_TERMINATION;
 - (ARLazyFetcher *)join:(Class)aJoinRecord;
 
 - (ARLazyFetcher *)join:(Class)aJoinRecord
