@@ -233,6 +233,21 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return [[self class] recordName];
 }
 
+- (NSString *)foreignKeyName {
+    return [[self class] foreignKeyName];
+}
+
+
++ (NSString *)foreignKeyName {
+    static NSString* foreignKeyName = nil;
+    if(foreignKeyName == nil){
+        foreignKeyName = [NSString stringWithFormat:@"%@Id",
+                          [[self recordName] lowercaseFirst]];
+    }
+    return foreignKeyName;
+}
+
+
 + (instancetype)newRecord {
     ActiveRecord *record = [[self alloc] init];
     [record markAsNew];
@@ -333,7 +348,8 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark BelongsTo
 
 - (id)belongsTo:(NSString *)aClassName {
-    NSString *selectorString = [NSString stringWithFormat:@"%@Id", [aClassName lowercaseFirst]];
+    Class belongsToClass = NSClassFromString(aClassName);
+    NSString *selectorString = [belongsToClass performSelector: @selector(foreignKeyName)];
     SEL selector = NSSelectorFromString(selectorString);
     
 #pragma clang diagnostic push
@@ -344,15 +360,14 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     if (rec_id == nil) {
         return nil;
     }
-    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
+    ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord: belongsToClass];
     [fetcher where:@"id = %@", rec_id, nil];
     NSArray *records = [fetcher fetchRecords];
     return records.count ? [records objectAtIndex:0] : nil;
 }
 
 - (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
-    NSString *relId = [NSString stringWithFormat:
-                       @"%@Id", [aRelation lowercaseFirst]];
+    NSString *relId = [[aRecord class] performSelector: @selector(foreignKeyName)];
     ARColumn *column = [self columnNamed:relId];
     [self setValue:aRecord.id
          forColumn:column];
@@ -362,14 +377,14 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark HasMany
 
 - (void)addRecord:(ActiveRecord *)aRecord {
-    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
+    NSString *relationIdKey = [[self class] performSelector: @selector(foreignKeyName)];
     ARColumn *column = [aRecord columnNamed:relationIdKey];
     [aRecord setValue:self.id forColumn:column];
     [aRecord save];
 }
 
 - (void)removeRecord:(ActiveRecord *)aRecord {
-    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
+    NSString *relationIdKey = [[self class] performSelector: @selector(foreignKeyName)];
     ARColumn *column = [aRecord columnNamed:relationIdKey];
     [aRecord setValue:nil forColumn:column];
     [aRecord save];
@@ -377,7 +392,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (ARLazyFetcher *)hasManyRecords:(NSString *)aClassName {
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
-    NSString *selfId = [NSString stringWithFormat:@"%@Id", [[self class] description]];
+    NSString *selfId = [[self class] performSelector: @selector(foreignKeyName)];
     [fetcher where:@"%@ = %@", selfId, self.id, nil];
     return fetcher;
 }
@@ -385,10 +400,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 #pragma mark HasManyThrough
 
 - (ARLazyFetcher *)hasMany:(NSString *)aClassName through:(NSString *)aRelationsipClassName {
-    NSString *relId = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
+    NSString *relId = [self foreignKeyName];
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
-    [fetcher join:NSClassFromString(aRelationsipClassName)];
-    [fetcher where:@"%@.%@ = %@", aRelationsipClassName, relId, self.id, nil];
+    Class aRelationShipClass = NSClassFromString(aRelationsipClassName);
+    [fetcher join: aRelationShipClass];
+    [fetcher where:@"%@.%@ = %@", [aRelationShipClass performSelector: @selector(recordName)], relId, self.id, nil];
     return fetcher;
 }
 

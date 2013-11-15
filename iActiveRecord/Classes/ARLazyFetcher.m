@@ -258,8 +258,7 @@
 - (ARLazyFetcher *)join:(Class)aJoinRecord {
 
     NSString *_recordField = @"id";
-    NSString *_joinField = [NSString stringWithFormat:@"%@Id",
-                            [[recordClass description] lowercaseFirst]];
+    NSString *_joinField = [recordClass performSelector: @selector(foreignKeyName)];
     [self join:aJoinRecord
        useJoin:ARJoinInner
        onField:_recordField

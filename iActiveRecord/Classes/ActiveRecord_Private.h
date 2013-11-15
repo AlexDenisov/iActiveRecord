@@ -97,4 +97,6 @@
 
 - (NSString *)recordName;
 
+- (NSString *)foreignKeyName;
+
 @end
