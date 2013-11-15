@@ -404,7 +404,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(aClassName)];
     Class aRelationShipClass = NSClassFromString(aRelationsipClassName);
     [fetcher join: aRelationShipClass];
-    [fetcher where:@"%@.%@ = %@", [aRelationShipClass performSelector: @selector(recordName)], relId, self.id, nil];
+    [fetcher where:@"%@.%@ = %@", [aRelationShipClass performSelector: @selector(recordName)], relId, self.id, nil];
     return fetcher;
 }
 
