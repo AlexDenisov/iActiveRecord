@@ -11,6 +11,7 @@
 #import "User.h"
 #import "ARDatabaseManager.h"
 #import "ARFactory.h"
+#import "DifferentTableName.h"
 
 using namespace Cedar::Matchers;
 
@@ -241,6 +242,34 @@ Tsuga<ARLazyFetcher>::run(^{
                 [john save];
                 User *user = [[fetcher fetchRecords] lastObject];
                 user.name should BeNil();
+            });
+        });
+        
+        describe(@"joined records", ^{
+            it(@"should be able to fetch joined records with different table names", ^{
+                User *john = [User newRecord];
+                john.name = @"john";
+                john.save should BeTruthy();
+                DifferentTableName* dtn = [DifferentTableName newRecord];
+                dtn.title = @"testTitle";
+                dtn.user = john;
+                [dtn save] should BeTruthy();
+                
+                //try to fetch the joined records
+                NSArray* results = [[[User lazyFetcher] join: DifferentTableName.class
+                                                      useJoin: ARJoinInner onField: @"id" andField: @"userId"] fetchJoinedRecords];
+
+                results should_not BeNil();
+                results.count should equal(1);
+                [[results objectAtIndex: 0] objectForKey: @"User"] should_not BeNil();
+                [[[results objectAtIndex: 0] objectForKey: @"User"] isKindOfClass: User.class ] should equal(YES);
+                
+                User* user = [[results objectAtIndex: 0] objectForKey: @"User"];
+                [john.id isEqualToNumber: user.id] should equal(YES);
+                [[results objectAtIndex: 0] objectForKey: @"DifferentTableName"] should_not BeNil();
+                [[[results objectAtIndex: 0] objectForKey: @"DifferentTableName"] isKindOfClass: DifferentTableName.class] should equal(YES);
+                
+                
             });
         });
     });

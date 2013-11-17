@@ -11,6 +11,9 @@
 @implementation DifferentTableName
 
 @dynamic title;
+@dynamic userId;
+
+belongs_to_imp(User, user, ARDependencyDestroy);
 
 + (NSString *)recordName {
     return @"different_table_name";
