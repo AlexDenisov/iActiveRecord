@@ -11,5 +11,8 @@
 @interface DifferentTableName : ActiveRecord
 
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSNumber* userId;
+
+belongs_to_dec(User, user, ARDependencyDestroy)
 
 @end

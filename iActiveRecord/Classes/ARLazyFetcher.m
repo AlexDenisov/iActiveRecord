@@ -134,7 +134,7 @@
                      @"\"%@\".\"%@\" AS '%@#%@'",
                      [recordClass performSelector:@selector(recordName)],
                      field,
-                     [recordClass performSelector:@selector(recordName)],
+                     [recordClass.class description], // use the class name here, since the class is looked up when records are loaded
                      field];
         [fields addObject:fieldname];
     }
@@ -144,7 +144,8 @@
                      @"\"%@\".\"%@\" AS '%@#%@'",
                      [joinClass performSelector:@selector(recordName)],
                      field,
-                     [joinClass performSelector:@selector(recordName)],
+                     [joinClass.class description],  // use the class name here, since the class is looked up when records are loaded
+
                      field];
         [fields addObject:fieldname];
     }
