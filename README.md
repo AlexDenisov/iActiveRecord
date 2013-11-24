@@ -49,3 +49,7 @@ open iActiveRecord.xcworkspace
 Then build & run UnitTests target.
 
 ### Check [Wiki](https://github.com/AlexDenisov/iActiveRecord/wiki) to see details!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/AlexDenisov/iactiverecord/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
