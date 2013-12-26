@@ -1,4 +1,4 @@
-_Note: I'm working on new version, with new features and a bugfixes_
+_discontinued_
 
 ## ActiveRecord without CoreData.
 ### Only SQLite.
