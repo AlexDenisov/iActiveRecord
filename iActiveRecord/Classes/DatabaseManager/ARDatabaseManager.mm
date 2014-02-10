@@ -353,7 +353,7 @@ static NSArray *records = nil;
                                                length:sqlite3_column_bytes(statement, columnIndex)];
                     } break;
                     case SQLITE3_TEXT: {
-                        value = [NSString stringWithFormat:@"%s", sqlite3_column_text(statement, columnIndex)];
+                        value = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, columnIndex)];
                         if ([column.columnClass isSubclassOfClass:[NSDecimalNumber class]]) {
                             value = [NSDecimalNumber decimalNumberWithString:value];
                         }
