@@ -19,6 +19,7 @@ namespace AR {
     NSString *NSDateColumn::sqlValueFromRecord(ActiveRecord *record) const
     {
         NSDate *value = objc_getAssociatedObject(record, this->columnKey());
+        if(value == nil) return @"null";
         NSTimeInterval time = [value timeIntervalSince1970];
         return [NSString stringWithFormat:@"%f", time];
     }
