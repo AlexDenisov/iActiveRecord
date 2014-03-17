@@ -177,10 +177,6 @@
 		CAAF5E26151CAC58004C4329 /* ARWhereStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */; };
 		CAB56AEB153E6C7F0062DC9E /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB56AEA153E6C7F0062DC9E /* octocat.png */; };
 		CAB56AEC153E6C7F0062DC9E /* octocat.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB56AEA153E6C7F0062DC9E /* octocat.png */; };
-		CAB56AEF153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
-		CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
-		CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */; };
-		CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CABB909C1520DA6600E8D082 /* ARRelationBelongsTo.h in Headers */ = {isa = PBXBuildFile; fileRef = CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CABB909D1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
 		CABB909E1520DA6600E8D082 /* ARRelationBelongsTo.m in Sources */ = {isa = PBXBuildFile; fileRef = CABB909B1520DA6600E8D082 /* ARRelationBelongsTo.m */; };
@@ -364,8 +360,6 @@
 		CAAF5E24151CAC58004C4329 /* ARWhereStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARWhereStatement.m; sourceTree = "<group>"; };
 		CAB56AE8153E69B20062DC9E /* NSDataSpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDataSpecs.h; sourceTree = "<group>"; };
 		CAB56AEA153E6C7F0062DC9E /* octocat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octocat.png; sourceTree = "<group>"; };
-		CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		CABB90881520C26800E8D082 /* DependencySpecs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DependencySpecs.h; sourceTree = "<group>"; };
 		CABB90971520DA2000E8D082 /* AREnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AREnum.h; sourceTree = "<group>"; };
 		CABB909A1520DA6600E8D082 /* ARRelationBelongsTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRelationBelongsTo.h; sourceTree = "<group>"; };
@@ -888,8 +882,6 @@
 		CAF2480F151F375000120198 /* NSData */ = {
 			isa = PBXGroup;
 			children = (
-				CAB56AEE153E7ABE0062DC9E /* NSData+Base64.h */,
-				CAB56AED153E7ABE0062DC9E /* NSData+Base64.m */,
 				CAF24816151F383000120198 /* NSData+sqlRepresentation.h */,
 				CAF24817151F383000120198 /* NSData+sqlRepresentation.m */,
 				CA523D421535F56100565E02 /* NSData+isPresented.h */,
@@ -924,7 +916,6 @@
 				CA0DC2A71522417F00C8E75D /* AREnum.h in Headers */,
 				CAAE32F21525F4940080447D /* ARValidatorProtocol.h in Headers */,
 				CAAE33471528819D0080447D /* ARException.h in Headers */,
-				CAB56AF2153E7ABE0062DC9E /* NSData+Base64.h in Headers */,
 				CA62C324151E0EC400E54276 /* NSString+lowercaseFirst.h in Headers */,
 				CA523E0A15373A5500565E02 /* sqlite3_unicode.h in Headers */,
 				CA62C32D151E0EC400E54276 /* class_getSubclasses.h in Headers */,
@@ -1130,7 +1121,6 @@
 				CA523D521535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D581535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0815373A5500565E02 /* sqlite3_unicode.c in Sources */,
-				CAB56AF0153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
 				CADA6AF1154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */,
 				CADA6AF9154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 				CA1AF756155FEA3A00D0B17E /* ARColumn.m in Sources */,
@@ -1184,7 +1174,6 @@
 				CA523D511535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D571535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0715373A5500565E02 /* sqlite3_unicode.c in Sources */,
-				CAB56AEF153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
 				CADA6AF0154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */,
 				CADA6AF8154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 				CA1AF755155FEA3A00D0B17E /* ARColumn.m in Sources */,
@@ -1228,7 +1217,6 @@
 				CA523D531535F5F100565E02 /* NSNumber+isPresented.m in Sources */,
 				CA523D591535F61400565E02 /* NSString+isPresented.m in Sources */,
 				CA523E0915373A5500565E02 /* sqlite3_unicode.c in Sources */,
-				CAB56AF1153E7ABE0062DC9E /* NSData+Base64.m in Sources */,
 				CADA6AF2154472D800CCE41D /* NSMutableDictionary+valueToArray.m in Sources */,
 				CADA6AFA154473E600CCE41D /* ARBaseRelationship.m in Sources */,
 				CA1AF757155FEA3A00D0B17E /* ARColumn.m in Sources */,
