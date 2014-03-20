@@ -12,7 +12,7 @@
     [self performSelector : @selector(validateUniquenessOfField:) withObject : @ ""#aField ""];
 
 #define validate_presence_of(aField) \
-    [self performSelector : @selector(validatePresenceOfField:) withObject : @ ""#aField ""]; \
+    [self performSelector : @selector(validatePresenceOfField:) withObject : @ ""#aField ""];
 
 #define validate_field_with_validator(aField, aValidator) \
     [self performSelector : @selector(validateField:withValidator:) \
