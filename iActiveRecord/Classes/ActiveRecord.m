@@ -350,6 +350,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return records.count ? [records objectAtIndex:0] : nil;
 }
 
+- (void)persistRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
+    // TODO: Should save belongs_to
+}
+
 - (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
     NSString *relId = [NSString stringWithFormat:
                        @"%@Id", [aRelation lowercaseFirst]];
@@ -361,6 +365,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 #pragma mark HasMany
 
+- (void)persistRecord:(ActiveRecord *)aRecord {
+    //TODO: Should save HasMany relation
+}
 - (void)addRecord:(ActiveRecord *)aRecord {
     NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
     ARColumn *column = [aRecord columnNamed:relationIdKey];
@@ -391,6 +398,12 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [fetcher join: relClass];
     [fetcher where:@"%@.%@ = %@", [relClass performSelector: @selector(recordName)], relId, self.id, nil];
     return fetcher;
+}
+
+- (void)persistRecord:(ActiveRecord *)aRecord
+              ofClass:(NSString *)aClassname
+              through:(NSString *)aRelationshipClassName {
+    //TODO: Should save/updated queued records
 }
 
 - (void)addRecord:(ActiveRecord *)aRecord
