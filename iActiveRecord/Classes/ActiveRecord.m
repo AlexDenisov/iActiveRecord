@@ -428,7 +428,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     ARColumn *column = [self columnNamed:relId];
      BOOL success  = YES;
 
-    if(!aRecord.id)
+    if([aRecord isNewRecord])
         success = [aRecord save];
 
 
@@ -440,6 +440,14 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
 
+    if(![aRecord isNewRecord] &&
+            [self persistRecord: aRecord belongsTo:aRelation]) {
+        //save without persisting queue
+        return;
+    }
+
+
+
     ARPersistentQueueEntity *entity = [ARPersistentQueueEntity entityBelongingToRecord:aRecord relation:aRelation];
     if(!_belongsToPersistentQueue) {
         _belongsToPersistentQueue = [NSMutableSet new];
@@ -450,6 +458,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 #pragma mark HasMany
+- (BOOL) isNewRecord {
+    return !self.id && isNew;
+}
 
 - (BOOL)persistRecord:(ActiveRecord *)aRecord {
     NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
@@ -458,6 +469,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return [aRecord save];
 }
 - (void)addRecord:(ActiveRecord *)aRecord {
+
+    if(![aRecord isNewRecord] &&  [self persistRecord:aRecord])
+        return;
 
     if(!self.hasManyPersistentQueue) {
        self.hasManyPersistentQueue = [NSMutableSet new];
@@ -522,6 +536,13 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
           ofClass:(NSString *)aClassname
           through:(NSString *)aRelationshipClassName
 {
+
+    if(![aRecord isNewRecord] &&
+            [self persistRecord:aRecord
+                        ofClass: aClassname
+                        through: aRelationshipClassName])
+        return;
+
 
     if(!self.hasManyThroughRelationsQueue) {
         self.hasManyThroughRelationsQueue = [NSMutableSet new];
