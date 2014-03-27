@@ -20,9 +20,9 @@
     NSMutableSet *_changedColumns;
 }
 
-@property (nonatomic,retain) NSMutableSet *belongsToPersistentQueue;
-@property (nonatomic,retain) NSMutableSet *hasManyPersistentQueue;
-@property (nonatomic,retain) NSMutableSet *hasManyThroughRelationsQueue;
+@property (nonatomic,strong) NSMutableSet *belongsToPersistentQueue;
+@property (nonatomic,strong) NSMutableSet *hasManyPersistentQueue;
+@property (nonatomic,strong) NSMutableSet *hasManyThroughRelationsQueue;
 
 #pragma mark - Lazy Persistent Helpers
 - (BOOL)isNewRecord;

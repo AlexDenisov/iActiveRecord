@@ -71,8 +71,8 @@ static NSMutableDictionary *relationshipsDictionary = nil;
 
 + (instancetype) create: (NSDictionary *) values {
     ActiveRecord *newRow = [self new: values];
-    if([newRow save]);
-    return newRow;
+    if([newRow save])
+        return newRow;
     return nil;
 }
 
@@ -213,10 +213,15 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         objc_setAssociatedObject(self, column.columnKey,
                                  nil, OBJC_ASSOCIATION_ASSIGN);
     }
-    
+
+
+
     self.id = nil;
     self.updatedAt = nil;
     self.createdAt = nil;
+    self.belongsToPersistentQueue = nil;
+    self.hasManyPersistentQueue = nil;
+    self.hasManyThroughRelationsQueue = nil;
 }
 
 - (void)markAsNew {

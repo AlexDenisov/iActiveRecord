@@ -25,6 +25,39 @@ afterEach(^{
     [[ARDatabaseManager sharedManager] clearDatabase];
 });
 
+
+describe(@"NewAndCreate", ^{
+    it(@"should be successful with :new method ", ^{
+        NSNumber *recordId = nil;
+        Animal *enot = [Animal new: @{@"name":@"animal", @"title": @"Racoon"}];
+
+        enot.save should BeTruthy();
+        recordId = enot.id;
+        Animal *racoon = [[Animal allRecords] objectAtIndex:0];
+
+        racoon.id should equal(recordId);
+        racoon.title should equal(@"Racoon");
+        racoon.name should equal(@"animal");
+    });
+
+
+
+    it(@"should be successful with :create method ", ^{
+        NSNumber *recordId = nil;
+        Animal *enot = [Animal create: @{@"name":@"animal", @"title": @"Racoon"}] ;
+        enot should_not be_nil;
+        enot.id should_not be_nil;
+        recordId = enot.id;
+
+        Animal *racoon = [[Animal allRecords] objectAtIndex:0];
+
+        racoon.id should equal(recordId);
+        racoon.title should equal(@"Racoon");
+        racoon.name should equal(@"animal");
+    });
+
+});
+
 describe(@"Update", ^{
 #warning separate this specs
     it(@"should be successful", ^{
