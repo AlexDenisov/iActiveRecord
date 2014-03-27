@@ -45,7 +45,7 @@ describe(@"HasMany", ^{
         count should equal(2);
     });
     it(@"Group should not add two equal users", ^{
-        User *alex = [[User newRecord] autorelease];
+        User *alex = [User newRecord];
         alex.name = @"Alex";
         [alex save] should BeTruthy();
         Project *project = [Project newRecord];
@@ -58,7 +58,7 @@ describe(@"HasMany", ^{
     });
     it(@"Should remove relationship record", ^{
         [[ARDatabaseManager sharedManager] clearDatabase];
-        User *alex = [[User newRecord] autorelease];
+        User *alex = [User newRecord];
         alex.name = @"Alex";
         [alex save] should BeTruthy();
         Project *project = [Project newRecord];

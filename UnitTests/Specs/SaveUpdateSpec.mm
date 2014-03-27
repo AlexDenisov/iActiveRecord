@@ -62,7 +62,7 @@ describe(@"Update", ^{
 #warning separate this specs
     it(@"should be successful", ^{
         NSNumber *recordId = nil;
-        Animal *enot = [[Animal newRecord] autorelease];
+        Animal *enot = [Animal newRecord] ;
         enot.name = @"animal";
         enot.title = @"Racoon";
         enot.save should BeTruthy();
@@ -79,7 +79,7 @@ describe(@"Update", ^{
     });
     
     it(@"should not validate properies that don't changed", ^{
-        User *user = [[User newRecord] autorelease];
+        User *user = [User newRecord];
         user.name = @"Alex";
         user.save should BeTruthy();
         user.name = @"Alex";
@@ -88,13 +88,13 @@ describe(@"Update", ^{
     });
     
     it(@"should save values with quotes", ^{
-        User *user = [[User newRecord] autorelease];
+        User *user = [User newRecord];
         user.name = @"Al\"ex";
         user.save should be_truthy;
     });
     
     it(@"should update values with quotes", ^{
-        User *user = [[User newRecord] autorelease];
+        User *user = [User newRecord];
         user.name = @"Peter";
         user.save should be_truthy;
         User *savedUser = [[User allRecords] lastObject];
