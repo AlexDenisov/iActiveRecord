@@ -350,12 +350,13 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return success;
 }
 
-- (BOOL)save {
+
+- (BOOL)saveWithPersistenceQueue: (BOOL) saveQueue {
     if (!isNew) {
-        return [self update];
+        return [self updateWithPersistenceQueue: saveQueue];
     }
 
-    if(![self persistQueuedBelongsToRelationships]) {
+    if(saveQueue && ![self persistQueuedBelongsToRelationships]) {
         return NO;
     }
 
@@ -367,19 +368,28 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         self.id = [NSNumber numberWithInteger:newRecordId];
         isNew = NO;
         [_changedColumns removeAllObjects];
-        return [self persistQueuedManyRelationships];
 
-        // return YES;
+        if(saveQueue)
+            return [self persistQueuedManyRelationships];
+
+        return YES;
     }
     return NO;
+
 }
 
-- (BOOL)update {
+- (BOOL)save {
+    return [self saveWithPersistenceQueue:YES];
+}
+
+
+- (BOOL) updateWithPersistenceQueue: (BOOL) saveQueue {
+
     if (isNew) {
-        return [self save];
+        return [self saveWithPersistenceQueue: saveQueue];
     }
 
-    if(![self persistQueuedBelongsToRelationships]) {
+    if(saveQueue && ![self persistQueuedBelongsToRelationships]) {
         return NO;
     }
 
@@ -390,10 +400,15 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSInteger result = [[ARDatabaseManager sharedManager] updateRecord:self];
     if (result) {
         [_changedColumns removeAllObjects];
-        return [self persistQueuedManyRelationships];
-       // return YES;
+
+        if(saveQueue)
+            return [self persistQueuedManyRelationships];
+        return YES;
     }
     return NO;
+}
+- (BOOL)update {
+    [self updateWithPersistenceQueue: YES];
 }
 
 + (NSInteger)count {
@@ -441,10 +456,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
     if(![aRecord isNewRecord] &&
             [self persistRecord: aRecord belongsTo:aRelation]) {
-        [self update]; // TODO: This will save all queued items, but perhaps it should only save itself in this condition only.
+        [self updateWithPersistenceQueue:NO]; // TODO: This will save all queued items, but perhaps it should only save itself in this condition only.
         return;
     }
-
 
     ARPersistentQueueEntity *entity = [ARPersistentQueueEntity entityBelongingToRecord:aRecord relation:aRelation];
     if(!_belongsToPersistentQueue) {
@@ -511,6 +525,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSString *currentId = [NSString stringWithFormat:@"%@ID", [self recordName]];
     NSString *relId = [NSString stringWithFormat:@"%@ID", [aRecord recordName]];
     ARLazyFetcher *fetcher = [RelationshipClass lazyFetcher];
+
+    if([aRecord isNewRecord] && ![aRecord saveWithPersistenceQueue:YES])
+        return NO;
+
     [fetcher where:@"%@ = %@ AND %@ = %@", currentId, self.id, relId, aRecord.id, nil];
     if ([fetcher count] != 0) {
         return YES; // while it couldn't save, it already exists which has same effect.
@@ -535,7 +553,7 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
           through:(NSString *)aRelationshipClassName
 {
 
-    if(![aRecord isNewRecord] &&
+    if(![self isNewRecord] && ![aRecord isNewRecord] &&
             [self persistRecord:aRecord
                         ofClass: aClassname
                         through: aRelationshipClassName])

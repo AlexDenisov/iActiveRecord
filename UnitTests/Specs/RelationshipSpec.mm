@@ -196,4 +196,77 @@ describe(@"HasManyThrough", ^{
     });
 });
 
+
+describe(@"HasManyThroughQueue", ^{
+    it(@"Queued User should have many projects ", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+        User *peter = [User newRecord];
+        peter.name = @"Peter";
+        User *vova = [User newRecord];
+        vova.name = @"Vladimir";
+
+        Project *worldConquest = [Project newRecord];
+        worldConquest.name = @"Conquest of the World";
+
+
+        Project *makeTea = [Project newRecord];
+        makeTea.name = @"Make tea";
+
+        [worldConquest addUser:john];
+        [worldConquest addUser:peter];
+        [worldConquest save];
+
+        [makeTea addUser:john];
+        [makeTea addUser:vova];
+        [makeTea save];
+
+        NSArray *projects = [[john projects] fetchRecords];
+        projects.count should equal(2);
+    });
+    it(@"Queued Project should have many users", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+
+        User *peter = [User newRecord];
+        peter.name = @"Peter";
+
+        User *vova = [User newRecord];
+        vova.name = @"Vladimir";
+
+        Project *worldConquest = [Project newRecord];
+        worldConquest.name = @"Conquest of the World";
+
+        Project *makeTea = [Project newRecord];
+        makeTea.name = @"Make tea";
+
+        [worldConquest addUser:john];
+        [worldConquest addUser:peter];
+        [worldConquest save];
+
+        [makeTea addUser:john];
+        [makeTea addUser:vova];
+        [makeTea save];
+
+        NSArray *users = [[worldConquest users] fetchRecords];
+        users.count should equal(2);
+    });
+    it(@"when I remove Queued  user, group should not contain this user", ^{
+        User *alex = [User newRecord];
+        alex.name = @"Alex";
+
+        Project *makeTea = [Project newRecord];
+        makeTea.name = @"Make tea";
+        [makeTea addUser:alex];
+        [makeTea save];
+
+        NSInteger beforeCount = [[alex projects] count];
+        [alex removeProject:makeTea];
+        NSInteger afterCount = [[alex projects] count];
+        beforeCount should_not equal(afterCount);
+    });
+});
+
+
+
 SPEC_END

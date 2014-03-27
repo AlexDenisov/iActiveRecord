@@ -29,6 +29,8 @@
 @property (nonatomic,retain) NSMutableSet *hasManyThroughRelationsQueue;
 
 #pragma mark - Persistent Helpers
+- (BOOL)saveWithPersistenceQueue: (BOOL) saveQueue;
+- (BOOL)updateWithPersistenceQueue: (BOOL) saveQueue;
 - (BOOL)isNewRecord;
 - (BOOL)hasQueuedRelationships;
 - (BOOL)persistQueuedRelationships;
