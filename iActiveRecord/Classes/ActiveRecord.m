@@ -435,17 +435,15 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [self setValue:aRecord.id
          forColumn:column];
     return success;
- //   return [self update];
 }
 
 - (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
 
     if(![aRecord isNewRecord] &&
             [self persistRecord: aRecord belongsTo:aRelation]) {
-        //save without persisting queue
+        [self update]; // TODO: This will save all queued items, but perhaps it should only save itself in this condition only.
         return;
     }
-
 
 
     ARPersistentQueueEntity *entity = [ARPersistentQueueEntity entityBelongingToRecord:aRecord relation:aRelation];
