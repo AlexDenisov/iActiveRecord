@@ -27,7 +27,7 @@
 #pragma mark - Lazy Persistent Helpers
 - (BOOL)isNewRecord;
 - (BOOL)hasQueuedRelationships;
-- (BOOL)persistQueuedRelationships;
+- (BOOL)persistQueuedManyRelationships;
 
 #pragma mark - Validations Declaration
 
