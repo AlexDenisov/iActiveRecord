@@ -29,8 +29,6 @@
 - (BOOL)hasQueuedRelationships;
 - (BOOL)persistQueuedRelationships;
 
-
-
 #pragma mark - Validations Declaration
 
 + (void)initializeValidators;
