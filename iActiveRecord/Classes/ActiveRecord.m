@@ -53,6 +53,29 @@ static NSMutableDictionary *relationshipsDictionary = nil;
     [self registerRelationships];
 }
 
+
+
++ (instancetype) new: (NSDictionary *) values {
+    ActiveRecord *newRow = [self newRecord];
+    if(values) for(id key in values) {
+            ARColumn *column =  [self columnWithGetterNamed:key];
+
+            id columnValue = [values objectForKey:key];
+            if(columnValue!=nil)
+                [newRow setValue:columnValue forColumn:column];
+            else
+                [newRow setValue:[NSNull null] forColumn:column];
+        }
+    return newRow;
+}
+
++ (instancetype) create: (NSDictionary *) values {
+    ActiveRecord *newRow = [self new: values];
+    if([newRow save]);
+    return newRow;
+    return nil;
+}
+
 #pragma mark - registering relationships
 
 static NSMutableSet *belongsToRelations = nil;
