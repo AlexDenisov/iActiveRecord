@@ -136,10 +136,7 @@ describe(@"Nulify", ^{
     });
 });
 
-
-
-
-// Queued
+// Same test above testing lazy persistence.
 
 describe(@"Queued Destroy", ^{
     it(@"HasMany", ^{

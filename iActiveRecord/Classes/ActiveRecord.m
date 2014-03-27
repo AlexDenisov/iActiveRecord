@@ -350,13 +350,14 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return success;
 }
 
+- (BOOL)save {
 
-- (BOOL)saveWithPersistenceQueue: (BOOL) saveQueue {
     if (!isNew) {
-        return [self updateWithPersistenceQueue: saveQueue];
+        return [self update];
     }
-
-    if(saveQueue && ![self persistQueuedBelongsToRelationships]) {
+    /* If queued belongs_to relationship exists, we should have those before saving ourselves
+    *  because validations could rely on the existence of such properties. */
+    if(![self persistQueuedBelongsToRelationships]) {
         return NO;
     }
 
@@ -368,28 +369,19 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         self.id = [NSNumber numberWithInteger:newRecordId];
         isNew = NO;
         [_changedColumns removeAllObjects];
-
-        if(saveQueue)
-            return [self persistQueuedManyRelationships];
-
-        return YES;
+        /* Saved queued relationships (hasMany/hasManyThrough) which all depend on id of this model.
+        * If any models fail to persist, their validation errors are added to this objects errors array. */
+        return [self persistQueuedManyRelationships];
     }
     return NO;
-
 }
 
-- (BOOL)save {
-    return [self saveWithPersistenceQueue:YES];
-}
-
-
-- (BOOL) updateWithPersistenceQueue: (BOOL) saveQueue {
-
+- (BOOL)update {
     if (isNew) {
-        return [self saveWithPersistenceQueue: saveQueue];
+        return [self save];
     }
 
-    if(saveQueue && ![self persistQueuedBelongsToRelationships]) {
+    if(![self persistQueuedBelongsToRelationships]) {
         return NO;
     }
 
@@ -400,15 +392,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSInteger result = [[ARDatabaseManager sharedManager] updateRecord:self];
     if (result) {
         [_changedColumns removeAllObjects];
-
-        if(saveQueue)
-            return [self persistQueuedManyRelationships];
-        return YES;
+        return [self persistQueuedManyRelationships];
+       // return YES;
     }
     return NO;
-}
-- (BOOL)update {
-    [self updateWithPersistenceQueue: YES];
 }
 
 + (NSInteger)count {
@@ -456,9 +443,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
     if(![aRecord isNewRecord] &&
             [self persistRecord: aRecord belongsTo:aRelation]) {
-        [self updateWithPersistenceQueue:NO]; // TODO: This will save all queued items, but perhaps it should only save itself in this condition only.
+        [self update];
         return;
     }
+
 
     ARPersistentQueueEntity *entity = [ARPersistentQueueEntity entityBelongingToRecord:aRecord relation:aRelation];
     if(!_belongsToPersistentQueue) {
@@ -526,8 +514,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSString *relId = [NSString stringWithFormat:@"%@ID", [aRecord recordName]];
     ARLazyFetcher *fetcher = [RelationshipClass lazyFetcher];
 
-    if([aRecord isNewRecord] && ![aRecord saveWithPersistenceQueue:YES])
+    if([aRecord isNewRecord] && ![aRecord save])
         return NO;
+
 
     [fetcher where:@"%@ = %@ AND %@ = %@", currentId, self.id, relId, aRecord.id, nil];
     if ([fetcher count] != 0) {
@@ -553,12 +542,14 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
           through:(NSString *)aRelationshipClassName
 {
 
+    /* If the record being added is not a new record and self is not new it is not necessary
+    *  to queue the request. This allows use to mimic existing behavior while adding lazy
+    *  persistence support.  */
     if(![self isNewRecord] && ![aRecord isNewRecord] &&
             [self persistRecord:aRecord
                         ofClass: aClassname
                         through: aRelationshipClassName])
         return;
-
 
     if(!self.hasManyThroughRelationsQueue) {
         self.hasManyThroughRelationsQueue = [NSMutableSet new];

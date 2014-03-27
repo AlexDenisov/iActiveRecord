@@ -196,6 +196,7 @@ describe(@"HasManyThrough", ^{
     });
 });
 
+// Same test above testing lazy persistence.
 
 describe(@"HasManyThroughQueue", ^{
     it(@"Queued User should have many projects ", ^{
