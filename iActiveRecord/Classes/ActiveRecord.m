@@ -32,7 +32,6 @@
 
 #import "ARDynamicAccessor.h"
 #import "ARConfiguration.h"
-
 #import "ARPersistentQueueEntity.h"
 
 static NSMutableDictionary *relationshipsDictionary = nil;
@@ -424,20 +423,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return records.count ? [records objectAtIndex:0] : nil;
 }
 
-- (BOOL)persistRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
-    NSString *relId = [NSString stringWithFormat:
-            @"%@Id", [aRelation lowercaseFirst]];
-    ARColumn *column = [self columnNamed:relId];
-     BOOL success  = YES;
-
-    if([aRecord isNewRecord])
-        success = [aRecord save];
-
-
-    [self setValue:aRecord.id
-         forColumn:column];
-    return success;
-}
 
 - (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
 
@@ -457,17 +442,25 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [_belongsToPersistentQueue addObject:entity];
 }
 
+- (BOOL)persistRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
+    NSString *relId = [NSString stringWithFormat:
+            @"%@Id", [aRelation lowercaseFirst]];
+    ARColumn *column = [self columnNamed:relId];
+    BOOL success  = YES;
+
+    if([aRecord isNewRecord])
+        success = [aRecord save];
+
+
+    [self setValue:aRecord.id
+         forColumn:column];
+    return success;
+}
 #pragma mark HasMany
 - (BOOL) isNewRecord {
     return !self.id && isNew;
 }
 
-- (BOOL)persistRecord:(ActiveRecord *)aRecord {
-    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
-    ARColumn *column = [aRecord columnNamed:relationIdKey];
-    [aRecord setValue:self.id forColumn:column];
-    return [aRecord save];
-}
 - (void)addRecord:(ActiveRecord *)aRecord {
 
     if(![aRecord isNewRecord] &&  [self persistRecord:aRecord])
@@ -478,6 +471,13 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     }
 
     [self.hasManyPersistentQueue addObject: [ARPersistentQueueEntity entityHavingManyRecord:aRecord]];
+}
+
+- (BOOL)persistRecord:(ActiveRecord *)aRecord {
+    NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
+    ARColumn *column = [aRecord columnNamed:relationIdKey];
+    [aRecord setValue:self.id forColumn:column];
+    return [aRecord save];
 }
 
 - (void)removeRecord:(ActiveRecord *)aRecord {
@@ -503,6 +503,30 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [fetcher join: relClass];
     [fetcher where:@"%@.%@ = %@", [relClass performSelector: @selector(recordName)], relId, self.id, nil];
     return fetcher;
+}
+
+
+- (void)addRecord:(ActiveRecord *)aRecord
+          ofClass:(NSString *)aClassname
+          through:(NSString *)aRelationshipClassName
+{
+
+    /* If the record being added is not a new record and self is not new it is not necessary
+    *  to queue the request. This allows use to mimic existing behavior while adding lazy
+    *  persistence support.  */
+    if(![self isNewRecord] && ![aRecord isNewRecord] &&
+            [self persistRecord:aRecord
+                        ofClass: aClassname
+                        through: aRelationshipClassName])
+        return;
+
+    if(!self.hasManyThroughRelationsQueue) {
+        self.hasManyThroughRelationsQueue = [NSMutableSet new];
+    }
+
+    [self.hasManyThroughRelationsQueue addObject:[ARPersistentQueueEntity entityHavingManyRecord:aRecord
+                                                                                     ofClass:aClassname
+                                                                                     through:aRelationshipClassName]];
 }
 
 - (BOOL)persistRecord:(ActiveRecord *)aRecord
@@ -536,30 +560,6 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return [relationshipRecord save];
 
 }
-
-- (void)addRecord:(ActiveRecord *)aRecord
-          ofClass:(NSString *)aClassname
-          through:(NSString *)aRelationshipClassName
-{
-
-    /* If the record being added is not a new record and self is not new it is not necessary
-    *  to queue the request. This allows use to mimic existing behavior while adding lazy
-    *  persistence support.  */
-    if(![self isNewRecord] && ![aRecord isNewRecord] &&
-            [self persistRecord:aRecord
-                        ofClass: aClassname
-                        through: aRelationshipClassName])
-        return;
-
-    if(!self.hasManyThroughRelationsQueue) {
-        self.hasManyThroughRelationsQueue = [NSMutableSet new];
-    }
-
-    [self.hasManyThroughRelationsQueue addObject:[ARPersistentQueueEntity entityHavingManyRecord:aRecord
-                                                                                     ofClass:aClassname
-                                                                                     through:aRelationshipClassName]];
-}
-
 
 
 - (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName {
