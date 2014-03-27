@@ -5,14 +5,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AREnum.h"
 @class ActiveRecord;
 
-typedef enum {
-    kPersistentQueueEntityTypeNone = 0,
-    kPersistentQueueEntityTypeBelongsTo = 1,
-    kPersistentQueueEntityTypeHasMany = 2,
-    kPersistentQueueEntityTypeHasManyThrough = 3
-} PersistentQueueEntityType;
 
 
 @interface ARPersistentQueueEntity : NSObject
@@ -21,6 +16,10 @@ typedef enum {
 @property(nonatomic, retain) NSString *relation;
 @property(nonatomic, retain) NSString *relationshipClass;
 @property(nonatomic, retain) NSString *className;
-@property(nonatomic, assign) PersistentQueueEntityType type;
+@property(nonatomic, assign) ARRelationType type;
 
++ (instancetype)entityBelongingToRecord:(ActiveRecord *)aRecord relation:(NSString *)aRelation;
++ (instancetype)entityHavingManyRecord:(ActiveRecord *)aRecord ofClass:(NSString *)aClassname
+                               through:(NSString *)aRelationshipClassName;
++ (instancetype)entityHavingManyRecord:(ActiveRecord *)aRecord;
 @end

@@ -33,6 +33,8 @@
 #import "ARDynamicAccessor.h"
 #import "ARConfiguration.h"
 
+#import "ARPersistentQueueEntity.h"
+
 static NSMutableDictionary *relationshipsDictionary = nil;
 
 @implementation ActiveRecord
@@ -292,10 +294,71 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 #pragma mark - Save/Update
 
+- (BOOL) hasQueuedRelationships {
+    NSInteger belongsToCount = [self.belongsToPersistentQueue count];
+    NSInteger hasManyCount = [self.hasManyPersistentQueue count];
+    NSInteger hasManyThroughCount = [self.hasManyThroughRelationsQueue count];
+
+    return (belongsToCount+hasManyCount+hasManyThroughCount) > 0;
+}
+
+- (BOOL) persistQueuedBelongsToRelationships {
+    BOOL success = YES;
+
+    for(ARPersistentQueueEntity* entity in self.belongsToPersistentQueue) {
+        if(![self persistRecord:entity.record belongsTo:entity.relation]) {
+            for(ARError *error in entity.record.errors) {
+                [self addError:error];
+                success = NO;
+            }
+        }
+    }
+
+    if(success) {
+        [self.belongsToPersistentQueue removeAllObjects];
+    }
+
+    return success;
+}
+
+- (BOOL) persistQueuedManyRelationships {
+    BOOL success = YES;
+
+    for(ARPersistentQueueEntity* entity in self.hasManyPersistentQueue) {
+        if(![self persistRecord:entity.record]) {
+            for(ARError *error in entity.record.errors) {
+                [self addError:error];
+                success = NO;
+            }
+        }
+    }
+
+    for(ARPersistentQueueEntity* entity in self.hasManyThroughRelationsQueue) {
+        if(![self persistRecord:entity.record ofClass:entity.className through:entity.relationshipClass]) {
+            for(ARError *error in entity.record.errors) {
+                [self addError:error];
+                success = NO;
+            }
+        }
+    }
+
+    if(success) {
+        [self.hasManyThroughRelationsQueue removeAllObjects];
+        [self.hasManyPersistentQueue removeAllObjects];
+    }
+
+    return success;
+}
+
 - (BOOL)save {
     if (!isNew) {
         return [self update];
     }
+
+    if(![self persistQueuedBelongsToRelationships]) {
+        return NO;
+    }
+
     if (![self isValid]) {
         return NO;
     }
@@ -304,22 +367,31 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
         self.id = [NSNumber numberWithInteger:newRecordId];
         isNew = NO;
         [_changedColumns removeAllObjects];
-        return YES;
+        return [self persistQueuedManyRelationships];
+
+        // return YES;
     }
     return NO;
 }
 
 - (BOOL)update {
-    if (![self isValid]) {
-        return NO;
-    }
     if (isNew) {
         return [self save];
     }
+
+    if(![self persistQueuedBelongsToRelationships]) {
+        return NO;
+    }
+
+    if (![self isValid]) {
+        return NO;
+    }
+
     NSInteger result = [[ARDatabaseManager sharedManager] updateRecord:self];
     if (result) {
         [_changedColumns removeAllObjects];
-        return YES;
+        return [self persistQueuedManyRelationships];
+       // return YES;
     }
     return NO;
 }
@@ -350,29 +422,48 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return records.count ? [records objectAtIndex:0] : nil;
 }
 
-- (void)persistRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
-    // TODO: Should save belongs_to
+- (BOOL)persistRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
+    NSString *relId = [NSString stringWithFormat:
+            @"%@Id", [aRelation lowercaseFirst]];
+    ARColumn *column = [self columnNamed:relId];
+     BOOL success  = YES;
+
+    if(!aRecord.id)
+        success = [aRecord save];
+
+
+    [self setValue:aRecord.id
+         forColumn:column];
+    return success;
+ //   return [self update];
 }
 
 - (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
-    NSString *relId = [NSString stringWithFormat:
-                       @"%@Id", [aRelation lowercaseFirst]];
-    ARColumn *column = [self columnNamed:relId];
-    [self setValue:aRecord.id
-         forColumn:column];
-    [self update];
+
+    ARPersistentQueueEntity *entity = [ARPersistentQueueEntity entityBelongingToRecord:aRecord relation:aRelation];
+    if(!_belongsToPersistentQueue) {
+        _belongsToPersistentQueue = [NSMutableSet new];
+    }
+
+    [_belongsToPersistentQueue removeObject:entity];
+    [_belongsToPersistentQueue addObject:entity];
 }
 
 #pragma mark HasMany
 
-- (void)persistRecord:(ActiveRecord *)aRecord {
-    //TODO: Should save HasMany relation
-}
-- (void)addRecord:(ActiveRecord *)aRecord {
+- (BOOL)persistRecord:(ActiveRecord *)aRecord {
     NSString *relationIdKey = [NSString stringWithFormat:@"%@Id", [[self recordName] lowercaseFirst]];
     ARColumn *column = [aRecord columnNamed:relationIdKey];
     [aRecord setValue:self.id forColumn:column];
-    [aRecord save];
+    return [aRecord save];
+}
+- (void)addRecord:(ActiveRecord *)aRecord {
+
+    if(!self.hasManyPersistentQueue) {
+       self.hasManyPersistentQueue = [NSMutableSet new];
+    }
+
+    [self.hasManyPersistentQueue addObject: [ARPersistentQueueEntity entityHavingManyRecord:aRecord]];
 }
 
 - (void)removeRecord:(ActiveRecord *)aRecord {
@@ -400,28 +491,21 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     return fetcher;
 }
 
-- (void)persistRecord:(ActiveRecord *)aRecord
+- (BOOL)persistRecord:(ActiveRecord *)aRecord
               ofClass:(NSString *)aClassname
               through:(NSString *)aRelationshipClassName {
-    //TODO: Should save/updated queued records
-}
-
-- (void)addRecord:(ActiveRecord *)aRecord
-          ofClass:(NSString *)aClassname
-          through:(NSString *)aRelationshipClassName
-{
     Class RelationshipClass = NSClassFromString(aRelationshipClassName);
-    
+
     NSString *currentId = [NSString stringWithFormat:@"%@ID", [self recordName]];
     NSString *relId = [NSString stringWithFormat:@"%@ID", [aRecord recordName]];
     ARLazyFetcher *fetcher = [RelationshipClass lazyFetcher];
     [fetcher where:@"%@ = %@ AND %@ = %@", currentId, self.id, relId, aRecord.id, nil];
     if ([fetcher count] != 0) {
-        return;
+        return YES; // while it couldn't save, it already exists which has same effect.
     }
     NSString *currentIdSelectorString = [NSString stringWithFormat:@"set%@Id:", [[self class] description]];
     NSString *relativeIdSlectorString = [NSString stringWithFormat:@"set%@Id:", aClassname];
-    
+
     SEL currentIdSelector = NSSelectorFromString(currentIdSelectorString);
     SEL relativeIdSelector = NSSelectorFromString(relativeIdSlectorString);
     ActiveRecord *relationshipRecord = [RelationshipClass newRecord];
@@ -430,8 +514,25 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     [relationshipRecord performSelector:currentIdSelector withObject:self.id];
     [relationshipRecord performSelector:relativeIdSelector withObject:aRecord.id];
 #pragma clang diagnostic pop
-    [relationshipRecord save];
+    return [relationshipRecord save];
+
 }
+
+- (void)addRecord:(ActiveRecord *)aRecord
+          ofClass:(NSString *)aClassname
+          through:(NSString *)aRelationshipClassName
+{
+
+    if(!self.hasManyThroughRelationsQueue) {
+        self.hasManyThroughRelationsQueue = [NSMutableSet new];
+    }
+
+    [self.hasManyThroughRelationsQueue addObject:[ARPersistentQueueEntity entityHavingManyRecord:aRecord
+                                                                                     ofClass:aClassname
+                                                                                     through:aRelationshipClassName]];
+}
+
+
 
 - (void)removeRecord:(ActiveRecord *)aRecord through:(NSString *)aClassName {
     Class relationsClass = NSClassFromString(aClassName);
@@ -461,6 +562,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 - (void)dropRecord {
+    if([self hasQueuedRelationships])
+        [self save];
+
     [[ARDatabaseManager sharedManager] dropRecord:self];
     [self privateAfterDestroy];
 }

@@ -18,8 +18,24 @@
     BOOL isNew;
     NSMutableSet *errors;
     NSMutableSet *_changedColumns;
+
+ //   NSMutableSet *_belongsToPersistentQueue;
+  //  NSMutableSet *_hasManyPersistentQueue;
+  //  NSMutableSet *_hasManyThroughRelationsQueue;
 }
 
+@property (nonatomic,retain) NSMutableSet *belongsToPersistentQueue;
+@property (nonatomic,retain) NSMutableSet *hasManyPersistentQueue;
+@property (nonatomic,retain) NSMutableSet *hasManyThroughRelationsQueue;
+
+#pragma mark - Persistent Helpers
+- (BOOL) hasQueuedRelationships;
+- (BOOL)persistQueuedRelationships;
+- (BOOL)persistRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation;
+- (BOOL)persistRecord:(ActiveRecord *)aRecord;
+- (BOOL)persistRecord:(ActiveRecord *)aRecord
+              ofClass:(NSString *)aClassname
+              through:(NSString *)aRelationshipClassName;
 #pragma mark - Validations Declaration
 
 + (void)initializeValidators;
