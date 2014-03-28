@@ -451,12 +451,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (void)setRecord:(ActiveRecord *)aRecord belongsTo:(NSString *)aRelation {
 
-    if(![aRecord isNewRecord] &&
+    if(![aRecord isNewRecord] && ![self isNewRecord] &&
             [self persistRecord: aRecord belongsTo:aRelation]) {
         [self update];
         return;
     }
-
 
     ARPersistentQueueEntity *entity = [ARPersistentQueueEntity entityBelongingToRecord:aRecord relation:aRelation];
     if(!_belongsToPersistentQueue) {
