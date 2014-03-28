@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   }
   s.author   = { 'Alex Denisov' => '1101.debian@gmail.com' }
   s.source   = { :git => 'https://github.com/AlexDenisov/iActiveRecord.git',
-                 :commit => "fa1ecfe6055b50ee0b03f82eddd9f497b5fe08cf"
+                 :commit => "90f790043368b46cf98b26cbc23eb6cf0ec0ad64"
                  # :tag => s.version.to_s
                }
 
