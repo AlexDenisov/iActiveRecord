@@ -61,10 +61,7 @@ static NSMutableDictionary *relationshipsDictionary = nil;
             ARColumn *column =  [self columnWithGetterNamed:key];
 
             id columnValue = [values objectForKey:key];
-            if(columnValue!=nil)
-                [newRow setValue:columnValue forColumn:column];
-            else
-                [newRow setValue:[NSNull null] forColumn:column];
+            [newRow setValue:columnValue forColumn:column];
         }
     return newRow;
 }
