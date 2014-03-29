@@ -26,7 +26,12 @@ namespace AR {
 
     NSDate *__strong NSDateColumn::toColumnType(id value) const
     {
-        return [NSDate dateWithTimeIntervalSince1970: [value doubleValue]];
+       // return [NSDate dateWithTimeIntervalSince1970: [value doubleValue]];
+        if([value isKindOfClass:[NSDate class]])
+            return [NSDate dateWithTimeIntervalSince1970: [value timeIntervalSince1970]];
+        else if([value isKindOfClass:[NSNumber class]])
+            return [NSDate dateWithTimeIntervalSince1970: [value doubleValue]];
+        return nil;
     }
 
     id NSDateColumn::toObjCObject(NSDate *value) const
