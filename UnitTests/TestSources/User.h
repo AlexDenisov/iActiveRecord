@@ -21,7 +21,7 @@
 @property (nonatomic, retain) NSNumber *groupId;
 
 @property (nonatomic, retain) NSData *imageData;
-
+@property (nonatomic, retain) NSDate *birthDate;
 belongs_to_dec(Group, group, ARDependencyDestroy)
 has_many_through_dec(Project, UserProjectRelationship, projects, ARDependencyDestroy)
 
