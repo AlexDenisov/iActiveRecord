@@ -32,14 +32,14 @@ describe(@"Dynamic properties", ^{
     
         it(@"should success set value with default accessors", ^{
             NSString *defValue = @"Default";
-            DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
+            DynamicRecord *record = [DynamicRecord newRecord] ;
             [record setDefaultProperty:defValue];
             record.defaultProperty should equal(defValue);
         });
         
         it(@"should success set value with custom accessors", ^{
             NSString *defValue = @"Default";
-            DynamicRecord *record = [[DynamicRecord newRecord] autorelease];
+            DynamicRecord *record = [DynamicRecord newRecord] ;
             [record customSetter:defValue];
             record.customGetter should equal(defValue);
         });

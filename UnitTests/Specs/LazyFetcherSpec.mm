@@ -121,11 +121,11 @@ Tsuga<ARLazyFetcher>::run(^{
                     [ActiveRecord clearDatabase];
                     NSDate *startDate = [NSDate dateWithTimeIntervalSinceNow:-MONTH];
                     NSDate *endDate = [NSDate dateWithTimeIntervalSinceNow:DAY];
-                    User *john = [[User newRecord] autorelease];
+                    User *john = [User newRecord];
                     john.name = @"John";
                     john.createdAt = [NSDate dateWithTimeIntervalSinceNow:-MONTH * 2];
                     [john save] should equal(YES);
-                    User *alex = [[User newRecord] autorelease];
+                    User *alex = [User newRecord];
                     alex.name = @"Alex";
                     alex.createdAt = [NSDate dateWithTimeIntervalSinceNow:-DAY];
                     [alex save] should equal(YES);

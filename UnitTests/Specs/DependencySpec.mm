@@ -136,4 +136,113 @@ describe(@"Nulify", ^{
     });
 });
 
+// Same test above testing lazy persistence.
+
+describe(@"Queued Destroy", ^{
+    it(@"HasMany", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+
+        User *alex = [User newRecord];
+        alex.name = @"Alex";
+
+        Group *students = [Group newRecord];
+        students.title = @"Students";
+
+        [students addUser:john];
+        [students addUser:alex];
+
+        [students dropRecord];
+        [alex release];
+        [john release];
+        [students release];
+
+        [User count] should equal(0);
+    });
+    it(@"Queued BelongsTo", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+
+        User *peter = [User newRecord];
+        peter.name = @"Peter";
+
+        Group *students = [Group newRecord];
+        students.title = @"Students";
+
+        [students addUser:john];
+        [students addUser:peter];
+        [students save];
+
+        [john dropRecord];
+        [Group count] should equal(0);
+        [User count] should equal(0);
+    });
+    it(@"Queued HasManyThrough", ^{
+        User *john = [User newRecord];
+        john.name = @"John";
+
+        Project *makeTea = [Project newRecord];
+        makeTea.name = @"Make tea";
+
+        [makeTea addUser:john];
+        [makeTea save];
+
+        [john dropRecord];
+
+        [User count] should equal(0);
+        [Project count] should equal(0);
+    });
+});
+
+describe(@"Queued Destroy/Nulify", ^{
+    describe(@"HasMany - destroy, BelongsTo - nullify", ^{
+        it(@"when i drop  queued project it should drop all issues", ^{
+            Issue *issue = [Issue newRecord];
+            issue.title = @"new issue";
+
+            Project *project = [Project newRecord];
+            project.name = @"Make tea";
+
+            [project addIssue:issue];
+            Issue *emptyIssue = [Issue newRecord];
+            emptyIssue.title = @"empty";
+            [emptyIssue save];
+            [project dropRecord];
+            [Issue count] should equal(1);
+        });
+        it(@"when i drop issue it should not drop  queued project issues", ^{
+            Issue *issue = [Issue newRecord];
+            issue.title = @"new issue";
+
+            Project *project = [Project newRecord];
+            project.name = @"Make tea";
+
+            [project addIssue:issue];
+            [project save];
+
+            Issue *emptyIssue = [Issue newRecord];
+            emptyIssue.title = @"empty";
+            [emptyIssue save];
+
+            NSInteger count = [Project count];
+
+            [issue dropRecord];
+            [Project count] should equal(count);
+        });
+    });
+});
+
+describe(@"Queued Nulify", ^{
+    it(@"when i drop queued project it should not drop group", ^{
+        Group *students = [Group newRecord];
+        students.title = @"Students";
+
+        Project *project = [Project newRecord];
+        project.name = @"Make tea";
+
+        [project addGroup:students];
+        [project dropRecord];
+        [Group count] should equal(1);
+    });
+});
 SPEC_END

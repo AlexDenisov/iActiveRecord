@@ -25,11 +25,44 @@ afterEach(^{
     [[ARDatabaseManager sharedManager] clearDatabase];
 });
 
+
+describe(@"NewAndCreate", ^{
+    it(@"should be successful with :new method ", ^{
+        NSNumber *recordId = nil;
+        Animal *enot = [Animal new: @{@"name":@"animal", @"title": @"Racoon"}];
+
+        enot.save should BeTruthy();
+        recordId = enot.id;
+        Animal *racoon = [[Animal allRecords] objectAtIndex:0];
+
+        racoon.id should equal(recordId);
+        racoon.title should equal(@"Racoon");
+        racoon.name should equal(@"animal");
+    });
+
+
+
+    it(@"should be successful with :create method ", ^{
+        NSNumber *recordId = nil;
+        Animal *enot = [Animal create: @{@"name":@"animal", @"title": @"Racoon"}] ;
+        enot should_not be_nil;
+        enot.id should_not be_nil;
+        recordId = enot.id;
+
+        Animal *racoon = [[Animal allRecords] objectAtIndex:0];
+
+        racoon.id should equal(recordId);
+        racoon.title should equal(@"Racoon");
+        racoon.name should equal(@"animal");
+    });
+
+});
+
 describe(@"Update", ^{
 #warning separate this specs
     it(@"should be successful", ^{
         NSNumber *recordId = nil;
-        Animal *enot = [[Animal newRecord] autorelease];
+        Animal *enot = [Animal newRecord] ;
         enot.name = @"animal";
         enot.title = @"Racoon";
         enot.save should BeTruthy();
@@ -46,7 +79,7 @@ describe(@"Update", ^{
     });
     
     it(@"should not validate properies that don't changed", ^{
-        User *user = [[User newRecord] autorelease];
+        User *user = [User newRecord];
         user.name = @"Alex";
         user.save should BeTruthy();
         user.name = @"Alex";
@@ -55,13 +88,13 @@ describe(@"Update", ^{
     });
     
     it(@"should save values with quotes", ^{
-        User *user = [[User newRecord] autorelease];
+        User *user = [User newRecord];
         user.name = @"Al\"ex";
         user.save should be_truthy;
     });
     
     it(@"should update values with quotes", ^{
-        User *user = [[User newRecord] autorelease];
+        User *user = [User newRecord];
         user.name = @"Peter";
         user.save should be_truthy;
         User *savedUser = [[User allRecords] lastObject];
