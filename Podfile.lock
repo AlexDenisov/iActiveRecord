@@ -3,7 +3,7 @@ PODS:
   - Cedar (0.9.5)
   - CedarAsync (0.0.1):
     - Cedar
-  - iActiveRecord (1.9.1)
+  - iActiveRecord (1.9.2)
   - ISO8601DateFormatterValueTransformer (0.5.0):
     - RKValueTransformers (~> 1.0.0)
   - RestKit (0.22.0):
@@ -45,7 +45,7 @@ SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
   Cedar: 16cbb75084031aa41304cdeb0d0c8319c1af1cae
   CedarAsync: 4b0d75fcef33dff6623e025b3726a2b2ef4feb39
-  iActiveRecord: 0b328cca6b593b56d6a8d8aec9208ece0b010ece
+  iActiveRecord: 95f2723b1833c5455d46138d3708f2fd904518e6
   ISO8601DateFormatterValueTransformer: d0af1f50a9df42db72d7418db31938b8473e0af8
   RestKit: dc107a0aa4f962575ad0385bac5b3c5e4f591f4e
   RKValueTransformers: 1562d458b9c9d59ce777bfc5982f2e1aef2e9182
