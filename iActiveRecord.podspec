@@ -9,13 +9,9 @@ Pod::Spec.new do |s|
     For more details check Wiki on Github.
   }
   s.author   = { 'Alex Denisov' => '1101.debian@gmail.com' }
-  s.source   = { :git => 'https://github.com/AlexDenisov/iActiveRecord.git',
-                 :commit => "90f790043368b46cf98b26cbc23eb6cf0ec0ad64"
-                 # :tag => s.version.to_s
-               }
-
-
-
+  s.source   = {  :git => 'https://github.com/AlexDenisov/iActiveRecord.git',
+                  :tag => s.version.to_s
+                }
 
   s.platform = :ios ,"5.0"
   s.source_files = 'iActiveRecord/**/*.{c,h,m,mm}'
