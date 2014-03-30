@@ -8,6 +8,7 @@ CDR_EXT
 Tsuga<NSDecimalNumber>::run(^{
    
     beforeEach(^{
+        prepareDatabaseManager();
         [[ARDatabaseManager sharedManager] clearDatabase];
     });
     
