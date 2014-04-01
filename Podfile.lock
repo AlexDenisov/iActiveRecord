@@ -45,7 +45,7 @@ SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
   Cedar: 16cbb75084031aa41304cdeb0d0c8319c1af1cae
   CedarAsync: 4b0d75fcef33dff6623e025b3726a2b2ef4feb39
-  iActiveRecord: c7d3162f3146e21d73ca3529d435d7ca276c6810
+  iActiveRecord: 53cd13a91023db22a833b1761efbab3342577b46
   ISO8601DateFormatterValueTransformer: d0af1f50a9df42db72d7418db31938b8473e0af8
   RestKit: dc107a0aa4f962575ad0385bac5b3c5e4f591f4e
   RKValueTransformers: 1562d458b9c9d59ce777bfc5982f2e1aef2e9182

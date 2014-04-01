@@ -226,6 +226,9 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 }
 
 #pragma mark -
+- (BOOL) isDirty {
+    return  [_changedColumns count]>0 || [self hasQueuedRelationships];
+}
 
 - (void)resetChanges {
     [_changedColumns removeAllObjects];
@@ -233,6 +236,11 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
 
 - (void)resetErrors {
     errors = nil;
+}
+
+- (void)addErrors:(NSArray*) errors {
+    for(ARError *error in errors)
+        [self addError:error];
 }
 
 - (void)addError:(ARError *)anError {
@@ -562,9 +570,10 @@ static NSString *registerHasManyThrough = @"_ar_registerHasManyThrough";
     NSString *relId = [NSString stringWithFormat:@"%@ID", [aRecord recordName]];
     ARLazyFetcher *fetcher = [RelationshipClass lazyFetcher];
 
-    if([aRecord isNewRecord] && ![aRecord save])
-        return NO;
-
+    if( ([aRecord isNewRecord] || [aRecord isDirty]) && ![aRecord save]) {
+            [self addErrors:aRecord.errors];
+            return NO;
+    }
 
     [fetcher where:@"%@ = %@ AND %@ = %@", currentId, self.id, relId, aRecord.id, nil];
     if ([fetcher count] != 0) {
