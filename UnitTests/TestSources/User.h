@@ -24,5 +24,6 @@
 @property (nonatomic, retain) NSDate *birthDate;
 belongs_to_dec(Group, group, ARDependencyDestroy)
 has_many_through_dec(Project, UserProjectRelationship, projects, ARDependencyDestroy)
+has_many_through_dec(Animal, UserAnimalRelationship, pets, ARDependencyDestroy)
 
 @end

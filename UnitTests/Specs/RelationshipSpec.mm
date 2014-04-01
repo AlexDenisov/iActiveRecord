@@ -13,6 +13,7 @@
 #import "Project.h"
 #import "ARDatabaseManager.h"
 #import "UserProjectRelationship.h"
+#import "Animal.h"
 
 using namespace Cedar::Matchers;
 
@@ -180,6 +181,9 @@ describe(@"HasManyThrough", ^{
         NSArray *users = [[worldConquest users] fetchRecords];
         users.count should equal(2);
     });
+
+
+
     it(@"when I remove user, group should not contain this user", ^{
         User *alex = [User newRecord];
         alex.name = @"Alex";
@@ -252,6 +256,56 @@ describe(@"HasManyThroughQueue", ^{
         NSArray *users = [[worldConquest users] fetchRecords];
         users.count should equal(2);
     });
+
+    it(@"Project should create many pets through HasManyThrough relationship with existing child", ^{
+        User *john = [User new: @{@"name": @"John"}];
+        User *peter =  [User new: @{@"name": @"Peter"}];
+
+        [john addAnimal:[Animal new: @{@"name":@"animal", @"state":@"good", @"title" : @"test title"}]];
+
+        Project *worldConquest = [Project new: @{@"name": @"Conquest of the World"}];
+        [worldConquest addUser:john];
+        [worldConquest addUser:peter];
+        [worldConquest save] should equal(TRUE);
+        [[worldConquest.users fetchRecords] count] should equal(2);
+        [Animal count] should equal(1);
+
+        User *fetched_user = [[[[User lazyFetcher] where:@" name = %@ ", @"John", nil  ] fetchRecords] firstObject];
+        Project *fetched_project = [[[[Project lazyFetcher] where:@" name = %@ ", @"Conquest of the World", nil  ] fetchRecords] firstObject];
+        fetched_project.name should equal(@"Conquest of the World");
+        fetched_user.name should equal(@"John");
+
+        [fetched_user addAnimal:[Animal new: @{@"name":@"animal", @"state":@"okay", @"title" : @"test title2"}] ];
+        [fetched_project addUser:fetched_user];  // Normally, Animal wouldn't be persisted because the fetched_user relation already exists
+        [fetched_project save] should equal(TRUE);
+        [fetched_user.pets count] should equal(2);
+        [Animal count] should equal(2);
+    });
+
+    it(@"Project validation errors should propagate through HasManyThrough relationship", ^{
+        User *john = [User new: @{@"name": @"John"}];
+        User *peter =  [User new: @{@"name": @"Peter"}];
+        Animal *animal = [Animal new: @{@"name":@"animal_error", @"state":@"good", @"title" : @"test title"}];
+
+        [john addAnimal:animal];
+
+        Project *worldConquest = [Project new: @{@"name": @"Conquest of the World"}];
+        [worldConquest addUser:john];
+        [worldConquest addUser:peter];
+        [worldConquest save] should equal(NO);
+        [worldConquest.errors count] should equal(1);
+        [Animal count] should equal(0);
+
+        // Correction of validation error should allow save.
+
+        animal.name = @"animal";
+        [worldConquest save] should equal(YES);
+        [worldConquest.errors count] should equal(0);
+        [Animal count] should equal(1);
+
+
+    });
+
     it(@"when I remove Queued  user, group should not contain this user", ^{
         User *alex = [User newRecord];
         alex.name = @"Alex";
