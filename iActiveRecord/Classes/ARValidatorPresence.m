@@ -9,6 +9,7 @@
 #import "ARValidatorPresence.h"
 #import "ARErrorHelper.h"
 #import "ActiveRecord.h"
+#import "ActiveRecord_Private.h"
 
 @implementation ARValidatorPresence
 
@@ -17,7 +18,7 @@
 }
 
 - (BOOL)validateField:(NSString *)aField ofRecord:(ActiveRecord *)aRecord {
-    id aValue = [aRecord valueForKey:aField];
+    id aValue = [aRecord valueForUndefinedKey:aField];
     return (BOOL)[aValue performSelector: @selector(isPresented)];
 }
 
