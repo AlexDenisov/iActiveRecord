@@ -1,5 +1,5 @@
 PODS:
-  - AFNetworking (1.3.1)
+  - AFNetworking (1.3.3)
   - Cedar (0.9.1)
   - CedarAsync (0.0.1):
     - Cedar
@@ -27,22 +27,22 @@ PODS:
 DEPENDENCIES:
   - Cedar
   - CedarAsync
-  - iActiveRecord (from `iActiveRecord.podspec`)
+  - iActiveRecord (from `.`)
   - RestKit
   - Tsuga
 
 EXTERNAL SOURCES:
   iActiveRecord:
-    :podspec: iActiveRecord.podspec
+    :path: .
 
 SPEC CHECKSUMS:
-  AFNetworking: 9ec8aafb9269236a7630bd8d9838ce2ba30fa2a0
+  AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
   Cedar: a4181d8873d5049223c8511a50de4151ad603edc
-  CedarAsync: 4b0d75fcef33dff6623e025b3726a2b2ef4feb39
-  iActiveRecord: 6a9ce1cfe5e0241976a02c2eced3d9539f1fcdc1
+  CedarAsync: 7764c7d1193947c4755a086f91b7cbef11f140d4
+  iActiveRecord: 8ff38d2263a0c1a94a85c477b9c9b483a7728aa3
   RestKit: e511651e916245fa4becfb0e8f966a1fa021fcd4
-  SOCKit: ed67aeeca4a697b63a933229e53f4670d5b9300f
-  TransitionKit: 3b3836af6887d16a0834fa35031028792d1d5c0c
-  Tsuga: a1d87436fd0978949a5dc1e03d28fbc9199aa77a
+  SOCKit: 8871d058926a6c6cc144f0c5eee82c5d0ec274a3
+  TransitionKit: d0e3344aac92991395d4c2e72d9c5a8ceeb12910
+  Tsuga: 8e94d76391a80ee95df21a05f0a3d28c6a5ff783
 
-COCOAPODS: 0.22.2
+COCOAPODS: 0.29.0

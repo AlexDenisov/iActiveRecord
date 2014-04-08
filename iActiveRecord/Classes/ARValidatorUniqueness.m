@@ -34,7 +34,7 @@
     }
     
     NSString *recordName = [[record class] description];
-    id aValue = [record valueForKey:aField];
+    id aValue = [record valueForUndefinedKey:aField];
     
     ARLazyFetcher *fetcher = [[ARLazyFetcher alloc] initWithRecord:NSClassFromString(recordName)];
     [fetcher where:@"%@ = %@", aField, aValue, nil];
