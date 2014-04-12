@@ -110,13 +110,8 @@
 		5898AFE293C96238DE89AAB6 /* LongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */; };
 		5898AFFD23B08853D039C729 /* LongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */; };
 		5DC6A12D9A2EF3CEBD17C195 /* NSDateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6AE39AED7F65097305A31 /* NSDateSpec.mm */; };
-		5DC6A1489410614F93FF4756 /* ARPersistentQueueEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6AADB53525BDF5773BCD1 /* ARPersistentQueueEntity.m */; };
 		5DC6A16A9F723443CA1352CA /* NSDateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6AE39AED7F65097305A31 /* NSDateSpec.mm */; };
 		5DC6A42E7467548079B9B60E /* NSDateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6AE39AED7F65097305A31 /* NSDateSpec.mm */; };
-		5DC6A5214377691C22D9B6C1 /* ARPersistentQueueEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6AADB53525BDF5773BCD1 /* ARPersistentQueueEntity.m */; };
-		5DC6A58D95E83ECA9A097A3C /* ARPersistentQueueEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6AADB53525BDF5773BCD1 /* ARPersistentQueueEntity.m */; };
-		5DC6ABE7FDF0275ED2B39DAA /* UserAnimalRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6A1A9C305ABD5B95A01D8 /* UserAnimalRelationship.m */; };
-		5DC6AE56841576F4E6AD393F /* ARPersistentQueueEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DC6A2CDF269DC7AD34FEC46 /* ARPersistentQueueEntity.h */; };
 		75F56DBA1717003C00A1DF7B /* DecimalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F56DB91717003C00A1DF7B /* DecimalRecord.m */; };
 		75F56DBC171700D300A1DF7B /* NSDecimalNumberSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75F56DBB171700D300A1DF7B /* NSDecimalNumberSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA06017C1738EBBD009C0FE6 /* DifferentTableName.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06017B1738EBBD009C0FE6 /* DifferentTableName.m */; };
@@ -345,11 +340,7 @@
 		5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LongLongColumn.mm; sourceTree = "<group>"; };
 		5898AF1FCDD4E7F00439AA9A /* IntColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntColumn.h; sourceTree = "<group>"; };
 		5898AFB5B08D056ACBE03FC4 /* UnsignedShortColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedShortColumn.mm; sourceTree = "<group>"; };
-		5DC6A1A9C305ABD5B95A01D8 /* UserAnimalRelationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnimalRelationship.m; sourceTree = "<group>"; };
-		5DC6A2CDF269DC7AD34FEC46 /* ARPersistentQueueEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPersistentQueueEntity.h; sourceTree = "<group>"; };
-		5DC6AADB53525BDF5773BCD1 /* ARPersistentQueueEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARPersistentQueueEntity.m; sourceTree = "<group>"; };
 		5DC6AE39AED7F65097305A31 /* NSDateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSDateSpec.mm; sourceTree = "<group>"; };
-		5DC6AFF2C93EA186939DC65A /* UserAnimalRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnimalRelationship.h; sourceTree = "<group>"; };
 		75F56DB81717003C00A1DF7B /* DecimalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecimalRecord.h; sourceTree = "<group>"; };
 		75F56DB91717003C00A1DF7B /* DecimalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecimalRecord.m; sourceTree = "<group>"; };
 		75F56DBB171700D300A1DF7B /* NSDecimalNumberSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSDecimalNumberSpec.mm; sourceTree = "<group>"; };
@@ -667,8 +658,6 @@
 				5898A01C8CD08A13A0681F29 /* Core */,
 				5898A1DF08FC1D316A1D1775 /* Column */,
 				5898A988DC13EDE23C843E90 /* DatabaseManager */,
-				5DC6AADB53525BDF5773BCD1 /* ARPersistentQueueEntity.m */,
-				5DC6A2CDF269DC7AD34FEC46 /* ARPersistentQueueEntity.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -712,8 +701,6 @@
 				CAE9226A171495290082A97C /* UserProjectRelationship.m */,
 				CA06017A1738EBBD009C0FE6 /* DifferentTableName.h */,
 				CA06017B1738EBBD009C0FE6 /* DifferentTableName.m */,
-				5DC6A1A9C305ABD5B95A01D8 /* UserAnimalRelationship.m */,
-				5DC6AFF2C93EA186939DC65A /* UserAnimalRelationship.h */,
 			);
 			name = "Test Entities";
 			path = TestSources;
@@ -1181,7 +1168,6 @@
 				5898A20B6E0C173D0236D1C6 /* NSStringColumn.h in Headers */,
 				5898A055F353139C6AF9B527 /* NSDateColumn.h in Headers */,
 				5898A4E460596E6FE1A05AFC /* NSDecimalNumberColumn.h in Headers */,
-				5DC6AE56841576F4E6AD393F /* ARPersistentQueueEntity.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1471,9 +1457,7 @@
 				5898ADA29564B11C5A2D5CE7 /* NSDateColumn.mm in Sources */,
 				5898AD7B10C6CF1A56A2B80B /* NSDecimalNumberColumn.mm in Sources */,
 				CA1EF6D9178FB9C400C76AA8 /* NSNumberColumn.mm in Sources */,
-				5DC6A5214377691C22D9B6C1 /* ARPersistentQueueEntity.m in Sources */,
 				5DC6A16A9F723443CA1352CA /* NSDateSpec.mm in Sources */,
-				5DC6ABE7FDF0275ED2B39DAA /* UserAnimalRelationship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1531,7 +1515,6 @@
 				5898AE1B02DF5986F8F1726E /* NSStringColumn.mm in Sources */,
 				5898A796CF235C1AFD8BBC93 /* NSDateColumn.mm in Sources */,
 				5898A7BD6645456999B45043 /* NSDecimalNumberColumn.mm in Sources */,
-				5DC6A58D95E83ECA9A097A3C /* ARPersistentQueueEntity.m in Sources */,
 				5DC6A12D9A2EF3CEBD17C195 /* NSDateSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1562,7 +1545,6 @@
 				5898A0809EDAF33E3292AD51 /* NSStringColumn.mm in Sources */,
 				5898ACB4F41F10B4ED8DB7F6 /* NSDateColumn.mm in Sources */,
 				5898A3B050D1F848FAAA691B /* NSDecimalNumberColumn.mm in Sources */,
-				5DC6A1489410614F93FF4756 /* ARPersistentQueueEntity.m in Sources */,
 				5DC6A42E7467548079B9B60E /* NSDateSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
