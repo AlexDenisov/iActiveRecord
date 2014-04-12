@@ -8,5 +8,5 @@ end
 
 target 'ActiveTwitter' do
   pod 'RestKit'
-  pod 'iActiveRecord', :podspec => 'iActiveRecord.podspec'
+  pod 'iActiveRecord', :path => '.'
 end

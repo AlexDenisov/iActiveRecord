@@ -503,8 +503,12 @@ static NSArray *records = nil;
                                valueMapping];
         
         sql = [sqlString UTF8String];
-        result = sqlite3_prepare_v2(database, sql, strlen(sql), &stmt, NULL);
-        
+
+        if(SQLITE_OK != sqlite3_prepare_v2(database, sql, strlen(sql), &stmt, NULL)) {
+            NSLog( @"Couldn't save record to database: %s", sqlite3_errmsg(database));
+            return;
+        }
+
         int columnIndex = 1;
         for (ARColumn *column in changedColumns) {
             id value = [aRecord valueForColumn:column];
@@ -533,10 +537,20 @@ static NSArray *records = nil;
             }
             columnIndex++;
         }
-        
-        result = sqlite3_step(stmt);
-        result = sqlite3_finalize(stmt);
-        result = sqlite3_last_insert_rowid(database);
+
+        if(SQLITE_DONE == sqlite3_step(stmt) &&
+                SQLITE_OK == sqlite3_finalize(stmt)) {
+            result = sqlite3_last_insert_rowid(database);
+        } else {
+            int error = sqlite3_finalize(stmt);
+            NSLog( @"Couldn't save record to database: %s", sqlite3_errmsg(database) );
+
+            switch(error) {
+                case SQLITE_CONSTRAINT:
+                    //TODO: Code should be added here to detect which column failed and added to model errors. JKW
+                    break;
+            }
+        }
     });
     return result;
 }
