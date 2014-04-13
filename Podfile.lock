@@ -33,24 +33,24 @@ PODS:
 DEPENDENCIES:
   - Cedar
   - CedarAsync
-  - iActiveRecord (from `iActiveRecord.podspec`)
+  - iActiveRecord (from `.`)
   - RestKit
   - Tsuga
 
 EXTERNAL SOURCES:
   iActiveRecord:
-    :podspec: iActiveRecord.podspec
+    :path: .
 
 SPEC CHECKSUMS:
   AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
   Cedar: 16cbb75084031aa41304cdeb0d0c8319c1af1cae
-  CedarAsync: 4b0d75fcef33dff6623e025b3726a2b2ef4feb39
+  CedarAsync: 7764c7d1193947c4755a086f91b7cbef11f140d4
   iActiveRecord: 1e00b8ea793b34474fb570478794e1ddd3309747
   ISO8601DateFormatterValueTransformer: d0af1f50a9df42db72d7418db31938b8473e0af8
   RestKit: dc107a0aa4f962575ad0385bac5b3c5e4f591f4e
   RKValueTransformers: 1562d458b9c9d59ce777bfc5982f2e1aef2e9182
-  SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
+  SOCKit: 8871d058926a6c6cc144f0c5eee82c5d0ec274a3
   TransitionKit: 433284465abacdc07852d7db6dd0cc075010059a
-  Tsuga: ae4479d99b974452a5c014656ed7b270fdae6a3e
+  Tsuga: 9b782580be6720aec515868752320cd62eb7fd23
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.31.1
