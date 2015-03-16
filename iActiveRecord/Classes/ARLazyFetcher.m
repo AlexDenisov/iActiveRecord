@@ -346,13 +346,24 @@
     NSRange range = NSMakeRange(0, [sqlArguments count]);
     NSMutableData * data = [NSMutableData dataWithLength:sizeof(id) * [sqlArguments count]];
     [sqlArguments getObjects: (__unsafe_unretained id *)data.mutableBytes range:range];
-    NSString * result = [[NSString alloc] initWithFormat:aCondition
-                                               arguments:data.mutableBytes];
+    
+    NSString* result = aCondition;
+    NSRange testRange = NSMakeRange(0, result.length);
+    
+    for (int i = 0; i < sqlArguments.count; i++) {
+        NSRange range = [result rangeOfString:@"%@" options:NSLiteralSearch range:testRange];
+        result = [result stringByReplacingCharactersInRange:range withString:[sqlArguments objectAtIndex:i]];
+        
+        //move the test range up to the last character of the replacement to prevent hitting
+        //literal %@ in the args
+        NSUInteger prefix = range.location + [[sqlArguments objectAtIndex:i] length];
+        testRange = NSMakeRange(prefix, result.length - prefix);
+    }
 
     if (!self.whereStatement) {
-        self.whereStatement = [[NSMutableString alloc] initWithString:result];
+        self.whereStatement = [NSMutableString stringWithString:result];
     } else {
-        self.whereStatement = [NSMutableString stringWithFormat:@"%@AND %@", self.whereStatement, result];
+        [self.whereStatement appendFormat:@"AND %@", result];
     }
     return self;
 }
