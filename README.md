@@ -1,4 +1,4 @@
-_discontinued_
+# The project is [looking for maintainer](https://github.com/AlexDenisov/iActiveRecord/issues/88)
 
 ## ActiveRecord without CoreData.
 ### Only SQLite.
