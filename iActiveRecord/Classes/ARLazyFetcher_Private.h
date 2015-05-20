@@ -20,7 +20,7 @@ static NSString * joinString(ARJoinType type)
     @private
     Class recordClass;
     NSString *sqlRequest;
-    NSMutableDictionary *orderByConditions;
+    NSMutableArray *orderByConditions;
     BOOL useRandomOrder;
     NSMutableSet *onlyFields;
     NSMutableSet *exceptFields;
