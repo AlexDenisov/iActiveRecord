@@ -109,6 +109,9 @@
 		5898AFD085A61106DF70EC25 /* ARColumn.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898AECD6515B2B750D6563E /* ARColumn.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		5898AFE293C96238DE89AAB6 /* LongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */; };
 		5898AFFD23B08853D039C729 /* LongLongColumn.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */; };
+		5DC6A12D9A2EF3CEBD17C195 /* NSDateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6AE39AED7F65097305A31 /* NSDateSpec.mm */; };
+		5DC6A16A9F723443CA1352CA /* NSDateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6AE39AED7F65097305A31 /* NSDateSpec.mm */; };
+		5DC6A42E7467548079B9B60E /* NSDateSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5DC6AE39AED7F65097305A31 /* NSDateSpec.mm */; };
 		75F56DBA1717003C00A1DF7B /* DecimalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F56DB91717003C00A1DF7B /* DecimalRecord.m */; };
 		75F56DBC171700D300A1DF7B /* NSDecimalNumberSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 75F56DBB171700D300A1DF7B /* NSDecimalNumberSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA06017C1738EBBD009C0FE6 /* DifferentTableName.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06017B1738EBBD009C0FE6 /* DifferentTableName.m */; };
@@ -144,6 +147,7 @@
 		CA3B7B9E15C91B7D00757498 /* CountSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9D15C91B7D00757498 /* CountSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA3B7BA015C91C3600757498 /* LazyFetcherSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA3B7B9F15C91C3500757498 /* LazyFetcherSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA3D18071519D5FA00FA3F3C /* ARLazyFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */; };
+		CA444F12182FE91C00E70DFE /* IColumnInternal.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA444F11182FE91C00E70DFE /* IColumnInternal.mm */; };
 		CA44DE4D1748C96B00831183 /* ARConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CA44DE4C1748C96B00831183 /* ARConfiguration.m */; };
 		CA44DE541748D17C00831183 /* ARConfigurationSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA44DE531748D17C00831183 /* ARConfigurationSpec.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CA523D441535F56100565E02 /* NSData+isPresented.h in Headers */ = {isa = PBXBuildFile; fileRef = CA523D421535F56100565E02 /* NSData+isPresented.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -336,6 +340,7 @@
 		5898AF0CFBDE2FB5CD7A1690 /* LongLongColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LongLongColumn.mm; sourceTree = "<group>"; };
 		5898AF1FCDD4E7F00439AA9A /* IntColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntColumn.h; sourceTree = "<group>"; };
 		5898AFB5B08D056ACBE03FC4 /* UnsignedShortColumn.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UnsignedShortColumn.mm; sourceTree = "<group>"; };
+		5DC6AE39AED7F65097305A31 /* NSDateSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSDateSpec.mm; sourceTree = "<group>"; };
 		75F56DB81717003C00A1DF7B /* DecimalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecimalRecord.h; sourceTree = "<group>"; };
 		75F56DB91717003C00A1DF7B /* DecimalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecimalRecord.m; sourceTree = "<group>"; };
 		75F56DBB171700D300A1DF7B /* NSDecimalNumberSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSDecimalNumberSpec.mm; sourceTree = "<group>"; };
@@ -368,6 +373,7 @@
 		CA3B7B9F15C91C3500757498 /* LazyFetcherSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LazyFetcherSpec.mm; sourceTree = "<group>"; };
 		CA3D18041519D5FA00FA3F3C /* ARLazyFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLazyFetcher.h; sourceTree = "<group>"; };
 		CA3D18051519D5FA00FA3F3C /* ARLazyFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLazyFetcher.m; sourceTree = "<group>"; };
+		CA444F11182FE91C00E70DFE /* IColumnInternal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IColumnInternal.mm; sourceTree = "<group>"; };
 		CA44DE4B1748C96B00831183 /* ARConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARConfiguration.h; sourceTree = "<group>"; };
 		CA44DE4C1748C96B00831183 /* ARConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARConfiguration.m; sourceTree = "<group>"; };
 		CA44DE501748CACD00831183 /* ARColumnType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARColumnType.h; sourceTree = "<group>"; };
@@ -570,6 +576,7 @@
 				CA0BAED015C9AACC008985E6 /* IndicesSpec.mm */,
 				CA91ECCB1715AEC10085A27B /* GCDSpec.mm */,
 				75F56DBB171700D300A1DF7B /* NSDecimalNumberSpec.mm */,
+				5DC6AE39AED7F65097305A31 /* NSDateSpec.mm */,
 			);
 			path = Specs;
 			sourceTree = "<group>";
@@ -755,6 +762,7 @@
 			children = (
 				5898AC34BC297CDE28FCC7EC /* ColumnInternal.h */,
 				5898AD319172630841E7FCA7 /* IColumnInternal.h */,
+				CA444F11182FE91C00E70DFE /* IColumnInternal.mm */,
 				5898ACD1BA8E8807AD5CD9CD /* ConcreteColumns.h */,
 				5898AE922C141AC76A7BE422 /* ConcreteColumns */,
 			);
@@ -1415,6 +1423,7 @@
 				CAE9226C171495290082A97C /* AnimalValidator.m in Sources */,
 				CAE9226F171495290082A97C /* DynamicRecord.m in Sources */,
 				CAE92270171495290082A97C /* Entity.m in Sources */,
+				CA444F12182FE91C00E70DFE /* IColumnInternal.mm in Sources */,
 				CAE92271171495290082A97C /* Group.m in Sources */,
 				CAE92272171495290082A97C /* Issue.m in Sources */,
 				CAE92274171495290082A97C /* PrimitiveModel.m in Sources */,
@@ -1448,6 +1457,7 @@
 				5898ADA29564B11C5A2D5CE7 /* NSDateColumn.mm in Sources */,
 				5898AD7B10C6CF1A56A2B80B /* NSDecimalNumberColumn.mm in Sources */,
 				CA1EF6D9178FB9C400C76AA8 /* NSNumberColumn.mm in Sources */,
+				5DC6A16A9F723443CA1352CA /* NSDateSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1505,6 +1515,7 @@
 				5898AE1B02DF5986F8F1726E /* NSStringColumn.mm in Sources */,
 				5898A796CF235C1AFD8BBC93 /* NSDateColumn.mm in Sources */,
 				5898A7BD6645456999B45043 /* NSDecimalNumberColumn.mm in Sources */,
+				5DC6A12D9A2EF3CEBD17C195 /* NSDateSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,6 +1545,7 @@
 				5898A0809EDAF33E3292AD51 /* NSStringColumn.mm in Sources */,
 				5898ACB4F41F10B4ED8DB7F6 /* NSDateColumn.mm in Sources */,
 				5898A3B050D1F848FAAA691B /* NSDecimalNumberColumn.mm in Sources */,
+				5DC6A42E7467548079B9B60E /* NSDateSpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1644,7 +1656,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -1662,7 +1674,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1671,7 +1683,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -1684,7 +1696,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

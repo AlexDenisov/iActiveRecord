@@ -12,7 +12,7 @@
 
 - (NSString *)toSql {
     NSTimeInterval time = [self timeIntervalSince1970];
-    return [NSString stringWithFormat:@"%f", time];
+    return @(time).stringValue;
 }
 
 + (id)fromSql:(NSString *)sqlData {

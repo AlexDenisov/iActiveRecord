@@ -1,4 +1,4 @@
-_Note: I'm working on new version, with new features and a bugfixes_
+# The project is [looking for maintainer](https://github.com/AlexDenisov/iActiveRecord/issues/88)
 
 ## ActiveRecord without CoreData.
 ### Only SQLite.
@@ -49,3 +49,7 @@ open iActiveRecord.xcworkspace
 Then build & run UnitTests target.
 
 ### Check [Wiki](https://github.com/AlexDenisov/iActiveRecord/wiki) to see details!
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/AlexDenisov/iactiverecord/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

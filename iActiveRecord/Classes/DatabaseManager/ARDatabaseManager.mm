@@ -77,13 +77,17 @@ static NSArray *records = nil;
     }
     
     NSArray *existedTables = [self tables];
+    NSArray *existedViews = [self views];
+    NSArray *allExisting = [existedViews arrayByAddingObjectsFromArray: existedTables];
     NSArray *describedTables = [self records];
     
     for (Class tableClass in describedTables) {
         NSString *tableName = [tableClass recordName];
-        if (![existedTables containsObject:tableName]) {
+        if (![allExisting containsObject:tableName] ) {
+            //only create table if there is no table or view for ist
             [self createTable:tableClass];
         } else {
+
             NSArray *existedColumns = [self columnsForTable:tableName];
             
             NSArray *describedProperties = [tableClass performSelector:@selector(columns)];
@@ -97,6 +101,11 @@ static NSArray *records = nil;
                 if ([existedColumns containsObject:column]) {
                     continue;
                 }
+                if([existedViews containsObject: tableName])
+                {
+                    NSLog(@"'%@' is a view and column '%@' is missing. Cannot auto-migrate view tables !!! You have to adapt the view manually.", tableName, column, nil);
+                }
+
                 const char *sql = [ARSQLBuilder sqlOnAddColumn:column toRecord:tableClass];
                 [self executeSqlQuery:sql];
             }
@@ -136,13 +145,22 @@ static NSArray *records = nil;
 
 //  select tbl_name from sqlite_master where type='table' and name not like 'sqlite_%'
 - (NSArray *)tables {
+    return [self sqliteItemsWithType: @"table"];
+}
+
+- (NSArray*) views {
+    return [self sqliteItemsWithType: @"view"];
+}
+
+//  select tbl_name from sqlite_master where type='table' and name not like 'sqlite_%'
+- (NSArray *) sqliteItemsWithType: (NSString*) type {
     __block NSMutableArray *resultArray = nil;
     
     dispatch_sync([self activeRecordQueue], ^{
         char **results;
         int nRows;
         int nColumns;
-        const char *pszSql = [@"select tbl_name from sqlite_master where type='table' and name not like 'sqlite_%'" UTF8String];
+        const char *pszSql = [[NSString stringWithFormat: @"select tbl_name from sqlite_master where type='%@' and name not like 'sqlite_%'", type, nil] UTF8String];
         if ( SQLITE_OK != sqlite3_get_table(database,
                                             pszSql,
                                             &results,
@@ -226,9 +244,28 @@ static NSArray *records = nil;
             for (int columnIndex = 0; columnIndex < columnsCount; columnIndex++) {
                 
                 NSString *columnName = [NSString stringWithUTF8String:sqlite3_column_name(statement, columnIndex)];
+               
                 if (!hasColumns) {
-                    columns[columnIndex] = [Record performSelector:@selector(columnNamed:)
-                                                        withObject:columnName];
+                    ARColumn* column = [Record performSelector:@selector(columnNamed:)
+                                                       withObject:columnName];
+                    if(column == nil){
+                        /*if working with views, sqlite3_column_name(statement, columnIndex) currently returns fully qualified column names
+                        * the follwoing code dissembles the fully qualified name to have only the raw column name itself self for the lookup in the
+                        * record columns. Though it returns the correct column.
+                        */
+                        NSArray* array = [columnName componentsSeparatedByString: @"."];
+                        NSString* newColumnName = [array.lastObject stringByReplacingOccurrencesOfString: @"\"" withString: @""];
+                        column = [Record performSelector:@selector(columnNamed:)
+                                              withObject:newColumnName];
+                    }
+                    if(column == nil){
+                        //our recovery operation for the column name failed
+                        sqlite3_finalize(statement);
+                        @throw [ARException exceptionWithName: @"ColumnNotFoundInRecord"
+                                                       reason: [NSString stringWithFormat: @"Column %@ could not be found in record %@", columnName, [Record recordName],nil  ]
+                                                     userInfo: nil];
+                    }
+                    columns[columnIndex] = column;
                 }
                 ARColumn *column = columns[columnIndex];
                 
@@ -353,7 +390,7 @@ static NSArray *records = nil;
                                                length:sqlite3_column_bytes(statement, columnIndex)];
                     } break;
                     case SQLITE3_TEXT: {
-                        value = [NSString stringWithFormat:@"%s", sqlite3_column_text(statement, columnIndex)];
+                        value = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, columnIndex)];
                         if ([column.columnClass isSubclassOfClass:[NSDecimalNumber class]]) {
                             value = [NSDecimalNumber decimalNumberWithString:value];
                         }
@@ -466,8 +503,12 @@ static NSArray *records = nil;
                                valueMapping];
         
         sql = [sqlString UTF8String];
-        result = sqlite3_prepare_v2(database, sql, strlen(sql), &stmt, NULL);
-        
+
+        if(SQLITE_OK != sqlite3_prepare_v2(database, sql, strlen(sql), &stmt, NULL)) {
+            NSLog( @"Couldn't save record to database: %s", sqlite3_errmsg(database));
+            return;
+        }
+
         int columnIndex = 1;
         for (ARColumn *column in changedColumns) {
             id value = [aRecord valueForColumn:column];
@@ -496,10 +537,20 @@ static NSArray *records = nil;
             }
             columnIndex++;
         }
-        
-        result = sqlite3_step(stmt);
-        result = sqlite3_finalize(stmt);
-        result = sqlite3_last_insert_rowid(database);
+
+        if(SQLITE_DONE == sqlite3_step(stmt) &&
+                SQLITE_OK == sqlite3_finalize(stmt)) {
+            result = sqlite3_last_insert_rowid(database);
+        } else {
+            int error = sqlite3_finalize(stmt);
+            NSLog( @"Couldn't save record to database: %s", sqlite3_errmsg(database) );
+
+            switch(error) {
+                case SQLITE_CONSTRAINT:
+                    //TODO: Code should be added here to detect which column failed and added to model errors. JKW
+                    break;
+            }
+        }
     });
     return result;
 }

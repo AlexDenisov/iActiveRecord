@@ -134,7 +134,7 @@
                      @"\"%@\".\"%@\" AS '%@#%@'",
                      [recordClass performSelector:@selector(recordName)],
                      field,
-                     [recordClass performSelector:@selector(recordName)],
+                     [recordClass.class description], // use the class name here, since the class is looked up when records are loaded
                      field];
         [fields addObject:fieldname];
     }
@@ -144,7 +144,8 @@
                      @"\"%@\".\"%@\" AS '%@#%@'",
                      [joinClass performSelector:@selector(recordName)],
                      field,
-                     [joinClass performSelector:@selector(recordName)],
+                     [joinClass.class description],  // use the class name here, since the class is looked up when records are loaded
+
                      field];
         [fields addObject:fieldname];
     }
@@ -360,9 +361,9 @@
     }
 
     if (!self.whereStatement) {
-        self.whereStatement = [NSMutableString stringWithString:result];
+        self.whereStatement = [[NSMutableString alloc] initWithString:result];
     } else {
-        [self.whereStatement appendFormat:@"AND %@", result];
+        self.whereStatement = [NSMutableString stringWithFormat:@"%@AND %@", self.whereStatement, result];
     }
     return self;
 }

@@ -31,6 +31,7 @@
 - (void)closeConnection;
 
 - (NSArray *)tables;
+- (NSArray *)views;
 - (NSArray *)columnsForTable:(NSString *)aTableName;
 
 - (NSString *)tableName:(NSString *)modelName;

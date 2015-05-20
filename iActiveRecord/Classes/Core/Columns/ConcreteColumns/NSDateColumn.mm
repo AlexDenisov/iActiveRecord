@@ -19,13 +19,18 @@ namespace AR {
     NSString *NSDateColumn::sqlValueFromRecord(ActiveRecord *record) const
     {
         NSDate *value = objc_getAssociatedObject(record, this->columnKey());
+        if(value == nil) return @"null";
         NSTimeInterval time = [value timeIntervalSince1970];
         return [NSString stringWithFormat:@"%f", time];
     }
 
     NSDate *__strong NSDateColumn::toColumnType(id value) const
     {
-        return value;
+        if([value isKindOfClass:[NSDate class]])
+            return [NSDate dateWithTimeIntervalSince1970: [value timeIntervalSince1970]];
+        else if([value isKindOfClass:[NSNumber class]])
+            return [NSDate dateWithTimeIntervalSince1970: [value doubleValue]];
+        return nil;
     }
 
     id NSDateColumn::toObjCObject(NSDate *value) const
