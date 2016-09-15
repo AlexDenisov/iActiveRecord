@@ -11,7 +11,8 @@
 
 static NSArray *class_getSubclasses(Class parentClass) {
     int numClasses = objc_getClassList(NULL, 0);
-    Class classes[sizeof(Class) * numClasses];
+    Class *classes = NULL;
+    classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
     numClasses = objc_getClassList(classes, numClasses);
     NSMutableArray *result = [NSMutableArray array];
     for (NSInteger i = 0; i < numClasses; i++) {
@@ -25,5 +26,6 @@ static NSArray *class_getSubclasses(Class parentClass) {
         }
         [result addObject:classes[i]];
     }
+    free(classes);
     return result;
 }
